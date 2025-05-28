@@ -83,6 +83,7 @@ engine:
     - abc_segmentor                             #标识常规的文字段落，加上 abc 这个 tag
     - affix_segmentor@radical_lookup            #部件拆字自定义 tag
     - affix_segmentor@reverse_stroke            #笔画反查自定义 tag
+    - affix_segmentor@add_user_dict             #自造词tag
     - punct_segmentor                           #标识符号段落〔键入标点符号用〕加上 punct 这个 tag
     - fallback_segmentor                        #标识其他未标识段落，必须放在最后帮助tag模式切换后回退重新处理
   translators:
@@ -99,6 +100,8 @@ engine:
     - table_translator@chengyu           #简码成语词汇表导入
     - table_translator@radical_lookup    #挂接部件拆字反查
     - table_translator@reverse_stroke    #挂接笔画反查
+    - script_translator@add_user_dict    #按需自造词
+    - script_translator@user_dict_set    #使用自造词
     - lua_translator@*force_gc           #暴力 GC 降低内存
   filters:
     - lua_filter@*super_sequence*F                  #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+0 移除位移
@@ -316,7 +319,7 @@ recognizer:
     lunar: "^N[0-9]{1,8}"               # N 作为触发前缀，响应 lua_translator@shijian，公历转农历，输入 N20250515 得到「二〇二五年五月十五」
     calculator: "^V.*$"                 # V 作为触发前缀，计算器功能引导
     quick_symbol: "^;.*$"               # ; 作为触发前缀，快符引导，例如输入;q 后自动上屏快速符号，双击;;重复上屏
-
+    #add_user_dict: "^ac[A-Za-z/`']*$"      #自造词引导方式
 # 标点符号
 # punctuator 下面有三个子项：
 # 设置为一个映射，就自动上屏；设置为多个映射，如 '/' : [ '/', ÷ ] 则进行复选。
@@ -998,6 +1001,36 @@ speller:
 26键:          
   __append: []
 
+# 自定义词典 
+user_dict_set:
+  dictionary: wanxiang
+  initial_quality: 0
+  enable_completion: false
+  enable_sentence: false
+  spelling_hints: 100
+  comment_format:
+  preedit_format:     #影响到输入框的显示和“Shift+回车”上屏的字符，交给super_preedit_pro处理
+    - xform/7/1/
+    - xform/8/2/
+    - xform/9/3/
+    - xform/0/4/
+  enable_user_dict: false
+  user_dict: zc
+# 自定义词典加词(``引导)
+add_user_dict:
+  tag: add_user_dict
+  dictionary: wanxiang
+  initial_quality: -1
+  user_dict: zc
+  enable_charset_filter: false # 是否开启字符集过滤
+  enable_completion: true # 提前显示尚未输入完整码的字〔仅 table_translator 有效〕
+  enable_encoder: true # 是否开启自动造词〔仅 table_translator 有效〕
+  enable_sentence: true #  是否开启自动造句
+  enable_user_dict: false
+  encode_commit_history: false # 是否对已上屛词自动成词〔仅 table_translator 有效〕  
+  comment_format:
+  prefix: "``"
+  tips: "〔自造词〕"
 
 #语法模型
 octagram:
