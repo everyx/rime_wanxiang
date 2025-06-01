@@ -190,7 +190,7 @@ translator:
   dictionary: wanxiang         # 挂载主词库
 #  packs: user                  #导入根目录下名称为user.dict.yaml的自定义固定词典
   #prism: wanxiang             # 多方案共用一个词库时，为避免冲突，需要用 prism 指定一个名字。
-  enable_completion: true      # 启用候选词补全
+  enable_completion: false      # 启用候选词补全
 #  user_dict: zrm.userdb       # 用户词典的文件名称
 #  db_class: tabledb           #开启后就不会产生wanxiang.userdb这样的文件夹，会直接输出文本wanxiang.txt同时无法使用同步能力，可设 tabledb〔文本〕或 userdb〔二进制〕
   enable_user_dict: true       # 是否开启自动调频，即开启用户词典
@@ -295,6 +295,7 @@ reverse_stroke:
   tag: reverse_stroke
   dictionary: wanxiang_stroke
   db_class: tabledb
+  enable_user_dict: false
   enable_completion: true
   suffix: "'"
   preedit_format:
@@ -400,7 +401,7 @@ speller:
       - set_gongjian_mohu    #共键输入或者模糊音选择性开启
 
 
-全拼: 
+全拼:
   __append:
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
@@ -436,12 +437,12 @@ speller:
     - xform/^n(\d)/en$1/
     - derive/([nl])ve(\d)/$1ue$2/                            #让üè兼容ue
     - derive/^([jqx])v(\d)$/$1u$2/
-    - abbrev/^([qwrtypsdfghjklxcbnm]).+$/$1/        #不携带元音的声母派生出首字母简码来
-    - derive/^([qwrtypsdfghjklxcbnm]).+(\d)$/$1$2/  #不携带元音的声母派生出首字母简码来+数字声调
-    - abbrev/^([zcs]h?).+$/$1/                        #zh ch sh作为整体
-    - derive/^([zcs]h?).+(\d)$/$1$2/                  #zh ch sh作为整体
+    - abbrev/^([zcs]h).+$/$1/                        #zh ch sh作为整体
+    - abbrev/^([zcs]h).+(\d)$/$1$2/                  #zh ch sh作为整体
+    - abbrev/^([qwrtypsdfghjklzxcbnm]).+$/$1/        #不携带元音的声母派生出首字母简码来
+    - abbrev/^([qwrtypsdfghjklzxcbnm]).+(\d)$/$1$2/  #不携带元音的声母派生出首字母简码来+数字声调
     - abbrev/^([aoe])([ioun])(\d)$/$1/               #携带两个字符的元音首字母派生出简码来
-    - derive/^([aoe])([ioun])(\d)$/$1$3/             #携带两个字符的元音首字母派生出简码来+数字声调
+    - abbrev/^([aoe])([ioun])(\d)$/$1$3/             #携带两个字符的元音首字母派生出简码来+数字声调
     - derive/(.+)(\d)/$1/
 自然码: 
   __append:
