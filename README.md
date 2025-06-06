@@ -1,4 +1,4 @@
-### 万象拼音 
+### 万象拼音  [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/amzxyz/rime_wanxiang)
 **配套方案** 本方案为万象系列方案标准版(携带声调辅助筛选) （内建同文拼音9、14、18键布局方案）
 
    [>>辅助码增强版本](https://github.com/amzxyz/rime_wanxiang_pro)  
