@@ -249,7 +249,7 @@ set_shuru_schema:
 
  **鸣谢:**
 
-   项目英文词库及部分lua来自"[rime-ice](https://github.com/iDvel/rime-ice)"
+   项目英文词库初期选自"[rime-ice](https://github.com/iDvel/rime-ice)"
 
    拼音标注来自万象词库与语法模型项目，并在该项目下进行鸣谢！
 
