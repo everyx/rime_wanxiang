@@ -3,7 +3,7 @@
 # 方案说明
 ########################万象拼音标准版本，支持同文8、14、18键 ###########################
 set_shuru_schema:               #配置此项就是选择什么输入法,同时拆分反查和中英文混输也将匹配该输入方案
-  __include: 全拼                #可选解码规则有   全拼, 自然码, 自然龙, 小鹤双拼, 搜狗双拼, 微软双拼, 智能ABC, 紫光双拼, 乱序17 选择一个填入
+  __include: 全拼                #可选解码规则有   全拼, 自然码, 自然龙, 汉心龙, 小鹤双拼, 搜狗双拼, 微软双拼, 智能ABC, 紫光双拼, 乱序17 选择一个填入
 set_cn_en:                      #中英混输
   user_dict: en_dicts/pinyin    #可选的值有：en_dicts/pinyin， en_dicts/zrm， en_dicts/flypy ，en_dicts/mspy， en_dicts/sogou， en_dicts/pinyin
 set_gongjian_mohu:              #可选的值有：18键, 14键, 9键, 26键  ，PC请选26键
@@ -67,7 +67,7 @@ engine:
     - lua_processor@*super_tips*S               #超级提示模块：表情、简码、翻译、化学式、等等靠你想象
     - lua_processor@*super_sequence*P           #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+0 移除位移
     - lua_processor@*limit_repeated             #用于限制最大候选长度以及最大重复输入声母编码长度，避免性能异常
-    - lua_processor@*backspace_limit       #防止连续 Backspace 在编码为空时删除已上屏内容
+    - lua_processor@*backspace_limit            #防止连续 Backspace 在编码为空时删除已上屏内容
     - lua_processor@*userdb_sync_delete         #危险操作：通过输入 /del 触发,用于清理自定义同步目录下txt用户词典里被标记c<0的词条，操作步骤：必须先同步、再执行/del、再去部署刷新状态、再去同步回收词典，完成动作。
     - ascii_composer                            #处理英文模式及中英文切换
     - recognizer                                #与 matcher 搭配，处理符合特定规则的输入码，如网址、反查等 tags
@@ -584,7 +584,91 @@ speller:
     - xform/^(.)(ū|u|óu|iàn)$/$1A/
     - xform/^(.)(āo|ao|iè)$/$1Q/
     - xlit/QWERTYUIOPASDFGHMJCKLZXVBN/qwertyuiopasdfghmjcklzxvbn/
-
+汉心龙:    #原作者项目地址： https://hanxinma.gitlab.io/longma/
+  __append:
+    - xform/^ēr/BA/
+    - xform/^ér/BJ/
+    - xform/^ěr/BP/
+    - xform/^èr/BO/
+    - xform/^er/BA/
+    - xform/^(ā|á|ǎ|à)([ioun])/Q$1$2/
+    - xform/^(ō|ó|ǒ|ò)([ioun])/R$1$2/
+    - xform/^(ē|é|ě|è)([ioun])/B$1$2/
+    - xform/^(ā|á|ǎ|à)(ng)/Q$1$2/
+    - xform/^(ō|ó|ǒ|ò)(ng)/R$1$2/
+    - xform/^(ē|é|ě|è)(ng)/B$1$2/
+    - xform/^(ā|á|ǎ|à)/Q$1/
+    - xform/^(ō|ó|ǒ|ò)/R$1/
+    - xform/^(ē|é|ě|è)/B$1/
+    - xform/^([eacj])u/$1ü/
+    - xform/^([eacj])ū/$1ǖ/
+    - xform/^([eacj])ú/$1ǘ/
+    - xform/^([eacj])ǔ/$1ǚ/
+    - xform/^([eacj])ù/$1ǜ/
+    - xform/^a$/Qā/
+    - xform/^o$/Rō/
+    - xform/^e$/Bē/
+    - xform/^ǹg$/Bèng/
+    - xform/^ňg$/Běng/
+    - xform/^ńg$/Béng/
+    - xform/^ng$/beng/
+    - xform/^ǹ$/Bèn/
+    - xform/^ň$/Běn/
+    - xform/^ń$/Bén/
+    - xform/^n$/Ben/
+    - xform/^sh/T/
+    - xform/^ch/S/
+    - xform/^zh/K/
+    - xform/^a/Q/
+    - xform/^p/W/
+    - xform/^j/E/
+    - xform/^o/R/
+    - xform/^n/Y/
+    - xform/^k/U/
+    - xform/^b/I/
+    - xform/^t/O/
+    - xform/^m/P/
+    - xform/^q/A/
+    - xform/^l/D/
+    - xform/^r/F/
+    - xform/^w/G/
+    - xform/^d/H/
+    - xform/^y/J/
+    - xform/^g/L/
+    - xform/^s/Z/
+    - xform/^c/X/
+    - xform/^x/C/
+    - xform/^f/V/
+    - xform/^e/B/
+    - xform/^z/N/
+    - xform/^h/M/
+    - xform/^(.)(ēn|en|iǎn|ǒng|iáng|uá|ó|án|ǐng)$/$1Q/
+    - xform/^(.)(ào|èn|èng|iě|iàng)$/$1W/
+    - xform/^(.)(ǖ|iù|ā|a|uì|uǎng)$/$1E/
+    - xform/^(.)(ìn|è|à|ě|ǎi|áo)$/$1R/
+    - xform/^(.)(ō|o|ìòng|ǎo|óu)$/$1T/
+    - xform/^(.)(én|ià|ang|āng|iú|ǐn|üē|uē|üe)$/$1Y/
+    - xform/^(.)(àng|iàn|ao|āo)$/$1U/
+    - xform/^(.)(ù|uán|ué|üé)$/$1I/
+    - xform/^(.)(éng|iā|ia|ān|an|èr|uè|üè|iū|uài|iáo)$/$1O/
+    - xform/^(.)(uǒ|iè|iào|ěr|ǎng)$/$1P/
+    - xform/^(.)(āi|ai|óng|ìng|uāng|uang|á|ēr|er|iǎ)$/$1A/
+    - xform/^(.)(uō|uo|ǚ|uó|àn|ín|ūn|un|iōng|iong)$/$1S/
+    - xform/^(.)(ǒu|èi|é|iāo|iao|iá)$/$1D/
+    - xform/^(.)(ǐ|uān|uan|uà|ò|uǎ)$/$1F/
+    - xform/^(.)(ī|i|ěn|ěi|uáng)$/$1G/
+    - xform/^(.)(ǜ|ēng|eng|iē|ie|éi|ún|uāi|uai)$/$1H/
+    - xform/^(.)(ái|ǒ|ū|u|ér|īng|ing|uǎi)$/$1J/
+    - xform/^(.)(ē|e|íng|òu|ié)$/$1K/
+    - xform/^(.)(ì|uī|ui)$/$1L/
+    - xform/^(.)(uā|ua|òng|uǐ|áng|iǔ|iǎo)$/$1Z/
+    - xform/^(.)(uò|ōu|iān|ian|ēi|ei|ùn)$/$1X/
+    - xform/^(.)(ǔ|uàn)$/$1C/
+    - xform/^(.)(ǎ|uái|ōng|ong|īn|in|ióng|iǒng)$/$1V/
+    - xform/^(.)(ài|ián|üě|ǔe|uí|uǎn|uàng|ǘ)$/$1B/
+    - xform/^(.)(í|iǎng|ǎn)$/$1N/
+    - xform/^(.)(ú|iāng|iang|ěng|ǔn)$/$1M/
+    - xlit/QWERTYUIOPASDFGHMJCKLZXVBN/qwertyuiopasdfghmjcklzxvbn/
 
 小鹤双拼: 
   __append:

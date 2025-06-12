@@ -18,12 +18,14 @@ function M.is_mobile_device()
         return true
     end
     
-    -- 补充判断：路径中包含移动设备特征
+    -- 补充判断：路径中包含移动设备特征，很可以mac的运行逻辑和手机一球样
     if lower_path:find("/android/") or 
        lower_path:find("/mobile/") or 
        lower_path:find("/sdcard/") or 
        lower_path:find("/data/storage/") or
-       lower_path:find("/storage/emulated/") then
+       lower_path:find("/storage/emulated/") or
+       lower_path:find("Applications") or
+       lower_path:find("Library") then
         return true
     end
     
