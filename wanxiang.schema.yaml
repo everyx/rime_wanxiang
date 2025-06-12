@@ -586,28 +586,14 @@ speller:
     - xlit/QWERTYUIOPASDFGHMJCKLZXVBN/qwertyuiopasdfghmjcklzxvbn/
 汉心龙:    #原作者项目地址： https://hanxinma.gitlab.io/longma/
   __append:
-    - xform/^ēr/BA/
-    - xform/^ér/BJ/
-    - xform/^ěr/BP/
-    - xform/^èr/BO/
-    - xform/^er/BA/
-    - xform/^(ā|á|ǎ|à)([ioun])/Q$1$2/
-    - xform/^(ō|ó|ǒ|ò)([ioun])/R$1$2/
-    - xform/^(ē|é|ě|è)([ioun])/B$1$2/
-    - xform/^(ā|á|ǎ|à)(ng)/Q$1$2/
-    - xform/^(ō|ó|ǒ|ò)(ng)/R$1$2/
-    - xform/^(ē|é|ě|è)(ng)/B$1$2/
-    - xform/^(ā|á|ǎ|à)/Q$1/
-    - xform/^(ō|ó|ǒ|ò)/R$1/
-    - xform/^(ē|é|ě|è)/B$1/
-    - xform/^([eacj])u/$1ü/
-    - xform/^([eacj])ū/$1ǖ/
-    - xform/^([eacj])ú/$1ǘ/
-    - xform/^([eacj])ǔ/$1ǚ/
-    - xform/^([eacj])ù/$1ǜ/
-    - xform/^a$/Qā/
-    - xform/^o$/Rō/
-    - xform/^e$/Bē/
+    - xform/^(a|ā|á|ǎ|à)/Q$1/
+    - xform/^(o|ō|ó|ǒ|ò)/R$1/
+    - xform/^(e|ē|é|ě|è)/B$1/
+    - xform/^([jqxy])u/$1ü/
+    - xform/^([jqxy])ū/$1ǖ/
+    - xform/^([jqxy])ú/$1ǘ/
+    - xform/^([jqxy])ǔ/$1ǚ/
+    - xform/^([jqxy])ù/$1ǜ/
     - xform/^ǹg$/Bèng/
     - xform/^ňg$/Běng/
     - xform/^ńg$/Béng/
@@ -644,13 +630,13 @@ speller:
     - xform/^h/M/
     - xform/^(.)(ēn|en|iǎn|ǒng|iáng|uá|ó|án|ǐng)$/$1Q/
     - xform/^(.)(ào|èn|èng|iě|iàng)$/$1W/
-    - xform/^(.)(ǖ|iù|ā|a|uì|uǎng)$/$1E/
+    - xform/^(.)(ü|ǖ|iù|ā|a|uì|uǎng)$/$1E/
     - xform/^(.)(ìn|è|à|ě|ǎi|áo)$/$1R/
     - xform/^(.)(ō|o|ìòng|ǎo|óu)$/$1T/
-    - xform/^(.)(én|ià|ang|āng|iú|ǐn|üē|uē|üe)$/$1Y/
+    - xform/^(.)(én|ià|ang|āng|iú|ǐn|üē|uē|üe|ue)$/$1Y/
     - xform/^(.)(àng|iàn|ao|āo)$/$1U/
     - xform/^(.)(ù|uán|ué|üé)$/$1I/
-    - xform/^(.)(éng|iā|ia|ān|an|èr|uè|üè|iū|uài|iáo)$/$1O/
+    - xform/^(.)(éng|iā|ia|ān|an|èr|uè|üè|iu|iū|uài|iáo)$/$1O/
     - xform/^(.)(uǒ|iè|iào|ěr|ǎng)$/$1P/
     - xform/^(.)(āi|ai|óng|ìng|uāng|uang|á|ēr|er|iǎ)$/$1A/
     - xform/^(.)(uō|uo|ǚ|uó|àn|ín|ūn|un|iōng|iong)$/$1S/
@@ -662,13 +648,14 @@ speller:
     - xform/^(.)(ē|e|íng|òu|ié)$/$1K/
     - xform/^(.)(ì|uī|ui)$/$1L/
     - xform/^(.)(uā|ua|òng|uǐ|áng|iǔ|iǎo)$/$1Z/
-    - xform/^(.)(uò|ōu|iān|ian|ēi|ei|ùn)$/$1X/
+    - xform/^(.)(uò|ōu|ou|iān|ian|ēi|ei|ùn)$/$1X/
     - xform/^(.)(ǔ|uàn)$/$1C/
     - xform/^(.)(ǎ|uái|ōng|ong|īn|in|ióng|iǒng)$/$1V/
-    - xform/^(.)(ài|ián|üě|ǔe|uí|uǎn|uàng|ǘ)$/$1B/
+    - xform/^(.)(ài|ián|üě|uě|uí|uǎn|uàng|ǘ)$/$1B/
     - xform/^(.)(í|iǎng|ǎn)$/$1N/
     - xform/^(.)(ú|iāng|iang|ěng|ǔn)$/$1M/
     - xlit/QWERTYUIOPASDFGHMJCKLZXVBN/qwertyuiopasdfghmjcklzxvbn/
+
 
 小鹤双拼: 
   __append:
