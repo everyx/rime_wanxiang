@@ -2153,13 +2153,14 @@ function get_birthday_reminders(custom_settings)
         -- 构建生日信息
         local birthday_info
         if note and note ~= "" then
-            birthday_info = string.format("%s(%s): %s < %d 天", name, note, formatted_date, days_left)
+            birthday_info = string.format("%s(%s): %s", name, note, formatted_date)
         else
-            birthday_info = string.format("%s: %s < %d 天", name, formatted_date, days_left)
+            birthday_info = string.format("%s: %s", name, formatted_date)
         end
 
         -- 添加到生日列表
-        table.insert(birthday_list, {birthday_info, "〔公历生日〕", days_left})
+        table.insert(birthday_list,
+            {birthday_info, string.format("〔< %d 天 (公历生日)〕", days_left), days_left})
     end
 
     -- 计算农历生日倒计时
@@ -2209,14 +2210,14 @@ function get_birthday_reminders(custom_settings)
         -- 构建农历生日信息
         local birthday_info
         if note and note ~= "" then
-            birthday_info = string.format("%s(%s): %s(%s) < %d 天", name, note, formatted_lunar, formatted_solar,
-                days_left)
+            birthday_info = string.format("%s(%s): %s(%s)", name, note, formatted_lunar, formatted_solar)
         else
-            birthday_info = string.format("%s: %s(%s) < %d 天", name, formatted_lunar, formatted_solar, days_left)
+            birthday_info = string.format("%s: %s(%s)", name, formatted_lunar, formatted_solar)
         end
 
         -- 添加到生日列表
-        table.insert(birthday_list, {birthday_info, "〔农历生日〕", days_left})
+        table.insert(birthday_list,
+            {birthday_info, string.format("〔 < %d 天 (农历生日)〕", days_left), days_left})
     end
 
     -- 按天数排序
