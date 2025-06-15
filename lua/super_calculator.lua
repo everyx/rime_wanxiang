@@ -16,8 +16,9 @@
 -- 组合数、排列数、最大公因数、最小公倍数求解；
 -- 点关于直线的对称点坐标、直线关于直线(或点)的对称直线方程求解；
 -- 连续自然数的幂方求和，包括平方和、立方和、4次方之和；前n个奇数或偶数的平方和、立方和、4次方之和；
--- 求解勾股数、批量随机数、质因数分解、找质数
--- 24点计算器(姑且算一个小游戏,雾)
+-- 求解勾股数、批量随机数、质因数分解、找质数；
+-- 24点计算器(姑且算一个小游戏,雾)；
+-- 常见单位间的换算；数字的进制转换；
 
 -- 功能引导键一览：
 -- cb = "连续自然数立方和(从1开始)"
@@ -66,12 +67,14 @@
 -- cosh = "双曲余弦"
 -- dbsl = "已知等比数列的首项a₁，公比q，求指定的前n项和"
 -- dcsl = "已知等差数列的首项a₁，公差d，求指定的前n项和"
+-- dwhs = "单位换算，支持面积、质量、长度、体积，(数字, '原单位', '目标单位')"
 -- eyyc = "求解二元一次方程组ax+by=e，cx+dy=f"
 -- fact = "阶乘"
 -- lzx1 = "已知两直线方程A₁x+B₁y+C₁=0和A₂x+B₂y+C₂=0，判断它们的位置关系"
 -- lzx2 = "已知直线l₁:A₁x+B₁y+C₁=0和l₂:A₂x+B₂y+C₂=0，求两条直线以彼此为轴的对称直线方程"
 -- loge = "e作为底数的对数"
 -- logt = "10作为底数的对数"
+-- jzzh = "数字进制转换，支持2~36进制，(数字, 原进制, 目标进制)"
 -- psjs = "批量随机数"
 -- sinh = "双曲正弦"
 -- sjxx = "已知三角形三个顶点坐标，求其“心”的坐标"
@@ -79,8 +82,8 @@
 -- sjx2 = "已知三角形的三个顶点坐标(x₁,y₁)，(x₂,y₂)，(x₃,y₃)，求三角形面积"
 -- sqrt = "计算x平方根或虚根"
 -- tanh = "双曲正切"
--- tcr1 = "已知两圆一般方程x²+y²+D₁x+E₁y+F₁=0和x²+y²+D₂x+E₂y+F₂=0，判断它们的位置关系"
--- tcr2 = "已知两圆标准方程(x-x₁)²+(y-y₁)²=r₁²和(x-x₂)²+(y-y₂)²=r₂²，判断它们的位置关系"
+-- tcr1 = "已知两圆标准方程(x-x₁)²+(y-y₁)²=r₁²和(x-x₂)²+(y-y₂)²=r₂²，判断它们的位置关系"
+-- tcr2 = "已知两圆一般方程x²+y²+D₁x+E₁y+F₁=0和x²+y²+D₂x+E₂y+F₂=0，判断它们的位置关系"
 -- yyec = "求解一元二次方程"
 -- yyyc = "求解一元一次方程"
 -- xsqz = "向上取整"
@@ -142,16 +145,13 @@ local methods_desc = {
     ["g"] = "十亿"
 }
 
-
 -- 实现计算输入
-function replaceToFactorial(str)
+local function replaceToFactorial(str)
     return str:gsub("([0-9]+)!", "fact(%1)")
 end
 
-
-
 -- 保留返回值的非零有效数字(返回结果为数字)
-function fn(n)
+local function fn(n)
     -- 将数字转换为字符串以便处理
     local s = tostring(n)
     -- 查找小数点的位置
@@ -175,9 +175,8 @@ function fn(n)
     end
 end
 
-
 -- 保留返回值的非零有效数字(返回结果为字符串)
-function fs(n)
+local function fs(n)
     -- 将数字转换为字符串以便处理
     local s = tostring(n)
     -- 查找小数点的位置
@@ -201,19 +200,28 @@ function fs(n)
     end
 end
 
+-- 向上取整函数
+local function ceil(x)
+    return math.ceil(x)
+end
+calc_methods["xsqz"] = ceil
+methods_desc["xsqz"] = "向上取整"
 
+-- 向下取整函数
+local function floor(x)
+    return math.floor(x)
+end
+calc_methods["xxqz"] = floor
+methods_desc["xxqz"] = "向下取整"
 
 -- 四舍五入保留小数点后n位
-function round(m,n)
+local function round(m,n)
     local factor = 10 ^ n
     return floor(m * factor + 0.5) / factor
 end
 
-
-
-
 -- 计算两个数的最大公因数（GCD）
-function gcd(a, b)
+local function gcd(a, b)
     while b ~= 0 do
         local temp = b
         b = a % b
@@ -222,27 +230,47 @@ function gcd(a, b)
     return a
 end
 
-
-
+-- 计算多个数的最大公因数
+local function gcd_multiple(...)
+    local nums,result
+    nums = {...}
+    result = nums[1]
+    for i = 2, #nums do
+        result = gcd(result, nums[i])
+    end
+    return fn(result)
+end
+calc_methods["gys"] = gcd_multiple
+methods_desc["gys"] = "计算多个数的最大公因数"
 
 -- 计算两个数的最小公倍数（LCM）
-function lcm(a, b)
+local function lcm(a, b)
     return a * b / gcd(a, b)
 end
 
-
-
+-- 计算多个数的最小公倍数
+local function lcm_multiple(...)
+    local nums,result
+    nums = {...}
+    result = nums[1]
+    for i = 2, #nums do
+        result = lcm(result, nums[i])
+    end
+    return fn(result)
+end
+calc_methods["gbs"] = lcm_multiple
+methods_desc["gbs"] = "计算多个数的最小公倍数"
 
 -- random(m ,n) 返回m-n之间的随机数，n为空则返回1-m之间，都为空则返回0-1之间的小数
-function random(...) return math.random(...) end
+local function random(...) 
+    return math.random(...) 
+end
 -- 注册到函数表中
 calc_methods["sjs"] = random
 methods_desc["sjs"] = "随机数"
 
-
-
 -- 计算开 N 次方
-function nth_root(x, n)
+local function nth_root(x, n)
     if n % 2 == 0 and x < 0 then
         return nil -- 偶次方时负数没有实数解
     elseif x < 0 then
@@ -254,92 +282,74 @@ end
 calc_methods["nroot"] = nth_root
 methods_desc["nroot"] = "计算 x 开 N 次方"
 
-
-
-
 -- 正弦
-function sin(x) return math.sin(x) end
+local function sin(x)
+    return math.sin(x)
+end
 calc_methods["sin"] = sin
 methods_desc["sin"] = "正弦"
 
-
-
-
 -- 双曲正弦
-function sinh(x)
+local function sinh(x)
     return (math.exp(x) - math.exp(-x)) / 2
 end
 calc_methods["sinh"] = sinh
 methods_desc["sinh"] = "双曲正弦"
 
-
-
-
 -- 反正弦
-function asin(x) return math.asin(x) end
+local function asin(x)
+    return math.asin(x)
+end
 calc_methods["asin"] = asin
 methods_desc["asin"] = "反正弦"
 
-
-
-
 -- 余弦
-function cos(x) return math.cos(x) end
+local function cos(x)
+    return math.cos(x)
+end
 calc_methods["cos"] = cos
 methods_desc["cos"] = "余弦"
 
-
-
-
 -- 双曲余弦
-function cosh(x)
+local function cosh(x)
     return (math.exp(x) + math.exp(-x)) / 2
 end
 calc_methods["cosh"] = cosh
 methods_desc["cosh"] = "双曲余弦"
 
-
-
-
 -- 反余弦
-function acos(x) return math.acos(x) end
+local function acos(x)
+    return math.acos(x)
+end
 calc_methods["acos"] = acos
 methods_desc["acos"] = "反余弦"
 
-
-
-
 -- 正切
-function tan(x) return math.tan(x) end
+local function tan(x)
+    return math.tan(x)
+end
 calc_methods["tan"] = tan
 methods_desc["tan"] = "正切"
 
-
-
-
 -- 双曲正切
-function tanh(x)
+local function tanh(x)
     local e = math.exp(2 * x)
     return (e - 1) / (e + 1)
 end
 calc_methods["tanh"] = tanh
 methods_desc["tanh"] = "双曲正切"
 
-
-
-
 -- 反正切
-function atan(x) return math.atan(x) end
+local function atan(x)
+    return math.atan(x)
+end
 calc_methods["atan"] = atan
 methods_desc["atan"] = "反正切"
-
-
-
 
 -- 返回以弧度为单位的点(x,y)相对于x轴的逆时针角度。y是点的纵坐标，x是点的横坐标
 -- 返回范围从−π到π （以弧度为单位），其中负角度表示向下旋转，正角度表示向上旋转
 -- 它与传统的 math.atan(y/x) 函数相比，具有更好的数学定义，因为它能够正确处理边界情况（例如x=0）
-function atan2(y, x)
+local function atan2(y, x)
     if x == 0 and y == 0 then
         return 0/0 -- 返回NaN
     elseif x == 0 and y ~= 0 then
@@ -355,35 +365,29 @@ end
 calc_methods["atan2"] = atan2
 methods_desc["atan2"] = "返回以弧度为单位的点(x,y)相对于x轴的逆时针角度"
 
-
-
-
 -- 将角度从弧度转换为度
-function deg(x) return math.deg(x) end
+local function deg(x)
+    return math.deg(x)
+end
 calc_methods["deg"] = deg
 methods_desc["deg"] = "弧度转换为角度"
 
-
-
-
 -- 将角度从度转换为弧度
-function rad(x) return math.rad(x) end
+local function rad(x)
+    return math.rad(x)
+end
 calc_methods["rad"] = rad
 methods_desc["rad"] = "角度转换为弧度"
 
-
-
-
 -- 返回 x*2^y
-function ldexp(x, y) return x * 2 ^ y end
+local function ldexp(x, y)
+    return x * 2 ^ y
+end
 calc_methods["ldexp"] = ldexp
 methods_desc["ldexp"] = "返回 x*2^y"
 
-
-
-
 -- 返回 e^x
-function exp(x)
+local function exp(x)
     -- 检查参数正确性
     if type(x) ~= "number" then
         return "参数必须是数字"
@@ -393,11 +397,8 @@ end
 calc_methods["exp"] = exp
 methods_desc["exp"] = "返回 e^x"
 
-
-
-
 -- 如果x>=0，返回x的平方根; 如果x<0，则返回虚数根
-function sqrt(x)
+local function sqrt(x)
     -- 检查参数正确性
     if type(x) ~= "number" then
         return "参数必须是数字"
@@ -418,11 +419,8 @@ end
 calc_methods["sqrt"] = sqrt
 methods_desc["sqrt"] = "计算x平方根或虚根"
 
-
-
-
 -- x为底的对数， log(10, 100) = log(100) / log(10) = 2
-function log(x, y)
+local function log(x, y)
     -- 不能为负数或0
     if x <= 0 or y <= 0 then
         return nil
@@ -432,11 +430,8 @@ end
 calc_methods["log"] = log
 methods_desc["log"] = "x作为底数的对数"
 
-
-
-
 -- 自然数e为底的对数
-function loge(x)
+local function loge(x)
     -- 不能为负数或0
     if x <= 0 then
         return nil
@@ -446,11 +441,8 @@ end
 calc_methods["loge"] = loge
 methods_desc["loge"] = "e作为底数的对数"
 
-
-
-
 -- 10为底的对数
-function logt(x)
+local function logt(x)
     -- 不能为负数或0
     if x <= 0 then
         return nil 
@@ -460,11 +452,8 @@ end
 calc_methods["logt"] = logt
 methods_desc["logt"] = "10作为底数的对数"
 
-
-
-
 -- 平均值
-function avg(...)
+local function avg(...)
     local data,n,sum
     data = {...}
     n = #data
@@ -482,11 +471,8 @@ end
 calc_methods["avg"] = avg
 methods_desc["avg"] = "平均值"
 
-
-
-
 -- 方差
-function variance(...)
+local function variance(...)
     local data,n,sum,mean,sum_squared_diff
     data = {...}
     n = #data
@@ -510,11 +496,8 @@ end
 calc_methods["var"] = variance
 methods_desc["var"] = "方差"
 
-
-
-
 -- 阶乘
-function factorial(x)
+local function factorial(x)
     -- 不能为负数
     if x < 0 then
         return nil
@@ -530,32 +513,60 @@ end
 calc_methods["fact"] = factorial
 methods_desc["fact"] = "阶乘"
 
-
-
-
--- 向上取整函数
-function ceil(x)
-    return math.ceil(x)
+-- 计算行列式
+local function hls(...)
+    local args,n1,sqrt_n,matrix,index,side_length
+    args = {...}
+    n1 = #args
+    sqrt_n = math.sqrt(n1)
+    -- 判断n1是否为完全平方数，如果是，则将输入的元素重新排列成一个方阵
+    if sqrt_n == math.floor(sqrt_n) then
+        matrix = {}
+        index = 1
+        side_length = math.floor(sqrt_n)
+        for i = 1, side_length do
+            matrix[i] = {}
+            for j = 1, side_length do
+                matrix[i][j] = args[index]
+                index = index + 1
+            end
+        end
+    else
+        return "给出的元素不能组成一个方阵。"
+    end
+    -- 递归计算行列式的函数
+    local function determinant(matrix)
+        local n,det,sign,row,sub_matrix
+        n = #matrix
+        det = 0
+        -- 二阶行列式的边界条件
+        if n == 2 then
+            return matrix[1][1]*matrix[2][2]-matrix[1][2]*matrix[2][1]
+        end
+        -- 递归计算行列式
+        for j = 1, n do
+            sub_matrix = {}
+            for i = 2, n do
+                row = {}
+                for k = 1, n do
+                    if k ~= j then
+                        table.insert(row, matrix[i][k])
+                    end
+                end
+                table.insert(sub_matrix, row)
+            end
+            sign = (-1)^(1+j)
+            det = det+sign*matrix[1][j]*determinant(sub_matrix)
+        end
+        return fn(det)
+    end
+    return determinant(matrix)
 end
-calc_methods["xsqz"] = ceil
-methods_desc["xsqz"] = "向上取整"
-
-
-
-
--- 向下取整函数
-function floor(x)
-    return math.floor(x)
-end
-calc_methods["xxqz"] = floor
-methods_desc["xxqz"] = "向下取整"
-
-
-
+calc_methods["hls"] = hls
+methods_desc["hls"] = "计算行列式"
 
 -- 取余函数
--- 定义一个取余函数
-function remainder(x, y)
+local function remainder(x, y)
     -- 使用math.fmod函数计算余数
     local result = math.fmod(x, y)
     -- 如果x是负数，math.fmod会返回负数，需要调整为正数
@@ -567,11 +578,8 @@ end
 calc_methods["mod"] = remainder
 methods_desc["mod"] = "求余函数"
 
-
-
-
 -- 连续自然数平方和(从1开始)
-function sum_of_squares(n)
+local function sum_of_squares(n)
     -- 检查参数
     if type(n) ~= "number" or n < 1 or n~= floor(n) then
         return "错误：参数必须为正整数"
@@ -583,11 +591,8 @@ end
 calc_methods["sq"] = sum_of_squares
 methods_desc["sq"] = "连续自然数平方和(从1开始)"
 
-
-
-
 -- 连续自然数立方和(从1开始)
-function sum_of_cubes(n)
+local function sum_of_cubes(n)
     -- 检查参数
     if type(n) ~= "number" or n < 1 or n~= floor(n) then
         return "错误：参数必须为正整数"
@@ -599,11 +604,8 @@ end
 calc_methods["cb"] = sum_of_cubes
 methods_desc["cb"] = "连续自然数立方和(从1开始)"
 
-
-
-
 -- 连续自然数4次方之和(从1开始)
-function sum_of_fourth_powers(n)
+local function sum_of_fourth_powers(n)
     -- 检查参数
     if type(n) ~= "number" or n < 1 or n~= floor(n) then
         return "错误：参数必须为正整数"
@@ -615,11 +617,8 @@ end
 calc_methods["fp"] = sum_of_fourth_powers
 methods_desc["fp"] = "连续自然数4次方之和(从1开始)"
 
-
-
-
 -- 前n个奇数的平方和
-function sum_of_odd_squares(n)
+local function sum_of_odd_squares(n)
     -- 检查参数
     if type(n) ~= "number" or n < 1 or n~= floor(n) then
         return "错误：参数必须为正整数"
@@ -631,11 +630,8 @@ end
 calc_methods["osq"] = sum_of_odd_squares
 methods_desc["osq"] = "前n个奇数的平方和"
 
-
-
-
 -- 前n个偶数的平方和
-function sum_of_even_squares(n)
+local function sum_of_even_squares(n)
     -- 检查参数
     if type(n) ~= "number" or n < 1 or n~= floor(n) then
         return "错误：参数必须为正整数"
@@ -647,11 +643,8 @@ end
 calc_methods["esq"] = sum_of_even_squares
 methods_desc["esq"] = "前n个偶数的平方和"
 
-
-
-
 -- 前n个奇数的立方和
-function sum_of_odd_cubes(n)
+local function sum_of_odd_cubes(n)
     -- 检查参数
     if type(n) ~= "number" or n < 1 or n~= floor(n) then
         return "错误：参数必须为正整数"
@@ -663,11 +656,8 @@ end
 calc_methods["ocb"] = sum_of_odd_cubes
 methods_desc["ocb"] = "前n个奇数的立方和"
 
-
-
-
 -- 前n个偶数的立方和
-function sum_of_even_cubes(n)
+local function sum_of_even_cubes(n)
     -- 检查参数
     if type(n) ~= "number" or n < 1 or n~= floor(n) then
         return "错误：参数必须为正整数"
@@ -679,11 +669,8 @@ end
 calc_methods["ecb"] = sum_of_even_cubes
 methods_desc["ecb"] = "前n个偶数的立方和"
 
-
-
-
 -- 前n个奇数的4次方之和
-function sum_of_odd_fourth_powers(n)
+local function sum_of_odd_fourth_powers(n)
     -- 检查参数
     if type(n) ~= "number" or n < 1 or n~= floor(n) then
         return "错误：参数必须为正整数"
@@ -695,11 +682,8 @@ end
 calc_methods["ofp"] = sum_of_odd_fourth_powers
 methods_desc["ofp"] = "前n个奇数的4次方之和"
 
-
-
-
 -- 前n个偶数的4次方之和
-function sum_of_even_fourth_powers(n)
+local function sum_of_even_fourth_powers(n)
     -- 检查参数
     if type(n) ~= "number" or n < 1 or n~= floor(n) then
         return "错误：参数必须为正整数"
@@ -711,11 +695,8 @@ end
 calc_methods["efp"] = sum_of_even_fourth_powers
 methods_desc["efp"] = "前n个偶数的4次方之和"
 
-
-
-
 -- 圆的标准方程的表达式优化
-function CircleStandardEquation(h, k, r_squared)
+local function CircleStandardEquation(h, k, r_squared)
     local standardEquation
     if h == 0 then
         if k > 0 then
@@ -747,11 +728,8 @@ function CircleStandardEquation(h, k, r_squared)
     return standardEquation
 end
 
-
-
-
 -- 圆的一般方程表达式优化
-function CircleGeneralEquation(D, E, F)
+local function CircleGeneralEquation(D, E, F)
     local generalEquation = "x²+y²"
     -- 处理D项
     if D ~= 0 then
@@ -788,11 +766,8 @@ function CircleGeneralEquation(D, E, F)
     return generalEquation
 end
 
-
-
-
 -- 直线方程(斜截式)表达式优化
-function LineEquation(x1, y1, k)
+local function LineEquation(x1, y1, k)
     local equation,b
     -- 特殊情况
     if k == nil then
@@ -829,12 +804,8 @@ function LineEquation(x1, y1, k)
     return equation
 end
 
-
-
-
-
 -- 直线方程(一般式)表达式优化
-function LineGeneralEquation(A, B, C)
+local function LineGeneralEquation(A, B, C)
     -- 检查参数正确性
     if A == 0 and B == 0 then
         return "错误：直线方程系数A和B不能同时为0"
@@ -890,11 +861,8 @@ function LineGeneralEquation(A, B, C)
     return result
 end
 
-
-
-
 -- 二次函数表达式优化
-function QuadraticEquation(a,b,c)
+local function QuadraticEquation(a,b,c)
     local result = "y="
     -- 格式化a的值
     if a ~= 0 then
@@ -929,11 +897,8 @@ function QuadraticEquation(a,b,c)
     return result
 end
 
-
-
-
 -- 已知正多边形边数n和边长a，计算正多边形面积
-function calculateRegularPolygonArea(n, a)
+local function calculateRegularPolygonArea(n, a)
     -- 检查参数正确性
     if type(n) ~= "number" or type(a) ~= "number" or n ~= floor(n) or n < 1 or a <= 0 then
         return "错误：边数n必须为正整数，边长a必须为正数"
@@ -945,11 +910,8 @@ end
 calc_methods["zdbx"] = calculateRegularPolygonArea
 methods_desc["zdbx"] = "已知边数n与边长a计算正多边形面积"
 
-
-
-
 -- 已知等比数列的首项a₁，公比q，求指定的前n项和
-function geometricSeriesSum(a1, q, n)
+local function geometricSeriesSum(a1, q, n)
     -- 检查参数正确性
     if type(a1) ~= "number" or type(q) ~= "number" or type(n) ~= "number" or n ~= floor(n) or n < 1 then
         return "错误：a₁、q、n必须为数字且n是正整数"
@@ -969,11 +931,8 @@ end
 calc_methods["dbsl"] = geometricSeriesSum
 methods_desc["dbsl"] = "已知等比数列的首项a₁，公比q，求指定的前n项和"
 
-
-
-
 -- 已知等差数列的首项a₁，公差d，求指定的前n项和
-function ArithmeticSeriesSum(a1, d, n)
+local function ArithmeticSeriesSum(a1, d, n)
     -- 检查参数正确性
     if type(a1) ~= "number" or type(d) ~= "number" or type(n) ~= "number" or n ~= floor(n) or n < 1 then
         return "错误：a₁、d、n必须为数字且n是正整数"
@@ -991,13 +950,10 @@ end
 calc_methods["dcsl"] = ArithmeticSeriesSum
 methods_desc["dcsl"] = "已知等差数列的首项a₁，公差d，求指定的前n项和"
 
-
-
-
 -- 已知数列中任意两项aᵢ、aₖ，求通项公式
 -- 对应项数分别为i、k
 -- b=0为等差数列，b=1为等比数列
-function findSequenceFormula(i, ai, k, ak, b)
+local function findSequenceFormula(i, ai, k, ak, b)
     -- 检查参数正确性
     if type(i) ~= "number" or i ~= floor(i) or i < 1 or type(k) ~= "number" or k ~= floor(k) or k < 1 then
         return "错误：i 和 k 必须是正整数"
@@ -1008,7 +964,7 @@ function findSequenceFormula(i, ai, k, ak, b)
         return "错误：同一项数对应不同的项值"
     end
     -- 计算等差数列的通项公式
-    function arithmeticSequence(i, ai, k, ak)
+    local function arithmeticSequence(i, ai, k, ak)
         local d,a1,s
         d = fn((ak-ai)/(k-i))
         a1 = ai-(i-1)*d
@@ -1042,7 +998,7 @@ function findSequenceFormula(i, ai, k, ak, b)
         end
     end
     -- 计算等比数列的通项公式
-    function geometricSequence(i, ai, k, ak)
+    local function geometricSequence(i, ai, k, ak)
         if ai == 0 or ak == 0 then
             return "错误：等比数列中不能有0项"
         end
@@ -1104,11 +1060,8 @@ end
 calc_methods["tx"] = findSequenceFormula
 methods_desc["tx"] = "已知数列的任意两项aᵢ、aₖ及对应的项数i、k，求其通项公式"
 
-
-
-
 -- 已知圆心坐标(h,k)和半径r，求圆的标准方程和一般方程
-function CircleEquationsxr(h, k, r)
+local function CircleEquationsxr(h, k, r)
     -- 检查半径是否为正数
     if r <= 0 then
         return "错误：半径必须大于0"
@@ -1128,11 +1081,8 @@ end
 calc_methods["cexr"] = CircleEquationsxr
 methods_desc["cexr"] = "已知圆心坐标和半径求圆的方程"
 
-
-
-
 -- 已知圆心坐标(h,k)和圆上不同两点(x₁,y₁),(x₂,y₂)，求圆的标准方程和一般方程
-function CircleEquationsxl(h ,k ,x1, y1, x2, y2)
+local function CircleEquationsxl(h ,k ,x1, y1, x2, y2)
     -- 检查三个坐标中是否有任意两个点坐标完全相同
     if (x1 == x2 and y1 == y2) or (x1 == h and y1 == k) or (x2 == h and y2 == k) then
         return "错误：三个坐标中不能有任意两个点坐标完全相同"
@@ -1159,11 +1109,8 @@ end
 calc_methods["cexl"] = CircleEquationsxl
 methods_desc["cexl"] = "已知圆心和圆上不同两点的坐标求圆方程"
 
-
-
-
 -- 已知不共线的三点(x₁,y₁)，(x₂,y₂)，(x₃,y₃)，求过它们的圆的方程
-function CircleEquationssd(x1, y1, x2, y2, x3, y3)
+local function CircleEquationssd(x1, y1, x2, y2, x3, y3)
     local determinant,A,B,detA,detAD,detAE,detAF,D,E,F,ge,se,r_squared,h,k
     -- 检查三个点是否共线
     determinant = x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2)
@@ -1204,11 +1151,8 @@ end
 calc_methods["cesd"] = CircleEquationssd
 methods_desc["cesd"] = "已知圆上不同三点的坐标，求圆方程"
 
-
-
-
 -- 求解一元一次方程:ax+b=0
-function solveLinearEquation(a, b)
+local function solveLinearEquation(a, b)
     -- 检查a是否为0，因为如果a为0，方程将不再是一元一次方程
     if a == 0 then
         if b == 0 then
@@ -1225,11 +1169,8 @@ end
 calc_methods["yyyc"] = solveLinearEquation
 methods_desc["yyyc"] = "求解一元一次方程"
 
-
-
-
 -- 求解二元一次方程组：ax+by=e，cx+dy=f
-function solveLinearSystem(a, b, c, d, e, f)
+local function solveLinearSystem(a, b, c, d, e, f)
     local D,x,y
     -- 计算行列式D
     D = a*d-b*c
@@ -1250,24 +1191,18 @@ end
 calc_methods["eyyc"] = solveLinearSystem
 methods_desc["eyyc"] = "求解二元一次方程组ax+by=e，cx+dy=f"
 
-
-
-
 -- 点斜法求解一次函数解析式
 -- 定义函数，输入斜率k和点的坐标(x₁, y₁)
-function pointSlopeForm(k, x1, y1)
+local function pointSlopeForm(k, x1, y1)
     local le = LineEquation(x1, y1, k)
     return "直线方程: "..le
 end
 calc_methods["dxf"] = pointSlopeForm
 methods_desc["dxf"] = "点斜法求解一次函数解析式"
 
-
-
-
 -- 两点法求解一次函数解析式
 -- 定义函数，输入两点坐标(x₁, y₁)、(x₂,y₂)
-function twoPointsForm(x1, y1, x2, y2)
+local function twoPointsForm(x1, y1, x2, y2)
     -- 检查两点是否相同
     if x1 == x2 and y1 == y2 then
         return "错误：两点坐标完全相同，无法确定直线方程"
@@ -1286,11 +1221,8 @@ end
 calc_methods["ldf"] = twoPointsForm
 methods_desc["ldf"] = "两点法求解一次函数解析式"
 
-
-
-
 -- 求解一元二次方程ax²+bx+c=0
-function solveQuadraticEquation(a, b, c)
+local function solveQuadraticEquation(a, b, c)
     -- 检查参数正确性
     if type(a) ~= "number" or type(b) ~= "number" or type(c) ~= "number" then
         return "错误：系数必须是数字"
@@ -1342,11 +1274,8 @@ end
 calc_methods["yyec"] = solveQuadraticEquation
 methods_desc["yyec"] = "求解一元二次方程"
 
-
-
-
 -- 求解一元三次方程ax³+bx²+cx+d=0
-function solveCubicEquation(a, b, c, d)
+local function solveCubicEquation(a, b, c, d)
     -- 检查参数正确性
     if type(a) ~= "number" or type(b) ~= "number" or type(c) ~= "number" or type(d) ~= "number" then
         return "错误：系数必须是数字"
@@ -1424,11 +1353,8 @@ end
 calc_methods["yysc1"] = solveCubicEquation
 methods_desc["yysc1"] = "求解一元三次方程"
 
-
-
-
 -- 求解一元四次方程ax⁴+bx³+cx²+dx+e=0
-function solveQuarticEquation(a, b, c, d, e)
+local function solveQuarticEquation(a, b, c, d, e)
     -- 检查参数正确性
     if type(a) ~= "number" or type(b) ~= "number" or type(c) ~= "number" or type(d) ~= "number" or type(e) ~= "number" then
         return "错误：系数必须是数字"
@@ -1792,12 +1718,9 @@ end
 calc_methods["yysc2"] = solveQuarticEquation
 methods_desc["yysc2"] = "求解一元四次方程"
 
-
-
-
 -- 顶点式求解二次函数解析式：y=a(x-h)²+k
 -- (x₁,y₁)为顶点坐标，(x₂,y₂)为其函数图像上除顶点坐标外任意一点坐标
-function getQuadraticEquationdd(x1, y1, x2, y2)
+local function getQuadraticEquationdd(x1, y1, x2, y2)
     -- 检查两个点是否相同
     if x1 == x2 or y1 == y2 then
         return "错误：两个点的横坐标不能相同"
@@ -1812,11 +1735,8 @@ end
 calc_methods["dds"] = getQuadraticEquationdd
 methods_desc["dds"] = "顶点式求解二次函数解析式"
 
-
-
-
 -- 一般式求解二次函数解析式
-function getQuadraticEquationy(x1, y1, x2, y2, x3, y3)
+local function getQuadraticEquationy(x1, y1, x2, y2, x3, y3)
     local A,B,detA,detAx,detAy,detAz,a,b,c,qe,determinant
     -- 检查三个点是否共线
     determinant = x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2)
@@ -1850,11 +1770,8 @@ end
 calc_methods["ybs"] = getQuadraticEquationy
 methods_desc["ybs"] = "一般式求解二次函数解析式"
 
-
-
-
 -- 已知三角形的三边a、b、c，求三角形面积
-function calculateTriangleArea(a, b, c)
+local function calculateTriangleArea(a, b, c)
     -- 检查是否能构成三角形
     if a + b <= c or a + c <= b or b + c <= a then
         return "错误：不能构成三角形"
@@ -1869,11 +1786,8 @@ end
 calc_methods["sjx1"] = calculateTriangleArea
 methods_desc["sjx1"] = "已知三角形的三边长a、b、c，求三角形面积"
 
-
-
-
 -- 已知三角形的三个顶点坐标(x₁, y₁)，(x₂, y₂)，(x₃, y₃)，求三角形面积
-function calculateTriangleArea2(x1, y1, x2, y2, x3, y3)
+local function calculateTriangleArea2(x1, y1, x2, y2, x3, y3)
     -- 检查参数正确性
     if type(x1) ~= "number" or type(y1) ~= "number" or type(x2) ~= "number" or type(y2) ~= "number" or type(x3) ~= "number" or type(y3) ~= "number" then
         return "错误：参数必须是数字"
@@ -1891,11 +1805,8 @@ end
 calc_methods["sjx2"] = calculateTriangleArea2
 methods_desc["sjx2"] = "已知三角形的三个顶点坐标(x₁,y₁)，(x₂,y₂)，(x₃,y₃)，求三角形面积"
 
-
-
-
 -- 已知一点(x₁, y₁)和直线方程Ax+By+C=0，求点到直线的距离和它关于直线的对称点坐标
-function dyzx1(x1, y1, A, B, C)
+local function dyzx1(x1, y1, A, B, C)
     -- 检查参数正确性
     if type(x1) ~= "number" or type(y1) ~= "number" or type(A) ~= "number" or type(B) ~= "number" or type(C) ~= "number" then
         return "错误：参数必须是数字"
@@ -1920,11 +1831,8 @@ end
 calc_methods["dyzx1"] = dyzx1
 methods_desc["dyzx1"] = "已知一点坐标(x₁, y₁)和直线方程Ax+By+C=0，求点到直线的距离及对称点坐标"
 
-
-
-
 -- 已知两点(x₁, y₁)和(x₂, y₂)，求两点间的距离
-function ld1(x1, y1, x2, y2)
+local function ld1(x1, y1, x2, y2)
     -- 检查参数正确性
     if type(x1) ~= "number" or type(y1) ~= "number" or type(x2) ~= "number" or type(y2) ~= "number" then
         return "错误：参数必须是数字"
@@ -1940,11 +1848,8 @@ end
 calc_methods["ld1"] = ld1
 methods_desc["ld1"] = "已知两点坐标，求两点间的距离"
 
-
-
-
 -- 已知两点(x₁, y₁)和(x₂, y₂)，求两点连线的垂直平分线方程
-function ld2(x1, y1, x2, y2)
+local function ld2(x1, y1, x2, y2)
     -- 检查参数正确性
     if type(x1) ~= "number" or type(y1) ~= "number" or type(x2) ~= "number" or type(y2) ~= "number" then
         return "错误：参数必须是数字"
@@ -1974,12 +1879,9 @@ end
 calc_methods["ld2"] = ld2
 methods_desc["ld2"] = "已知两点坐标，求两点间线段的垂直平分线方程"
 
-
-
-
 -- 已知两点P(x₁, y₁)和Q(x₂, y₂)，求点P绕点Q旋转角度a(角度制)后的P'坐标
 -- 逆时针时a为正，顺时针时a为负
-function ld3(x1, y1, x2, y2, a)
+local function ld3(x1, y1, x2, y2, a)
     -- 检查参数正确性
     if type(x1) ~= "number" or type(y1) ~= "number" or type(x2) ~= "number" or type(y2) ~= "number" or type(a) ~= "number" then
         return "错误：参数必须是数字"
@@ -1995,11 +1897,8 @@ end
 calc_methods["ld3"] = ld3
 methods_desc["ld3"] = "已知两点P(x₁, y₁)和Q(x₂, y₂)，求点P绕点Q旋转角度a(角度制)后的P'坐标"
 
-
-
-
 -- 已知两条直线方程 A₁x+B₁y+C₁=0和 A₂x+B₂y+C₂=0，判断它们的位置关系
-function lines_relationship(A1, B1, C1, A2, B2, C2)
+local function lines_relationship(A1, B1, C1, A2, B2, C2)
     -- 参数正确性检查
     if (A1 == 0 and B1 == 0) or (A2 == 0 and B2 == 0) then
         return "错误：直线方程的系数不能同时为零"
@@ -2035,11 +1934,8 @@ end
 calc_methods["lzx1"] = lines_relationship
 methods_desc["lzx1"] = "已知两直线方程A₁x+B₁y+C₁=0和A₂x+B₂y+C₂=0，判断它们的位置关系"
 
-
-
-
 -- 已知三角形的三边a、b、c，求内切圆半径和外接圆半径
-function triangle_circles(a, b, c)
+local function triangle_circles(a, b, c)
     -- 参数正确性检查
     if a <= 0 or b <= 0 or c <= 0 then
         return "错误：边长必须为正数"
@@ -2062,11 +1958,8 @@ end
 calc_methods["sjxy1"] = triangle_circles
 methods_desc["sjxy1"] = "已知三角形三边长，求内切圆半径和外接圆半径"
 
-
-
-
 -- 已知三角形三个顶点坐标(x₁,y₁)，(x₂,y₂)，(x₃,y₃)，求其内切圆半径和外接圆半径
-function triangle_circles_by_points(x1, y1, x2, y2, x3, y3)
+local function triangle_circles_by_points(x1, y1, x2, y2, x3, y3)
     -- 参数正确性检查
     if type(x1) ~= "number" or type(y1) ~= "number" or type(x2) ~= "number" or type(y2) ~= "number" or type(x3) ~= "number" or type(y3) ~= "number" then
         return "错误：参数必须是数字"
@@ -2086,11 +1979,8 @@ end
 calc_methods["sjxy2"] = triangle_circles_by_points
 methods_desc["sjxy2"] = "已知三角形三个顶点坐标，求内切圆半径和外接圆半径"
 
-
-
-
 -- 已知三角形三个顶点坐标A(x₁,y₁)，B(x₂,y₂)，C(x₃,y₃)，求其“心”的坐标
-function triangle_centers(x1, y1, x2, y2, x3, y3)
+local function triangle_centers(x1, y1, x2, y2, x3, y3)
     -- 参数正确性检查
     if type(x1) ~= "number" or type(y1) ~= "number" or type(x2) ~= "number" or type(y2) ~= "number" or type(x3) ~= "number" or type(y3) ~= "number" then
         return "错误：参数必须是数字"
@@ -2125,43 +2015,8 @@ end
 calc_methods["sjxx"] = triangle_centers
 methods_desc["sjxx"] = "已知三角形三个顶点坐标，求其“心”的坐标"
 
-
-
-
--- 计算多个数的最大公因数
-function gcd_multiple(...)
-    local nums,result
-    nums = {...}
-    result = nums[1]
-    for i = 2, #nums do
-        result = gcd(result, nums[i])
-    end
-    return fn(result)
-end
-calc_methods["gys"] = gcd_multiple
-methods_desc["gys"] = "计算多个数的最大公因数"
-
-
-
-
--- 计算多个数的最小公倍数
-function lcm_multiple(...)
-    local nums,result
-    nums = {...}
-    result = nums[1]
-    for i = 2, #nums do
-        result = lcm(result, nums[i])
-    end
-    return fn(result)
-end
-calc_methods["gbs"] = lcm_multiple
-methods_desc["gbs"] = "计算多个数的最小公倍数"
-
-
-
-
 -- 计算排列数
-function permutation(n, r)
+local function permutation(n, r)
     -- 检查参数正确性
     if type(n) ~= "number" or type(r) ~= "number" then
         return "错误：参数必须为数字"
@@ -2179,11 +2034,8 @@ end
 calc_methods["pls"] = permutation
 methods_desc["pls"] = "计算排列数"
 
-
-
-
 -- 计算组合数
-function combination(n, r)
+local function combination(n, r)
     -- 检查参数正确性
     if type(n) ~= "number" or type(r) ~= "number" then
         return "错误：参数必须为数字"
@@ -2201,11 +2053,8 @@ end
 calc_methods["zhs"] = combination
 methods_desc["zhs"] = "计算组合数"
 
-
-
-
 -- 已知直线l₁:A₁x+B₁y+C₁=0和l₂:A₂x+B₂y+C₂=0，求两条直线以彼此为轴的对称直线方程
-function symmetry_line(A1, B1, C1, A2, B2, C2)
+local function symmetry_line(A1, B1, C1, A2, B2, C2)
     -- 检查参数正确性
     if type(A1) ~= "number" or type(B1) ~= "number" or type(C1) ~= "number" or type(A2) ~= "number" or type(B2) ~= "number" or type(C2) ~= "number" then
         return "错误：参数必须是数字"
@@ -2231,13 +2080,10 @@ end
 calc_methods["lzx2"] = symmetry_line
 methods_desc["lzx2"] = "已知直线l₁:A₁x+B₁y+C₁=0和l₂:A₂x+B₂y+C₂=0，求两条直线以彼此为轴的对称直线方程"
 
-
-
-
 -- 已知一点P(x₁,y₁)和直线l:Ax+By+C=0，求直线l关于点P的对称直线l'的方程
-function dyzx2(x1, y1, A, B, C)
+local function dyzx2(x1, y1, A, B, C)
     -- 检查参数正确性
-    if type(x1) ~= "number" or type(y1) ~= "number" or type(A1) ~= "number" or type(B1) ~= "number" or type(C1) ~= "number" then
+    if type(x1) ~= "number" or type(y1) ~= "number" or type(A) ~= "number" or type(B) ~= "number" or type(C) ~= "number" then
         return "错误：参数必须是数字"
     end
     if A == 0 and B == 0 then
@@ -2254,37 +2100,14 @@ end
 calc_methods["dyzx2"] = dyzx2
 methods_desc["dyzx2"] = "已知一点P(x₁,y₁)和直线l:Ax+By+C=0，求直线l关于点P的对称直线l'的方程"
 
-
-
-
--- 已知两圆一般方程x²+y²+D₁x+E₁y+F₁=0和x²+y²+D₂x+E₂y+F₂=0，判断它们的位置关系
-function tcr1(D1, E1, F1, D2, E2, F2)
-    -- 参数正确性检查
-    if type(D1) ~= "number" or type(E1) ~= "number" or type(F1) ~= "number" or type(D2) ~= "number" or type(E2) ~= "number" or type(F2) ~= "number" then
-        return "错误：参数必须是数字"
-    end
-    local x1,y1,x2,y2,r1,r2
-    -- 计算两圆圆心，半径，圆心距
-    x1 = -D1/2
-    y1 = -E1/2
-    x2 = -D2/2
-    y2 = -E2/2
-    r1 = math.sqrt(x1^2+y1^2-F1)
-    r2 = math.sqrt(x2^2+y2^2-F2)
-    -- 调用函数输出结果
-    return tcr2(x1, y1, r1, x2, y2, r2)
-end
-calc_methods["tcr1"] = tcr1
-methods_desc["tcr1"] = "已知两圆一般方程x²+y²+D₁x+E₁y+F₁=0和x²+y²+D₂x+E₂y+F₂=0，判断它们的位置关系"
-
-
-
-
 -- 已知两圆标准方程(x-x₁)²+(y-y₁)²=r₁²和(x-x₂)²+(y-y₂)²=r₂²，判断它们的位置关系
-function tcr2(x1, y1, r1, x2, y2, r2)
+local function tcr1(x1, y1, r1, x2, y2, r2)
     -- 参数正确性检查
     if type(x1) ~= "number" or type(y1) ~= "number" or type(r1) ~= "number" or type(x2) ~= "number" or type(y2) ~= "number" or type(r2) ~= "number" then
         return "错误：参数必须是数字"
+    end
+    if r1 <= 0 or r2 <= 0 then
+        return "错误：半径必须为正数"
     end
     -- 特殊情况:两圆重合
     if x1 == x2 and y1 == y2 and r1 == r2 then
@@ -2335,69 +2158,31 @@ function tcr2(x1, y1, r1, x2, y2, r2)
         return "两圆相交，圆心距为"..d.."\n交点坐标为("..xj1..","..yj1..")和("..xj2..","..yj2..")\n相交弦弦长为"..dj
     end
 end
-calc_methods["tcr2"] = tcr2
-methods_desc["tcr2"] = "已知两圆标准方程(x-x₁)²+(y-y₁)²=r₁²和(x-x₂)²+(y-y₂)²=r₂²，判断它们的位置关系"
+calc_methods["tcr1"] = tcr1
+methods_desc["tcr1"] = "已知两圆标准方程(x-x₁)²+(y-y₁)²=r₁²和(x-x₂)²+(y-y₂)²=r₂²，判断它们的位置关系"
 
-
-
-
--- 计算行列式
-function hls(...)
-    local args,n1,sqrt_n,matrix,index,side_length
-    args = {...}
-    n1 = #args
-    sqrt_n = math.sqrt(n1)
-    -- 判断n1是否为完全平方数，如果是，则将输入的元素重新排列成一个方阵
-    if sqrt_n == math.floor(sqrt_n) then
-        matrix = {}
-        index = 1
-        side_length = math.floor(sqrt_n)
-        for i = 1, side_length do
-            matrix[i] = {}
-            for j = 1, side_length do
-                matrix[i][j] = args[index]
-                index = index + 1
-            end
-        end
-    else
-        return "给出的元素不能组成一个方阵。"
+-- 已知两圆一般方程x²+y²+D₁x+E₁y+F₁=0和x²+y²+D₂x+E₂y+F₂=0，判断它们的位置关系
+local function tcr2(D1, E1, F1, D2, E2, F2)
+    -- 参数正确性检查
+    if type(D1) ~= "number" or type(E1) ~= "number" or type(F1) ~= "number" or type(D2) ~= "number" or type(E2) ~= "number" or type(F2) ~= "number" then
+        return "错误：参数必须是数字"
     end
-    -- 递归计算行列式的函数
-    function determinant(matrix)
-        local n,det,sign,row,sub_matrix
-        n = #matrix
-        det = 0
-        -- 二阶行列式的边界条件
-        if n == 2 then
-            return matrix[1][1]*matrix[2][2]-matrix[1][2]*matrix[2][1]
-        end
-        -- 递归计算行列式
-        for j = 1, n do
-            sub_matrix = {}
-            for i = 2, n do
-                row = {}
-                for k = 1, n do
-                    if k ~= j then
-                        table.insert(row, matrix[i][k])
-                    end
-                end
-                table.insert(sub_matrix, row)
-            end
-            sign = (-1)^(1+j)
-            det = det+sign*matrix[1][j]*determinant(sub_matrix)
-        end
-        return fn(det)
-    end
-    return determinant(matrix)
+    local x1,y1,x2,y2,r1,r2
+    -- 计算两圆圆心，半径，圆心距
+    x1 = -D1/2
+    y1 = -E1/2
+    x2 = -D2/2
+    y2 = -E2/2
+    r1 = math.sqrt(x1^2+y1^2-F1)
+    r2 = math.sqrt(x2^2+y2^2-F2)
+    -- 调用函数输出结果
+    return tcr1(x1, y1, r1, x2, y2, r2)
 end
-calc_methods["hls"] = hls
-methods_desc["hls"] = "计算行列式"
-
-
-
+calc_methods["tcr2"] = tcr2
+methods_desc["tcr2"] = "已知两圆一般方程x²+y²+D₁x+E₁y+F₁=0和x²+y²+D₂x+E₂y+F₂=0，判断它们的位置关系"
 
 -- 求解勾股数
-function ggs(...)
+local function ggs(...)
     local args = {...}
     local n = #args
     if n == 0 then
@@ -2405,7 +2190,6 @@ function ggs(...)
     elseif n > 2 then
         return "最多只能输入2个数"
     end
-
     local function generateTriplets(a_param)
         local results = {}
         -- 生成作为直角边的解
@@ -2424,7 +2208,6 @@ function ggs(...)
         end
         return results
     end
-
     local function findHypotenuseTriplets(m)
         local results = {}
         local m_squared = m * m
@@ -2441,7 +2224,6 @@ function ggs(...)
         end
         return results
     end
-
     local function ggs1(a)
         if type(a) ~= "number" or a < 1 or a ~= math.floor(a) then
             return "参数必须是正整数"
@@ -2451,7 +2233,6 @@ function ggs(...)
         elseif a % 2 == 0 and a < 4 then
             return "输入1个参数时,偶数须大于等于4"
         end
-
         local results = {}
         -- 生成直角边解
         local legTriplets = generateTriplets(a)
@@ -2463,7 +2244,6 @@ function ggs(...)
         for _, t in ipairs(hypoTrplets) do
             table.insert(results, t)
         end
-
         -- 去重
         local seen = {}
         local unique = {}
@@ -2474,7 +2254,6 @@ function ggs(...)
                 table.insert(unique, t)
             end
         end
-
         if #unique == 0 then
             return "无解"
         else
@@ -2485,7 +2264,6 @@ function ggs(...)
             return "勾股数为: " .. table.concat(parts, " 和 ")
         end
     end
-
     local function ggs2(a, b)
         if type(a) ~= "number" or a < 1 or a ~= math.floor(a) or
            type(b) ~= "number" or b < 1 or b ~= math.floor(b) then
@@ -2494,9 +2272,7 @@ function ggs(...)
         if a == b then
             return "两个参数不能相等"
         end
-
         local results = {}
-
         -- 两数作为直角边求斜边
         local sum_sq = a^2 + b^2
         local c = math.sqrt(sum_sq)
@@ -2505,7 +2281,6 @@ function ggs(...)
             table.sort(triplet)
             table.insert(results, triplet)
         end
-
         -- 小数作为直角边,大数作为斜边求另一直角边
         local sq = math.abs(a^2 - b^2)
         local d = math.sqrt(sq)
@@ -2514,7 +2289,6 @@ function ggs(...)
             table.sort(triplet)
             table.insert(results, triplet)
         end
-
         -- 作为生成元求三元组
         local part1 = math.abs(a^2 - b^2)
         local part2 = 2*a*b
@@ -2522,7 +2296,6 @@ function ggs(...)
         local triplet = {part1, part2, hypo}
         table.sort(triplet)
         table.insert(results, triplet)
-
         -- 去重逻辑
         local seen = {}
         local unique = {}
@@ -2533,7 +2306,6 @@ function ggs(...)
                 table.insert(unique, t)
             end
         end
-
         if #unique == 0 then
             return "无解"
         else
@@ -2544,19 +2316,15 @@ function ggs(...)
             return "勾股数为: " .. table.concat(parts, " 和 ")
         end
     end
-
     return (n == 1) and ggs1(args[1]) or ggs2(args[1], args[2])
 end
 calc_methods["ggs"] = ggs
 methods_desc["ggs"] = "求解勾股数"
 
-
-
-
 -- 批量随机数生成器
 -- 参数模式1（3个参数）：digits（位数）、count（数量）、unique（是否唯一，0为true/1为false）
 -- 参数模式2（4个参数）：min（最小值）、max（最大值）、count（数量）、unique（是否唯一）
-function generateRandomNumbers(...)
+local function generateRandomNumbers(...)
     local args = {...}
     local min, max, count, unique
     -- 验证参数数量
@@ -2634,11 +2402,8 @@ end
 calc_methods["psjs"] = generateRandomNumbers
 methods_desc["psjs"] = "批量随机数"
 
-
-
-
 -- 质因数分解（带优化输出格式）
-function prime_factorization(n)
+local function prime_factorization(n)
     -- 参数检查与位数限制
     if type(n) ~= "number" or n <= 0 or math.floor(n) ~= n then
         return "参数必须是正整数"
@@ -2706,10 +2471,8 @@ end
 calc_methods["zys"] = prime_factorization
 methods_desc["zys"] = "质因数分解"
 
-
-
 -- 找质数（欧拉筛法）
-function sieve_of_eratosthenes(n)
+local function sieve_of_eratosthenes(n)
     if type(n) ~= "number" or n <= 1 or math.floor(n) ~= n then
         return "参数必须是大于1的正整数"
     end
@@ -2756,10 +2519,8 @@ end
 calc_methods["zzs"] = sieve_of_eratosthenes
 methods_desc["zzs"] = "找质数"
 
-
-
 -- 24点计算器（含去重逻辑）
-function solve24(...)
+local function solve24(...)
     -- 检查表中是否包含某个值
     local function table_contains(tab, val)
         for _, value in ipairs(tab) do
@@ -2769,7 +2530,6 @@ function solve24(...)
         end
         return false
     end
-
     -- 生成随机数的函数
     local function generate_numbers()
         math.randomseed(os.time())
@@ -2799,16 +2559,13 @@ function solve24(...)
         end
         return numbers, magic_numbers
     end
-    
     -- 去重用的魔术字解决方案记录
     local hash_solutions = {}
     local solutions = {}
-    
     -- 判断两个数是否接近（处理浮点数精度问题）
     local function is_close(a, b)
         return math.abs(a - b) < 1e-9
     end
-    
     -- 基本计算函数
     local function compute(a, b, op)
         if op == '+' then return a + b
@@ -2819,7 +2576,6 @@ function solve24(...)
             return a / b
         end
     end
-    
     -- 计算魔术字
     local function compute_magic(a, b, op, magic_a, magic_b)
         if op == '+' then return magic_a + magic_b
@@ -2830,7 +2586,6 @@ function solve24(...)
             return magic_a / magic_b
         end
     end
-    
     -- 排列组合函数
     local function permute(t)
         local result = {}
@@ -2854,14 +2609,12 @@ function solve24(...)
         permute_helper({}, t)
         return result
     end
-    
     -- 用于添加解决方案并去重
     local function add_solution(expr, value, magic_value)
         if is_close(value, 24) then
             -- 检查魔术字是否已存在
             local is_duplicate = false
             local replace_index = -1
-            
             for i, hash in ipairs(hash_solutions) do
                 if math.abs(magic_value - hash) / (math.abs(magic_value) + 1e-9) < 1e-3 then
                     is_duplicate = true
@@ -2869,7 +2622,6 @@ function solve24(...)
                     break
                 end
             end
-            
             if not is_duplicate then
                 -- 新解决方案，添加到列表
                 table.insert(solutions, expr)
@@ -2878,7 +2630,6 @@ function solve24(...)
                 -- 检查是否需要替换为更优的解决方案
                 local need_replace = false
                 local existing_expr = solutions[replace_index]
-                
                 -- 比较括号数量
                 local current_brackets = expr:gsub("[^%(%)]", ""):len()
                 local existing_brackets = existing_expr:gsub("[^%(%)]", ""):len()
@@ -2902,7 +2653,6 @@ function solve24(...)
                         end
                     end
                 end
-                
                 if need_replace then
                     solutions[replace_index] = expr
                     hash_solutions[replace_index] = magic_value
@@ -2910,13 +2660,11 @@ function solve24(...)
             end
         end
     end
-    
     -- 核心解决24点问题的函数
     local function solve_24_with_magic(numbers, magic_numbers)
         local operators = {'+', '-', '*', '/'}
         local perms = permute(numbers)
         local magic_perms = permute(magic_numbers) -- 魔术字的排列组合
-        
         -- 遍历所有数字和魔术字的排列组合
         for i, nums in ipairs(perms) do
             local magics = magic_perms[i]
@@ -2939,7 +2687,6 @@ function solve24(...)
                                     end
                                 end
                             end
-                            
                             -- 情况2: (a op1 (b op2 c)) op3 d
                             local v1 = compute(nums[2], nums[3], op2)
                             local m1 = compute_magic(nums[2], nums[3], op2, magics[2], magics[3])
@@ -2955,7 +2702,6 @@ function solve24(...)
                                     end
                                 end
                             end
-                            
                             -- 情况3: a op1 ((b op2 c) op3 d)
                             local v1 = compute(nums[2], nums[3], op2)
                             local m1 = compute_magic(nums[2], nums[3], op2, magics[2], magics[3])
@@ -2971,7 +2717,6 @@ function solve24(...)
                                     end
                                 end
                             end
-                            
                             -- 情况4: a op1 (b op2 (c op3 d))
                             local v1 = compute(nums[3], nums[4], op3)
                             local m1 = compute_magic(nums[3], nums[4], op3, magics[3], magics[4])
@@ -2987,7 +2732,6 @@ function solve24(...)
                                     end
                                 end
                             end
-                            
                             -- 情况5: (a op1 b) op2 (c op3 d)
                             local v1 = compute(nums[1], nums[2], op1)
                             local m1 = compute_magic(nums[1], nums[2], op1, magics[1], magics[2])
@@ -3008,7 +2752,6 @@ function solve24(...)
         end
         return solutions
     end
-    
     -- 处理函数参数
     local arg = {...}
     if #arg == 0 then
@@ -3016,10 +2759,10 @@ function solve24(...)
         local numbers, magic_numbers = generate_numbers()
         return "生成的随机数: " .. table.concat(numbers, ", ")
     elseif #arg == 4 then
-        -- 检查输入的四个参数是否都在1到13之间
+        -- 检查输入的四个参数是否都在1到13之间且为整数
         for i, num in ipairs(arg) do
-            if type(num) ~= "number" or num < 1 or num > 13 then
-                return "错误：请输入4个1到13之间的数字。"
+            if type(num) ~= "number" or num < 1 or num > 13 or num ~= math.floor(num) then
+                return "错误：请输入4个1到13之间的整数。"
             end
         end
         -- 为输入的数字生成魔术字
@@ -3056,9 +2799,278 @@ function solve24(...)
 end
 calc_methods["tfp"] = solve24
 methods_desc["tfp"] = "24点计算器"
- 
 
+-- 单位换算脚本
+-- 注意：单位是作为字符串类型参数传入的，所以输入时应加引号（单双均可，但不能混用）
+-- 否则会因参数类型错误而无法输出正确结果
+local function dwhs(value, from_unit, to_unit)
+    -- 单位转换系数表
+    local conversion_factors = {
+        -- 长度 (相对于米)
+        ai = 1e-10,         -- 埃
+        nm = 1e-9,          -- 纳米
+        wm = 1e-6,          -- 微米
+        mm = 1e-3,          -- 毫米
+        cm = 0.01,          -- 厘米
+        dm = 0.1,           -- 分米
+        m = 1,              -- 米
+        km = 1e3,           -- 千米
+        li = 500,           -- 里
+        yc = 0.0254,        -- 英寸
+        ft = 0.3048,        -- 英尺
+        mile = 1609.344,    -- 英里
+        nmi = 1852,         -- 海里
+        zhang = 10/3,       -- 丈
+        chi = 1/3,          -- 尺
+        cun = 1/30,         -- 寸
+        fen = 1/300,        -- 分
+        -- 面积 (相对于平方米)
+        mm2 = 1e-6,         -- 平方毫米
+        cm2 = 1e-4,         -- 平方厘米
+        dm2 = 1e-2,         -- 平方分米
+        m2 = 1,             -- 平方米
+        km2 = 1e6,          -- 平方千米
+        pfyl = 2589988.1103,    -- 平方英里
+        hm2 = 1e4,          -- 公顷
+        sq = 2e5/3,         -- 市顷
+        acre = 4046.8648,   -- 英亩
+        sm = 2000/3,        -- 市亩
+        gm = 100,           -- 公亩
+        -- 体积 (相对于立方米)
+        wl = 1e-9,          -- 微升
+        mm3 = 1e-9,         -- 立方毫米
+        ml = 1e-6,          -- 毫升
+        cm3 = 1e-6,         -- 立方厘米
+        cl = 1e-5,          -- 厘升
+        dl = 1e-4,          -- 分升
+        l = 1e-3,           -- 升
+        dm3 = 1e-3,         -- 立方分米
+        hl = 0.1,           -- 公石
+        m3 = 1,             -- 立方米
+        ygl = 4.5461e-3,    -- 英制加仑
+        mgl = 3.78541e-3,   -- 美制加仑
+        km3 = 1e9,          -- 立方千米
+        -- 质量 (相对于克)
+        wg = 1e-6,          -- 微克
+        mg = 1e-3,          -- 毫克
+        g = 1,              -- 克
+        kg = 1e3,           -- 千克
+        t = 1e6,            -- 吨
+        lb = 453.59237,     -- 磅
+        oz = 28.349523125,  -- 盎司
+        ct = 0.2,           -- 克拉
+        gd = 1e5,           -- 公担
+        sd = 5e4,           -- 市担
+        jin = 500,          -- 斤
+        liang = 50,         -- 两
+        qian = 5,           -- 钱
+        dr = 1.771845195,   -- 打兰
+        gr = 0.06479891,    -- 格令
+    }
+    -- 检查数值有效性
+    if type(value) ~= "number" or value <= 0 then
+        return "错误: 第一个参数必须是有效的正数"
+    end
+    -- 检查单位有效性
+    if not conversion_factors[from_unit] then
+        return "错误: 未知的原单位 '" .. tostring(from_unit) .. "'"
+    end
+    if not conversion_factors[to_unit] then
+        return "错误: 未知的目标单位 '" .. tostring(to_unit) .. "'"
+    end
+    -- 将数字转换为上标字符
+    local function to_superscript(num)
+        local superscripts = {"⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"}
+        local minus = "⁻"
+        local str = tostring(num)
+        local result = ""
+        -- 处理负号
+        if str:sub(1,1) == "-" then
+            result = minus
+            str = str:sub(2)
+        end
+        -- 移除前导零（除非是单独的0）
+        str = str:gsub("^0+(%d)", "%1")
+        if str == "" then str = "0" end
+        -- 转换数字
+        for digit in str:gmatch("%d") do
+            result = result .. superscripts[tonumber(digit)+1]
+        end
+        return result
+    end
+    -- 格式化科学记数法输出为上标形式
+    local function format_scientific(num)
+        local formatted = string.format("%.6e", num)
+        local mantissa, exponent = string.match(formatted, "^(.-)e([%+%-]%d+)$")
+        mantissa = mantissa:gsub("%.?0+$", ""):gsub("%.$", "")
+        -- 移除指数前的+号
+        exponent = exponent:gsub("^%+", "")
+        return mantissa .. "×10" .. to_superscript(exponent)
+    end
+    -- 判断是否应该使用科学计数法
+    local function should_use_scientific(num)
+        local abs_num = math.abs(num)
+        -- 对于大于等于1e5或小于等于1e-3的数字使用科学计数法
+        if abs_num >= 1e5 or (abs_num <= 1e-3 and abs_num > 0) then
+            return true
+        end
+        -- 检查整数部分位数
+        local int_part = math.floor(abs_num)
+        if int_part == 0 then
+            -- 检查小数部分前导零的数量
+            local decimal_str = string.format("%.10f", abs_num - int_part)
+            local leading_zeros = 0
+            for i = 3, #decimal_str do
+                if decimal_str:sub(i,i) == "0" then
+                    leading_zeros = leading_zeros + 1
+                else
+                    break
+                end
+            end
+            return leading_zeros >= 3
+        else
+            return (math.log10(int_part) + 1) > 4
+        end
+    end
+    -- 格式化数字输出
+    local function format_number(num)
+        if should_use_scientific(num) then
+            return format_scientific(num)
+        else
+            return string.format("%.6f", num):gsub("%.?0+$", ""):gsub("%.$", "")
+        end
+    end
+    -- 执行转换
+    local result = value * (conversion_factors[from_unit] / conversion_factors[to_unit])
+    -- 格式化输出
+    local formatted_result = format_number(result)
+    -- 显示结果
+    return formatted_result
+end
+calc_methods["dwhs"] = dwhs
+methods_desc["dwhs"] = "单位换算，支持面积、质量、长度、体积，(数字, '原单位', '目标单位')"
 
+-- 数字进制转换
+-- 注意：在输入有字母的非10进制数时，需加上引号（单双均可，但不能混用）
+-- 否则无法输出结果
+local function convertBase(...)
+    local args = {...}
+    local number, fromBase, toBase
+    -- 参数数量处理
+    if #args == 3 then
+        number, fromBase, toBase = args[1], args[2], args[3]
+    elseif #args == 2 then
+        number, toBase = args[1], args[2]
+        fromBase = 10  -- 默认原进制为十进制
+    else
+        return "参数数量必须为2或3"
+    end
+    -- 进制合法性检查
+    if type(fromBase) ~= "number" or type(toBase) ~= "number" then
+        return "进制必须是数字类型"
+    end
+    if fromBase < 2 or fromBase > 36 or toBase < 2 or toBase > 36 then
+        return "进制范围必须在2到36之间"
+    end
+    local number = tostring(number)
+    -- 检查是否为有效数字格式
+    local sign = 1
+    local integerPart, fractionalPart
+    -- 处理符号
+    if string.sub(number, 1, 1) == '-' then
+        sign = -1
+        number = string.sub(number, 2)
+    elseif string.sub(number, 1, 1) == '+' then
+        number = string.sub(number, 2)
+    end
+    -- 分离整数和小数部分
+    local dotPos = string.find(number, '%.')
+    if dotPos then
+        integerPart = string.sub(number, 1, dotPos - 1)
+        fractionalPart = string.sub(number, dotPos + 1)
+    else
+        integerPart = number
+        fractionalPart = ""
+    end
+    -- 定义数字字符集
+    local digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    -- 辅助函数：字符转数值
+    local function charToValue(c)
+        return string.find(digits, string.upper(c), 1, true) - 1
+    end
+    -- 辅助函数：数值转字符
+    local function valueToChar(v)
+        return string.sub(digits, v + 1, v + 1)
+    end
+    -- 整数部分转换：原进制转十进制
+    local decimalInteger = 0
+    for i = 1, #integerPart do
+        local c = string.sub(integerPart, i, i)
+        local v = charToValue(c)
+        if v == -1 or v >= fromBase then
+            return "数字中包含无效字符或超出原进制范围"
+        end
+        decimalInteger = decimalInteger * fromBase + v
+    end
+    -- 小数部分转换：原进制转十进制
+    local decimalFraction = 0
+    local multiplier = 1 / fromBase
+    for i = 1, #fractionalPart do
+        local c = string.sub(fractionalPart, i, i)
+        local v = charToValue(c)
+        if v == -1 or v >= fromBase then
+            return "数字中包含无效字符或超出原进制范围"
+        end
+        decimalFraction = decimalFraction + v * multiplier
+        multiplier = multiplier / fromBase
+    end
+    -- 整数部分：十进制转目标进制
+    local targetInteger = {}
+    local n = math.abs(decimalInteger)
+    if n == 0 then
+        targetInteger[1] = '0'
+    else
+        local i = 0
+        while n > 0 do
+            i = i + 1
+            targetInteger[i] = valueToChar(n % toBase)
+            n = math.floor(n / toBase)
+        end
+        -- 反转数组
+        for j = 1, math.floor(i / 2) do
+            targetInteger[j], targetInteger[i - j + 1] = targetInteger[i - j + 1], targetInteger[j]
+        end
+    end
+    -- 小数部分：十进制转目标进制（精度限制为10位）
+    local targetFraction = {}
+    local f = decimalFraction
+    local maxFractionDigits = 10
+    if f > 0 then
+        targetFraction[1] = '.'
+        local i = 1
+        while f > 0 and i <= maxFractionDigits do
+            f = f * toBase
+            local intPart = math.floor(f)
+            targetFraction[i + 1] = valueToChar(intPart)
+            f = f - intPart
+            i = i + 1
+        end
+    end
+    -- 组合结果
+    local result = {}
+    if sign == -1 then
+        result[#result + 1] = '-'
+    end
+    for i = 1, #targetInteger do
+        result[#result + 1] = targetInteger[i]
+    end
+    for i = 1, #targetFraction do
+        result[#result + 1] = targetFraction[i]
+    end
+    return table.concat(result)
+end
+calc_methods["jzzh"] = convertBase
+methods_desc["jzzh"] = "数字进制转换，支持2~36进制，(数字, 原进制, 目标进制)"
 
 -- 简单计算器
 function T.func(input, seg, env)
