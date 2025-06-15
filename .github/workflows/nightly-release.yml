@@ -4,7 +4,9 @@ on:
   workflow_dispatch: # 手动触发
   push:
     branches:
-    - main
+      - main
+    paths:
+      - 'cn_dicts/**'
 
 concurrency: # 防止并发冲突
   group: nightly-release
