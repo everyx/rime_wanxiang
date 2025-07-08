@@ -1,0 +1,45 @@
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+name: Release
+
+jobs:
+  release-please:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+
+  release-build:
+    needs: [release-please]
+    if: needs.release-please.outputs.release_created == 'true'
+    name: Release build
+    uses: ./.github/workflows/release-build.yml
+    permissions:
+      contents: write
+    secrets: inherit
+
+  release:
+    runs-on: ubuntu-22.04
+    needs: [release-build]
+    steps:
+      - name: Download build
+        uses: actions/download-artifact@v4
+        with:
+          name: rime-wanxiang-dist-${{ github.ref_name }}
+
+      - name: Generate release note
+        run: bash .github/workflows/scripts/generate-release-note.sh
+
+      - name: Update release note
+        run: gh release edit ${GITHUB_REF#refs/tags/} --notes-file release_notes.md
