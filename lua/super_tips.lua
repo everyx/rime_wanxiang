@@ -229,6 +229,9 @@ local function init_tips_userdb()
 end
 
 local function update_tips_prompt(context, env)
+    local is_tips_enabled = context:get_option("super_tips")
+    if not is_tips_enabled then return end
+
     local segment = context.composition:back()
     if segment == nil then return end
 
@@ -276,10 +279,7 @@ function P.init(env)
     local context = env.engine.context
     env.tips_update_connection = context.update_notifier:connect(
         function(context)
-            local is_tips_enabled = context:get_option("super_tips")
-            if is_tips_enabled == true then
-                update_tips_prompt(context, env)
-            end
+            update_tips_prompt(context, env)
         end
     )
 end
@@ -299,36 +299,23 @@ end
 function P.func(key, env)
     local context = env.engine.context
 
-    local is_tips_enabled = context:get_option("super_tips")
-    local segment = context.composition:back()
-    if not is_tips_enabled or not segment then
-        return wanxiang.RIME_PROCESS_RESULTS.kNoop
-    end
-
-    -- 如果启用了 tips 功能，则应使用此 workaround
-    -- rime 内核在移动候选时并不会触发 update_notifier，这里做一个临时修复
-    -- 如果是 paging，则主动调用 update_tips_prompt
-    if segment:has_tag("paging") then
-        update_tips_prompt(context, env)
-    end
-
-    -- 以下处理 tips 上屏逻辑
-    if not P.tips_key                                   -- 未设置上屏键
-        or P.tips_key ~= key:repr()                     -- 或者当前按下的不是上屏键
-        or wanxiang.is_function_mode_active(context)    -- 或者是功能模式不用上屏
-        or not env.current_tip or env.current_tip == "" --  或匹配的 tips 为空/空字符串
+    if P.tips_key
+        and P.tips_key == key:repr()
+        and not wanxiang.is_function_mode_active(context)
+        and env.current_tip and #env.current_tip > 0
     then
-        return wanxiang.RIME_PROCESS_RESULTS.kNoop
-    end
+        ---@type string 从 tips 内容中获取上屏文本
+        local commit_txt = env.current_tip:match("：%s*(.*)%s*") -- 优先匹配常规的全角冒号
+            or env.current_tip:match(":%s*(.*)%s*") -- 没有匹配则回落到半角冒号
 
-    ---@type string 从 tips 内容中获取上屏文本
-    local commit_txt = env.current_tip:match("：%s*(.*)%s*") -- 优先匹配常规的全角冒号
-        or env.current_tip:match(":%s*(.*)%s*") -- 没有匹配则回落到半角冒号
+        if commit_txt and #commit_txt > 0 then
+            env.engine:commit_text(commit_txt)
+            context:clear()
+            return wanxiang.RIME_PROCESS_RESULTS.kAccepted
+        end
 
-    if commit_txt and #commit_txt > 0 then
-        env.engine:commit_text(commit_txt)
-        context:clear()
-        return wanxiang.RIME_PROCESS_RESULTS.kAccepted
+        log.warning(string.format("tips_key: %s, function_mode: %s, current_tip: %s",
+            P.tips_key, wanxiang.is_function_mode_active(context), env.current_tip))
     end
 
     return wanxiang.RIME_PROCESS_RESULTS.kNoop
