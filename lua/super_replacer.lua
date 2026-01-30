@@ -528,26 +528,40 @@ function M.func(input, env)
         end
     end
     -- [Main Loop] 主循环
+    local pending_cands = {}
+    local limit = 10
+    local has_phrase = false
     local cand_count = 0
-    
+
     for cand in input:iter() do
         cand_count = cand_count + 1
-
-        if cand_count == 1 then
-            -- 判断是否为"空码" (raw / english / 纯字母 / 文本等于输入)
-            local has_letter = string.find(cand.text, "[a-zA-Z]")
-            local is_empty = (cand.type == "raw"
-                           or cand.type == "english"
-                           or cand.text == input_code
-                           or has_letter) -- 只要包含字母，就算作空
-            try_trigger_abbrev(is_empty)
+        
+        if cand_count <= limit then
+            table.insert(pending_cands, cand)
+            if cand.type == "phrase" then
+                has_phrase = true
+            end
+        else
+            if cand_count == limit + 1 then
+                if not has_phrase then 
+                    try_trigger_abbrev(true) 
+                end
+                for _, pc in ipairs(pending_cands) do
+                    process_rules(pc)
+                end
+                pending_cands = nil
+            end
+            process_rules(cand)
         end
-
-        -- 原候选逻辑
-        process_rules(cand)
     end
-    if cand_count == 0 then
-        try_trigger_abbrev(true)
+
+    if pending_cands then
+        if not has_phrase then
+             try_trigger_abbrev(true)
+        end
+        for _, pc in ipairs(pending_cands) do
+            process_rules(pc)
+        end
     end
 end
 return M
