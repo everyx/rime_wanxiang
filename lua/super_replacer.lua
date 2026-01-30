@@ -535,7 +535,11 @@ function M.func(input, env)
 
         if cand_count == 1 then
             -- 判断是否为"空码" (raw / english / 纯字母 / 文本等于输入)
-            local is_empty = (cand.type == "raw" or cand.type == "english" or cand.text == input_code or not string.find(cand.text, "[^a-zA-Z]"))
+            local has_letter = string.find(cand.text, "[a-zA-Z]")
+            local is_empty = (cand.type == "raw"
+                           or cand.type == "english"
+                           or cand.text == input_code
+                           or has_letter) -- 只要包含字母，就算作空
             try_trigger_abbrev(is_empty)
         end
 
