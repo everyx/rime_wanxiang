@@ -5,7 +5,10 @@ set -e
 ROOT_DIR="$(cd "$(dirname "$0")/../../../" && pwd)"
 DIST_DIR="$ROOT_DIR/dist"
 CUSTOM_DIR="$ROOT_DIR/custom"
-
+EXCLUDE_DICT_FILES=(
+  "wuzhong.dict.yaml"
+  "renming.dict.yaml"
+)
 # 成成 PRO 分包文件
 echo "▶️ PRO 分包开始"
 python3 "$ROOT_DIR/.github/workflows/scripts/aux_go.py"
@@ -127,7 +130,14 @@ package_schema() {
         package_schema_pro "$SCHEMA_NAME" "$OUT_DIR"
 
     fi
-
+    if [[ -d "$OUT_DIR/dicts" ]]; then
+        echo "🧹 正在清理 dicts 中的排除项..."
+        for file in "${EXCLUDE_DICT_FILES[@]}"; do
+            if [[ -f "$OUT_DIR/dicts/$file" ]]; then
+                rm -f "$OUT_DIR/dicts/$file"
+            fi
+        done
+    fi
     ZIP_NAME=$(basename "$OUT_DIR").zip
     (cd "$OUT_DIR" && zip -r -9 -q ../"$ZIP_NAME" . && cd ..)
     echo "✅ 完成打包: $ZIP_NAME"
