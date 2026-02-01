@@ -755,7 +755,6 @@ patch:
 ```
 patch:
   translator/dictionary: wanxianguser
-  radical_reverse_lookup/dictionary: wanxianguser
   user_dict_set/dictionary: wanxianguser
   add_user_dict/dictionary: wanxianguser
 ```
