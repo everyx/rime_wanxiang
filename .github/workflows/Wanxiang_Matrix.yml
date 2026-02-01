@@ -239,7 +239,7 @@ jobs:
       steps:
         - name: Get current date
           id: date
-          run: echo "date=$(date +'%Y-%m-%d %H:%M')" >> $GITHUB_OUTPUT
+          run: echo "date=$(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M')" >> $GITHUB_OUTPUT
 
         - name: Download All Artifacts
           uses: actions/download-artifact@v4
@@ -267,6 +267,7 @@ jobs:
               - **包名**: `amzxyz.wanxiang.trime`
               - **主题**: 默认集成简纯主题
               - **用户目录**: `wanxiang`
+              - 更新内容参照同文及万象的commit
               ## 📢 版权与归属声明
             
               - **软件内核**：基于 [Trime (同文)](https://github.com/osfans/trime) 编译，归原作者所有。
