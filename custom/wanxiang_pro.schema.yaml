@@ -131,8 +131,8 @@ kp_number_mode: auto
   #  "compose" : 小键盘数字始终不上屏参与编码
   #  "auto"    : 输入中 push，空闲时 commit（默认）
 
-#成语简码前置位置，只能设置在第一页，大于当前页数量则默认在最后一个
-idiom_preposition: 3
+#成语简码前置位置，只能设置在第一页，大于当前页数量则默认在最后一个，0代表关闭前置
+idiom_preposition: 0
 
 super_replacer:
   db_name: lua/replacer

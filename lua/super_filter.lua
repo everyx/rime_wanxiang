@@ -471,7 +471,7 @@ function M.init(env)
     env.table_idx = env.page_size
     if cfg then
         local tp = cfg:get_int("idiom_preposition")
-        if tp and tp > 1 and tp <= env.page_size then
+        if tp and tp >= 0 and tp <= env.page_size then
             env.table_idx = tp
         end
     end
@@ -564,7 +564,7 @@ function M.func(input, env)
     end
 
     local code_len = #code
-    local do_group = (code_len >= 2 and code_len <= 6)
+    local do_group = (env.table_idx > 0) and (code_len >= 2 and code_len <= 6)
 
     -- 闭包上下文 (Context)
     local function unify_tail_span(c)
