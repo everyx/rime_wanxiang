@@ -8,6 +8,8 @@ CUSTOM_DIR="$ROOT_DIR/custom"
 EXCLUDE_DICT_FILES=(
   "wuzhong.dict.yaml"
   "renming.dict.yaml"
+  "wuzhong.pro.dict.yaml"
+  "renming.pro.dict.yaml"
 )
 # 成成 PRO 分包文件
 echo "▶️ PRO 分包开始"
