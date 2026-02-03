@@ -132,18 +132,16 @@ package_schema() {
         package_schema_pro "$SCHEMA_NAME" "$OUT_DIR"
 
     fi
-    if [[ -d "$OUT_DIR/dicts" ]]; then
-        echo "🧹 正在清理 dicts 中的排除项..."
-        for file in "${EXCLUDE_DICT_FILES[@]}"; do
-            if [[ -f "$OUT_DIR/dicts/$file" ]]; then
-                rm -f "$OUT_DIR/dicts/$file"
-            fi
-        done
-    fi
+
     ZIP_NAME=$(basename "$OUT_DIR").zip
-    (cd "$OUT_DIR" && zip -r -9 -q ../"$ZIP_NAME" . && cd ..)
+    # 构建 zip 的排除列表格式：-x "dicts/file1" "dicts/file2" ...
+    ZIP_EXCLUDE_ARGS=()
+    for file in "${EXCLUDE_DICT_FILES[@]}"; do
+        ZIP_EXCLUDE_ARGS+=("dicts/$file")
+    done
+    # 使用 -x 排除文件，文件物理上仍留在 $OUT_DIR 中
+    (cd "$OUT_DIR" && zip -r -9 -q ../"$ZIP_NAME" . -x "${ZIP_EXCLUDE_ARGS[@]}" && cd ..)
     echo "✅ 完成打包: $ZIP_NAME"
-    echo
 }
 
 SCHEMA_LIST=("base" "flypy" "hanxin" "moqi" "tiger" "wubi" "zrm" "shouyou")
