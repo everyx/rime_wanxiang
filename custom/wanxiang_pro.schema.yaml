@@ -274,6 +274,7 @@ charset:
 # 【时区】
 #   O  带冒号格式        +08:00、-04:30、+05:45
 #   o  不带冒号格式      +0800、-0430、+0545
+#   A  中文时段    凌晨 / 上午 / 中午 / 下午 / 晚上
 date_formats:
   - "Y年m月d日"
   - "Y-m-d"
@@ -288,7 +289,7 @@ time_formats:
   - "H点M分"
   - "H:M:S"
   - "H时M分S秒"
-  - "下午I:M"
+  - "AI:M"
   - "I:M P"
 datetime_formats:
   - "Y-m-d H:M:S"
