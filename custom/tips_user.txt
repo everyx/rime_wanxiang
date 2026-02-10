@@ -40574,7 +40574,6 @@
 翻译：额;前额;前部	forehead
 翻译：额发;前桅楼	foretop
 翻译：额发；销钉	forelock
-翻译：额外价格	permium
 翻译：额外补贴;临时津贴	perquisite
 翻译：额外费用;奖金;奖赏;保险费	premium
 翻译：额外；特别；非常	extra
