@@ -650,8 +650,8 @@ function M.func(input, env)
 
     -- 2. 状态缓存
     local is_functional = false
-    if ctx and wanxiang and wanxiang.is_function_mode_active then
-        is_functional = wanxiang.is_function_mode_active(ctx)
+    if ctx and wanxiang and wanxiang.s2t_conversion then
+        is_functional = wanxiang.s2t_conversion(ctx)
     end
     local charset_active = (env.filters and #env.filters > 0) and (not is_functional)
     local enable_taichi = env.enable_taichi_filter
