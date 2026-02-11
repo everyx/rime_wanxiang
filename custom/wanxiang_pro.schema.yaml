@@ -457,8 +457,8 @@ translator:
 #  db_class: tabledb  #开启后就不会产生zrm.userdb这样的文件夹，会直接输出文本zrm.txt同时无法使用同步能力
   enable_user_dict: false # 是否开启自动调频
   contextual_suggestions: false  #模型用来开启词组权重预测，效果一般关闭
-  max_homophones: 5
-  max_homographs: 5
+  max_homophones: 8
+  max_homographs: 8
 #  disable_user_dict_for_patterns:
 #    - "^[a-z]{1,6}"    #基本的6码3字不调频
   enable_correction: false #是否开启自动纠错
@@ -680,8 +680,8 @@ user_dict_set:
   core_word_length: 4          # >0 启用，按段学词 + 相邻段拼接
   max_word_length: 7           # >0 启用，过长短语不记整词，只加元素权重
   contextual_suggestions: false
-  max_homophones: 5
-  max_homographs: 5
+  max_homophones: 8
+  max_homographs: 8
   spelling_hints: 50
   comment_format:
   enable_user_dict: true
