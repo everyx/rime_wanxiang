@@ -510,12 +510,13 @@ wanxiang_mixedcode:
   enable_sentence: false
   initial_quality: 2
   comment_format:  #这里很重要如果残留带声调字母，剩余编码提示计算出错引发程序崩溃
-    - xform/^~.+$//
+    - xform/.*//
 
 # 部件拆字反查
 wanxiang_reverse:
   tag: wanxiang_reverse
   dictionary: wanxiang_reverse
+  enable_completion: true
   prefix: "`"  # 反查前缀（反查时前缀会消失），与 recognizer/patterns/wanxiang_reverse 匹配
   tips: "〔反查：拆分|笔画〕"
 
