@@ -521,7 +521,7 @@ wanxiang_reverse:
   tips: "〔反查：拆分|笔画〕"
 
 wanxiang_lookup: #设置归属于super_lookup.lua
-  tags: [ abc ]  # 检索当前tag的候选
+  tags: [ abc, add_user_dict ]  # 检索当前tag的候选
   key: "`"       # 输入中反查引导符，要添加到 speller/alphabet
   lookup: [ wanxiang_reverse ] #反查滤镜数据库，万象都合并为一个了
   enable_tone: true  #启用声调反查
