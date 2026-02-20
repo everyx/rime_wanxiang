@@ -350,8 +350,6 @@ function f.init(env)
         local input = ctx.input
         local code, fuma = split_lookup_input(input, env.search_key_str, env.bypass_prefix)
         if (not code or #code == 0) then return end
-        -- 只有存在反查引导符 + 实际筛选串 时才介入，避免干扰造词流程
-        if (not fuma or #fuma == 0) then return end
 
         local preedit = ctx:get_preedit()
         local no_search_string = code
