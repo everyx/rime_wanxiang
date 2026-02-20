@@ -354,7 +354,6 @@ bash rime-install amzxyz/rime_wanxiang@wanxiang-shouyou-fuzhu:plum/dicts
 #### 9. 📂 数据管理
 | 文件名 | 用途 | 注意事项 |
 | --- | --- | --- |
-| `lua/data` | **存放lua加载的txt数据** | 数据的更新需要编辑txt后先删除lua文件夹下面对应的userdb数据库，重新部署才能重建数据库，从而实现更新 |
 | `lua/data/chinese_english.txt` | **中文翻译英文数据库** | 数据库位于lua/replacer.userdb中。 |
 | `lua/data/english_chinese.txt` | **英文翻译中文数据库** | 数据库位于lua/replacer.userdb中。 |
 | `lua/data/emoji.txt` | **emoji数据库** | 数据库位于lua/replacer.userdb中。 |
