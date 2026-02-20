@@ -35,8 +35,9 @@ switches:
     reset: 2     #对于开关组从0开始数，第几个就reset几可设为默认
   - options: [ s2s, s2t, s2hk, s2tw ]   # 简繁转换开关组，可以在一个空选项和多个实际“- simplifier@s2hk”引入的项目之前切换，这是一个开关组，你可以将其中任意一个s2s等设置为toggle快捷键，多次按下将轮询
     states: [ 简体, 通繁, 港繁, 臺繁 ]
-  - name: tone_hint                     #开启后在候选的注释里面实时显示全拼声调，不开启则采用系统配置，影响的是comment_format，归属：super_comment.lua
-    states: [ 读音关, 读音开 ]
+  - options: [comment_off, tone_hint, toneless_hint]                     #开启后在候选的注释里面实时显示全拼声调，不开启则采用系统配置，影响的是comment_format，归属：super_comment.lua
+    states: [ 注释关, 有声调, 无声调 ]
+    reset: 2     #对于9键，仓、元书用这个参数选择拼音，所以固定为无声调输出，其他前端用户可以适当patch修改
   - name: super_tips                    #开启后在输入编码后面的提示区显示实时的提示数据，受tips数据库影响，表情、翻译、车牌、符号等对应关系数据，并可实现句号上屏，不开启则默认，影响的是segment.prompt参数，归属：super_tips.lua
     states: [ 提示关, 提示开 ]
     reset: 1
@@ -84,7 +85,12 @@ engine:
     - uniquifier                                    # 去重
 
 t9:
-  isDisplayOriginalPreedit: false
+  isDisplayOriginalPreedit: true
+
+super_comment:                 # 超级注释模块，子项配置 true 开启，false 关闭
+  candidate_length: 15         # 候选词辅助码提醒的生效长度，0为关闭  但同时清空其它，应当使用上面开关来处理
+  corrector_type: "comment"    # 注意9键里应原状态输出，不要加括号。随意更换左右括号，比如"〔comment〕" 不加括号为无括号，comment占位不能动
+  chaifen: "〔chaifen〕"         # 随意更换左右括号，比如"〔chaifen〕" 不加括号为无括号，chaifen占位不能动
 
 # 字符集过滤lua
 # a,通用规范汉字表
