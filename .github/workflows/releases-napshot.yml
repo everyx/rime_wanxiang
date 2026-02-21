@@ -98,7 +98,7 @@ jobs:
             local zip_name="$2"
             if [[ -d "$src" ]]; then
               echo "Packing $src -> dist/${zip_name}"
-              (cd "$src" && zip -r -q "../../${zip_name}" .)
+              (cd "$src" && zip -r -q "../../${zip_name}" . -x "renming.dict.yaml" "wuzhong.dict.yaml")
             else
               echo "Warning: $src does not exist, skipped."
             fi
