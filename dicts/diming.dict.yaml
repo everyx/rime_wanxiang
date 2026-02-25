@@ -21,6 +21,7 @@ sort: by_weight
 长丰	cháng fēng	535
 长阳	cháng yáng	564
 朝阳	cháo yáng	767
+呈坎	chéng kǎn	124
 城南	chéng nán	568
 城区	chéng qū	733
 成县	chéng xiàn	380
@@ -2365,8 +2366,6 @@ sort: by_weight
 城郊镇	chéng jiāo zhèn	1
 成均镇	chéng jūn zhèn	1
 呈坎镇	chéng kǎn zhèn	1
-呈坎	chéng kǎn	124
-呈坎古镇	chéng kǎn gǔ zhèn	19
 城口县	chéng kǒu xiàn	192
 埕口镇	chéng kǒu zhèn	1
 城口镇	chéng kǒu zhèn	1
@@ -8343,10 +8342,8 @@ sort: by_weight
 郊区县	jiāo qū xiàn	178
 郊区乡	jiāo qū xiāng	1
 蕉山乡	jiāo shān xiāng	1
-湫山乡	qiū shān xiāng	1
 峤山镇	jiào shān zhèn	1
 角山镇	jiǎo shān zhèn	1
-湫山镇	qiū shān zhèn	1
 焦石镇	jiāo shí zhèn	1
 焦滩乡	jiāo tān xiāng	1
 蛟潭镇	jiāo tán zhèn	1
@@ -14477,6 +14474,8 @@ sort: by_weight
 秋木乡	qiū mù xiāng	1
 秋浦县	qiū pǔ xiàn	111
 秋渠乡	qiū qú xiāng	1
+湫山乡	qiū shān xiāng	1
+湫山镇	qiū shān zhèn	1
 秋田县	qiū tián xiàn	238
 丘头镇	qiū tóu zhèn	1
 秋窝乡	qiū wō xiāng	1
@@ -27558,6 +27557,7 @@ sort: by_weight
 城角庄村	chéng jiǎo zhuāng cūn	1
 程界西村	chéng jiè xī cūn	1
 程介西村	chéng jiè xī cūn	1
+呈坎古镇	chéng kǎn gǔ zhèn	19
 城口子村	chéng kǒu zi cūn	1
 橙里王村	chéng lǐ wáng cūn	1
 城连圩乡	chéng lián wéi xiāng	1
@@ -40380,8 +40380,8 @@ sort: by_weight
 礼明庄镇	lǐ míng zhuāng zhèn	1
 里磨疃村	lǐ mó tuǎn cūn	1
 里木店镇	lǐ mù diàn zhèn	1
-里木栅村	lǐ mù zhà cūn	1
 黎母山镇	lí mǔ shān zhèn	1
+里木栅村	lǐ mù zhà cūn	1
 李木庄村	lǐ mù zhuāng cūn	1
 李南岗村	lǐ nán gǎng cūn	1
 李埝坨村	lǐ niàn tuó cūn	1
@@ -52825,7 +52825,6 @@ sort: by_weight
 铁家沟村	tiě jiā gōu cūn	1
 帖家河村	tiē jiā hé cūn	1
 铁家岭村	tiě jiā lǐng cūn	1
-铁茄坪村	tiě qié píng cūn	1
 铁家湾村	tiě jiā wān cūn	1
 铁家庄村	tiě jiā zhuāng cūn	1
 铁匠沟村	tiě jiàng gōu cūn	1
@@ -52873,6 +52872,7 @@ sort: by_weight
 铁门关村	tiě mén guān cūn	1
 铁门关市	tiě mén guān shì	1
 铁南街道	tiě nán jiē dào	1
+铁茄坪村	tiě qié píng cūn	1
 铁热克镇	tiě rè kè zhèn	1
 铁热木乡	tiě rè mù xiāng	1
 铁热木镇	tiě rè mù zhèn	1

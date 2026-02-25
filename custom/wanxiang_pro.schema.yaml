@@ -39,7 +39,6 @@ switches:
     reset: 1
   - name: super_tips                   #开启后在输入编码后面的提示区显示实时的提示数据，受tips数据库影响，表情、翻译、车牌、符号等对应关系数据，并可实现句号上屏，不开启则默认，影响的是segment.prompt参数，归属：super_tips.lua
     states: [ 提示关, 提示开 ]
-    reset: 1
   - options: [ raw_input, tone_display, full_pinyin ]   #开启后在输入编码的位置实时转换为带声调全拼或者不带声调全拼，不开启则采用系统配置原始编码，影响的是preedit_format,归属：super_preedit.lua
     states: [ 原编码, 有声调, 无声调 ]
 #    reset: 2     #对于开关组从0开始数，第几个就reset几可设为默认
@@ -669,9 +668,6 @@ speller:
       - wanxiang_algebra:/pro/自然码     #拼音转双拼码
       - wanxiang_algebra:/pro/直接辅助     #辅助码部分
 
-###############################以下是拼写运算规则中全拼转双拼码以及形码的过程，按照不同的方案规则划分段落###########################
-
-
 user_dict_set:
   dictionary: wanxiang_pro
   initial_quality: 2.5
@@ -701,5 +697,3 @@ add_user_dict:
   comment_format:
   prefix: "``"
   tips: "〔开始造词〕"
-
-

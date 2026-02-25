@@ -18,7 +18,12 @@
 
 local wanxiang = require("wanxiang")
 local M = {}
-
+--全局通信通道
+_G.WanxiangSharedState = _G.WanxiangSharedState or {
+    sorter_active = false, -- 标记排序脚本是否存活
+    last_input = "",       -- 记录上一次未打斜杠的拼音
+    page_cache = {}        -- 存放排序后的终极缓存
+}
 -- 性能优化：本地化字符串函数
 local byte, find, gsub, upper, sub = string.byte, string.find, string.gsub, string.upper, string.sub
 local utf8_codes = utf8.codes -- 本地化 utf8 迭代器
@@ -652,7 +657,9 @@ local function emit_with_pipeline(wrapper, ctxs)
 
     yield(cand)
     if not ctxs.code_has_symbol and #ctxs.env.page_cache < ctxs.wrap_limit then
-        table.insert(ctxs.env.page_cache, clone_candidate(cand))
+        if not _G.WanxiangSharedState.sorter_active then
+            table.insert(ctxs.env.page_cache, clone_candidate(cand))
+        end
     end
     return true
 end
@@ -826,8 +833,20 @@ function M.func(input, env)
         end
         return false
     end
-    if code_has_symbol and env.page_cache and #env.page_cache > 0 then
-        for _, c in ipairs(env.page_cache) do
+    local raw_code = ""
+    if code_has_symbol then
+        local pos = find(code, symbol, 1, true)
+        if pos then raw_code = sub(code, 1, pos - 1) end
+    end
+
+    -- 动态选择缓存库：排序脚本存活且对得上暗号，就用全局的；否则用自己的兜底
+    local target_cache = env.page_cache
+    if _G.WanxiangSharedState.sorter_active and _G.WanxiangSharedState.last_input == raw_code then
+        target_cache = _G.WanxiangSharedState.page_cache
+    end
+
+    if code_has_symbol and target_cache and #target_cache > 0 then
+        for _, c in ipairs(target_cache) do
             local text = c.text
             local w = {
                 cand = c, text = text,
@@ -839,6 +858,8 @@ function M.func(input, env)
                 local wrapped_w = wrap_from_base(w, wrap_key)
                 if wrapped_w then final_cand = wrapped_w.cand end
             end
+            
+            -- 校准预编辑区长度，动态显隐暗号字母
             if fully_consumed and last_seg then
                 local nc = Candidate(final_cand.type, final_cand.start, last_seg._end, final_cand.text, final_cand.comment or "")
                 if wrap_key then
