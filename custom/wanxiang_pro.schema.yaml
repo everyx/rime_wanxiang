@@ -56,6 +56,7 @@ switches:
 # 输入引擎
 engine:
   processors:
+    - lua_processor@*force_upper_aux       #自动将N-1首选数量的汉字大写辅助码施加到音节后面起到固定语句分词的作用
     - lua_processor@*super_processor       #KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
     - lua_processor@*partial_commit        #通过ctrl+1~0局部提交10个字以内的句子的前几个字（一般为正确的前几个）使用时要遵循合理的分词结构能促进后续编码打出正确的词汇
     - lua_processor@*super_sequence*P      #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+l 移除位移  ctrl+p 置顶
@@ -117,6 +118,17 @@ super_comment:                  # 超级注释模块，子项配置 true 开启�
   candidate_length: 1           # 候选词辅助码提醒的生效长度，0为关闭  但同时清空其它，应当使用上面开关来处理
   corrector_type: "〔comment〕"  # 随意更换左右括号，比如"〔comment〕" 不加括号为无括号，comment占位不能动
   chaifen: "〔chaifen〕"         # 随意更换左右括号，比如"〔chaifen〕" 不加括号为无括号，chaifen占位不能动
+
+force_upper_aux:
+  hotkey: "period"  #用来固定候选的快捷键，原理是用双大写字母定字,能用组合键能用符号Tab等
+  symbol: "›" #用来替代双大写字母辅助的preedit视觉拉长的问题
+
+#常规状态下数字转换成相应的字符，由超级preedit接管
+tone_preedit:
+  "7": "¹"
+  "8": "²"
+  "9": "³"
+  "0": "⁴"
 
 # Tips 配置项
 tips:
@@ -295,13 +307,6 @@ datetime_formats:
   - "YmdHMS"
   - "Y年m月d日 H点M分"
   - "y/m/d I:M p"
-
-#常规状态下数字转换成相应的字符，由超级preedit接管
-tone_preedit:
-  "7": "¹"
-  "8": "²"
-  "9": "³"
-  "0": "⁴"
 
 # a/、单字母组合，触发预设编码自动上屏快符，支持将值设为"repeat" 以支持对应按键重复上屏功能，custom>schema>lua最终合并键值
 # 现在就支持26字母快符，结合成对符号输入，这边的压力小一些
