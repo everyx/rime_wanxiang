@@ -395,6 +395,7 @@ local function apply_tone_preedit(env, cand)
     
     cand.preedit = final_pre
 end
+
 -- ----------------------
 -- 主函数：根据优先级处理候选词的注释和preedit
 -- ----------------------
@@ -413,6 +414,20 @@ function ZH.init(env)
         chaifen = config:get_string("super_comment/chaifen") or "〔chaifen〕",
         candidate_length = tonumber(config:get_string("super_comment/candidate_length")) or 1,
     }
+    -- 动态读取 cand_type 配置
+    env.cand_type_symbols = {}
+    local map = config:get_map("super_comment/cand_type")
+    
+    if map then
+        -- 直接遍历 map 的 keys
+        for _, key in ipairs(map:keys()) do
+            -- 拼接路径去取对应的值，比如 "super_comment/cand_type/user_phrase"
+            local val = config:get_string("super_comment/cand_type/" .. key)
+            if val and val ~= "" then
+                env.cand_type_symbols[key] = val
+            end
+        end
+    end
     CR.init(env)
     SV.init(env)
     CF.init(env)
@@ -595,6 +610,13 @@ function ZH.func(input, env)
             if az_comment and az_comment ~= "" then
                 final_comment = az_comment
             end
+        end
+
+        -- ⑤ 候选词类型符号追加 (动态读取 cand_type 配置)
+        local symbol = env.cand_type_symbols[cand.type]
+        if symbol then
+            -- 必须加 (final_comment or "") 防止原注释为空时 Lua 报错崩溃
+            final_comment = (final_comment or "") .. symbol
         end
 
         -- 应用注释
