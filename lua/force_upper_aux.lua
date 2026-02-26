@@ -30,7 +30,22 @@ end
 local function esc_class(c)
     return (c:gsub("([%%%^%]%-])", "%%%1"))
 end
-
+-- 获取有效的反查词典 (优先 wanxiang_pro, 其次 wanxiang，且需包含分号)
+local function load_valid_dict()
+    local dicts_to_try = {"wanxiang_pro", "wanxiang"}
+    local test_char = "我"
+    
+    for _, name in ipairs(dicts_to_try) do
+        local dict = ReverseLookup(name)
+        if dict then
+            local res = dict:lookup(test_char)
+            if res and string.find(res, ";") then
+                return dict
+            end
+        end
+    end
+    return ReverseLookup("wanxiang_pro")
+end
 -- 获取输入切分后的拼音部分
 local function get_script_text_parts(ctx)
     local raw_in    = ctx.input or ""
@@ -68,7 +83,7 @@ function ForceUpperAux.init(env)
     env.trigger_key = config:get_string("force_upper_aux/hotkey") or "Tab"
 
     env.aux_cache = {}
-    env.dict = ReverseLookup("wanxiang")
+    env.dict = load_valid_dict()
     
     -- 双态切换核心变量
     env.history_first = {}           -- 记录每个长度【最早出现】的候选词
