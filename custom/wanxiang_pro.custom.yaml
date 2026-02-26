@@ -24,6 +24,7 @@ patch:
       table: ""
       user_table: ""
       completion: ""
+      abbrev: ""
 
   super_replacer:
     db_name: lua/replacer
