@@ -1,11 +1,10 @@
 -- lua/force_upper_aux.lua
--- https://github.com/amzxyz/rime_wanxiang
--- @description: 自动将N-1首选数量的汉字大写辅助码施加到音节后面起到固定语句分词的作用
+-- @description: 自动将N-1首选数量的汉字大写辅助码施加到音节后面，支持【当前/最早历史】双态切换
 -- @author: amzxyz
 
 local ForceUpperAux = {}
 
--- 工具函数：获取 UTF-8 字符
+-- 获取 UTF-8 字符
 local function get_utf8_char(str, index)
     local start_byte = utf8.offset(str, index)
     if not start_byte then return nil end
@@ -13,7 +12,7 @@ local function get_utf8_char(str, index)
     return string.sub(str, start_byte, (end_byte and end_byte - 1) or nil)
 end
 
--- 工具函数：获取前缀
+-- 获取 UTF-8 前缀
 local function get_utf8_prefix(str, n)
     if not str or str == "" or n <= 0 then return "" end
     local offset = utf8.offset(str, n + 1)
@@ -27,12 +26,12 @@ local function get_delimiters(ctx)
     return delimiter:sub(1, 1), delimiter:sub(2, 2)
 end
 
--- 转义正则
+-- 转义正则符号
 local function esc_class(c)
     return (c:gsub("([%%%^%]%-])", "%%%1"))
 end
 
--- 获取输入切分后的部分
+-- 获取输入切分后的拼音部分
 local function get_script_text_parts(ctx)
     local raw_in    = ctx.input or ""
     local prop_key  = ctx:get_property("sequence_preedit_key") or ""
@@ -49,14 +48,13 @@ local function get_script_text_parts(ctx)
     return parts
 end
 
--- 核心算法：查询辅助码
+-- 查询辅助码
 local function lookup_aux_code(env, char)
     if env.aux_cache[char] then return env.aux_cache[char] end
     
     local raw_code = env.dict:lookup(char)
     if not raw_code or raw_code == "" then return "" end
     
-    -- 提取分号后的部分，或直接取原始码
     local aux_part = raw_code:match(";([^,]+)") or raw_code:match("^([^;]+)") or ""
     local final_code = aux_part:gsub("[^a-zA-Z]", ""):sub(1, 2):upper()
     
@@ -64,34 +62,48 @@ local function lookup_aux_code(env, char)
     return final_code
 end
 
--- 生命周期：初始化
+-- 初始化
 function ForceUpperAux.init(env)
     local config = env.engine.schema.config
-    
-    -- 读取配置的快捷键，默认为 Tab
-    -- 注意：如果是组合键，配置中需写为 "Control+t" 或 "Shift+Tab" 等格式
     env.trigger_key = config:get_string("force_upper_aux/hotkey") or "Tab"
 
-    env.cand_prefix_cache = {}
     env.aux_cache = {}
-    env.dict = ReverseLookup("wanxiang_pro")
+    env.dict = ReverseLookup("wanxiang")
+    
+    -- 双态切换核心变量
+    env.history_first = {}           -- 记录每个长度【最早出现】的候选词
+    env.press_count = 0              -- 按键次数（奇数=当前，偶数=最早历史）
+    env.is_cycling = false           -- 状态机锁定标识，防止快照被污染
+    env.snapshot_parts = nil         -- 首次按键时的拼音切分快照
+    env.snapshot_current_prefix = "" -- 首次按键时的【当前】N-1候选快照
     
     env.on_update = function(ctx)
+        -- 快捷键循环期间，冻结历史更新
+        if env.is_cycling then return end
+        
         if not ctx:is_composing() then
-            env.cand_prefix_cache = {}
+            env.history_first = {}
+            env.press_count = 0
+            env.is_cycling = false
+            env.snapshot_parts = nil
+            env.snapshot_current_prefix = ""
             return
         end
+        
+        local parts = get_script_text_parts(ctx)
+        local parts_count = #parts
+        if parts_count == 0 then return end
         
         local comp = ctx.composition
         if not comp:empty() then
             local segment = comp:back()
             local cand = segment:get_candidate_at(0)
+            
             if cand and cand.text then
-                env.cand_prefix_cache = {}
-                local text = cand.text
-                local len = utf8.len(text) or 0
-                for i = 1, len do
-                    env.cand_prefix_cache[i] = get_utf8_prefix(text, i)
+                local prefix = get_utf8_prefix(cand.text, parts_count)
+                -- 核心：仅记录首次达到该长度的词条，锁定“最早历史”
+                if not env.history_first[parts_count] then
+                    env.history_first[parts_count] = prefix
                 end
             end
         end
@@ -106,25 +118,55 @@ function ForceUpperAux.fini(env)
     end
 end
 
--- 核心处理逻辑
+-- 核心按键处理逻辑
 function ForceUpperAux.func(key_event, env)
     if key_event:release() then return 2 end
     local current_key = key_event:repr()
+    
     if current_key == env.trigger_key then
         local ctx = env.engine.context
         if not ctx:is_composing() then return 2 end
         
-        local parts = get_script_text_parts(ctx)
-        if #parts == 0 then return 2 end
-        
-        -- 暂时断开通知防止死循环
         env.update_conn:disconnect()
+        
+        -- 首次按下：生成干净的现场快照
+        if env.press_count == 0 then
+            env.snapshot_parts = get_script_text_parts(ctx)
+            
+            local p_count = #(env.snapshot_parts)
+            local target_len = p_count > 1 and (p_count - 1) or 1
+            
+            -- 提取触发那一刻的“当前”候选
+            local comp = ctx.composition
+            if not comp:empty() then
+                local cand = comp:back():get_candidate_at(0)
+                if cand then
+                    env.snapshot_current_prefix = get_utf8_prefix(cand.text, target_len)
+                end
+            end
+        end
+        
+        local parts = env.snapshot_parts
+        if not parts or #parts == 0 then
+            env.update_conn = ctx.update_notifier:connect(env.on_update)
+            return 2 
+        end
+        
+        env.press_count = env.press_count + 1
+        env.is_cycling = true 
         
         local parts_count = #parts
         local target_len = parts_count > 1 and (parts_count - 1) or 1
-        local candidate_text = env.cand_prefix_cache[target_len] or ""
+        local candidate_text = ""
         
-        -- 计算新输入
+        -- 双态切换：奇数次取【当前快照】，偶数次取【最早历史】
+        if env.press_count % 2 == 1 then
+            candidate_text = env.snapshot_current_prefix
+        else
+            candidate_text = env.history_first[target_len] or env.snapshot_current_prefix
+        end
+        
+        -- 生成包含辅助码的新输入串
         local new_input = ""
         local text_len = utf8.len(candidate_text) or 0
         for i = 1, parts_count do
@@ -139,16 +181,21 @@ function ForceUpperAux.func(key_event, env)
             end
         end
         
+        -- 替换并刷新输入
         if new_input ~= "" and new_input ~= ctx.input then
             ctx.input = new_input
         end
         
-        -- 重新连接
         env.update_conn = ctx.update_notifier:connect(env.on_update)
         return 1 -- kAccepted
+    else
+        -- 任意其他按键打断循环，重置状态机
+        env.press_count = 0
+        env.is_cycling = false
+        env.snapshot_parts = nil
+        env.snapshot_current_prefix = ""
+        return 2 -- kNoop
     end
-    
-    return 2 -- kNoop
 end
 
 return ForceUpperAux
