@@ -32,20 +32,6 @@ local function esc_class(c)
     return (c:gsub("([%%%^%]%-])", "%%%1"))
 end
 
--- 获取有效的反查词典 (优先 wanxiang_pro)
-local function load_valid_dict()
-    local dicts_to_try = {"wanxiang_pro", "wanxiang"}
-    local test_char = "我"
-    for _, name in ipairs(dicts_to_try) do
-        local dict = ReverseLookup(name)
-        if dict then
-            local res = dict:lookup(test_char)
-            if res and string.find(res, ";") then return dict end
-        end
-    end
-    return ReverseLookup("wanxiang_pro")
-end
-
 -- 获取输入切分后的拼音部分
 local function get_script_text_parts(ctx)
     local raw_in    = ctx.input or ""
@@ -63,6 +49,7 @@ end
 
 -- 查询辅助码
 local function lookup_aux_code(env, char)
+    if not env.dict then return "" end 
     if env.aux_cache[char] then return env.aux_cache[char] end
     local raw_code = env.dict:lookup(char)
     if not raw_code or raw_code == "" then return "" end
@@ -77,7 +64,9 @@ function ForceUpperAux.init(env)
     local config = env.engine.schema.config
     env.trigger_key = config:get_string("force_upper_aux/hotkey") or "Tab"
     env.aux_cache = {}
-    env.dict = load_valid_dict()
+    
+    local dict_name = config:get_string("translator/dictionary") or "wanxiang_pro"
+    env.dict = ReverseLookup(dict_name)
     
     env.history_first = {}   -- 记录每个长度最初出现的首选
     env.press_count = 0      
