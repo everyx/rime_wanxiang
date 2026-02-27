@@ -199,7 +199,7 @@ Abigail	Abigail
 Abilene	Abilene
 abilities	abilities
 ability	ability
-Ability Power Carry	Ability Power Carry
+Ability Power Carry	AbilityPowerCarry
 abject	abject
 abjection	abjection
 abjections	abjections
@@ -317,7 +317,7 @@ abruptly	abruptly
 abruptness	abruptness
 abs	abs
 ABS	ABS
-Anti-lock Braking System	Anti-lock Braking System
+Anti-lock Braking System	ABS
 abscess	abscess
 abscessed	abscessed
 abscesses	abscesses
@@ -482,7 +482,7 @@ acceptor	acceptor
 acceptors	acceptors
 accepts	accepts
 access	access
-Microsoft Access	Microsoft Access
+Microsoft Access	Access
 accessary	accessary
 accessed	accessed
 accesses	accesses
@@ -564,7 +564,7 @@ accosting	accosting
 accosts	accosts
 accouchement	accouchement
 account	account
-account for	account for
+account for	accountfor
 accountability	accountability
 accountable	accountable
 accountably	accountably
@@ -652,7 +652,7 @@ acetylene	acetylene
 acetylenelamp	acetylenelamp
 AcFun	AcFun
 ACG	ACG
-Animation Comics Games	Animation Comics Games
+Animation Comics Games	ACG
 achaea	achaea
 Achaean	Achaean
 Achaeans	Achaeans
@@ -725,7 +725,7 @@ acoustical	acoustical
 acoustically	acoustically
 acoustician	acoustician
 acoustics	acoustics
-Agentic Commerce Protocol	Agentic Commerce Protocol
+Agentic Commerce Protocol	ACP
 acquaint	acquaint
 acquaintance	acquaintance
 acquaintances	acquaintances
@@ -875,7 +875,7 @@ adaptors	adaptors
 adapts	adapts
 adaxial	adaxial
 ADC	ADC
-Attack Damage Carry	Attack Damage Carry
+Attack Damage Carry	ADC
 add	add
 add-on	add-on
 add-ons	add-ons
@@ -1087,7 +1087,7 @@ admonitions	admonitions
 admonitory	admonitory
 ado	ado
 adobe	adobe
-Adobe Photoshop	Adobe Photoshop
+Adobe Photoshop	AdobePhotoshop
 adolescence	adolescence
 adolescent	adolescent
 adolescents	adolescents
@@ -1133,7 +1133,7 @@ adroitness	adroitness
 ads	ads
 AdSense	AdSense
 ADSL	ADSL
-Asymmetric Digital Subscriber Line	Asymmetric Digital Subscriber Line
+Asymmetric Digital Subscriber Line	ADSL
 adsmith	adsmith
 adsorb	adsorb
 adsorbed	adsorbed
@@ -1163,7 +1163,7 @@ adulterously	adulterously
 adultery	adultery
 adulthood	adulthood
 adults	adults
-Adult Video	Adult Video
+Adult Video	AdultVideo
 adumbral	adumbral
 adumbrate	adumbrate
 adumbrated	adumbrated
@@ -1175,7 +1175,7 @@ adurol	adurol
 adust	adust
 advance	advance
 advanced	advanced
-Advanced RISC Machine	Advanced RISC Machine
+Advanced RISC Machine	AdvancedRISCMachine
 advancement	advancement
 advancements	advancements
 advances	advances
@@ -1297,7 +1297,7 @@ aeronaut	aeronaut
 aeronautic	aeronautic
 aeronautical	aeronautical
 aeronautics	aeronautics
-Aeron Chair	Aeron Chair
+Aeron Chair	AeronChair
 aeropex	aeropex
 aerophare	aerophare
 aeroplane	aeroplane
@@ -1454,7 +1454,7 @@ afterpulse	afterpulse
 aftershock	aftershock
 aftershocks	aftershocks
 AfterShokz	AfterShokz
-AfterShokz Aeropex	AfterShokz Aeropex
+AfterShokz Aeropex	AfterShokzAeropex
 aftertast	aftertast
 aftertaste	aftertaste
 afterthought	afterthought
@@ -1540,7 +1540,7 @@ aggrieved	aggrieved
 aggrieves	aggrieves
 aggrieving	aggrieving
 aghast	aghast
-artificial general intelligence	artificial general intelligence
+artificial general intelligence	agi
 AGI	AGI
 agile	agile
 agilely	agilely
@@ -1642,7 +1642,7 @@ AIDS	AIDS
 aie	aie
 aiee	aiee
 AIGC	AIGC
-AI Generated Content	AI Generated Content
+AI Generated Content	AIGC
 aigret	aigret
 aiguillette	aiguillette
 Aiken	Aiken
@@ -1671,7 +1671,7 @@ airbag	airbag
 airbags	airbags
 airbed	airbed
 airbnb	airbnb
-AirTag	AirTag
+AirTag	airtag
 airborne	airborne
 airbrush	airbrush
 Airbus	Airbus
@@ -1720,9 +1720,9 @@ airplane	airplane
 airplanes	airplanes
 AirPlay	AirPlay
 AirPods	AirPods
-AirPods Max	AirPods Max
-AirPods Max	AirPods Max
-AirPods Pro	AirPods Pro
+AirPods Max	AirPods
+AirPods Max	AirPodsMax
+AirPods Pro	AirPodsPro
 airport	airport
 airports	airports
 airs	airs
@@ -1923,7 +1923,7 @@ aliased	aliased
 aliases	aliases
 aliasing	aliasing
 alibaba	alibaba
-Alibaba Group	Alibaba Group
+Alibaba Group	AlibabaGroup
 alibi	alibi
 alibis	alibis
 alibris	alibris
@@ -2193,7 +2193,7 @@ alterers	alterers
 altering	altering
 alternate	alternate
 alternated	alternated
-Alternate History	Alternate History
+Alternate History	AlternateHistory
 alternately	alternately
 alternates	alternates
 alternating	alternating
@@ -2293,7 +2293,7 @@ amazing	amazing
 amazingly	amazingly
 Amazon	Amazon
 Amazons	Amazons
-Amazon Web Services	Amazon Web Services
+Amazon Web Services	AmazonWebServices
 ambassador	ambassador
 ambassadorial	ambassadorial
 ambassadors	ambassadors
@@ -2958,7 +2958,7 @@ antagonizing	antagonizing
 Antarctic	Antarctic
 Antarctica	Antarctica
 Antares	Antares
-Ant Design	Ant Design
+Ant Design	AntDesign
 ante	ante
 ante-room	ante-room
 anteater	anteater
@@ -3178,21 +3178,21 @@ anywise	anywise
 aorta	aorta
 aortic	aortic
 AOSP	AOSP
-Android Open Source Project	Android Open Source Project
+Android Open Source Project	AOSP
 aoudad	aoudad
-aPaaS	aPaaS
-application Platform as a Service	application Platform as a Service
+aPaaS	APaaS
+application Platform as a Service	APaaS
 apace	apace
 apache	apache
-Apache Dubbo	Apache Dubbo
-Apache ECharts	Apache ECharts
-Apache Hive	Apache Hive
-Apache JMeter	Apache JMeter
-Apache Kafka	Apache Kafka
+Apache Dubbo	ApacheDubbo
+Apache ECharts	ApacheECharts
+Apache Hive	ApacheHive
+Apache JMeter	ApacheJMeter
+Apache Kafka	ApacheKafka
 Apaches	Apaches
-Apache ShardingSphere	Apache ShardingSphere
-Apache Tomcat	Apache Tomcat
-Apache ZooKeeper	Apache ZooKeeper
+Apache ShardingSphere	ApacheShardingSphere
+Apache Tomcat	ApacheTomcat
+Apache ZooKeeper	ApacheZooKeeper
 Apalachicola	Apalachicola
 apanage	apanage
 apart	apart
@@ -3203,7 +3203,7 @@ apathetic	apathetic
 apathy	apathy
 apatite	apatite
 APC	APC
-Ability Power Carry	Ability Power Carry
+Ability Power Carry	APC
 ape	ape
 apeak	apeak
 aped	aped
@@ -3217,7 +3217,7 @@ apes	apes
 Apetalous	Apetalous
 apex	apex
 APFS	APFS
-Apple File System	Apple File System
+Apple File System	APFS
 aphasia	aphasia
 aphasic	aphasic
 aphelion	aphelion
@@ -3231,7 +3231,7 @@ aphorisms	aphorisms
 aphorist	aphorist
 Aphrodite	Aphrodite
 API	API
-Application Programming Interface	Application Programming Interface
+Application Programming Interface	API
 apian	apian
 apiarian	apiarian
 apiaries	apiaries
@@ -3243,7 +3243,7 @@ apiece	apiece
 aping	aping
 APIs	APIs
 apish	apish
-android application package	android application package
+android application package	apk
 APK	APK
 apkmirror	apkmirror
 APKpure	APKpure
@@ -3380,35 +3380,35 @@ applauding	applauding
 applauds	applauds
 applause	applause
 apple	apple
-Apple Arcade	Apple Arcade
-Apple Books	Apple Books
+Apple Arcade	AppleArcade
+Apple Books	AppleBooks
 Appleby	Appleby
-Apple Card	Apple Card
+Apple Card	AppleCard
 AppleCare	AppleCare
 AppleCare+	AppleCare+
-Apple Developer	Apple Developer
-Apple File System	Apple File System
+Apple Developer	AppleDeveloper
+Apple File System	AppleFileSystem
 applegate	applegate
-Apple ID	Apple ID
-Apple Intelligence	Apple Intelligence
+Apple ID	AppleID
+Apple Intelligence	AppleIntelligence
 applejack	applejack
-Apple Music	Apple Music
-Apple News	Apple News
-Apple One	Apple One
-Apple Pay	Apple Pay
-Apple Pencil	Apple Pencil
+Apple Music	AppleMusic
+Apple News	AppleNews
+Apple One	AppleOne
+Apple Pay	ApplePay
+Apple Pencil	ApplePencil
 apples	apples
 applesauce	applesauce
-apple silicon	apple silicon
-Apple Store	Apple Store
+apple silicon	applesilicon
+Apple Store	AppleStore
 applet	applet
 Appleton	Appleton
 applets	applets
-Apple TV	Apple TV
-Apple TV+	Apple TV+
-Apple Vision	Apple Vision
-Apple Vision Pro	Apple Vision Pro
-Apple Watch	Apple Watch
+Apple TV	AppleTV
+Apple TV+	AppleTV+
+Apple Vision	AppleVision
+Apple Vision Pro	AppleVisionPro
+Apple Watch	AppleWatch
 appliance	appliance
 appliances	appliances
 applicability	applicability
@@ -3423,7 +3423,7 @@ applicatively	applicatively
 applicator	applicator
 applicators	applicators
 applied	applied
-Applied AI	Applied AI
+Applied AI	AppliedAI
 applier	applier
 appliers	appliers
 applies	applies
@@ -3531,12 +3531,12 @@ approximating	approximating
 approximation	approximation
 approximations	approximations
 apps	apps
-App Store	App Store
+App Store	AppStore
 appurtenance	appurtenance
 appurtenances	appurtenances
 appurtenant	appurtenant
 apr	apr
-apr.	apr.
+apr.	apr
 apricot	apricot
 apricots	apricots
 April	April
@@ -3708,7 +3708,7 @@ archivers	archivers
 archives	archives
 archiving	archiving
 archivist	archivist
-Arch Linux	Arch Linux
+Arch Linux	ArchLinux
 archly	archly
 archness	archness
 archon	archon
@@ -3722,7 +3722,7 @@ arcs	arcs
 arcsine	arcsine
 arctangent	arctangent
 Arctic	Arctic
-Arctic Warfare Police	Arctic Warfare Police
+Arctic Warfare Police	ArcticWarfarePolice
 Arcturus	Arcturus
 arcuate	arcuate
 Arden	Arden
@@ -3755,7 +3755,7 @@ argenting	argenting
 Argentinian	Argentinian
 argentite	argentite
 argentum	argentum
-Argent X	Argent X
+Argent X	ArgentX
 argil	argil
 argillaceous	argillaceous
 argillite	argillite
@@ -3832,7 +3832,7 @@ Arlene	Arlene
 Arlington	Arlington
 arm	arm
 ARM	ARM
-Advanced RISC Machine	Advanced RISC Machine
+Advanced RISC Machine	ARM
 arm64	arm64
 Armada	Armada
 armadillo	armadillo
@@ -4044,11 +4044,11 @@ arty	arty
 Aruba	Aruba
 arum	arum
 arweave	arweave
-arXiv	arXiv
+arXiv	ArXiv
 Aryan	Aryan
 Aryans	Aryans
 as	as
-as soon as possible	as soon as possible
+as soon as possible	asap
 ASAP	ASAP
 asbestos	asbestos
 asbestosis	asbestosis
@@ -4140,7 +4140,7 @@ asks	asks
 aslant	aslant
 asleep	asleep
 aslope	aslope
-autonomous sensory meridian response	autonomous sensory meridian response
+autonomous sensory meridian response	asmr
 ASMR	ASMR
 asocial	asocial
 asp	asp
@@ -4470,7 +4470,7 @@ Atlantic	Atlantic
 Atlantica	Atlantica
 Atlantis	Atlantis
 atlas	atlas
-automated teller machine	automated teller machine
+automated teller machine	atm
 ATM	ATM
 atman	atman
 atmosphere	atmosphere
@@ -4533,7 +4533,7 @@ attachments	attachments
 attaché	attaché
 attack	attack
 attackable	attackable
-Attack Damage Carry	Attack Damage Carry
+Attack Damage Carry	AttackDamageCarry
 attacked	attacked
 attacker	attacker
 attackers	attackers
@@ -4698,7 +4698,7 @@ audits	audits
 Audrey	Audrey
 Audubon	Audubon
 Auerbach	Auerbach
-aug.	aug.
+aug.	aug
 Augean	Augean
 auger	auger
 augers	augers
@@ -4726,7 +4726,7 @@ auntie	auntie
 aunts	aunts
 aunty	aunty
 AUR	AUR
-Arch User Repository	Arch User Repository
+Arch User Repository	AUR
 aura	aura
 aurae	aurae
 aural	aural
@@ -4918,7 +4918,7 @@ aux	aux
 auxiliaries	auxiliaries
 auxiliary	auxiliary
 auxin	auxin
-Adult Video	Adult Video
+Adult Video	av
 AV	AV
 avail	avail
 availabilities	availabilities
@@ -4946,7 +4946,7 @@ avatars	avatars
 avaya	avaya
 AVC	AVC
 ave	ave
-Ave Mujica	Ave Mujica
+Ave Mujica	AveMujica
 avenge	avenge
 avenged	avenged
 avenger	avenger
@@ -4993,7 +4993,7 @@ avid	avid
 avidity	avidity
 avidly	avidly
 AVIF	AVIF
-AV1 Image File Format	AV1 Image File Format
+AV1 Image File Format	AVIF
 avifauna	avifauna
 Avignon	Avignon
 avionic	avionic
@@ -5077,10 +5077,10 @@ awnings	awnings
 awoke	awoke
 awoken	awoken
 AWP	AWP
-Arctic Warfare Police	Arctic Warfare Police
+Arctic Warfare Police	AWP
 awry	awry
 AWS	AWS
-Amazon Web Services	Amazon Web Services
+Amazon Web Services	AWS
 ax	ax
 axe	axe
 axed	axed
@@ -5229,7 +5229,7 @@ backfire	backfire
 backfiring	backfiring
 backgammon	backgammon
 background	background
-background music	background music
+background music	backgroundmusic
 backgrounds	backgrounds
 backhand	backhand
 backhanded	backhanded
@@ -5569,7 +5569,7 @@ banff	banff
 bang	bang
 bangalore	bangalore
 bangbus	bangbus
-BanG Dream!	BanG Dream!
+BanG Dream!	BanGDream
 banged	banged
 banger	banger
 banging	banging
@@ -6039,11 +6039,11 @@ bazooka	bazooka
 bb	bb
 BBC	BBC
 BBDown	BBDown
-barbecue	barbecue
+barbecue	bbq
 BBQ	BBQ
 bbs	bbs
 BBS	BBS
-Bulletin Board System	Bulletin Board System
+Bulletin Board System	BBS
 bctv	bctv
 BDSM	BDSM
 be	be
@@ -6797,9 +6797,9 @@ bettering	bettering
 betterment	betterment
 betterments	betterments
 betters	betters
-Better Snap Tool	Better Snap Tool
-Better Touch Tool	Better Touch Tool
-Better Zip	Better Zip
+Better Snap Tool	BetterSnapTool
+Better Touch Tool	BetterTouchTool
+Better Zip	BetterZip
 Betties	Betties
 betting	betting
 bettor	bettor
@@ -6840,7 +6840,7 @@ beyond	beyond
 bezel	bezel
 bezique	bezique
 bezoar	bezoar
-background music	background music
+background music	bgm
 BGM	BGM
 Bhagavad-Gita	Bhagavad-Gita
 Bhutan	Bhutan
@@ -6955,7 +6955,7 @@ bigot	bigot
 bigoted	bigoted
 bigotry	bigotry
 bigots	bigots
-Big Sur	Big Sur
+Big Sur	BigSur
 bigwig	bigwig
 bihar	bihar
 biharmonic	biharmonic
@@ -7043,7 +7043,7 @@ bimonthlies	bimonthlies
 bimonthly	bimonthly
 bin	bin
 binance	binance
-Binance Smart Chain	Binance Smart Chain
+Binance Smart Chain	BinanceSmartChain
 binaries	binaries
 binary	binary
 binaural	binaural
@@ -7118,7 +7118,7 @@ bioplasm	bioplasm
 biopsies	biopsies
 biopsy	biopsy
 BIOS	BIOS
-Basic Input/Output System	Basic Input/Output System
+Basic Input/Output System	BIOS
 biosatellite	biosatellite
 bioscience	bioscience
 bioscope	bioscope
@@ -7300,7 +7300,7 @@ blackest	blackest
 Blackfeet	Blackfeet
 Blackfoot	Blackfoot
 Blackfoots	Blackfoots
-blackFriday	blackFriday
+blackFriday	BlackFriday
 blackguard	blackguard
 blackhead	blackhead
 blackheads	blackheads
@@ -7722,8 +7722,8 @@ Blythe	Blythe
 BMI	BMI
 BMP	BMP
 BMW	BMW
-Bayerische Motoren Werke AG	Bayerische Motoren Werke AG
-BNB Chain	BNB Chain
+Bayerische Motoren Werke AG	BMW
+BNB Chain	BNBChain
 boa	boa
 boar	boar
 board	board
@@ -8315,7 +8315,7 @@ bp	bp
 bps	bps
 bra	bra
 braavos	braavos
-Braavos Wallet	Braavos Wallet
+Braavos Wallet	Braavos
 brace	brace
 braced	braced
 bracelet	bracelet
@@ -8518,7 +8518,7 @@ breakfasters	breakfasters
 breakfasting	breakfasting
 breakfasts	breakfasts
 breaking	breaking
-BREAKING CHANGE	BREAKING CHANGE
+BREAKING CHANGE	BREAKINGCHANGE
 breakneck	breakneck
 breakout	breakout
 breakover	breakover
@@ -8956,14 +8956,14 @@ bryology	bryology
 bryony	bryony
 BscScan	BscScan
 BSD	BSD
-Berkeley Software Distribution	Berkeley Software Distribution
+Berkeley Software Distribution	BSD
 BT	BT
 btam	btam
-bitcoin	bitcoin
+bitcoin	btc
 BTC	BTC
 btitish	btitish
 btrfs	btrfs
-by the way	by the way
+by the way	btw
 BTW	BTW
 bub	bub
 bubble	bubble
@@ -9040,7 +9040,7 @@ Budweisers	Budweisers
 Buehring	Buehring
 Buena	Buena
 Buenos	Buenos
-Buenos Aires	Buenos Aires
+Buenos Aires	BuenosAires
 buf	buf
 buff	buff
 buffalo	buffalo
@@ -9129,7 +9129,7 @@ bulldozing	bulldozing
 bulled	bulled
 bullet	bullet
 bulletin	bulletin
-Bulletin Board System	Bulletin Board System
+Bulletin Board System	BulletinBoardSystem
 bulletins	bulletins
 bulletproof	bulletproof
 bullets	bullets
@@ -10774,12 +10774,12 @@ cayman	cayman
 Cayuga	Cayuga
 cayuse	cayuse
 CBA	CBA
-Chinese Basketball Association	Chinese Basketball Association
+Chinese Basketball Association	CBA
 cbm	cbm
 cc	cc
 CCTV	CCTV
-China Central Television	China Central Television
-Closed-Circuit Television	Closed-Circuit Television
+China Central Television	CCTV
+Closed-Circuit Television	CCTV
 cd	cd
 CD	CD
 CD-ROM	CD-ROM
@@ -10787,12 +10787,12 @@ CD-RW	CD-RW
 CDC	CDC
 CDMA	CDMA
 CDN	CDN
-Content Delivery Network	Content Delivery Network
-cDNA	cDNA
+Content Delivery Network	CDN
+cDNA	CDNA
 CDPR	CDPR
-CD Projekt	CD Projekt
-CD Projekt	CD Projekt
-CD Projekt RED	CD Projekt RED
+CD Projekt	CDPR
+CD Projekt	CDProjekt
+CD Projekt RED	CDProjektRED
 CDR	CDR
 cdrom	cdrom
 CE	CE
@@ -10814,7 +10814,7 @@ cedilla	cedilla
 ceding	ceding
 Cedric	Cedric
 CEF	CEF
-Chromium Embedded Framework	Chromium Embedded Framework
+Chromium Embedded Framework	CEF
 ceil	ceil
 ceiling	ceiling
 ceilings	ceilings
@@ -10967,7 +10967,7 @@ centuries	centuries
 centurion	centurion
 century	century
 CEO	CEO
-Chief Executive Officer	Chief Executive Officer
+Chief Executive Officer	CEO
 cephalic	cephalic
 cephalization	cephalization
 Cepheus	Cepheus
@@ -11043,7 +11043,7 @@ Ceylon	Ceylon
 Cezanne	Cezanne
 Cezannes	Cezannes
 CFO	CFO
-Chief Financial Officer	Chief Financial Officer
+Chief Financial Officer	CFO
 cg	cg
 CGI	CGI
 Chablis	Chablis
@@ -11124,7 +11124,7 @@ Champaign	Champaign
 champerty	champerty
 champignon	champignon
 champion	champion
-champion's inequality	champion's inequality
+champion's inequality	champion'sinequality
 championed	championed
 championing	championing
 champions	champions
@@ -11470,7 +11470,7 @@ Cherokees	Cherokees
 cheroot	cheroot
 cherries	cherries
 cherry	cherry
-Cherry Studio	Cherry Studio
+Cherry Studio	CherryStudio
 chert	chert
 cherub	cherub
 cherubic	cherubic
@@ -12209,7 +12209,7 @@ clashed	clashed
 clashes	clashes
 clashing	clashing
 ClashX	ClashX
-ClashX Pro	ClashX Pro
+ClashX Pro	ClashXPro
 clasp	clasp
 clasped	clasped
 clasper	clasper
@@ -12287,8 +12287,8 @@ cleanest	cleanest
 cleaning	cleaning
 cleanliness	cleanliness
 cleanly	cleanly
-Clean My Mac	Clean My Mac
-Clean My Mac X	Clean My Mac X
+Clean My Mac	CleanMyMac
+Clean My Mac X	CleanMyMacX
 cleanness	cleanness
 cleans	cleans
 cleanse	cleanse
@@ -12296,7 +12296,7 @@ cleansed	cleansed
 cleanser	cleanser
 cleansers	cleansers
 cleanses	cleanses
-CleanShot X	CleanShot X
+CleanShot X	CleanShotX
 cleansing	cleansing
 cleanup	cleanup
 clear	clear
@@ -12354,7 +12354,7 @@ cleverness	cleverness
 clevis	clevis
 clew	clew
 CLI	CLI
-Command-Line Interface	Command-Line Interface
+Command-Line Interface	CLI
 clianthus	clianthus
 clic	clic
 cliche	cliche
@@ -12523,10 +12523,10 @@ CloudApp	CloudApp
 cloudburst	cloudburst
 clouded	clouded
 cloudflare	cloudflare
-Cloudflare Images	Cloudflare Images
-Cloudflare Pages	Cloudflare Pages
-Cloudflare Stream	Cloudflare Stream
-Cloudflare Workers	Cloudflare Workers
+Cloudflare Images	CloudflareImages
+Cloudflare Pages	CloudflarePages
+Cloudflare Stream	CloudflareStream
+Cloudflare Workers	CloudflareWorkers
 CloudFront	CloudFront
 cloudier	cloudier
 cloudiest	cloudiest
@@ -12607,15 +12607,15 @@ cmdline	cmdline
 cmi	cmi
 CMOS	CMOS
 CMS	CMS
-Content Management System	Content Management System
+Content Management System	CMS
 CN	CN
 CNAME	CNAME
 cnb	cnb
-cnBeta	cnBeta
+cnBeta	CnBeta
 CNC	CNC
 CNET	CNET
 CNN	CNN
-CO	CO
+CO	co
 coach	coach
 coached	coached
 coacher	coacher
@@ -12755,7 +12755,7 @@ coconuts	coconuts
 cocoon	cocoon
 cocoons	cocoons
 cocos	cocos
-Cocos Creator	Cocos Creator
+Cocos Creator	CocosCreator
 cod	cod
 coda	coda
 codan	codan
@@ -12771,12 +12771,12 @@ codeium	codeium
 CodeKit	CodeKit
 coder	coder
 coders	coders
-Code Runner	Code Runner
+Code Runner	CodeRunner
 codes	codes
 codespace	codespace
 codespaces	codespaces
 CodeWhisperer	CodeWhisperer
-Code With Me	Code With Me
+Code With Me	CodeWithMe
 codeword	codeword
 codewords	codewords
 codex	codex
@@ -12793,7 +12793,7 @@ codifies	codifies
 codify	codify
 codifying	codifying
 coding	coding
-Coding Pages	Coding Pages
+Coding Pages	CodingPages
 codings	codings
 codium	codium
 CodiumAI	CodiumAI
@@ -12896,7 +12896,7 @@ coils	coils
 coin	coin
 coinage	coinage
 coinbase	coinbase
-Coinbase Wallet	Coinbase Wallet
+Coinbase Wallet	CoinbaseWallet
 CoinCheckup	CoinCheckup
 coincide	coincide
 coincided	coincided
@@ -13094,8 +13094,8 @@ colorize	colorize
 colorless	colorless
 ColorOS	ColorOS
 colors	colors
-Color Schemer	Color Schemer
-Color Snapper	Color Snapper
+Color Schemer	ColorSchemer
+Color Snapper	ColorSnapper
 colossal	colossal
 Colosseum	Colosseum
 colossus	colossus
@@ -14390,7 +14390,7 @@ contention	contention
 contentions	contentions
 contentious	contentious
 contently	contently
-Content Management System	Content Management System
+Content Management System	ContentManagementSystem
 contentment	contentment
 contents	contents
 conterminous	conterminous
@@ -14521,7 +14521,7 @@ contriver	contriver
 contrives	contrives
 contriving	contriving
 control	control
-Control Center	Control Center
+Control Center	ControlCenter
 controllability	controllability
 controllable	controllable
 controllably	controllably
@@ -14645,7 +14645,7 @@ Conway	Conway
 cony	cony
 coo	coo
 COO	COO
-Chief Operating Officer	Chief Operating Officer
+Chief Operating Officer	COO
 cooing	cooing
 cook	cook
 cookbook	cookbook
@@ -15128,7 +15128,7 @@ counted	counted
 countenance	countenance
 counter	counter
 Counter-Strike	Counter-Strike
-Counter-Strike 2	Counter-Strike 2
+Counter-Strike 2	Counter-Strike2
 counteract	counteract
 counteracted	counteracted
 counteracting	counteracting
@@ -15342,11 +15342,11 @@ cozily	cozily
 coziness	coziness
 cozy	cozy
 cpi	cpi
-C++	C++
+C++	CPP
 cps	cps
 cpu	cpu
 CPU	CPU
-Central Processing Unit	Central Processing Unit
+Central Processing Unit	CPU
 CPython	CPython
 crab	crab
 crabapple	crabapple
@@ -15807,7 +15807,7 @@ cruciform	cruciform
 crucify	crucify
 crucifying	crucifying
 CRUD	CRUD
-Create Read Update Delete	Create Read Update Delete
+Create Read Update Delete	CRUD
 cruddy	cruddy
 crude	crude
 crudely	crudely
@@ -15918,19 +15918,19 @@ crystallizing	crystallizing
 crystallography	crystallography
 crystalloid	crystalloid
 crystals	crystals
-Counter-Strike	Counter-Strike
+Counter-Strike	Cs
 CS	CS
 CS2	CS2
-Counter-Strike 2	Counter-Strike 2
+Counter-Strike 2	CS2
 CS:GO	CS:GO
 CSDN	CSDN
-Counter-Strike: Global Offensive	Counter-Strike: Global Offensive
+Counter-Strike: Global Offensive	CSGO
 CSS	CSS
-Cascading Style Sheets	Cascading Style Sheets
+Cascading Style Sheets	CSS
 cstar	cstar
 csv	csv
 CTO	CTO
-Chief Technology Officer	Chief Technology Officer
+Chief Technology Officer	CTO
 ctrl	ctrl
 ctty	ctty
 cub	cub
@@ -15970,7 +15970,7 @@ cucumbers	cucumbers
 cucurbit	cucurbit
 cud	cud
 CUDA	CUDA
-CUDA Toolkit	CUDA Toolkit
+CUDA Toolkit	CUDAToolkit
 cudbear	cudbear
 cuddle	cuddle
 cuddled	cuddled
@@ -16145,7 +16145,7 @@ currencies	currencies
 currency	currency
 current	current
 currently	currently
-Current Mac Bundles	Current Mac Bundles
+Current Mac Bundles	CurrentMacBundles
 currentness	currentness
 currents	currents
 curricula	curricula
@@ -16190,7 +16190,7 @@ curvaceous	curvaceous
 curvature	curvature
 curve	curve
 curved	curved
-Curve Finance	Curve Finance
+Curve Finance	CurveFinance
 curves	curves
 curvet	curvet
 curvilinear	curvilinear
@@ -16271,9 +16271,9 @@ Cuvier	Cuvier
 Cuzco	Cuzco
 CV	CV
 CVE	CVE
-Common Vulnerabilities and Exposures	Common Vulnerabilities and Exposures
+Common Vulnerabilities and Exposures	CVE
 CWE	CWE
-Common Weakness Enumeration	Common Weakness Enumeration
+Common Weakness Enumeration	CWE
 cwt	cwt
 cyan	cyan
 Cyanamid	Cyanamid
@@ -16370,7 +16370,7 @@ Czechoslovakia	Czechoslovakia
 czechs	czechs
 Czerniak	Czerniak
 D&D	D&D
-Dungeons & Dragons	Dungeons & Dragons
+Dungeons & Dragons	D&D
 D.VA	D.VA
 dab	dab
 dabber	dabber
@@ -16427,7 +16427,7 @@ dairymaid	dairymaid
 dais	dais
 daisies	daisies
 daisy	daisy
-Daisy Disk	Daisy Disk
+Daisy Disk	DaisyDisk
 dak	dak
 Dakar	Dakar
 Dakota	Dakota
@@ -16691,7 +16691,7 @@ dayfly	dayfly
 daylight	daylight
 daylights	daylights
 daylong	daylong
-Day One	Day One
+Day One	DayOne
 days	days
 daystar	daystar
 daystart	daystart
@@ -16706,13 +16706,13 @@ dazzler	dazzler
 dazzles	dazzles
 dazzling	dazzling
 dazzlingly	dazzlingly
-dB	dB
+dB	Db
 DBeaver	DBeaver
 dbk	dbk
 DBMesh	DBMesh
 dbms	dbms
 dc	dc
-distributed denial-of-service attack	distributed denial-of-service attack
+distributed denial-of-service attack	ddos
 DDoS	DDoS
 De	De
 deaccentuator	deaccentuator
@@ -16845,7 +16845,7 @@ debut	debut
 debutant	debutant
 debutante	debutante
 dec	dec
-dec.	dec.
+dec.	dec
 DEC	DEC
 decadal	decadal
 decade	decade
@@ -17141,7 +17141,7 @@ deeply	deeply
 DeepMind	DeepMind
 deepness	deepness
 deeps	deeps
-DeepSeek	DeepSeek
+DeepSeek	Deepseek
 DeepSeek	DeepSeek
 deepthroat	deepthroat
 deer	deer
@@ -17160,7 +17160,7 @@ defatted	defatted
 default	default
 defaulted	defaulted
 defaulter	defaulter
-Default Folder X	Default Folder X
+Default Folder X	DefaultFolderX
 defaulting	defaulting
 defaults	defaults
 defeasance	defeasance
@@ -17341,7 +17341,7 @@ deist	deist
 deistic	deistic
 deities	deities
 deity	deity
-déjà vu	déjà vu
+déjà vu	dejavu
 deject	deject
 dejected	dejected
 dejectedly	dejectedly
@@ -18154,7 +18154,7 @@ devel	devel
 develop	develop
 developed	developed
 developer	developer
-Developer Preview	Developer Preview
+Developer Preview	DeveloperPreview
 developers	developers
 developing	developing
 development	development
@@ -18243,7 +18243,7 @@ dfm	dfm
 Dhabi	Dhabi
 dharma	dharma
 DHCP	DHCP
-Dynamic Host Configuration Protocol	Dynamic Host Configuration Protocol
+Dynamic Host Configuration Protocol	DHCP
 DHL	DHL
 dhole	dhole
 dhoti	dhoti
@@ -19022,7 +19022,7 @@ dishes	dishes
 dishevel	dishevel
 dishful	dishful
 dishing	dishing
-Dish Network	Dish Network
+Dish Network	DishNetwork
 dishonest	dishonest
 dishonestly	dishonestly
 dishonesty	dishonesty
@@ -19079,9 +19079,9 @@ disk	disk
 diskette	diskette
 diskettes	diskettes
 DiskGenius	DiskGenius
-Disk Operating System	Disk Operating System
+Disk Operating System	DiskOperatingSystem
 disks	disks
-Disk Utility	Disk Utility
+Disk Utility	DiskUtility
 dislike	dislike
 disliked	disliked
 dislikes	dislikes
@@ -19519,7 +19519,7 @@ Dixiecrats	Dixiecrats
 Dixieland	Dixieland
 Dixon	Dixon
 DIY	DIY
-Do It Yourself	Do It Yourself
+Do It Yourself	DIY
 dizzily	dizzily
 dizziness	dizziness
 dizzy	dizzy
@@ -19528,27 +19528,27 @@ Djakarta	Djakarta
 django	django
 djibouti	djibouti
 DjVu	DjVu
-downloadable content	downloadable content
+downloadable content	dlc
 DLC	DLC
 DLL	DLL
 DLsite	DLsite
 DMARC	DMARC
 DMCA	DMCA
-Digital Millennium Copyright Act	Digital Millennium Copyright Act
+Digital Millennium Copyright Act	DMCA
 Dmitri	Dmitri
 dna	dna
-deoxyribonucleic acid	deoxyribonucleic acid
+deoxyribonucleic acid	dna
 DNA	DNA
 DnD	DnD
-Dungeons & Dragons	Dungeons & Dragons
-D&D	D&D
+Dungeons & Dragons	DnD
+D&D	DND
 Dnieper	Dnieper
 DNS	DNS
-Domain Name System	Domain Name System
+Domain Name System	DNS
 dnsmasq	dnsmasq
-DNS over HTTPS	DNS over HTTPS
-DNS over HTTPS/3	DNS over HTTPS/3
-DNS over QUIC	DNS over QUIC
+DNS over HTTPS	DNSoverHTTPS
+DNS over HTTPS/3	DNSoverHTTPS/3
+DNS over QUIC	DNSoverQUIC
 DNSPod	DNSPod
 DNSSEC	DNSSEC
 do	do
@@ -19567,7 +19567,7 @@ dock	dock
 docked	docked
 docker	docker
 dockerfile	dockerfile
-Docker Hub	Docker Hub
+Docker Hub	DockerHub
 docket	docket
 docking	docking
 dockmaster	dockmaster
@@ -19666,8 +19666,8 @@ Dogtown	Dogtown
 dogwatch	dogwatch
 dogwood	dogwood
 DoH	DoH
-DNS over HTTPS	DNS over HTTPS
-DNS over HTTPS/3	DNS over HTTPS/3
+DNS over HTTPS	DoH
+DNS over HTTPS/3	DoH
 Doherty	Doherty
 doily	doily
 doing	doing
@@ -19702,7 +19702,7 @@ doltish	doltish
 dom	dom
 DOM	DOM
 domain	domain
-Domain Name System	Domain Name System
+Domain Name System	DomainNameSystem
 domains	domains
 dome	dome
 domed	domed
@@ -19817,7 +19817,7 @@ dopey	dopey
 doping	doping
 Doppler	Doppler
 DoQ	DoQ
-DNS over QUIC	DNS over QUIC
+DNS over QUIC	DoQ
 dor	dor
 Dora	Dora
 Dorado	Dorado
@@ -19846,10 +19846,10 @@ dorsetshire	dorsetshire
 Dortmund	Dortmund
 dory	dory
 dos	dos
-denial-of-service attack	denial-of-service attack
+denial-of-service attack	dos
 DoS	DoS
 DOS	DOS
-Disk Operating System	Disk Operating System
+Disk Operating System	DOS
 dosage	dosage
 dose	dose
 dosed	dosed
@@ -19866,18 +19866,18 @@ dot	dot
 dota	dota
 dotage	dotage
 dotal	dotal
-dotCover	dotCover
+dotCover	DotCover
 dote	dote
 doted	doted
 dotes	dotes
 doting	doting
 dotingly	dotingly
-dotMemory	dotMemory
-dotPeek	dotPeek
+dotMemory	DotMemory
+dotPeek	DotPeek
 dots	dots
 dotted	dotted
 dotting	dotting
-dotTrace	dotTrace
+dotTrace	DotTrace
 dotty	dotty
 double	double
 doubled	doubled
@@ -19948,14 +19948,14 @@ downgrades	downgrades
 downgrading	downgrading
 downhearted	downhearted
 downhill	downhill
-Downie	Downie
+Downie	downie
 Downie	Downie
 Downing	Downing
 downlink	downlink
 downlinks	downlinks
 download	download
 downloadable	downloadable
-downloadable content	downloadable content
+downloadable content	downloadablecontent
 downloaded	downloaded
 downloading	downloading
 downloads	downloads
@@ -20027,7 +20027,7 @@ draggy	draggy
 dragnet	dragnet
 dragoman	dragoman
 dragon	dragon
-Dragon Ball	Dragon Ball
+Dragon Ball	DragonBall
 dragonfly	dragonfly
 dragonhead	dragonhead
 dragons	dragons
@@ -20413,7 +20413,7 @@ dung	dung
 dungaree	dungaree
 dungeon	dungeon
 dungeons	dungeons
-Dungeons & Dragons	Dungeons & Dragons
+Dungeons & Dragons	Dungeons&Dragons
 dunghill	dunghill
 dungy	dungy
 Dunham	Dunham
@@ -20543,7 +20543,7 @@ dy	dy
 dyad	dyad
 dyadic	dyadic
 dyak	dyak
-dYdX	dYdX
+dYdX	DYdX
 dye	dye
 dyed	dyed
 dyeing	dyeing
@@ -20576,7 +20576,7 @@ dynatron	dynatron
 dyne	dyne
 dynode	dynode
 DYOR	DYOR
-Do Your Own Research	Do Your Own Research
+Do Your Own Research	DYOR
 dysenteric	dysenteric
 dysentery	dysentery
 dysfunction	dysfunction
@@ -20591,7 +20591,7 @@ dystrophy	dystrophy
 dysuria	dysuria
 E-Business	E-Business
 e-mail	e-mail
-e.g.	e.g.
+e.g.	e.g
 each	each
 Eagan	Eagan
 eager	eager
@@ -20617,7 +20617,7 @@ earliness	earliness
 earlobe	earlobe
 earls	earls
 early	early
-early access	early access
+early access	earlyaccess
 earmark	earmark
 earmarked	earmarked
 earmarking	earmarking
@@ -20729,12 +20729,12 @@ ebonite	ebonite
 ebony	ebony
 ebook	ebook
 ebooks	ebooks
-eBPF	eBPF
+eBPF	EBPF
 ebullience	ebullience
 ebullient	ebullient
 ebullition	ebullition
 ecard	ecard
-eCards	eCards
+eCards	ECards
 eccentric	eccentric
 eccentrically	eccentrically
 eccentricities	eccentricities
@@ -20748,7 +20748,7 @@ ecclesiastical	ecclesiastical
 ecdysiast	ecdysiast
 ecdysis	ecdysis
 ECharts	ECharts
-Apache ECharts	Apache ECharts
+Apache ECharts	ECharts
 echelon	echelon
 echidna	echidna
 echinoderm	echinoderm
@@ -20870,7 +20870,7 @@ Edmund	Edmund
 Edna	Edna
 edps	edps
 Edsger	Edsger
-Ed Sheeran	Ed Sheeran
+Ed Sheeran	EdSheeran
 edu	edu
 Eduard	Eduard
 Eduardo	Eduardo
@@ -20959,7 +20959,7 @@ effuse	effuse
 effusion	effusion
 effusive	effusive
 EFI	EFI
-Extensible Firmware Interface	Extensible Firmware Interface
+Extensible Firmware Interface	EFI
 eft	eft
 ega	ega
 egalitarian	egalitarian
@@ -20988,7 +20988,7 @@ egotism	egotism
 egotist	egotist
 egotistic	egotistic
 egotistical	egotistical
-eGPU	eGPU
+eGPU	EGPU
 egregious	egregious
 egress	egress
 egret	egret
@@ -21204,7 +21204,7 @@ element	element
 elemental	elemental
 elementals	elementals
 elementary	elementary
-Element Plus	Element Plus
+Element Plus	ElementPlus
 elements	elements
 Elena	Elena
 elephant	elephant
@@ -21493,7 +21493,7 @@ emote	emote
 emoticons	emoticons
 emotion	emotion
 emotional	emotional
-Emotional Damage	Emotional Damage
+Emotional Damage	EmotionalDamage
 emotionalism	emotionalism
 emotionalist	emotionalist
 emotionality	emotionality
@@ -21563,7 +21563,7 @@ empyreal	empyreal
 empyrean	empyrean
 ems	ems
 EMS	EMS
-Express Mail Service	Express Mail Service
+Express Mail Service	EMS
 emu	emu
 emulate	emulate
 emulated	emulated
@@ -22162,7 +22162,7 @@ epicene	epicene
 epicenter	epicenter
 epicentral	epicentral
 epicentre	epicentre
-Epic Games	Epic Games
+Epic Games	EpicGames
 epics	epics
 epicure	epicure
 Epicurean	Epicurean
@@ -22430,7 +22430,7 @@ erysipelas	erysipelas
 erythema	erythema
 erythrocyte	erythrocyte
 erythromycin	erythromycin
-eSATA	eSATA
+eSATA	ESATA
 esau	esau
 esbuild	esbuild
 esc	esc
@@ -22473,7 +22473,7 @@ escrow	escrow
 escudo	escudo
 esculent	esculent
 escutcheon	escutcheon
-eSIM	eSIM
+eSIM	ESIM
 Eskimo	Eskimo
 Eskimoized	Eskimoized
 Eskimoizeds	Eskimoizeds
@@ -22563,13 +22563,13 @@ estrum	estrum
 estrus	estrus
 estuarine	estuarine
 estuary	estuary
-eSynic	eSynic
+eSynic	ESynic
 et	et
 eta	eta
-et al.	et al.
+et al.	etal
 etatism	etatism
 etc	etc
-etc.	etc.
+etc.	etc
 etcd	etcd
 etcetera	etcetera
 etch	etch
@@ -22582,7 +22582,7 @@ eternities	eternities
 eternity	eternity
 eternize	eternize
 ETH	ETH
-Ethereum	Ethereum
+Ethereum	ETH
 Ethan	Ethan
 ethane	ethane
 ethanol	ethanol
@@ -23086,7 +23086,7 @@ exertions	exertions
 exerts	exerts
 Exeter	Exeter
 ExFAT	ExFAT
-Extended File Allocation Table	Extended File Allocation Table
+Extended File Allocation Table	ExFAT
 exfoliate	exfoliate
 exhalation	exhalation
 exhale	exhale
@@ -23586,7 +23586,7 @@ facades	facades
 face	face
 facebook	facebook
 faced	faced
-Face ID	Face ID
+Face ID	FaceID
 faceless	faceless
 facelift	facelift
 facer	facer
@@ -23595,7 +23595,7 @@ facesitting	facesitting
 facet	facet
 faceted	faceted
 FaceTime	FaceTime
-FaceTime Audio	FaceTime Audio
+FaceTime Audio	FaceTimeAudio
 facetious	facetious
 facetiously	facetiously
 facets	facets
@@ -23848,7 +23848,7 @@ fantod	fantod
 fanwise	fanwise
 faq	faq
 FAQ	FAQ
-Frequently Asked Question	Frequently Asked Question
+Frequently Asked Question	FAQ
 FAQs	FAQs
 far	far
 far-fetched	far-fetched
@@ -24060,8 +24060,8 @@ façade	façade
 FBA	FBA
 fbi	fbi
 FBI	FBI
-Federal Bureau of Investigation	Federal Bureau of Investigation
-FBI WARNING	FBI WARNING
+Federal Bureau of Investigation	FBI
+FBI WARNING	FBIWARNING
 FBM	FBM
 FCC	FCC
 fcitx	fcitx
@@ -24110,7 +24110,7 @@ featured	featured
 featureless	featureless
 features	features
 featuring	featuring
-feb.	feb.
+feb.	feb
 febrifuge	febrifuge
 Februaries	Februaries
 February	February
@@ -24139,7 +24139,7 @@ federative	federative
 FedEx	FedEx
 fediverse	fediverse
 Fedora	Fedora
-Fedora CoreOS	Fedora CoreOS
+Fedora CoreOS	FedoraCoreOS
 fee	fee
 feeble	feeble
 feebleminded	feebleminded
@@ -24452,7 +24452,7 @@ FIFA	FIFA
 fife	fife
 fifer	fifer
 FIFO	FIFO
-First In, First Out	First In, First Out
+First In, First Out	FIFO
 fifteen	fifteen
 fifteens	fifteens
 fifteenth	fifteenth
@@ -24562,7 +24562,7 @@ fin	fin
 finable	finable
 finagle	finagle
 final	final
-Final Cut Pro	Final Cut Pro
+Final Cut Pro	FinalCutPro
 finale	finale
 finalise	finalise
 finalising	finalising
@@ -25128,7 +25128,7 @@ floorer	floorer
 flooring	flooring
 floorings	floorings
 floorman	floorman
-Floorp	Floorp
+Floorp	floorp
 floors	floors
 floorwalker	floorwalker
 floozy	floozy
@@ -25213,7 +25213,7 @@ flue	flue
 fluency	fluency
 fluent	fluent
 fluently	fluently
-Fluent UI	Fluent UI
+Fluent UI	FluentUI
 fluey	fluey
 fluff	fluff
 fluffier	fluffier
@@ -25289,7 +25289,7 @@ flyweight	flyweight
 flywheel	flywheel
 fmt	fmt
 fn	fn
-fnOS	fnOS
+fnOS	FnOS
 FNSKU	FNSKU
 fo	fo
 foal	foal
@@ -25386,7 +25386,7 @@ Fomalhaut	Fomalhaut
 foment	foment
 fomentation	fomentation
 FOMO	FOMO
-Fear of Missing Out	Fear of Missing Out
+Fear of Missing Out	FOMO
 fon	fon
 fond	fond
 fondant	fondant
@@ -25499,7 +25499,7 @@ forcefulness	forcefulness
 forceps	forceps
 forcer	forcer
 forces	forces
-Force Touch	Force Touch
+Force Touch	ForceTouch
 forcible	forcible
 forcibly	forcibly
 forcing	forcing
@@ -25780,7 +25780,7 @@ forwarding	forwarding
 forwardly	forwardly
 forwardness	forwardness
 forwards	forwards
-free and open source software	free and open source software
+free and open source software	foss
 Foss	Foss
 FOSS	FOSS
 fossa	fossa
@@ -25856,7 +25856,7 @@ foxtail	foxtail
 foxtrot	foxtrot
 foxy	foxy
 foy	foy
-field-programmable gate array	field-programmable gate array
+field-programmable gate array	fpga
 FPGA	FPGA
 FPS	FPS
 fpu	fpu
@@ -25925,7 +25925,7 @@ frangibility	frangibility
 frangible	frangible
 frangipani	frangipani
 frank	frank
-Frank DeLoupe	Frank DeLoupe
+Frank DeLoupe	FrankDeLoupe
 franked	franked
 Frankel	Frankel
 franker	franker
@@ -26101,7 +26101,7 @@ Freudians	Freudians
 Frey	Frey
 Freya	Freya
 fri	fri
-fri.	fri.
+fri.	fri
 friability	friability
 friable	friable
 friar	friar
@@ -26276,7 +26276,7 @@ Frye	Frye
 frying	frying
 ftp	ftp
 FTP	FTP
-File Transfer Protocol	File Transfer Protocol
+File Transfer Protocol	FTP
 fubsy	fubsy
 Fuchs	Fuchs
 Fuchsia	Fuchsia
@@ -26401,7 +26401,7 @@ funniest	funniest
 funnily	funnily
 funniness	funniness
 funny	funny
-Funtouch OS	Funtouch OS
+Funtouch OS	FuntouchOS
 fur	fur
 furan	furan
 furbish	furbish
@@ -26487,12 +26487,12 @@ fuzzball	fuzzball
 fuzzier	fuzzier
 fuzziness	fuzziness
 fuzzy	fuzzy
-for your information	for your information
+for your information	fyi
 FYI	FYI
 fylfot	fylfot
 fyne	fyne
 g11n	g11n
-globalization	globalization
+globalization	g11n
 gab	gab
 gabardine	gabardine
 gabber	gabber
@@ -26660,9 +26660,9 @@ gambol	gambol
 gambrel	gambrel
 game	game
 GameBoy	GameBoy
-Game Boy	Game Boy
-Game Boy Advance	Game Boy Advance
-Game Boy Color	Game Boy Color
+Game Boy	GameBoy
+Game Boy Advance	GameBoyAdvance
+Game Boy Color	GameBoyColor
 gamecock	gamecock
 GameCube	GameCube
 gamed	gamed
@@ -26914,20 +26914,20 @@ gazing	gazing
 gazogene	gazogene
 gb	gb
 GBA	GBA
-Game Boy Advance	Game Boy Advance
+Game Boy Advance	GBA
 GBC	GBC
-Game Boy Color	Game Boy Color
+Game Boy Color	GBC
 GBK	GBK
 gboard	gboard
 GBP	GBP
 GCC	GCC
-GNU Compiler Collection	GNU Compiler Collection
+GNU Compiler Collection	GCC
 gdi	gdi
 GDP	GDP
-Gross Domestic Product	Gross Domestic Product
-GDP per capita	GDP per capita
+Gross Domestic Product	GDP
+GDP per capita	GDPpercapita
 GDPR	GDPR
-General Data Protection Regulation	General Data Protection Regulation
+General Data Protection Regulation	GDPR
 GNSS	GNSS
 gear	gear
 geared	geared
@@ -27058,7 +27058,7 @@ genotype	genotype
 genre	genre
 genres	genres
 gens	gens
-Genspark	Genspark
+Genspark	genspark
 gent	gent
 genteel	genteel
 genteelism	genteelism
@@ -27086,7 +27086,7 @@ genuineness	genuineness
 genus	genus
 geo	geo
 GEO	GEO
-Generative Engine Optimization	Generative Engine Optimization
+Generative Engine Optimization	GEO
 geobotany	geobotany
 geocentric	geocentric
 geochemical	geochemical
@@ -27217,9 +27217,9 @@ geum	geum
 gewgaw	gewgaw
 geyser	geyser
 GFM	GFM
-GitHub Flavored Markdown	GitHub Flavored Markdown
+GitHub Flavored Markdown	GFM
 GFW	GFW
-Great Firewall	Great Firewall
+Great Firewall	GFW
 gfwlist	gfwlist
 Ghana	Ghana
 Ghanian	Ghanian
@@ -27272,8 +27272,8 @@ Giddings	Giddings
 giddy	giddy
 Gideon	Gideon
 GIF	GIF
-Graphics Interchange Format	Graphics Interchange Format
-Gif Brewery	Gif Brewery
+Graphics Interchange Format	GIF
+Gif Brewery	GifBrewery
 giffgaff	giffgaff
 Gifford	Gifford
 GIFs	GIFs
@@ -27373,27 +27373,27 @@ GIS	GIS
 gist	gist
 gists	gists
 git	git
-git add	git add
-git add .	git add .
+git add	gitadd
+git add .	gitadd
 GitBook	GitBook
 GitBucket	GitBucket
 GitButler	GitButler
-git commit -m ""	git commit -m ""
+git commit -m ""	gitcommit
 gitea	gitea
 gitee	gitee
-Gitee Pages	Gitee Pages
+Gitee Pages	GiteePages
 GitHub	GitHub
-GitHub Actions	GitHub Actions
-GitHub Copilot	GitHub Copilot
-GitHub Copilot chat	GitHub Copilot chat
-GitHub Copilot CLI	GitHub Copilot CLI
-GitHub Copilot X	GitHub Copilot X
-GitHub Pages	GitHub Pages
+GitHub Actions	GitHubActions
+GitHub Copilot	GitHubCopilot
+GitHub Copilot chat	GitHubCopilotchat
+GitHub Copilot CLI	GitHubCopilotCLI
+GitHub Copilot X	GitHubCopilotX
+GitHub Pages	GitHubPages
 gitignore	gitignore
 GitLab	GitLab
-git pull	git pull
-git push -u origin main	git push -u origin main
-git push -u origin wanxiang	git push -u origin wanxiang
+git pull	gitpull
+git push -u origin main	gitpush
+git push -u origin wanxiang	gitpushw
 gittern	gittern
 Giuliano	Giuliano
 Giuseppe	Giuseppe
@@ -27644,7 +27644,7 @@ gm	gm
 gmail	gmail
 GmbH	GmbH
 GMT	GMT
-Greenwich Mean Time	Greenwich Mean Time
+Greenwich Mean Time	GMT
 GMV	GMV
 gnarl	gnarl
 gnash	gnash
@@ -27665,7 +27665,7 @@ gnomon	gnomon
 gnosticism	gnosticism
 gnu	gnu
 GNU	GNU
-GNU General Public License	GNU General Public License
+GNU General Public License	GNU
 go	go
 Goa	Goa
 goad	goad
@@ -27716,7 +27716,7 @@ godly	godly
 godmother	godmother
 godmothers	godmothers
 Godot	Godot
-Godot Engine	Godot Engine
+Godot Engine	GodotEngine
 godown	godown
 godparent	godparent
 gods	gods
@@ -27824,28 +27824,28 @@ goofed	goofed
 goofs	goofs
 goofy	goofy
 Google	Google
-Google Ads	Google Ads
-Google AdSense	Google AdSense
-Google Analytics	Google Analytics
-Google Authenticator	Google Authenticator
-Google Bard	Google Bard
+Google Ads	GoogleAds
+Google AdSense	GoogleAdSense
+Google Analytics	GoogleAnalytics
+Google Authenticator	GoogleAuthenticator
+Google Bard	GoogleBard
 googlebot	googlebot
-Google Calendar	Google Calendar
-Google Chrome	Google Chrome
-Google DeepMind	Google DeepMind
-Google Docs	Google Docs
-Google Drive	Google Drive
-Google Gemini	Google Gemini
-Google Keep	Google Keep
-Google Maps	Google Maps
-Google One	Google One
-Google Photos	Google Photos
-Google Pixel	Google Pixel
-Google Play	Google Play
-Google Play Music	Google Play Music
-Google TV	Google TV
-Google Voice	Google Voice
-Google Workspace	Google Workspace
+Google Calendar	GoogleCalendar
+Google Chrome	GoogleChrome
+Google DeepMind	GoogleDeepMind
+Google Docs	GoogleDocs
+Google Drive	GoogleDrive
+Google Gemini	GoogleGemini
+Google Keep	GoogleKeep
+Google Maps	GoogleMaps
+Google One	GoogleOne
+Google Photos	GooglePhotos
+Google Pixel	GooglePixel
+Google Play	GooglePlay
+Google Play Music	GooglePlayMusic
+Google TV	GoogleTV
+Google Voice	GoogleVoice
+Google Workspace	GoogleWorkspace
 googly	googly
 gook	gook
 goon	goon
@@ -27956,12 +27956,12 @@ GPIB	GPIB
 GPIO	GPIO
 gpl	gpl
 GPL	GPL
-GNU General Public License	GNU General Public License
+GNU General Public License	GPL
 GPS	GPS
 GPSR	GPSR
 gpt	gpt
 GPT	GPT
-Generative Pre-trained Transformer	Generative Pre-trained Transformer
+Generative Pre-trained Transformer	GPT
 GPT-3.5	GPT-3.5
 GPT-4	GPT-4
 GPT-4.1	GPT-4.1
@@ -27969,7 +27969,7 @@ GPT-4.5	GPT-4.5
 GPT-4o	GPT-4o
 GPTs	GPTs
 GPU	GPU
-Graphics Processing Unit	Graphics Processing Unit
+Graphics Processing Unit	GPU
 grab	grab
 grabbed	grabbed
 grabber	grabber
@@ -28094,8 +28094,8 @@ grandsire	grandsire
 grandson	grandson
 grandsons	grandsons
 grandstand	grandstand
-Grand Theft Auto	Grand Theft Auto
-Grand Theft Auto V	Grand Theft Auto V
+Grand Theft Auto	GrandTheftAuto
+Grand Theft Auto V	GrandTheftAutoV
 grandtotal	grandtotal
 granduncle	granduncle
 grange	grange
@@ -28241,12 +28241,12 @@ greasewood	greasewood
 greasily	greasily
 greasiness	greasiness
 greasy	greasy
-Greasy Fork	Greasy Fork
+Greasy Fork	GreasyFork
 great	great
 greaten	greaten
 greater	greater
 greatest	greatest
-Great Firewall	Great Firewall
+Great Firewall	GreatFirewall
 greatly	greatly
 greatness	greatness
 greave	greave
@@ -28298,7 +28298,7 @@ Greentree	Greentree
 Greenville	Greenville
 greenware	greenware
 Greenwich	Greenwich
-Greenwich Mean Time	Greenwich Mean Time
+Greenwich Mean Time	GreenwichMeanTime
 greenwood	greenwood
 greeny	greeny
 Greer	Greer
@@ -28562,11 +28562,11 @@ grunts	grunts
 Grusky	Grusky
 Gruyere	Gruyere
 grysbok	grysbok
-G Suite	G Suite
+G Suite	GSuite
 GTA	GTA
-Grand Theft Auto	Grand Theft Auto
+Grand Theft Auto	GTA
 GTAV	GTAV
-Grand Theft Auto V	Grand Theft Auto V
+Grand Theft Auto V	GTAV
 guacharo	guacharo
 Guadalupe	Guadalupe
 guadeloupe	guadeloupe
@@ -28624,10 +28624,10 @@ Guggenheim	Guggenheim
 Guhleman	Guhleman
 gui	gui
 GUI	GUI
-Graphical User Interface	Graphical User Interface
+Graphical User Interface	GUI
 Guiana	Guiana
 GUID	GUID
-Globally Unique Identifier	Globally Unique Identifier
+Globally Unique Identifier	GUID
 guidable	guidable
 guidance	guidance
 guide	guide
@@ -28780,7 +28780,7 @@ guying	guying
 guys	guys
 guzzle	guzzle
 guzzler	guzzler
-gVim	gVim
+gVim	GVim
 gw	gw
 Gwen	Gwen
 Gwyn	Gwyn
@@ -28967,7 +28967,7 @@ Halifax	Halifax
 halite	halite
 halitosis	halitosis
 hall	hall
-hallelujahIM	hallelujahIM
+hallelujahIM	HallelujahIM
 Halley	Halley
 Hallinan	Hallinan
 hallmark	hallmark
@@ -29228,7 +29228,7 @@ hardbound	hardbound
 hardcopy	hardcopy
 hardcore	hardcore
 hardcover	hardcover
-hard disk drive	hard disk drive
+hard disk drive	harddiskdrive
 harden	harden
 hardenable	hardenable
 hardened	hardened
@@ -29304,7 +29304,7 @@ harmonium	harmonium
 harmonization	harmonization
 harmonize	harmonize
 harmony	harmony
-Harmony One	Harmony One
+Harmony One	HarmonyOne
 HarmonyOS	HarmonyOS
 harms	harms
 harness	harness
@@ -29503,11 +29503,11 @@ HB	HB
 HBase	HBase
 HBO	HBO
 HD	HD
-hard disk drive	hard disk drive
+hard disk drive	hdd
 HDD	HDD
 hdlc	hdlc
 HDMI	HDMI
-High Definition Multimedia Interface	High Definition Multimedia Interface
+High Definition Multimedia Interface	HDMI
 HDR	HDR
 HDTV	HDTV
 he	he
@@ -29787,7 +29787,7 @@ helitron	helitron
 helium	helium
 helix	helix
 hell	hell
-he'll	he'll
+he'll	hell
 hellbender	hellbender
 hellcat	hellcat
 hellene	hellene
@@ -30088,10 +30088,10 @@ hey	hey
 heyday	heyday
 Heywood	Heywood
 HHCLUB	HHCLUB
-hybrid drive	hybrid drive
+hybrid drive	hhd
 HHD	HHD
 HHKB	HHKB
-Happy Hacking Keyboard	Happy Hacking Keyboard
+Happy Hacking Keyboard	HHKB
 hi	hi
 Hi-Fi	Hi-Fi
 Hiatt	Hiatt
@@ -30164,7 +30164,7 @@ highly	highly
 highness	highness
 highnesses	highnesses
 highs	highs
-High Sierra	High Sierra
+High Sierra	HighSierra
 hight	hight
 highteen	highteen
 highway	highway
@@ -30321,7 +30321,7 @@ hive	hive
 hived	hived
 hives	hives
 hiving	hiving
-Hong Kong	Hong Kong
+Hong Kong	hk
 HK	HK
 HLS	HLS
 hmm	hmm
@@ -30581,12 +30581,12 @@ honeymooner	honeymooner
 honeymooners	honeymooners
 honeymooning	honeymooning
 honeymoons	honeymoons
-Honey Select	Honey Select
+Honey Select	HoneySelect
 honeysuckle	honeysuckle
 Honeywell	Honeywell
 hong	hong
 hongi	hongi
-Hong Kong	Hong Kong
+Hong Kong	HongKong
 honing	honing
 honk	honk
 honky	honky
@@ -30913,11 +30913,11 @@ hpp	hpp
 href	href
 Hrothgar	Hrothgar
 HTML	HTML
-HyperText Markup Language	HyperText Markup Language
+HyperText Markup Language	HTML
 http	http
-Hypertext Transfer Protocol	Hypertext Transfer Protocol
+Hypertext Transfer Protocol	HTTP
 https	https
-Hypertext Transfer Protocol Secure	Hypertext Transfer Protocol Secure
+Hypertext Transfer Protocol Secure	HTTPS
 hualien	hualien
 huang	huang
 hub	hub
@@ -30952,7 +30952,7 @@ hugeness	hugeness
 huggee	huggee
 hugger	hugger
 hugging	hugging
-Hugging Face	Hugging Face
+Hugging Face	HuggingFace
 Huggins	Huggins
 Hugh	Hugh
 Hughes	Hughes
@@ -31169,7 +31169,7 @@ hyaline	hyaline
 Hyannis	Hyannis
 hyatt	hyatt
 hybrid	hybrid
-hybrid drive	hybrid drive
+hybrid drive	hybriddrive
 hybridise	hybridise
 hybridization	hybridization
 hybridize	hybridize
@@ -31337,14 +31337,14 @@ I'd	I'd
 I'll	I'll
 I'm	I'm
 I've	I've
-i.e.	i.e.
+i.e.	i.e
 i18n	i18n
-internationalization	internationalization
+internationalization	i18n
 iaia	iaia
 iambus	iambus
 ian	ian
 Ian	Ian
-iA Writer	iA Writer
+iA Writer	IAWriter
 iber	iber
 Iberia	Iberia
 Iberian	Iberian
@@ -31356,17 +31356,17 @@ ibis	ibis
 ibiza	ibiza
 ibm	ibm
 IBM	IBM
-International Business Machines	International Business Machines
+International Business Machines	IBM
 ibn	ibn
 Ibn	Ibn
-iBook	iBook
+iBook	IBook
 Ibsen	Ibsen
-iBus	iBus
+iBus	IBus
 ic	ic
 ICANN	ICANN
 Icarus	Icarus
 icc	icc
-IC Card	IC Card
+IC Card	ICCard
 ice	ice
 iceberg	iceberg
 icebergs	icebergs
@@ -31395,11 +31395,11 @@ iciness	iciness
 icing	icing
 icings	icings
 icky	icky
-iCloud	iCloud
-iCloud Drive	iCloud Drive
-iCloud Mail	iCloud Mail
+iCloud	ICloud
+iCloud Drive	ICloudDrive
+iCloud Mail	ICloudMail
 ICMP	ICMP
-Internet Control Message Protocol	Internet Control Message Protocol
+Internet Control Message Protocol	ICMP
 ICOM	ICOM
 icon	icon
 iconic	iconic
@@ -31413,25 +31413,25 @@ icosahedra	icosahedra
 icosahedral	icosahedral
 icosahedron	icosahedron
 ICP	ICP
-Internet Content Provider	Internet Content Provider
+Internet Content Provider	ICP
 ICPC	ICPC
 ICQ	ICQ
 ICT	ICT
 ictus	ictus
 icy	icy
 id	id
-i'd	i'd
+i'd	id
 ID	ID
 Ida	Ida
 Idaho	Idaho
 idahoan	idahoan
 IDC	IDC
-International Data Corporation	International Data Corporation
-ID Card	ID Card
-integrated development environment	integrated development environment
+International Data Corporation	IDC
+ID Card	IDCard
+integrated development environment	ide
 IDE	IDE
 idea	idea
-IDEA Community	IDEA Community
+IDEA Community	IDEACommunity
 ideal	ideal
 idealise	idealise
 idealism	idealism
@@ -31449,7 +31449,7 @@ ideals	ideals
 idealway	idealway
 ideas	ideas
 ideate	ideate
-IDEA Ultimate	IDEA Ultimate
+IDEA Ultimate	IDEAUltimate
 IdeaVim	IdeaVim
 idem	idem
 idemnify	idemnify
@@ -31508,21 +31508,21 @@ idolize	idolize
 idols	idols
 idolum	idolum
 idyllic	idyllic
-Internet Explorer	Internet Explorer
+Internet Explorer	ie
 IE	IE
 IEEE	IEEE
 IEN	IEN
 IEPL	IEPL
-International Ethernet Private Line	International Ethernet Private Line
+International Ethernet Private Line	IEPL
 IETF	IETF
-Internet Engineering Task Force	Internet Engineering Task Force
-iExplorer	iExplorer
+Internet Engineering Task Force	IETF
+iExplorer	IExplorer
 if	if
 ifcs	ifcs
-iFFmpeg	iFFmpeg
+iFFmpeg	IFFmpeg
 Ifni	Ifni
 IFTTT	IFTTT
-instagram	instagram
+instagram	ig
 igalia	igalia
 igloo	igloo
 IGN	IGN
@@ -31550,7 +31550,7 @@ iii	iii
 IINA	IINA
 ike	ike
 Ike	Ike
-iKlear	iKlear
+iKlear	IKlear
 ileum	ileum
 ilex	ilex
 iliac	iliac
@@ -31560,7 +31560,7 @@ Iliadizes	Iliadizes
 ilium	ilium
 ilk	ilk
 ill	ill
-i'll	i'll
+i'll	ill
 illegal	illegal
 illegalities	illegalities
 illegality	illegality
@@ -31616,9 +31616,9 @@ illustrious	illustrious
 illustriousness	illustriousness
 illy	illy
 Ilona	Ilona
-I Love You	I Love You
+I Love You	ILoveYou
 Ilyushin	Ilyushin
-iMac	iMac
+iMac	IMac
 image	image
 Imagen	Imagen
 imagery	imagery
@@ -31643,8 +31643,8 @@ imagist	imagist
 imago	imago
 imam	imam
 IMAP	IMAP
-Internet Message Access Protocol	Internet Message Access Protocol
-iMazing	iMazing
+Internet Message Access Protocol	IMAP
+iMazing	IMazing
 IMBA	IMBA
 imbalance	imbalance
 imbalanced	imbalanced
@@ -31661,10 +31661,10 @@ imbue	imbue
 imburse	imburse
 IMDb	IMDb
 IME	IME
-Input Method Editor	Input Method Editor
-iMessage	iMessage
+Input Method Editor	IME
+iMessage	IMessage
 IMF	IMF
-International Monetary Fund	International Monetary Fund
+International Monetary Fund	IMF
 img	img
 imgur	imgur
 imitable	imitable
@@ -31750,7 +31750,7 @@ immure	immure
 immutability	immutability
 immutable	immutable
 immutably	immutably
-iMore	iMore
+iMore	IMore
 imp	imp
 impact	impact
 impacted	impacted
@@ -31960,7 +31960,7 @@ impossible	impossible
 impossibly	impossibly
 impost	impost
 impostor	impostor
-Impostor Factory	Impostor Factory
+Impostor Factory	ImpostorFactory
 impostors	impostors
 imposture	imposture
 impot	impot
@@ -32142,7 +32142,7 @@ inbred	inbred
 inbreed	inbreed
 inbreeding	inbreeding
 inc	inc
-inc.	inc.
+inc.	inc
 Inca	Inca
 incabloc	incabloc
 incalculable	incalculable
@@ -33109,7 +33109,7 @@ inroad	inroad
 inroads	inroads
 inrush	inrush
 ins	ins
-instagram	instagram
+instagram	ins
 insalivation	insalivation
 insalubrious	insalubrious
 insalubrity	insalubrity
@@ -33408,7 +33408,7 @@ intelligibility	intelligibility
 intelligible	intelligible
 intelligibly	intelligibly
 IntelliJ	IntelliJ
-IntelliJ IDEA	IntelliJ IDEA
+IntelliJ IDEA	IntelliJIDEA
 Intelsat	Intelsat
 intemperance	intemperance
 intemperate	intemperate
@@ -33623,8 +33623,8 @@ interned	interned
 internee	internee
 Internet	Internet
 INTERNET	INTERNET
-Internet Explorer	Internet Explorer
-internet protocol	internet protocol
+Internet Explorer	InternetExplorer
+internet protocol	internetprotocol
 internetwork	internetwork
 interning	interning
 internist	internist
@@ -34026,7 +34026,7 @@ ionamin	ionamin
 Ionian	Ionian
 Ionians	Ionians
 ionic	ionic
-Ionic Framework	Ionic Framework
+Ionic Framework	IonicFramework
 Ionicization	Ionicization
 Ionicizations	Ionicizations
 Ionicize	Ionicize
@@ -34038,28 +34038,28 @@ ionize	ionize
 ionosphere	ionosphere
 ionospheric	ionospheric
 ions	ions
-iOS	iOS
+iOS	IOS
 iota	iota
 Iowa	Iowa
-internet protocol	internet protocol
+internet protocol	ip
 IP	IP
 IPA	IPA
-iPack	iPack
-iPad	iPad
-iPadOS	iPadOS
+iPack	IPack
+iPad	ipad
+iPadOS	ipados
 ipc	ipc
 IPC	IPC
 IPFS	IPFS
-InterPlanetary File System	InterPlanetary File System
-iPhone	iPhone
+InterPlanetary File System	IPFS
+iPhone	iphone
 IPLC	IPLC
-International Private Leased Circuit	International Private Leased Circuit
+International Private Leased Circuit	IPLC
 IPN	IPN
 IPO	IPO
-Initial Public Offerings	Initial Public Offerings
-iPod	iPod
+Initial Public Offerings	IPO
+iPod	IPod
 IPoE	IPoE
-Internet Protocol over Ethernet	Internet Protocol over Ethernet
+Internet Protocol over Ethernet	IPoE
 IPS	IPS
 IPSec	IPSec
 ipswich	ipswich
@@ -34068,7 +34068,7 @@ IPTV	IPTV
 IPv4	IPv4
 IPv6	IPv6
 iq	iq
-intelligence quotient	intelligence quotient
+intelligence quotient	iq
 IQ	IQ
 IQIYI	IQIYI
 iQOO	iQOO
@@ -34101,7 +34101,7 @@ iridaceous	iridaceous
 iridescence	iridescence
 iridescent	iridescent
 iridium	iridium
-iRime	iRime
+iRime	IRime
 iris	iris
 irised	irised
 Irish	Irish
@@ -34238,11 +34238,11 @@ Isabella	Isabella
 Isadore	Isadore
 Isaiah	Isaiah
 ISBN	ISBN
-International Standard Book Number	International Standard Book Number
+International Standard Book Number	ISBN
 iscariot	iscariot
 isdn	isdn
 Isfahan	Isfahan
-iShot	iShot
+iShot	IShot
 Ising	Ising
 isinglass	isinglass
 Isis	Isis
@@ -34266,7 +34266,7 @@ islets	islets
 ism	ism
 isn't	isn't
 ISO	ISO
-ISO 8601	ISO 8601
+ISO 8601	ISO8601
 isobar	isobar
 isobaric	isobaric
 isochronous	isochronous
@@ -34314,7 +34314,7 @@ Israelitize	Israelitize
 Israelitizes	Israelitizes
 isreal	isreal
 ISSN	ISSN
-International Standard Serial Number	International Standard Serial Number
+International Standard Serial Number	ISSN
 issuable	issuable
 issuance	issuance
 issue	issue
@@ -34325,8 +34325,8 @@ issuers	issuers
 issues	issues
 issuing	issuing
 Istanbul	Istanbul
-iStat	iStat
-iStat Menus	iStat Menus
+iStat	IStat
+iStat Menus	IStatMenus
 isthmus	isthmus
 Istvan	Istvan
 isv	isv
@@ -34372,8 +34372,8 @@ iterative	iterative
 iteratively	iteratively
 iterator	iterator
 iterators	iterators
-iTerm	iTerm
-iTerm2	iTerm2
+iTerm	ITerm
+iTerm2	ITerm2
 Ithaca	Ithaca
 Ithacan	Ithacan
 itinerant	itinerant
@@ -34384,10 +34384,10 @@ Ito	Ito
 its	its
 itsdangerours	itsdangerours
 itself	itself
-iTunes	iTunes
-iTunes Connect	iTunes Connect
-iTunes Match	iTunes Match
-iTunes Store	iTunes Store
+iTunes	ITunes
+iTunes Connect	ITunesConnect
+iTunes Match	ITunesMatch
+iTunes Store	ITunesStore
 Ivan	Ivan
 Ivanhoe	Ivanhoe
 Iverson	Iverson
@@ -34396,13 +34396,13 @@ ivies	ivies
 ivoire	ivoire
 ivory	ivory
 ivy	ivy
-iWatch	iWatch
+iWatch	IWatch
 iwis	iwis
 ixia	ixia
 Izaak	Izaak
 Izvestia	Izvestia
 izzard	izzard
-J.R.R. Tolkien	J.R.R. Tolkien
+J.R.R. Tolkien	J.R.R.Tolkien
 jab	jab
 jabbed	jabbed
 jabber	jabber
@@ -34492,7 +34492,7 @@ jammer	jammer
 jamming	jamming
 jams	jams
 jan	jan
-jan.	jan.
+jan.	jan
 Jane	Jane
 Janeiro	Janeiro
 Janesville	Janesville
@@ -34549,11 +34549,11 @@ jauntiness	jauntiness
 jaunts	jaunts
 jaunty	jaunty
 Java	Java
-Java Development Kit	Java Development Kit
-Java EE	Java EE
+Java Development Kit	JavaDevelopmentKit
+Java EE	JavaEE
 Javanese	Javanese
 JavaScript	JavaScript
-Java Virtual Machine	Java Virtual Machine
+Java Virtual Machine	JavaVirtualMachine
 javelin	javelin
 javelins	javelins
 jaw	jaw
@@ -34575,7 +34575,7 @@ JBoss	JBoss
 jcl	jcl
 JDBC	JDBC
 JDK	JDK
-Java Development Kit	Java Development Kit
+Java Development Kit	JDK
 jealous	jealous
 jealousies	jealousies
 jealously	jealously
@@ -34668,7 +34668,7 @@ Jesuits	Jesuits
 Jesus	Jesus
 jet	jet
 JetBrains	JetBrains
-JetBrains Mono	JetBrains Mono
+JetBrains Mono	JetBrainsMono
 jetliner	jetliner
 jetport	jetport
 jets	jets
@@ -34786,7 +34786,7 @@ Johnson	Johnson
 johnsonian	johnsonian
 Johnston	Johnston
 Johnstown	Johnstown
-John Wick	John Wick
+John Wick	JohnWick
 join	join
 joinder	joinder
 joined	joined
@@ -34892,7 +34892,7 @@ joviality	joviality
 Jovian	Jovian
 joy	joy
 joyance	joyance
-Joy Boy	Joy Boy
+Joy Boy	JoyBoy
 Joyce	Joyce
 joyful	joyful
 joyfully	joyfully
@@ -34904,14 +34904,14 @@ joyride	joyride
 joys	joys
 joystick	joystick
 JPEG	JPEG
-Joint Photographic Experts Group	Joint Photographic Experts Group
+Joint Photographic Experts Group	JPEG
 JPG	JPG
-Joint Photographic Experts Group	Joint Photographic Experts Group
-jQuery	jQuery
+Joint Photographic Experts Group	JPG
+jQuery	JQuery
 JRE	JRE
-Java Runtime Environment	Java Runtime Environment
+Java Runtime Environment	JRE
 JRPG	JRPG
-Japanese Role-Playing Game	Japanese Role-Playing Game
+Japanese Role-Playing Game	JRPG
 JS	JS
 JSON	JSON
 JSP	JSP
@@ -35092,12 +35092,12 @@ juxtaposed	juxtaposed
 juxtaposes	juxtaposes
 juxtaposing	juxtaposing
 juxtaposition	juxtaposition
-JavaScript	JavaScript
+JavaScript	Jv
 JVM	JVM
-Java Virtual Machine	Java Virtual Machine
+Java Virtual Machine	JVM
 JWKS	JWKS
 k8s	k8s
-kubernetes	kubernetes
+kubernetes	k8s
 kaaba	kaaba
 kabob	kabob
 Kabuki	Kabuki
@@ -35105,7 +35105,7 @@ Kabul	Kabul
 kabyle	kabyle
 Kaddish	Kaddish
 Kafka	Kafka
-Apache Kafka	Apache Kafka
+Apache Kafka	Kafka
 Kafkaesque	Kafkaesque
 kagi	kagi
 Kahn	Kahn
@@ -35216,8 +35216,8 @@ keenly	keenly
 keenness	keenness
 keep	keep
 KeePass	KeePass
-KeePassium	KeePassium
-KeePassXC	KeePassXC
+KeePassium	keePassium
+KeePassXC	keePassXC
 keeper	keeper
 keepers	keepers
 keeping	keeping
@@ -35302,7 +35302,7 @@ Kewaunee	Kewaunee
 key	key
 keyage	keyage
 keyboard	keyboard
-Keyboard Maestro	Keyboard Maestro
+Keyboard Maestro	KeyboardMaestro
 keyboards	keyboards
 keycard	keycard
 KeyCastr	KeyCastr
@@ -35706,9 +35706,9 @@ Kowalski	Kowalski
 kowhai	kowhai
 Kowloon	Kowloon
 Kowtow	Kowtow
-kPa	kPa
+kPa	KPa
 KPI	KPI
-Key Performance Indicators	Key Performance Indicators
+Key Performance Indicators	KPI
 kqueue	kqueue
 Kraemer	Kraemer
 kraft	kraft
@@ -35755,7 +35755,7 @@ Kuenning	Kuenning
 Kuhn	Kuhn
 kulak	kulak
 Kumar	Kumar
-Kung Fu	Kung Fu
+Kung Fu	KungFu
 Kurd	Kurd
 Kurdish	Kurdish
 kuromis	kuromis
@@ -35764,8 +35764,8 @@ Kuwait	Kuwait
 Kuwaiti	Kuwaiti
 kva	kva
 kvass	kvass
-kW	kW
-kW	kW
+kW	Kw
+kW	KW
 kwa	kwa
 kwhr	kwhr
 kwic	kwic
@@ -35779,7 +35779,7 @@ Kyoto	Kyoto
 kyrgyzstan	kyrgyzstan
 L'vov	L'vov
 l10n	l10n
-localization	localization
+localization	l10n
 laager	laager
 lab	lab
 Laban	Laban
@@ -36057,7 +36057,7 @@ langouste	langouste
 LangServe	LangServe
 LangSmith	LangSmith
 language	language
-Language Reactor	Language Reactor
+Language Reactor	LanguageReactor
 languages	languages
 languid	languid
 languidly	languidly
@@ -36131,7 +36131,7 @@ lardy	lardy
 Laredo	Laredo
 Lares	Lares
 large	large
-Large Language Model	Large Language Model
+Large Language Model	LargeLanguageModel
 largely	largely
 largeness	largeness
 larger	larger
@@ -36276,10 +36276,10 @@ laughing	laughing
 laughingly	laughingly
 laughingstock	laughingstock
 Laughlin	Laughlin
-Laugh My Ass Off	Laugh My Ass Off
-Laugh Out Loudly	Laugh Out Loudly
+Laugh My Ass Off	LaughMyAssOff
+Laugh Out Loudly	LaughOutLoudly
 laughs	laughs
-Laugh Tale	Laugh Tale
+Laugh Tale	LaughTale
 laughter	laughter
 launch	launch
 launched	launched
@@ -36392,7 +36392,7 @@ lazybonnes	lazybonnes
 lbs	lbs
 LCD	LCD
 LDAP	LDAP
-Liquid Crystal Display	Liquid Crystal Display
+Liquid Crystal Display	LCD
 lea	lea
 leach	leach
 lead	lead
@@ -36421,7 +36421,7 @@ leaflike	leaflike
 leafy	leafy
 league	league
 leagued	leagued
-League of Legends	League of Legends
+League of Legends	LeagueofLegends
 leaguer	leaguer
 leaguers	leaguers
 leagues	leagues
@@ -36540,7 +36540,7 @@ leg	leg
 legacies	legacies
 legacy	legacy
 legal	legal
-Legal High	Legal High
+Legal High	LegalHigh
 legalise	legalise
 legalistic	legalistic
 legality	legality
@@ -36668,7 +36668,7 @@ Lenovo	Lenovo
 lenox	lenox
 lens	lens
 lenses	lenses
-Lens Protocal	Lens Protocal
+Lens Protocal	LensProtocal
 lent	lent
 lentando	lentando
 Lenten	Lenten
@@ -36726,7 +36726,7 @@ lest	lest
 Lester	Lester
 let	let
 let's	let's
-let's go	let's go
+let's go	let'sgo
 letch	letch
 letdown	letdown
 lethal	lethal
@@ -36821,7 +36821,7 @@ ley	ley
 Leyden	Leyden
 LGBT	LGBT
 LGPL	LGPL
-GNU Lesser General Public License	GNU Lesser General Public License
+GNU Lesser General Public License	LGPL
 LGTM	LGTM
 lh	lh
 liabilities	liabilities
@@ -36955,7 +36955,7 @@ lifetime	lifetime
 lifetimes	lifetimes
 lifeway	lifeway
 LIFO	LIFO
-Last In, First out	Last In, First out
+Last In, First out	LIFO
 lift	lift
 lifted	lifted
 lifter	lifter
@@ -37316,7 +37316,7 @@ littery	littery
 little	little
 littleness	littleness
 littler	littler
-Little Snitch	Little Snitch
+Little Snitch	LittleSnitch
 littlest	littlest
 Littleton	Littleton
 Litton	Litton
@@ -37330,7 +37330,7 @@ livably	livably
 live	live
 livecam	livecam
 lived	lived
-live house	live house
+live house	livehouse
 LiveJournal	LiveJournal
 livelihood	livelihood
 livelily	livelily
@@ -37339,7 +37339,7 @@ livelong	livelong
 lively	lively
 liven	liven
 liveness	liveness
-Live Photos	Live Photos
+Live Photos	LivePhotos
 liver	liver
 LiveReload	LiveReload
 liveried	liveried
@@ -37370,14 +37370,14 @@ lizards	lizards
 Lizzie	Lizzie
 Lizzy	Lizzy
 LLaMA	LLaMA
-Large Language Model Meta AI	Large Language Model Meta AI
+Large Language Model Meta AI	LLaMA
 llano	llano
 LLM	LLM
-Large Language Model	Large Language Model
+Large Language Model	LLM
 Lloyd	Lloyd
 LMAO	LMAO
-Laugh My Ass Off	Laugh My Ass Off
-LM Studio	LM Studio
+Laugh My Ass Off	LMAO
+LM Studio	LMStudio
 lo	lo
 loach	loach
 load	load
@@ -37536,8 +37536,8 @@ logicians	logicians
 logics	logics
 login	login
 logins	logins
-Logi Options	Logi Options
-Logi Options+	Logi Options+
+Logi Options	LogiOptions
+Logi Options+	LogiOptions+
 logistic	logistic
 logistics	logistics
 logitech	logitech
@@ -37568,8 +37568,8 @@ loitering	loitering
 loiters	loiters
 Loki	Loki
 LOL	LOL
-Laugh Out Loudly	Laugh Out Loudly
-League of Legends	League of Legends
+Laugh Out Loudly	LOL
+League of Legends	LOL
 Lola	Lola
 lolita	lolita
 loll	loll
@@ -37640,7 +37640,7 @@ looming	looming
 Loomis	Loomis
 looms	looms
 loon	loon
-LoongArch	LoongArch
+LoongArch	loongArch
 loony	loony
 loop	loop
 looped	looped
@@ -37702,7 +37702,7 @@ lortab	lortab
 lory	lory
 Los	Los
 losable	losable
-Los Angeles	Los Angeles
+Los Angeles	LosAngeles
 lose	lose
 loser	loser
 losers	losers
@@ -37713,11 +37713,11 @@ losses	losses
 lossier	lossier
 lossiest	lossiest
 lossless	lossless
-lossless audio	lossless audio
-lossless compression	lossless compression
+lossless audio	losslessaudio
+lossless compression	losslesscompression
 LosslessCut	LosslessCut
-lossless music	lossless music
-Lossless Scaling	Lossless Scaling
+lossless music	losslessmusic
+Lossless Scaling	LosslessScaling
 lossy	lossy
 Lost	Lost
 lost-and-found	lost-and-found
@@ -37748,7 +37748,7 @@ Louise	Louise
 Louisiana	Louisiana
 Louisianan	Louisianan
 Louisville	Louisville
-Louis Vuitton	Louis Vuitton
+Louis Vuitton	LouisVuitton
 lounge	lounge
 lounged	lounged
 lounger	lounger
@@ -37767,7 +37767,7 @@ lovably	lovably
 lovage	lovage
 lovart	lovart
 love	love
-Love & Peace	Love & Peace
+Love & Peace	Love&Peace
 lovebird	lovebird
 loved	loved
 Lovejoy	Lovejoy
@@ -37830,11 +37830,11 @@ lozenges	lozenges
 lpm	lpm
 lrc	lrc
 LSP	LSP
-Language Server Protocol	Language Server Protocol
+Language Server Protocol	LSP
 lspatch	lspatch
 lsposed	lsposed
 ltd	ltd
-ltd.	ltd.
+ltd.	ltd
 lua	lua
 lubber	lubber
 lubberly	lubberly
@@ -38073,7 +38073,7 @@ lysin	lysin
 lysine	lysine
 M-Team	M-Team
 m17n	m17n
-multilingualization	multilingualization
+multilingualization	m17n
 M4A1	M4A1
 ma'am	ma'am
 Mabel	Mabel
@@ -38086,7 +38086,7 @@ macadamise	macadamise
 macadamize	macadamize
 macao	macao
 MacAppDeals	MacAppDeals
-Mac App Store	Mac App Store
+Mac App Store	MacAppStore
 macaque	macaque
 macaroni	macaroni
 macaroon	macaroon
@@ -38101,8 +38101,8 @@ Macaulayisms	Macaulayisms
 macaw	macaw
 Macbeth	Macbeth
 MacBook	MacBook
-MacBook Air	MacBook Air
-MacBook Pro	MacBook Pro
+MacBook Air	MacBookAir
+MacBook Pro	MacBookPro
 Macdonald	Macdonald
 MacDonald	MacDonald
 Macdougall	Macdougall
@@ -38152,46 +38152,46 @@ macle	macle
 MacMahon	MacMahon
 Macmillan	Macmillan
 MacMillan	MacMillan
-mac mini	mac mini
+mac mini	macmini
 Macon	Macon
-macOS	macOS
-macOS Mojave	macOS Mojave
-macOS Sierra	macOS Sierra
-macOS Sonoma	macOS Sonoma
-macOS Big Sur	macOS Big Sur
-macOS Sequoia	macOS Sequoia
-macOS Ventura	macOS Ventura
-macOS Catalina	macOS Catalina
-macOS Monterey	macOS Monterey
-macOS High Sierra	macOS High Sierra
-macOS Big Sur	macOS Big Sur
-macOS Catalina	macOS Catalina
-macOS High Sierra	macOS High Sierra
-macOS Mojave	macOS Mojave
-macOS Monterey	macOS Monterey
-macOS Sequoia	macOS Sequoia
-macOS Server	macOS Server
-macOS Sierra	macOS Sierra
-macOS Sonoma	macOS Sonoma
-macOS Tahoe	macOS Tahoe
-macOS Ventura	macOS Ventura
-Mac OS X	Mac OS X
-Mac OS X Puma	Mac OS X Puma
-Mac OS X Tiger	Mac OS X Tiger
-Mac OS X Jaguar	Mac OS X Jaguar
-Mac OS X Cheetah	Mac OS X Cheetah
-Mac OS X Leopard	Mac OS X Leopard
-Mac OS X Panther	Mac OS X Panther
-Mac OS X Snow Leopard	Mac OS X Snow Leopard
-Mac OS X Cheetah	Mac OS X Cheetah
-Mac OS X Jaguar	Mac OS X Jaguar
-Mac OS X Leopard	Mac OS X Leopard
-Mac OS X Panther	Mac OS X Panther
-Mac OS X Puma	Mac OS X Puma
-Mac OS X Snow Leopard	Mac OS X Snow Leopard
-Mac OS X Tiger	Mac OS X Tiger
+macOS	MacOS
+macOS Mojave	MacOS
+macOS Sierra	MacOS
+macOS Sonoma	MacOS
+macOS Big Sur	MacOS
+macOS Sequoia	MacOS
+macOS Ventura	MacOS
+macOS Catalina	MacOS
+macOS Monterey	MacOS
+macOS High Sierra	MacOS
+macOS Big Sur	MacOSBigSur
+macOS Catalina	MacOSCatalina
+macOS High Sierra	MacOSHighSierra
+macOS Mojave	MacOSMojave
+macOS Monterey	MacOSMonterey
+macOS Sequoia	MacOSSequoia
+macOS Server	MacOSServer
+macOS Sierra	MacOSSierra
+macOS Sonoma	MacOSSonoma
+macOS Tahoe	MacOSTahoe
+macOS Ventura	MacOSVentura
+Mac OS X	MacOSX
+Mac OS X Puma	MacOSX
+Mac OS X Tiger	MacOSX
+Mac OS X Jaguar	MacOSX
+Mac OS X Cheetah	MacOSX
+Mac OS X Leopard	MacOSX
+Mac OS X Panther	MacOSX
+Mac OS X Snow Leopard	MacOSX
+Mac OS X Cheetah	MacOSXCheetah
+Mac OS X Jaguar	MacOSXJaguar
+Mac OS X Leopard	MacOSXLeopard
+Mac OS X Panther	MacOSXPanther
+Mac OS X Puma	MacOSXPuma
+Mac OS X Snow Leopard	MacOSXSnowLeopard
+Mac OS X Tiger	MacOSXTiger
 MacPaint	MacPaint
-Mac Pro	Mac Pro
+Mac Pro	MacPro
 macquarie	macquarie
 macrame	macrame
 macramé	macramé
@@ -38213,15 +38213,15 @@ macroscopic	macroscopic
 macroscopical	macroscopical
 macrospore	macrospore
 macrostructure	macrostructure
-Mac Rumors	Mac Rumors
-Mac Studio	Mac Studio
+Mac Rumors	MacRumors
+Mac Studio	MacStudio
 MacTips	MacTips
 MacType	MacType
 macula	macula
 macular	macular
 maculate	maculate
 maculation	maculation
-MacUpdate Desktop	MacUpdate Desktop
+MacUpdate Desktop	MacUpdateDesktop
 MacVim	MacVim
 macworld	macworld
 macy	macy
@@ -38282,10 +38282,10 @@ maggoty	maggoty
 magic	magic
 magical	magical
 magically	magically
-Magic Eden	Magic Eden
+Magic Eden	MagicEden
 magician	magician
 magicians	magicians
-Magic UI	Magic UI
+Magic UI	MagicUI
 Magill	Magill
 magisterial	magisterial
 magisterium	magisterium
@@ -38349,7 +38349,7 @@ Maguire	Maguire
 Maguires	Maguires
 magus	magus
 magyar	magyar
-mAh	mAh
+mAh	MAh
 Maharashtra	Maharashtra
 mahatma	mahatma
 Mahayana	Mahayana
@@ -38566,7 +38566,7 @@ mammiferous	mammiferous
 mammon	mammon
 mammoth	mammoth
 mammy	mammy
-MAMP PRO	MAMP PRO
+MAMP PRO	MAMPPRO
 man	man
 mana	mana
 manacle	manacle
@@ -38665,8 +38665,8 @@ manifesting	manifesting
 manifestly	manifestly
 manifesto	manifesto
 manifests	manifests
-Manifest V2	Manifest V2
-Manifest V3	Manifest V3
+Manifest V2	ManifestV2
+Manifest V3	ManifestV3
 manifold	manifold
 manifolding	manifolding
 manifolds	manifolds
@@ -38784,7 +38784,7 @@ MapQuest	MapQuest
 maps	maps
 maquette	maquette
 mar	mar
-mar.	mar.
+mar.	mar
 mara	mara
 marabou	marabou
 marabout	marabout
@@ -38894,7 +38894,7 @@ Markovitz	Markovitz
 Marks	Marks
 marksman	marksman
 marksmen	marksmen
-Mark Text	Mark Text
+Mark Text	MarkText
 markup	markup
 markus	markus
 marl	marl
@@ -39048,7 +39048,7 @@ masted	masted
 master	master
 masterbating	masterbating
 masterbation	masterbation
-master boot record	master boot record
+master boot record	masterbootrecord
 mastercard	mastercard
 mastered	mastered
 masterful	masterful
@@ -39278,12 +39278,12 @@ mazy	mazy
 mb	mb
 MB	MB
 MBA	MBA
-MacBook Air	MacBook Air
+MacBook Air	MBA
 Mbabane	Mbabane
 MBP	MBP
-MacBook Pro	MacBook Pro
+MacBook Pro	MBP
 mbps	mbps
-master boot record	master boot record
+master boot record	mbr
 MBR	MBR
 mbyte	mbyte
 McAdam	McAdam
@@ -39461,8 +39461,8 @@ mediacy	mediacy
 medial	medial
 median	median
 medians	medians
-Media Player	Media Player
-Windows Media Player	Windows Media Player
+Media Player	MediaPlayer
+Windows Media Player	MediaPlayer
 mediate	mediate
 mediated	mediated
 mediates	mediates
@@ -39632,7 +39632,7 @@ meltwater	meltwater
 Melville	Melville
 Melvin	Melvin
 melvor	melvor
-Melvor Idle	Melvor Idle
+Melvor Idle	MelvorIdle
 member	member
 members	members
 membership	membership
@@ -39794,7 +39794,7 @@ merge	merge
 merged	merged
 mergence	mergence
 merger	merger
-merge request	merge request
+merge request	mergerequest
 mergers	mergers
 merges	merges
 merging	merging
@@ -40148,21 +40148,21 @@ microscopy	microscopy
 microsecond	microsecond
 microseconds	microseconds
 Microsoft	Microsoft
-Microsoft Access	Microsoft Access
-Microsoft Azure	Microsoft Azure
-Microsoft Corporation	Microsoft Corporation
-Microsoft Edge	Microsoft Edge
-Microsoft Excel	Microsoft Excel
-Microsoft NTFS	Microsoft NTFS
-Microsoft Office	Microsoft Office
-Microsoft OneNote	Microsoft OneNote
-Microsoft Outlook	Microsoft Outlook
-Microsoft PowerPoint	Microsoft PowerPoint
-Microsoft SQL Server	Microsoft SQL Server
-Microsoft To Do	Microsoft To Do
-Microsoft Visual C++	Microsoft Visual C++
-Microsoft Windows	Microsoft Windows
-Microsoft Word	Microsoft Word
+Microsoft Access	MicrosoftAccess
+Microsoft Azure	MicrosoftAzure
+Microsoft Corporation	MicrosoftCorporation
+Microsoft Edge	MicrosoftEdge
+Microsoft Excel	MicrosoftExcel
+Microsoft NTFS	MicrosoftNTFS
+Microsoft Office	MicrosoftOffice
+Microsoft OneNote	MicrosoftOneNote
+Microsoft Outlook	MicrosoftOutlook
+Microsoft PowerPoint	MicrosoftPowerPoint
+Microsoft SQL Server	MicrosoftSQLServer
+Microsoft To Do	MicrosoftToDo
+Microsoft Visual C++	MicrosoftVisualC++
+Microsoft Windows	MicrosoftWindows
+Microsoft Word	MicrosoftWord
 microsome	microsome
 microspore	microspore
 microstore	microstore
@@ -40807,7 +40807,7 @@ misused	misused
 misuses	misuses
 misusing	misusing
 MIT	MIT
-Massachusetts Institute of Technology	Massachusetts Institute of Technology
+Massachusetts Institute of Technology	MIT
 Mitch	Mitch
 Mitchell	Mitchell
 mite	mite
@@ -40822,8 +40822,8 @@ mitigation	mitigation
 mitigative	mitigative
 mitigator	mitigator
 mitigatory	mitigatory
-MIT License	MIT License
-man-in-the-middle	man-in-the-middle
+MIT License	MITLicense
+man-in-the-middle	mitm
 MitM	MitM
 mitochondrial	mitochondrial
 mitosis	mitosis
@@ -40851,7 +40851,7 @@ mizzen	mizzen
 mizzle	mizzle
 mkdir	mkdir
 mkv	mkv
-mL	mL
+mL	ML
 mm	mm
 mnemonic	mnemonic
 mnemonically	mnemonically
@@ -41071,7 +41071,7 @@ momism	momism
 momma	momma
 mommy	mommy
 mon	mon
-mon.	mon.
+mon.	mon
 Mona	Mona
 Monaco	Monaco
 monad	monad
@@ -41620,31 +41620,31 @@ Moyer	Moyer
 mozambique	mozambique
 Mozart	Mozart
 Mozilla	Mozilla
-Mozilla Firefox	Mozilla Firefox
+Mozilla Firefox	MozillaFirefox
 mozzarella	mozzarella
 MP3	MP3
 MP4	MP4
-MPa	MPa
+MPa	mpa
 mpeg	mpeg
 MplayerX	MplayerX
 MPLS	MPLS
 mpu	mpu
 mpv	mpv
-mRNA	mRNA
-messenger RNA	messenger RNA
-mrs.	mrs.
+mRNA	MRNA
+messenger RNA	MRNA
+mrs.	mrs
 ms	ms
 MS-DOS	MS-DOS
-mSATA	mSATA
+mSATA	MSATA
 MSDN	MSDN
 msg	msg
 MSKU	MSKU
 MSN	MSN
 MSNBC	MSNBC
 MSVC	MSVC
-Microsoft Visual C++	Microsoft Visual C++
+Microsoft Visual C++	MSVC
 MTV	MTV
-Music Television	Music Television
+Music Television	MTV
 mu	mu
 much	much
 mucilage	mucilage
@@ -41932,7 +41932,7 @@ musicians	musicians
 musicologist	musicologist
 musicology	musicology
 musicotherapy	musicotherapy
-Music Television	Music Television
+Music Television	MusicTelevision
 musing	musing
 musings	musings
 musixmatch	musixmatch
@@ -42035,13 +42035,13 @@ muzzle	muzzle
 muzzles	muzzles
 muzzy	muzzy
 MVC	MVC
-Model-View-Controller	Model-View-Controller
+Model-View-Controller	MVC
 mvn	mvn
 mvnd	mvnd
 MVP	MVP
 MVVM	MVVM
-Model-View-ViewModel	Model-View-ViewModel
-MX Player	MX Player
+Model-View-ViewModel	MVVM
+MX Player	MXPlayer
 my	my
 myanmar	myanmar
 MyBatis	MyBatis
@@ -42056,7 +42056,7 @@ mycology	mycology
 mycosis	mycosis
 myelitis	myelitis
 Myers	Myers
-MyGO!!!!!	MyGO!!!!!
+MyGO!!!!!	MyGO
 MyISAM	MyISAM
 myna	myna
 Mynheer	Mynheer
@@ -42237,7 +42237,7 @@ narrative	narrative
 narratives	narratives
 narrator	narrator
 narrow	narrow
-Narrow AI	Narrow AI
+Narrow AI	NarrowAI
 narrowed	narrowed
 narrower	narrower
 narrowest	narrowest
@@ -42248,7 +42248,7 @@ narrows	narrows
 nartb	nartb
 nary	nary
 NAS	NAS
-Network Attached Storage	Network Attached Storage
+Network Attached Storage	NAS
 NASA	NASA
 nasal	nasal
 nasalise	nasalise
@@ -42305,14 +42305,14 @@ nationhood	nationhood
 nations	nations
 nationwide	nationwide
 native	native
-Native American	Native American
+Native American	NativeAmerican
 natively	natively
 natives	natives
 nativism	nativism
 nativist	nativist
 nativity	nativity
 NATO	NATO
-North Atlantic Treaty Organization	North Atlantic Treaty Organization
+North Atlantic Treaty Organization	NATO
 NATOs	NATOs
 natrium	natrium
 natron	natron
@@ -42356,7 +42356,7 @@ navally	navally
 nave	nave
 navel	navel
 navicat	navicat
-Navicat Premium	Navicat Premium
+Navicat Premium	NavicatPremium
 navies	navies
 navigability	navigability
 navigable	navigable
@@ -42379,13 +42379,13 @@ nazify	nazify
 Nazis	Nazis
 Nazism	Nazism
 NBA	NBA
-National Basketball Association	National Basketball Association
-NBA 2K	NBA 2K
+National Basketball Association	NBA
+NBA 2K	NBA2K
 NBC	NBC
 NCAA	NCAA
 Ndjamena	Ndjamena
 NDM	NDM
-Neat Download Manager	Neat Download Manager
+Neat Download Manager	NDM
 NDS	NDS
 ne	ne
 ne'er	ne'er
@@ -42401,12 +42401,12 @@ nearest	nearest
 nearing	nearing
 nearly	nearly
 nearness	nearness
-NEAR Protocol	NEAR Protocol
+NEAR Protocol	NEARProtocol
 nears	nears
 nearsighted	nearsighted
 nearsightedness	nearsightedness
 neat	neat
-Neat Download Manager	Neat Download Manager
+Neat Download Manager	NeatDownloadManager
 neaten	neaten
 neater	neater
 neatest	neatest
@@ -42718,7 +42718,7 @@ Newark	Newark
 newberry	newberry
 newbie	newbie
 newbies	newbies
-New Bing	New Bing
+New Bing	NewBing
 Newbold	Newbold
 newborn	newborn
 Newbury	Newbury
@@ -42776,8 +42776,8 @@ newsy	newsy
 newt	newt
 Newton	Newton
 Newtonian	Newtonian
-New Zealand	New Zealand
-New Zealander	New Zealander
+New Zealand	NewZealand
+New Zealander	NewZealander
 nexitally	nexitally
 next	next
 Next.js	Next.js
@@ -42786,15 +42786,15 @@ nextcloud	nextcloud
 nextel	nextel
 nexus	nexus
 NFC	NFC
-Near Field Communication	Near Field Communication
+Near Field Communication	NFC
 NFS	NFS
 NFT	NFT
-Non-Fungible Token	Non-Fungible Token
+Non-Fungible Token	NFT
 NG	NG
 NGFF	NGFF
 nginx	nginx
 NGO	NGO
-Non-Governmental Organization	Non-Governmental Organization
+Non-Governmental Organization	NGO
 ngram	ngram
 Nguyen	Nguyen
 Niagara	Niagara
@@ -42969,7 +42969,7 @@ nix	nix
 Nixon	Nixon
 nizam	nizam
 NLP	NLP
-Natural Language Processing	Natural Language Processing
+Natural Language Processing	NLP
 nlsfunc	nlsfunc
 Nmap	Nmap
 no	no
@@ -43009,9 +43009,9 @@ noddle	noddle
 noddy	noddy
 node	node
 node.js	node.js
-Node Package Manager	Node Package Manager
+Node Package Manager	NodePackageManager
 nodes	nodes
-Node Version Manager	Node Version Manager
+Node Version Manager	NodeVersionManager
 nods	nods
 nodular	nodular
 nodule	nodule
@@ -43062,7 +43062,7 @@ nomisma	nomisma
 nomogram	nomogram
 nomography	nomography
 non	non
-Non-Player Character	Non-Player Character
+Non-Player Character	Non-PlayerCharacter
 non-stop	non-stop
 nonabstainer	nonabstainer
 nonacceptance	nonacceptance
@@ -43419,7 +43419,7 @@ notify	notify
 notifying	notifying
 noting	noting
 notion	notion
-Notion AI	Notion AI
+Notion AI	NotionAI
 notional	notional
 notions	notions
 notochord	notochord
@@ -43427,8 +43427,8 @@ notoriety	notoriety
 notorious	notorious
 notoriously	notoriously
 Notre	Notre
-Not Safe For Work	Not Safe For Work
-Not Suitable For Work	Not Suitable For Work
+Not Safe For Work	NotSafeForWork
+Not Suitable For Work	NotSuitableForWork
 Nottingham	Nottingham
 nottinghamshire	nottinghamshire
 notwithstanding	notwithstanding
@@ -43448,7 +43448,7 @@ nourishment	nourishment
 nous	nous
 nouveau	nouveau
 nov	nov
-nov.	nov.
+nov.	nov
 nova	nova
 Novak	Novak
 novel	novel
@@ -43481,18 +43481,18 @@ noxious	noxious
 Noyes	Noyes
 nozzle	nozzle
 NPC	NPC
-Non-Player Character	Non-Player Character
+Non-Player Character	NPC
 nPlayer	nPlayer
 npm	npm
-Node Package Manager	Node Package Manager
-.npmrc	.npmrc
+Node Package Manager	npm
+.npmrc	npmrc
 NSFW	NSFW
-Not Safe For Work	Not Safe For Work
-Not Suitable For Work	Not Suitable For Work
+Not Safe For Work	NSFW
+Not Suitable For Work	NSFW
 nss	nss
 NTFS	NTFS
-Microsoft NTFS	Microsoft NTFS
-New Technology File System	New Technology File System
+Microsoft NTFS	NTFS
+New Technology File System	NTFS
 nth	nth
 NTR	NTR
 nu	nu
@@ -43632,12 +43632,12 @@ nutten	nutten
 nutty	nutty
 Nuxt	Nuxt
 nuzzle	nuzzle
-nvALT	nvALT
+nvALT	NvALT
 nveil	nveil
 NVIDIA	NVIDIA
 nvim	nvim
 nvm	nvm
-Node Version Manager	Node Version Manager
+Node Version Manager	nvm
 NVMe	NVMe
 nybble	nybble
 NYC	NYC
@@ -43863,7 +43863,7 @@ obviations	obviations
 obvious	obvious
 obviously	obviously
 obviousness	obviousness
-Objective-C	Objective-C
+Objective-C	Oc
 OC	OC
 OCaml	OCaml
 ocarina	ocarina
@@ -43934,10 +43934,10 @@ ochlocratic	ochlocratic
 ochre	ochre
 Oconomowoc	Oconomowoc
 OCR	OCR
-Optical Character Recognition	Optical Character Recognition
+Optical Character Recognition	OCR
 OCSP	OCSP
-Online Certificate Status Protocol	Online Certificate Status Protocol
-oct.	oct.
+Online Certificate Status Protocol	OCSP
+oct.	oct
 octad	octad
 octagon	octagon
 octagonal	octagonal
@@ -44099,7 +44099,7 @@ ohioan	ohioan
 ohm	ohm
 ohmic	ohmic
 ohmmeter	ohmmeter
-Oh My Zsh	Oh My Zsh
+Oh My Zsh	OhMyZsh
 oho	oho
 oil	oil
 oilcan	oilcan
@@ -44204,7 +44204,7 @@ omelette	omelette
 omen	omen
 omens	omens
 OMG	OMG
-Oh My God	Oh My God
+Oh My God	OMG
 omicron	omicron
 ominous	ominous
 ominously	ominously
@@ -44247,7 +44247,7 @@ oncoming	oncoming
 one	one
 OnePlus	OnePlus
 one-liner	one-liner
-One Dark	One Dark
+One Dark	OneDark
 OneDrive	OneDrive
 onefold	onefold
 Oneida	Oneida
@@ -44256,12 +44256,12 @@ oneiromancy	oneiromancy
 OneKey	OneKey
 oneness	oneness
 OneNote	OneNote
-One Piece	One Piece
+One Piece	OnePiece
 onerous	onerous
 ones	ones
 oneself	oneself
 onetime	onetime
-One UI	One UI
+One UI	OneUI
 onfall	onfall
 ongoing	ongoing
 onion	onion
@@ -44299,7 +44299,7 @@ ooh	ooh
 oology	oology
 oolong	oolong
 oomph	oomph
-object-oriented programming	object-oriented programming
+object-oriented programming	oop
 OOP	OOP
 oops	oops
 ooze	ooze
@@ -44324,8 +44324,8 @@ Opel	Opel
 open	open
 openable	openable
 OpenAI	OpenAI
-OpenAI ChatGPT	OpenAI ChatGPT
-OpenAI Codex	OpenAI Codex
+OpenAI ChatGPT	OpenAIChatGPT
+OpenAI Codex	OpenAICodex
 OpenBSD	OpenBSD
 opencast	opencast
 OpenCat	OpenCat
@@ -44350,11 +44350,11 @@ OpenRouter	OpenRouter
 opens	opens
 OpenSea	OpenSea
 OpenStreetMap	OpenStreetMap
-openSUSE	openSUSE
+openSUSE	OpenSUSE
 OpenTofu	OpenTofu
-Open WebUI	Open WebUI
+Open WebUI	OpenWebUI
 openwork	openwork
-Open World	Open World
+Open World	OpenWorld
 OpenWrt	OpenWrt
 opera	opera
 operability	operability
@@ -44369,7 +44369,7 @@ operated	operated
 operates	operates
 operatic	operatic
 operating	operating
-Operating System	Operating System
+Operating System	OperatingSystem
 operation	operation
 operational	operational
 operationally	operationally
@@ -44644,7 +44644,7 @@ Orlick	Orlick
 orlon	orlon
 Orly	Orly
 ORM	ORM
-Object Relational Mapping	Object Relational Mapping
+Object Relational Mapping	ORM
 ormolu	ormolu
 ornament	ornament
 ornamental	ornamental
@@ -44699,7 +44699,7 @@ Orwellian	Orwellian
 oryx	oryx
 orz	orz
 os	os
-Operating System	Operating System
+Operating System	os
 OS	OS
 osage	osage
 Osaka	Osaka
@@ -44746,7 +44746,7 @@ osmotic	osmotic
 osmund	osmund
 osprey	osprey
 OSS	OSS
-Object Storage Service	Object Storage Service
+Object Storage Service	OSS
 osseous	osseous
 ossification	ossification
 ossifrage	ossifrage
@@ -44779,17 +44779,17 @@ ostrich	ostrich
 ostriches	ostriches
 ostrogoth	ostrogoth
 Oswald	Oswald
-OS X	OS X
-OS X Lion	OS X Lion
-OS X Yosemite	OS X Yosemite
-OS X Mavericks	OS X Mavericks
-OS X El Capitan	OS X El Capitan
-OS X Mountain Lion	OS X Mountain Lion
-OS X El Capitan	OS X El Capitan
-OS X Lion	OS X Lion
-OS X Mavericks	OS X Mavericks
-OS X Mountain Lion	OS X Mountain Lion
-OS X Yosemite	OS X Yosemite
+OS X	OSX
+OS X Lion	OSX
+OS X Yosemite	OSX
+OS X Mavericks	OSX
+OS X El Capitan	OSX
+OS X Mountain Lion	OSX
+OS X El Capitan	OSXElCapitan
+OS X Lion	OSXLion
+OS X Mavericks	OSXMavericks
+OS X Mountain Lion	OSXMountainLion
+OS X Yosemite	OSXYosemite
 OTC	OTC
 Othello	Othello
 other	other
@@ -45378,9 +45378,9 @@ ozonizer	ozonizer
 ozonosphere	ozonosphere
 Ozzie	Ozzie
 p13n	p13n
-personalization	personalization
+personalization	p13n
 P2P	P2P
-platform as a service	platform as a service
+platform as a service	paas
 PaaS	PaaS
 Pablo	Pablo
 Pabst	Pabst
@@ -45432,7 +45432,7 @@ packsaddle	packsaddle
 packtrain	packtrain
 Packwood	Packwood
 pacman	pacman
-Pac-Man	Pac-Man
+Pac-Man	pacman
 pact	pact
 pacts	pacts
 pad	pad
@@ -45643,7 +45643,7 @@ pandemic	pandemic
 pandemonium	pandemonium
 pander	pander
 pandit	pandit
-Pandoc	Pandoc
+Pandoc	pandoc
 Pandora	Pandora
 pandowdy	pandowdy
 pane	pane
@@ -45799,7 +45799,7 @@ parallelizing	parallelizing
 parallelogram	parallelogram
 parallelograms	parallelograms
 parallels	parallels
-Parallels Desktop	Parallels Desktop
+Parallels Desktop	ParallelsDesktop
 paralyse	paralyse
 paralysis	paralysis
 paralytic	paralytic
@@ -46052,7 +46052,7 @@ partridges	partridges
 parts	parts
 parturition	parturition
 party	party
-Party Animals	Party Animals
+Party Animals	PartyAnimals
 parvenu	parvenu
 pas	pas
 Pasadena	Pasadena
@@ -46181,7 +46181,7 @@ path	path
 pathetic	pathetic
 pathetically	pathetically
 pathfinder	pathfinder
-Path Finder	Path Finder
+Path Finder	PathFinder
 pathless	pathless
 pathname	pathname
 pathnames	pathnames
@@ -46348,27 +46348,27 @@ pays	pays
 Payson	Payson
 Paz	Paz
 PC	PC
-printed circuit board	printed circuit board
+printed circuit board	pcb
 PCB	PCB
 PCBA	PCBA
-Printed Circuit Board Assembly	Printed Circuit Board Assembly
+Printed Circuit Board Assembly	PCBA
 PCDN	PCDN
 PCI	PCI
 PCIe	PCIe
-PCI Express	PCI Express
-PCI Express	PCI Express
+PCI Express	PCIe
+PCI Express	PCIExpress
 PCMCIA	PCMCIA
 pct	pct
 PDF	PDF
-Portable Document Format	Portable Document Format
-PDF Expert	PDF Expert
+Portable Document Format	PDF
+PDF Expert	PDFExpert
 PDFs	PDFs
 pdm	pdm
 PE	PE
 pea	pea
 Peabody	Peabody
 peace	peace
-Peace & Love	Peace & Love
+Peace & Love	Peace&Love
 peaceable	peaceable
 peaceful	peaceful
 peacefully	peacefully
@@ -47125,8 +47125,8 @@ pewter	pewter
 pfennig	pfennig
 Pfizer	Pfizer
 PGC	PGC
-pgSQL	pgSQL
-PostgreSQL	PostgreSQL
+pgSQL	PgSQL
+PostgreSQL	PgSQL
 ph	ph
 Phaedra	Phaedra
 phagocyte	phagocyte
@@ -47386,8 +47386,8 @@ photovoltaic	photovoltaic
 photozincography	photozincography
 PHP	PHP
 hyprland	hyprland
-Hypertext Preprocessor	Hypertext Preprocessor
-phpBB	phpBB
+Hypertext Preprocessor	PHP
+phpBB	PhpBB
 PhpStorm	PhpStorm
 phrasal	phrasal
 phrase	phrase
@@ -47490,7 +47490,7 @@ Pickman	Pickman
 pickpocket	pickpocket
 picks	picks
 pickup	pickup
-Pickup Artists	Pickup Artists
+Pickup Artists	PickupArtists
 pickups	pickups
 pickwick	pickwick
 picky	picky
@@ -47538,7 +47538,7 @@ piecrust	piecrust
 pied	pied
 Piedfort	Piedfort
 Piedmont	Piedmont
-Pied Piper	Pied Piper
+Pied Piper	PiedPiper
 pieman	pieman
 pieplant	pieplant
 pier	pier
@@ -48026,7 +48026,7 @@ platypus	platypus
 plaudit	plaudit
 plausibility	plausibility
 Plausible	Plausible
-Plausible Analytics	Plausible Analytics
+Plausible Analytics	PlausibleAnalytics
 play	play
 playa	playa
 playable	playable
@@ -48034,7 +48034,7 @@ playact	playact
 playback	playback
 playbill	playbill
 playboy	playboy
-Play by Play	Play by Play
+Play by Play	PlaybyPlay
 played	played
 player	player
 players	players
@@ -48137,7 +48137,7 @@ plim	plim
 plink	plink
 Pliny	Pliny
 Pliocene	Pliocene
-PlistEdit	PlistEdit
+PlistEdit	PliPlistEdit
 plitron	plitron
 plod	plod
 plodder	plodder
@@ -48251,7 +48251,7 @@ pneumoconiosis	pneumoconiosis
 pneumonia	pneumonia
 pneumonic	pneumonic
 PNG	PNG
-Portable Network Graphics	Portable Network Graphics
+Portable Network Graphics	PNG
 po	po
 Po	Po
 poach	poach
@@ -48266,7 +48266,7 @@ pocketed	pocketed
 pocketful	pocketful
 pocketing	pocketing
 pocketknife	pocketknife
-Pocket PC	Pocket PC
+Pocket PC	PocketPC
 pockets	pockets
 pockmark	pockmark
 pockmarked	pockmarked
@@ -48582,7 +48582,7 @@ poorness	poorness
 pop	pop
 pop-up	pop-up
 PopCap	PopCap
-PopCap Games	PopCap Games
+PopCap Games	PopCapGames
 PopClip	PopClip
 popcorn	popcorn
 Pope	Pope
@@ -48952,7 +48952,7 @@ powerlessness	powerlessness
 PowerPack	PowerPack
 PowerPC	PowerPC
 PowerPoint	PowerPoint
-Microsoft PowerPoint	Microsoft PowerPoint
+Microsoft PowerPoint	PowerPoint
 Powers	Powers
 powerseller	powerseller
 PowerShell	PowerShell
@@ -48967,11 +48967,11 @@ ppp	ppp
 PPPoE	PPPoE
 PPR	PPR
 PPT	PPT
-PowerPoint	PowerPoint
-Microsoft PowerPoint	Microsoft PowerPoint
+PowerPoint	PPT
+Microsoft PowerPoint	PPT
 pptx	pptx
 PR	PR
-pull requests	pull requests
+pull requests	PR
 practicability	practicability
 practicable	practicable
 practicably	practicably
@@ -49974,7 +49974,7 @@ prolonged	prolonged
 prolonging	prolonging
 prolongs	prolongs
 prom	prom
-Pro Max	Pro Max
+Pro Max	ProMax
 promenade	promenade
 promenades	promenades
 Promethean	Promethean
@@ -50252,7 +50252,7 @@ protistan	protistan
 proto	proto
 protobuf	protobuf
 protocol	protocol
-Protocol Buffers	Protocol Buffers
+Protocol Buffers	ProtocolBuffers
 protocols	protocols
 proton	proton
 ProtonMail	ProtonMail
@@ -50390,7 +50390,7 @@ Prussianizes	Prussianizes
 pry	pry
 pryer	pryer
 prying	prying
-photoshop	photoshop
+photoshop	ps
 PS	PS
 psalm	psalm
 psalmist	psalmist
@@ -50444,7 +50444,7 @@ psychograph	psychograph
 psychokinesis	psychokinesis
 psycholinguistic	psycholinguistic
 psychological	psychological
-Psychological Horror	Psychological Horror
+Psychological Horror	PsychologicalHorror
 psychologically	psychologically
 psychologise	psychologise
 psychologism	psychologism
@@ -50485,20 +50485,20 @@ ptr	ptr
 pts	pts
 PTT	PTT
 PUA	PUA
-Pickup Artists	Pickup Artists
+Pickup Artists	PUA
 pub	pub
 puberty	puberty
 pubes	pubes
 pubescence	pubescence
 pubescent	pubescent
 PUBG	PUBG
-PLAYERUNKNOWN'S BATTLEGROUNDS	PLAYERUNKNOWN'S BATTLEGROUNDS
+PLAYERUNKNOWN'S BATTLEGROUNDS	PUBG
 pubic	pubic
 pubis	pubis
 public	public
 publication	publication
 publications	publications
-Public Beta	Public Beta
+Public Beta	PublicBeta
 publicise	publicise
 publicist	publicist
 publicity	publicity
@@ -50581,7 +50581,7 @@ Pullmanizes	Pullmanizes
 Pullmans	Pullmans
 pullout	pullout
 pullover	pullover
-pull request	pull request
+pull request	pullrequest
 pulls	pulls
 pulmonary	pulmonary
 pulmonate	pulmonate
@@ -50853,10 +50853,10 @@ puzzlings	puzzlings
 PV	PV
 pvc	pvc
 PVC	PVC
-player versus environment	player versus environment
+player versus environment	pve
 PVE	PVE
 PVP	PVP
-Player versus Player	Player versus Player
+Player versus Player	PVP
 PyCharm	PyCharm
 Pygmalion	Pygmalion
 pygmean	pygmean
@@ -50906,20 +50906,20 @@ pyxis	pyxis
 qa	qa
 Qatar	Qatar
 qbasic	qbasic
-qBittorrent Enhanced Edition	qBittorrent Enhanced Edition
-qBittorrent	qBittorrent
-qBittorrent Enhanced Edition	qBittorrent Enhanced Edition
-qBittorrent	qBittorrent
-qBittorrentEE	qBittorrentEE
-qBittorrent Enhanced Edition	qBittorrent Enhanced Edition
+qBittorrent Enhanced Edition	QBEE
+qBittorrent	QBit
+qBittorrent Enhanced Edition	QBitEE
+qBittorrent	QBittorrent
+qBittorrentEE	QBittorrentEE
+qBittorrent Enhanced Edition	QBittorrentEE
 qedit	qedit
-qBittorrent Enhanced Edition	qBittorrent Enhanced Edition
+qBittorrent Enhanced Edition	QEE
 QHD	QHD
 QoS	QoS
-Quality of Service	Quality of Service
+Quality of Service	QoS
 QQ	QQ
 QQNT	QQNT
-QR code	QR code
+QR code	QRcode
 QSpace	QSpace
 qtam	qtam
 QTTabBar	QTTabBar
@@ -50999,7 +50999,7 @@ qualitative	qualitative
 qualitatively	qualitatively
 qualities	qualities
 quality	quality
-Quality of Service	Quality of Service
+Quality of Service	QualityofService
 qualm	qualm
 qualmish	qualmish
 quandaries	quandaries
@@ -51031,7 +51031,7 @@ quantizes	quantizes
 quantizing	quantizing
 quantum	quantum
 Quantumult	Quantumult
-Quantumult X	Quantumult X
+Quantumult X	QuantumultX
 quarantine	quarantine
 quarantines	quarantines
 quarantining	quarantining
@@ -51154,7 +51154,7 @@ quibble	quibble
 quibbling	quibbling
 quibinary	quibinary
 QUIC	QUIC
-Quick UDP Internet Connections	Quick UDP Internet Connections
+Quick UDP Internet Connections	QUIC
 quiche	quiche
 Quichua	Quichua
 quick	quick
@@ -51173,7 +51173,7 @@ quickset	quickset
 quicksilver	quicksilver
 quickstep	quickstep
 QuickTime	QuickTime
-QuickTime Player	QuickTime Player
+QuickTime Player	QuickTimePlayer
 quid	quid
 quiddity	quiddity
 quidnunc	quidnunc
@@ -51433,7 +51433,7 @@ rag	rag
 ragamuffin	ragamuffin
 ragbag	ragbag
 rage	rage
-rage bait	rage bait
+rage bait	ragebait
 raged	raged
 rages	rages
 ragged	ragged
@@ -51522,7 +51522,7 @@ rallyingly	rallyingly
 Ralph	Ralph
 Ralston	Ralston
 ram	ram
-random-access memory	random-access memory
+random-access memory	ram
 RAM	RAM
 Ramada	Ramada
 Raman	Raman
@@ -51575,7 +51575,7 @@ Rand	Rand
 Randall	Randall
 Randolph	Randolph
 random	random
-random-access memory	random-access memory
+random-access memory	random-accessmemory
 randomization	randomization
 randomize	randomize
 randomized	randomized
@@ -51682,7 +51682,7 @@ rashness	rashness
 Rasmussen	Rasmussen
 rasp	rasp
 raspberry	raspberry
-Raspberry Pi	Raspberry Pi
+Raspberry Pi	RaspberryPi
 rasped	rasped
 rasping	rasping
 rasps	rasps
@@ -51859,12 +51859,12 @@ reactivation	reactivation
 reactive	reactive
 reactively	reactively
 reactivity	reactivity
-React Native	React Native
+React Native	ReactNative
 reactor	reactor
 reactors	reactors
 reacts	reacts
 read	read
-read-only memory	read-only memory
+read-only memory	read-onlymemory
 readability	readability
 readable	readable
 readdress	readdress
@@ -51884,7 +51884,7 @@ readjusted	readjusted
 readkit	readkit
 readmade	readmade
 readme	readme
-README.md	README.md
+README.md	readme
 readmit	readmit
 readonly	readonly
 readout	readout
@@ -54222,12 +54222,12 @@ reyes	reyes
 Reykjavik	Reykjavik
 Reynolds	Reynolds
 RFC	RFC
-Request for Comments	Request for Comments
-RFC 3339	RFC 3339
+Request for Comments	RFC
+RFC 3339	RFC3339
 RFCs	RFCs
 RFID	RFID
 RFT	RFT
-Rich Text Format	Rich Text Format
+Rich Text Format	RFT
 rgb	rgb
 RGB	RGB
 rhabdomancy	rhabdomancy
@@ -54333,7 +54333,7 @@ Richmond	Richmond
 richness	richness
 Richter	Richter
 Rick	Rick
-Rick and Morty	Rick and Morty
+Rick and Morty	RickandMorty
 Rickenbaugh	Rickenbaugh
 rickets	rickets
 Rickettsia	Rickettsia
@@ -54558,7 +54558,7 @@ Riyadh	Riyadh
 riyal	riyal
 rmdir	rmdir
 rmvb	rmvb
-ribonucleic acid	ribonucleic acid
+ribonucleic acid	rna
 RNA	RNA
 roach	roach
 road	road
@@ -54663,7 +54663,7 @@ Rockville	Rockville
 Rockwell	Rockwell
 rockwork	rockwork
 rocky	rocky
-Rocky Linux	Rocky Linux
+Rocky Linux	RockyLinux
 rococo	rococo
 rod	rod
 rode	rode
@@ -54696,7 +54696,7 @@ roily	roily
 roisterous	roisterous
 Roland	Roland
 role	role
-Role-Playing Game	Role-Playing Game
+Role-Playing Game	RolePlayingGame
 roles	roles
 rolex	rolex
 roll	roll
@@ -54713,7 +54713,7 @@ rollover	rollover
 rolls	rolls
 rollway	rollway
 rom	rom
-read-only memory	read-only memory
+read-only memory	rom
 ROM	ROM
 roma	roma
 romaine	romaine
@@ -54981,12 +54981,12 @@ royalty	royalty
 Royce	Royce
 Rozelle	Rozelle
 RPG	RPG
-Role-Playing Game	Role-Playing Game
+Role-Playing Game	RPG
 rpm	rpm
 rspamd	rspamd
 RSS	RSS
-RDF Site Summary	RDF Site Summary
-Really Simple Syndication	Really Simple Syndication
+RDF Site Summary	RSS
+Really Simple Syndication	RSS
 rsync	rsync
 rtf	rtf
 rtu	rtu
@@ -55025,7 +55025,7 @@ rubrication	rubrication
 rubs	rubs
 ruby	ruby
 RubyMine	RubyMine
-Ruby on Rails	Ruby on Rails
+Ruby on Rails	RubyonRails
 ruck	ruck
 rucksack	rucksack
 ruckus	ruckus
@@ -55176,8 +55176,8 @@ ruralize	ruralize
 rurally	rurally
 ruse	ruse
 rush	rush
-Rush A	Rush A
-Rush B	Rush B
+Rush A	RushA
+Rush B	RushB
 rushed	rushed
 rusher	rusher
 rushes	rushes
@@ -55241,7 +55241,7 @@ Ryder	Ryder
 rye	rye
 ryegrass	ryegrass
 saab	saab
-software as a service	software as a service
+software as a service	saas
 SaaS	SaaS
 sabbath	sabbath
 Sabbathize	Sabbathize
@@ -55536,7 +55536,7 @@ Sampson	Sampson
 samsara	samsara
 Samson	Samson
 Samsung	Samsung
-Samsung Galaxy	Samsung Galaxy
+Samsung Galaxy	SamsungGalaxy
 Samuel	Samuel
 Samuels	Samuels
 Samuelson	Samuelson
@@ -55701,7 +55701,7 @@ Saskatoon	Saskatoon
 sass	sass
 sassy	sassy
 sat	sat
-sat.	sat.
+sat.	sat
 SATA	SATA
 Satan	Satan
 satang	satang
@@ -56297,7 +56297,7 @@ screensaver	screensaver
 screensavers	screensavers
 screenshot	screenshot
 screenshots	screenshots
-Screen Studio	Screen Studio
+Screen Studio	ScreenStudio
 screenwriter	screenwriter
 screw	screw
 screwball	screwball
@@ -56310,7 +56310,7 @@ screwy	screwy
 scribal	scribal
 scribble	scribble
 scribbled	scribbled
-Scribble Diffusion	Scribble Diffusion
+Scribble Diffusion	ScribbleDiffusion
 scribbler	scribbler
 scribbles	scribbles
 scribe	scribe
@@ -56417,9 +56417,9 @@ scythe	scythe
 scythes	scythes
 Scythia	Scythia
 SDDM	SDDM
-Simple Desktop Display Manager	Simple Desktop Display Manager
+Simple Desktop Display Manager	SDDM
 SDK	SDK
-Software Development Kit	Software Development Kit
+Software Development Kit	SDK
 sdlc	sdlc
 sea	sea
 seabed	seabed
@@ -56589,7 +56589,7 @@ secure	secure
 secured	secured
 securely	securely
 secures	secures
-Secure Shell	Secure Shell
+Secure Shell	SecureShell
 securiform	securiform
 securing	securing
 securings	securings
@@ -56747,7 +56747,7 @@ selenograph	selenograph
 selenography	selenography
 selenology	selenology
 self	self
-self-attention	self-attention
+self-attention	Self-attention
 selfhood	selfhood
 selfish	selfish
 selfishly	selfishly
@@ -56777,7 +56777,7 @@ semantically	semantically
 semanticist	semanticist
 semanticists	semanticists
 semantics	semantics
-Semantic UI	Semantic UI
+Semantic UI	SemanticUI
 semaphore	semaphore
 semaphores	semaphores
 semblable	semblable
@@ -56946,11 +56946,11 @@ sentinels	sentinels
 sentries	sentries
 sentry	sentry
 SEO	SEO
-Search Engine Optimization	Search Engine Optimization
+Search Engine Optimization	SEO
 Seoul	Seoul
 sep	sep
-sep.	sep.
-sept.	sept.
+sep.	sep
+sept.	sep
 sepal	sepal
 separability	separability
 separable	separable
@@ -56971,7 +56971,7 @@ sepia	sepia
 Sepoy	Sepoy
 sepsis	sepsis
 sept	sept
-sept.	sept.
+sept.	sept
 septal	septal
 septangular	septangular
 September	September
@@ -57217,9 +57217,9 @@ sexy	sexy
 Seychelles	Seychelles
 Seymour	Seymour
 SFC	SFC
-Software Freedom Conservancy	Software Freedom Conservancy
+Software Freedom Conservancy	SFC
 SFTP	SFTP
-SSH File Transfer Protocol	SSH File Transfer Protocol
+SSH File Transfer Protocol	SFTP
 sgml	sgml
 shabbily	shabbily
 shabbiness	shabbiness
@@ -57251,7 +57251,7 @@ shadowgraph	shadowgraph
 shadowiness	shadowiness
 shadowing	shadowing
 shadowless	shadowless
-Shadowrocket	Shadowrocket
+Shadowrocket	shadowrocket
 Shadowrocket	Shadowrocket
 shadows	shadows
 shadowsocks	shadowsocks
@@ -57429,7 +57429,7 @@ shebang	shebang
 shebeen	shebeen
 Sheboygan	Sheboygan
 shed	shed
-she'd	she'd
+she'd	shed
 shedder	shedder
 shedding	shedding
 Shedir	Shedir
@@ -57460,7 +57460,7 @@ Shelby	Shelby
 Sheldon	Sheldon
 shelf	shelf
 shell	shell
-she'll	she'll
+she'll	shell
 shellac	shellac
 shellback	shellback
 shelled	shelled
@@ -57728,7 +57728,7 @@ shoulder	shoulder
 shouldered	shouldered
 shouldering	shouldering
 shoulders	shoulders
-Should I Sleep	Should I Sleep
+Should I Sleep	ShouldISleep
 shouldn't	shouldn't
 shout	shout
 shouted	shouted
@@ -57964,7 +57964,7 @@ sifter	sifter
 sifting	sifting
 sig	sig
 SIG	SIG
-Special Interest Group	Special Interest Group
+Special Interest Group	SIG
 SIGGRAPH	SIGGRAPH
 sigh	sigh
 sighed	sighed
@@ -58047,7 +58047,7 @@ silicate	silicate
 siliceous	siliceous
 silicon	silicon
 silicone	silicone
-Silicon Valley	Silicon Valley
+Silicon Valley	SiliconValley
 silicosis	silicosis
 silk	silk
 silken	silken
@@ -58129,7 +58129,7 @@ simplicity	simplicity
 simplification	simplification
 simplifications	simplifications
 simplified	simplified
-Simplified Chinese	Simplified Chinese
+Simplified Chinese	SimplifiedChinese
 simplifier	simplifier
 simplifiers	simplifiers
 simplifies	simplifies
@@ -58571,7 +58571,7 @@ sledges	sledges
 sleds	sleds
 sleek	sleek
 sleep	sleep
-Sleep Cycle	Sleep Cycle
+Sleep Cycle	SleepCycle
 sleeper	sleeper
 sleepers	sleepers
 sleepily	sleepily
@@ -58782,7 +58782,7 @@ smalltime	smalltime
 Smallwood	Smallwood
 smarmy	smarmy
 smart	smart
-Smart Contract	Smart Contract
+Smart Contract	SmartContract
 smarted	smarted
 smarten	smarten
 smarter	smarter
@@ -58883,9 +58883,9 @@ smothery	smothery
 smoulder	smoulder
 SMS	SMS
 SMT	SMT
-Surface Mounted Technology	Surface Mounted Technology
+Surface Mounted Technology	SMT
 SMTP	SMTP
-Simple Mail Transfer Protocol	Simple Mail Transfer Protocol
+Simple Mail Transfer Protocol	SMTP
 Smucker	Smucker
 smudge	smudge
 smudgily	smudgily
@@ -59248,7 +59248,7 @@ solicitous	solicitous
 solicits	solicits
 solicitude	solicitude
 solid	solid
-solid-state drive	solid-state drive
+solid-state drive	solid-statedrive
 solidarity	solidarity
 solidification	solidification
 solidified	solidified
@@ -59460,7 +59460,7 @@ soulless	soulless
 soulmate	soulmate
 soulmates	soulmates
 souls	souls
-souls-like	souls-like
+souls-like	soulslike
 sound	sound
 SoundBlaster	SoundBlaster
 sounded	sounded
@@ -60025,7 +60025,7 @@ spondee	spondee
 spondylitis	spondylitis
 sponge	sponge
 SpongeBob	SpongeBob
-SpongeBob SquarePants	SpongeBob SquarePants
+SpongeBob SquarePants	SpongeBobSquarePants
 sponged	sponged
 sponger	sponger
 spongers	spongers
@@ -60084,7 +60084,7 @@ sportswear	sportswear
 sportswoman	sportswoman
 sportswriter	sportswriter
 sportswriting	sportswriting
-Sport Utility Vehicle	Sport Utility Vehicle
+Sport Utility Vehicle	SportUtilityVehicle
 sporty	sporty
 sporule	sporule
 Sposato	Sposato
@@ -60138,8 +60138,8 @@ sprightliness	sprightliness
 sprightly	sprightly
 spring	spring
 springboard	springboard
-Spring Boot	Spring Boot
-Spring Cloud	Spring Cloud
+Spring Boot	SpringBoot
+Spring Cloud	SpringCloud
 springe	springe
 springer	springer
 springers	springers
@@ -60210,11 +60210,11 @@ spyglass	spyglass
 spying	spying
 spyware	spyware
 SQL	SQL
-Structured Query Language	Structured Query Language
+Structured Query Language	SQL
 SQLAlchemy	SQLAlchemy
 SQLite	SQLite
-SQL Server	SQL Server
-Microsoft SQL Server	Microsoft SQL Server
+SQL Server	SQLServer
+Microsoft SQL Server	SQLServer
 squab	squab
 squabble	squabble
 squabbled	squabbled
@@ -60312,18 +60312,18 @@ SRE	SRE
 Sri	Sri
 srt	srt
 srv	srv
-SRWare Iron	SRWare Iron
+SRWare Iron	SRWareIron
 SSCI	SSCI
-solid-state drive	solid-state drive
+solid-state drive	ssd
 SSD	SSD
 ssh	ssh
 SSH	SSH
-Secure Shell	Secure Shell
+Secure Shell	SSH
 sshd	sshd
 SSID	SSID
-Service Set Identifier	Service Set Identifier
+Service Set Identifier	SSID
 SSL	SSL
-Secure Sockets Layer	Secure Sockets Layer
+Secure Sockets Layer	SSL
 sstatfarad	sstatfarad
 stab	stab
 stabbed	stabbed
@@ -60347,7 +60347,7 @@ stable	stable
 stablecoin	stablecoin
 stablecoins	stablecoins
 stabled	stabled
-Stable Diffusion	Stable Diffusion
+Stable Diffusion	StableDiffusion
 stableman	stableman
 stabler	stabler
 stables	stables
@@ -60360,7 +60360,7 @@ stack	stack
 stacked	stacked
 stacker	stacker
 stacking	stacking
-Stack Overflow	Stack Overflow
+Stack Overflow	StackOverflow
 stacks	stacks
 StackSocial	StackSocial
 Stacy	Stacy
@@ -60673,7 +60673,7 @@ stealthy	stealthy
 steam	steam
 steamboat	steamboat
 steamboats	steamboats
-Steam Deck	Steam Deck
+Steam Deck	SteamDeck
 steamed	steamed
 steamer	steamer
 steamers	steamers
@@ -61335,7 +61335,7 @@ strolls	strolls
 Strom	Strom
 Stromberg	Stromberg
 strong	strong
-Strong AI	Strong AI
+Strong AI	StrongAI
 strongbox	strongbox
 strongboxes	strongboxes
 stronger	stronger
@@ -61400,7 +61400,7 @@ studhorse	studhorse
 studied	studied
 studies	studies
 studio	studio
-Studio Display	Studio Display
+Studio Display	StudioDisplay
 studios	studios
 studious	studious
 studiously	studiously
@@ -61617,7 +61617,7 @@ sublimations	sublimations
 sublime	sublime
 sublimed	sublimed
 sublimedirectory	sublimedirectory
-Sublime Text	Sublime Text
+Sublime Text	SublimeText
 subliminal	subliminal
 sublimity	sublimity
 sublingual	sublingual
@@ -62047,7 +62047,7 @@ Sulzberger	Sulzberger
 sum	sum
 sumac	sumac
 Sumatra	Sumatra
-Sumatra PDF	Sumatra PDF
+Sumatra PDF	SumatraPDF
 Sumeria	Sumeria
 Sumerian	Sumerian
 summand	summand
@@ -62089,7 +62089,7 @@ sumptuous	sumptuous
 sums	sums
 Sumter	Sumter
 sun	sun
-sun.	sun.
+sun.	sun
 sunbaked	sunbaked
 sunbathe	sunbathe
 sunbeam	sunbeam
@@ -62484,7 +62484,7 @@ sutural	sutural
 suture	suture
 sutures	sutures
 SUV	SUV
-Sport Utility Vehicle	Sport Utility Vehicle
+Sport Utility Vehicle	SUV
 SUVs	SUVs
 Suwanee	Suwanee
 Suzanne	Suzanne
@@ -62497,10 +62497,10 @@ sven	sven
 svenska	svenska
 Svetlana	Svetlana
 SVG	SVG
-Scalable Vector Graphics	Scalable Vector Graphics
+Scalable Vector Graphics	SVG
 SVIP	SVIP
 SVN	SVN
-Apache Subversion	Apache Subversion
+Apache Subversion	SVN
 swab	swab
 swabber	swabber
 swabbing	swabbing
@@ -62911,7 +62911,7 @@ syzygy	syzygy
 Szilard	Szilard
 séance	séance
 t9n	t9n
-translation	translation
+translation	t9n
 ta	ta
 tab	tab
 tabard	tabard
@@ -62929,7 +62929,7 @@ tablecloth	tablecloth
 tablecloths	tablecloths
 tabled	tabled
 tableland	tableland
-Table of Contents	Table of Contents
+Table of Contents	TableOfContents
 TablePlus	TablePlus
 tables	tables
 tablespoon	tablespoon
@@ -63025,7 +63025,7 @@ tails	tails
 Tailscale	Tailscale
 tailspin	tailspin
 tailwind	tailwind
-Tailwind CSS	Tailwind CSS
+Tailwind CSS	TailwindCSS
 tailwinds	tailwinds
 tainan	tainan
 taint	taint
@@ -63375,7 +63375,7 @@ tcam	tcam
 Tchaikovsky	Tchaikovsky
 TCL	TCL
 TCP	TCP
-Transmission Control Protocol	Transmission Control Protocol
+Transmission Control Protocol	TCP
 TCP/IP	TCP/IP
 TDengine	TDengine
 tea	tea
@@ -63399,7 +63399,7 @@ teamed	teamed
 teaming	teaming
 teammate	teammate
 teams	teams
-Teamspace	Teamspace
+Teamspace	teamspace
 teamster	teamster
 TeamViewer	TeamViewer
 teamwork	teamwork
@@ -64116,7 +64116,7 @@ thessalonians	thessalonians
 Thessaly	Thessaly
 theta	theta
 Thetis	Thetis
-The Unarchiver	The Unarchiver
+The Unarchiver	TheUnarchiver
 theurgy	theurgy
 thew	thew
 thewy	thewy
@@ -64172,7 +64172,7 @@ thinnest	thinnest
 thinnish	thinnish
 third	third
 thirdly	thirdly
-Third-Person	Third-Person
+Third-Person	ThirdPerson
 thirds	thirds
 thirst	thirst
 thirsted	thirsted
@@ -64337,8 +64337,8 @@ thrusting	thrusting
 thrusts	thrusts
 thruway	thruway
 thu	thu
-thu.	thu.
-thurs.	thurs.
+thu.	thu
+thurs.	thu
 Thuban	Thuban
 thud	thud
 thuds	thuds
@@ -64384,7 +64384,7 @@ Thurber	Thurber
 thurible	thurible
 thurifer	thurifer
 Thurman	Thurman
-thurs.	thurs.
+thurs.	thurs
 Thursday	Thursday
 Thursdays	Thursdays
 thus	thus
@@ -64528,7 +64528,7 @@ timberyard	timberyard
 timbre	timbre
 timbrel	timbrel
 time	time
-Time Capsule	Time Capsule
+Time Capsule	TimeCapsule
 timed	timed
 timekeeper	timekeeper
 timeless	timeless
@@ -64537,7 +64537,7 @@ timelessness	timelessness
 timeline	timeline
 timeliness	timeliness
 timely	timely
-Time Machine	Time Machine
+Time Machine	TimeMachine
 timeout	timeout
 timeouts	timeouts
 timepiece	timepiece
@@ -64713,10 +64713,10 @@ Titus	Titus
 TiVo	TiVo
 tivoli	tivoli
 tizzy	tizzy
-too long; didn't read	too long; didn't read;dr
-TL;DR	TL;DR;DR
+too long; didn't read	tl;dr
+TL;DR	TL;DR
 TLS	TLS
-Transport Layer Security	Transport Layer Security
+Transport Layer Security	TLS
 tm	tm
 TM	TM
 tmux	tmux
@@ -64739,7 +64739,7 @@ tobacconist	tobacconist
 Tobago	Tobago
 Toby	Toby
 TOC	TOC
-Table of Contents	Table of Contents
+Table of Contents	TOC
 toccata	toccata
 tocsin	tocsin
 today	today
@@ -64835,8 +64835,8 @@ ToMemo	ToMemo
 tomfool	tomfool
 tomfoolery	tomfoolery
 toml	toml
-.toml	.toml
-Tom's Obvious Minimal Language	Tom's Obvious Minimal Language
+.toml	toml
+Tom's Obvious Minimal Language	toml
 Tomlinson	Tomlinson
 Tommie	Tommie
 tommy	tommy
@@ -64918,8 +64918,8 @@ toothy	toothy
 tootle	tootle
 top	top
 topaz	topaz
-Top-Down	Top-Down
-Top-Down Shooter	Top-Down Shooter
+Top-Down	TopDown
+Top-Down Shooter	TopDownShooter
 tope	tope
 Topeka	Topeka
 toper	toper
@@ -65052,7 +65052,7 @@ totemist	totemist
 totemistic	totemistic
 Toto	Toto
 TOTP	TOTP
-Time-based One-Time Password	Time-based One-Time Password
+Time-based One-Time Password	TOTP
 totter	totter
 tottered	tottered
 tottering	tottering
@@ -65061,12 +65061,12 @@ tottery	tottery
 toucan	toucan
 touch	touch
 touchable	touchable
-Touch Bar	Touch Bar
+Touch Bar	TouchBar
 touchdown	touchdown
 touched	touched
 touches	touches
 touchhole	touchhole
-Touch ID	Touch ID
+Touch ID	TouchID
 touchier	touchier
 touchiest	touchiest
 touchily	touchily
@@ -65206,7 +65206,7 @@ trading	trading
 TradingView	TradingView
 tradition	tradition
 traditional	traditional
-Traditional Chinese	Traditional Chinese
+Traditional Chinese	TraditionalChinese
 traditionalism	traditionalism
 traditionalist	traditionalist
 traditionalistic	traditionalistic
@@ -65974,7 +65974,7 @@ trusting	trusting
 trustingly	trustingly
 TrustPass	TrustPass
 trusts	trusts
-Trust Wallet	Trust Wallet
+Trust Wallet	TrustWallet
 trustworthily	trustworthily
 trustworthiness	trustworthiness
 trustworthy	trustworthy
@@ -66029,7 +66029,7 @@ tucking	tucking
 tucks	tucks
 Tucson	Tucson
 Tudor	Tudor
-tue.	tue.
+tue.	tue
 Tuesday	Tuesday
 Tuesdays	Tuesdays
 tuff	tuff
@@ -66111,8 +66111,8 @@ turbination	turbination
 turbine	turbine
 turbit	turbit
 turbo	turbo
-Turbo Boost	Turbo Boost
-Turbo Boost Switcher	Turbo Boost Switcher
+Turbo Boost	TurboBoost
+Turbo Boost Switcher	TurboBoostSwitcher
 turbogenerator	turbogenerator
 Turbopack	Turbopack
 turbot	turbot
@@ -66147,8 +66147,8 @@ turn	turn
 turnable	turnable
 turnabout	turnabout
 turnaround	turnaround
-Turn-Based	Turn-Based
-Turn-Based Compact	Turn-Based Compact
+Turn-Based	TurnBased
+Turn-Based Compact	TurnBasedCompact
 turnbuckle	turnbuckle
 turncoat	turncoat
 turndown	turndown
@@ -66215,10 +66215,10 @@ tutu	tutu
 tuvalu	tuvalu
 tuxedo	tuxedo
 tv	tv
-television	television
+television	tv
 TV	TV
 tvga	tvga
-tvOS	tvOS
+tvOS	TvOS
 twaddle	twaddle
 twain	twain
 twang	twang
@@ -66373,22 +66373,22 @@ ubiquitous	ubiquitous
 ubiquitously	ubiquitously
 ubiquity	ubiquity
 ubisoft	ubisoft
-uBlacklist	uBlacklist
-uBlock	uBlock
-uBlock Origin	uBlock Origin
+uBlacklist	UBlacklist
+uBlock	UBlock
+uBlock Origin	UBlockOrigin
 ubuntu	ubuntu
 Udall	Udall
 udder	udder
 UDP	UDP
-User Datagram Protocol	User Datagram Protocol
+User Datagram Protocol	UDP
 UEFI	UEFI
-Unified Extensible Firmware Interface	Unified Extensible Firmware Interface
+Unified Extensible Firmware Interface	UEFI
 UFO	UFO
-Unidentified Flying Object	Unidentified Flying Object
+Unidentified Flying Object	UFO
 ufologist	ufologist
 ufw	ufw
 Uganda	Uganda
-user-generated content	user-generated content
+user-generated content	ugc
 UGC	UGC
 ugh	ugh
 uglier	uglier
@@ -66400,8 +66400,8 @@ UHD	UHD
 UHF	UHF
 UI	UI
 UID	UID
-User ID	User ID
-United Kingdom	United Kingdom
+User ID	UID
+United Kingdom	uk
 UK	UK
 ukase	ukase
 Ukraine	Ukraine
@@ -66464,7 +66464,7 @@ umbrella	umbrella
 umbrellas	umbrellas
 umbriferous	umbriferous
 UML	UML
-Unified Modeling Language	Unified Modeling Language
+Unified Modeling Language	UML
 umlaut	umlaut
 ump	ump
 umpire	umpire
@@ -67244,10 +67244,10 @@ Unitarians	Unitarians
 unitary	unitary
 unite	unite
 united	united
-United Kingdom	United Kingdom
+United Kingdom	UnitedKingdom
 unitedly	unitedly
-United States	United States
-United States Dollar	United States Dollar
+United States	UnitedStates
+United States Dollar	UnitedStatesDollar
 uniterm	uniterm
 unites	unites
 unities	unities
@@ -67261,7 +67261,7 @@ univalent	univalent
 univalve	univalve
 univalves	univalves
 universal	universal
-Universal Actions	Universal Actions
+Universal Actions	UniversalActions
 universalise	universalise
 universalism	universalism
 universalist	universalist
@@ -67269,7 +67269,7 @@ universality	universality
 universalize	universalize
 universally	universally
 universals	universals
-Universal Serial Bus	Universal Serial Bus
+Universal Serial Bus	UniversalSerialBus
 universe	universe
 universes	universes
 universities	universities
@@ -67278,7 +67278,7 @@ univocal	univocal
 Unix	Unix
 UNIX	UNIX
 unix-like	unix-like
-unix shell	unix shell
+unix shell	unixshell
 unjoint	unjoint
 unjust	unjust
 unjustifiable	unjustifiable
@@ -67793,7 +67793,7 @@ upholsterer	upholsterer
 upholstering	upholstering
 upholsters	upholsters
 upholstery	upholstery
-uPic	uPic
+uPic	UPic
 upkeep	upkeep
 upland	upland
 uplands	uplands
@@ -67807,7 +67807,7 @@ uploading	uploading
 uploads	uploads
 upmost	upmost
 UPnP	UPnP
-Universal Plug and Play	Universal Plug and Play
+Universal Plug and Play	UPnP
 upon	upon
 upper	upper
 uppercase	uppercase
@@ -67903,7 +67903,7 @@ urging	urging
 urgings	urgings
 Uri	Uri
 URI	URI
-Uniform Resource Identifier	Uniform Resource Identifier
+Uniform Resource Identifier	URI
 uric	uric
 urinal	urinal
 urinalysis	urinalysis
@@ -67916,7 +67916,7 @@ urination	urination
 urine	urine
 Uris	Uris
 URL	URL
-Uniform Resource Locator	Uniform Resource Locator
+Uniform Resource Locator	URL
 URLs	URLs
 urn	urn
 urns	urns
@@ -67936,20 +67936,20 @@ Uruguayan	Uruguayan
 Uruguayans	Uruguayans
 urus	urus
 us	us
-United States	United States
+United States	us
 US	US
 USA	USA
-The United States of America	The United States of America
+The United States of America	USA
 usability	usability
 usable	usable
 usably	usably
 usage	usage
 usages	usages
 USB	USB
-Universal Serial Bus	Universal Serial Bus
+Universal Serial Bus	USB
 USC	USC
 USD	USD
-United States Dollar	United States Dollar
+United States Dollar	USD
 USDT	USDT
 use	use
 useable	useable
@@ -67967,7 +67967,7 @@ user	user
 users	users
 userdb	userdb
 username	username
-User-Agent	User-Agent
+User-Agent	UserAgent
 uses	uses
 usher	usher
 ushered	ushered
@@ -67978,7 +67978,7 @@ using	using
 USPS	USPS
 usr	usr
 USSR	USSR
-Union of Soviet Socialist Republics	Union of Soviet Socialist Republics
+Union of Soviet Socialist Republics	USSR
 usual	usual
 usually	usually
 usufruct	usufruct
@@ -67992,7 +67992,7 @@ usurper	usurper
 usury	usury
 Utah	Utah
 UTC	UTC
-Coordinated Universal Time	Coordinated Universal Time
+Coordinated Universal Time	UTC
 Ute	Ute
 utensil	utensil
 utensils	utensils
@@ -68016,8 +68016,8 @@ utilizes	utilizes
 utilizing	utilizing
 utils	utils
 utmost	utmost
-uTools	uTools
-uTools	uTools
+uTools	UTool
+uTools	UTools
 utopia	utopia
 Utopian	Utopian
 utopianism	utopianism
@@ -68034,7 +68034,7 @@ utterly	utterly
 uttermost	uttermost
 utters	utters
 UUID	UUID
-Universally Unique Identifier	Universally Unique Identifier
+Universally Unique Identifier	UUID
 uvauum	uvauum
 uvula	uvula
 uvular	uvular
@@ -68047,9 +68047,9 @@ V2Ray	V2Ray
 v2ray-core	v2ray-core
 v2rayA	v2rayA
 v2rayN	v2rayN
-v8 engine	v8 engine
-V8 JavaScript engine	V8 JavaScript engine
-V8 JS engine	V8 JS engine
+v8 engine	v8engine
+V8 JavaScript engine	V8JavaScriptengine
+V8 JS engine	V8JSengine
 VA	VA
 vac	vac
 vacancies	vacancies
@@ -68180,7 +68180,7 @@ vamp	vamp
 vamper	vamper
 vampire	vampire
 vampires	vampires
-Vampire Survivors	Vampire Survivors
+Vampire Survivors	VampireSurvivors
 van	van
 vanadium	vanadium
 Vance	Vance
@@ -68319,9 +68319,9 @@ VAXes	VAXes
 vbulletin	vbulletin
 vc	vc
 VCD	VCD
-Video CD	Video CD
+Video CD	VCD
 VCR	VCR
-version control system	version control system
+version control system	vcs
 VCS	VCS
 vdt	vdt
 veal	veal
@@ -68641,7 +68641,7 @@ vials	vials
 viand	viand
 viatic	viatic
 vibe	vibe
-vibe coding	vibe coding
+vibe coding	vibecoding
 vibrancy	vibrancy
 vibrant	vibrant
 vibraphone	vibraphone
@@ -68718,7 +68718,7 @@ Vida	Vida
 Vidal	Vidal
 video	video
 videocast	videocast
-Video CD	Video CD
+Video CD	VideoCD
 videophone	videophone
 videos	videos
 videotape	videotape
@@ -68917,7 +68917,7 @@ Visigoths	Visigoths
 vision	vision
 visional	visional
 visionary	visionary
-Vision Pro	Vision Pro
+Vision Pro	VisionPro
 visions	visions
 visit	visit
 visitation	visitation
@@ -68943,9 +68943,9 @@ visualizer	visualizer
 visualizes	visualizes
 visualizing	visualizing
 visually	visually
-Visual Studio	Visual Studio
-Microsoft Visual Studio	Microsoft Visual Studio
-Visual Studio Code	Visual Studio Code
+Visual Studio	VisualStudio
+Microsoft Visual Studio	VisualStudio
+Visual Studio Code	VisualStudioCode
 vita	vita
 vitae	vitae
 vital	vital
@@ -69017,19 +69017,19 @@ vizier	vizier
 Vladimir	Vladimir
 Vladivostok	Vladivostok
 VLAN	VLAN
-Virtual Local Area Network	Virtual Local Area Network
+Virtual Local Area Network	VLAN
 VLC	VLC
 VLESS	VLESS
-vLLM	vLLM
+vLLM	VLLM
 vlog	vlog
 vlogger	vlogger
 VLOOKUP	VLOOKUP
 VLSI	VLSI
 VMess	VMess
 VMware	VMware
-VMware Fusion	VMware Fusion
-VMware Fusion Player	VMware Fusion Player
-VMware Fusion Pro	VMware Fusion Pro
+VMware Fusion	VMwareFusion
+VMware Fusion Player	VMwareFusionPlayer
+VMware Fusion Pro	VMwareFusionPro
 vocable	vocable
 vocabularies	vocabularies
 vocabulary	vocabulary
@@ -69078,7 +69078,7 @@ voiding	voiding
 voids	voids
 voile	voile
 VoIP	VoIP
-Voice over Internet Protocol	Voice over Internet Protocol
+Voice over Internet Protocol	VoIP
 vol	vol
 volant	volant
 volar	volar
@@ -69113,7 +69113,7 @@ voltages	voltages
 voltaic	voltaic
 Voltaire	Voltaire
 VoLTE	VoLTE
-Voice Over LTE	Voice Over LTE
+Voice Over LTE	VoLTE
 Volterra	Volterra
 voltmeter	voltmeter
 volts	volts
@@ -69188,9 +69188,9 @@ voyagings	voyagings
 voyeur	voyeur
 voyeurweb	voyeurweb
 voyuer	voyuer
-virtual private network	virtual private network
+virtual private network	vpn
 VPN	VPN
-virtual private server	virtual private server
+virtual private server	vps
 VPS	VPS
 vram	vram
 Vreeland	Vreeland
@@ -69198,7 +69198,7 @@ vs	vs
 vs.	vs.
 vsafe	vsafe
 VSCode	VSCode
-Visual Studio Code	Visual Studio Code
+Visual Studio Code	VSCode
 vsnet	vsnet
 VTuber	VTuber
 VLA	VLA
@@ -69370,7 +69370,7 @@ wallowed	wallowed
 wallowing	wallowing
 wallows	wallows
 wallpaper	wallpaper
-Wallpaper Engine	Wallpaper Engine
+Wallpaper Engine	WallpaperEngine
 wallpapers	wallpapers
 Walls	Walls
 wally	wally
@@ -69579,7 +69579,7 @@ watchings	watchings
 watchmaker	watchmaker
 watchmaking	watchmaking
 watchman	watchman
-watchOS	watchOS
+watchOS	WatchOS
 watchtower	watchtower
 watchword	watchword
 watchwords	watchwords
@@ -69701,7 +69701,7 @@ we'll	we'll
 we're	we're
 we've	we've
 weak	weak
-Weak AI	Weak AI
+Weak AI	WeakAI
 weaken	weaken
 weakened	weakened
 weakening	weakening
@@ -69803,9 +69803,9 @@ Websterville	Websterville
 WebStorm	WebStorm
 WebView	WebView
 WeChat	WeChat
-WeChat Pay	WeChat Pay
+WeChat Pay	WeChatPay
 wed	wed
-wed.	wed.
+wed.	wed
 wedded	wedded
 wedding	wedding
 weddings	weddings
@@ -69898,7 +69898,7 @@ Weldwood	Weldwood
 welfare	welfare
 welkin	welkin
 well	well
-we'll	we'll
+we'll	well
 well-heeled	well-heeled
 well-known	well-known
 well-wisher	well-wisher
@@ -69986,7 +69986,7 @@ wettish	wettish
 Weyerhauser	Weyerhauser
 weymouth	weymouth
 WezTerm	WezTerm
-Wez's Terminal Emulator	Wez's Terminal Emulator
+Wez's Terminal Emulator	WezTerm
 Wget	Wget
 whack	whack
 whacked	whacked
@@ -70020,7 +70020,7 @@ Whatley	Whatley
 whatnot	whatnot
 WhatsApp	WhatsApp
 whatsoever	whatsoever
-what the fuck	what the fuck
+what the fuck	whatthefuck
 wheal	wheal
 wheat	wheat
 wheaten	wheaten
@@ -70307,8 +70307,8 @@ wifehood	wifehood
 wifeless	wifeless
 wifely	wifely
 WiFi	WiFi
-WiFi Explorer	WiFi Explorer
-WiFi Scanner	WiFi Scanner
+WiFi Explorer	WiFiExplorer
+WiFi Scanner	WiFiScanner
 wig	wig
 wigan	wigan
 wigged	wigged
@@ -70323,7 +70323,7 @@ wigs	wigs
 wigwag	wigwag
 wigwam	wigwam
 wii	wii
-Wii U	Wii U
+Wii U	WiiU
 wiki	wiki
 wikimedia	wikimedia
 wikipedia	wikipedia
@@ -70435,26 +70435,26 @@ windmills	windmills
 window	window
 windowing	windowing
 windowpane	windowpane
-Windows	Windows
-Windows 10	Windows 10
-Windows 11	Windows 11
-Windows 12	Windows 12
-Windows 2000	Windows 2000
-Windows 7	Windows 7
-Windows 8	Windows 8
-Windows 95	Windows 95
-Windows 98	Windows 98
-Windowsill	Windowsill
-Windows Me	Windows Me
-Windows Media Player	Windows Media Player
-Windows Mobile	Windows Mobile
-Windows NT	Windows NT
-Windows Phone	Windows Phone
-Windows RT	Windows RT
-Windows Server	Windows Server
-Windows Vista	Windows Vista
-Windows XP	Windows XP
-Window Tidy	Window Tidy
+Windows	windows
+Windows 10	windows10
+Windows 11	windows11
+Windows 12	windows12
+Windows 2000	windows2000
+Windows 7	windows7
+Windows 8	windows8
+Windows 95	windows95
+Windows 98	windows98
+Windowsill	windowsill
+Windows Me	WindowsMe
+Windows Media Player	WindowsMediaPlayer
+Windows Mobile	WindowsMobile
+Windows NT	WindowsNT
+Windows Phone	WindowsPhone
+Windows RT	WindowsRT
+Windows Server	WindowsServer
+Windows Vista	WindowsVista
+Windows XP	WindowsXP
+Window Tidy	WindowTidy
 windpipe	windpipe
 winds	winds
 windshield	windshield
@@ -70645,11 +70645,11 @@ wizen	wizen
 wizened	wizened
 wks	wks
 WLAN	WLAN
-Wireless LAN	Wireless LAN
+Wireless LAN	WLAN
 wma	wma
 wmf	wmf
 WMV	WMV
-Windows Media Video	Windows Media Video
+Windows Media Video	WMV
 wo'nt	wo'nt
 woad	woad
 wobble	wobble
@@ -70856,7 +70856,7 @@ worldling	worldling
 worldly	worldly
 worlds	worlds
 worldsex	worldsex
-World War	World War
+World War	WorldWar
 worldwide	worldwide
 worm	worm
 wormcast	wormcast
@@ -71017,21 +71017,21 @@ wryneck	wryneck
 ws	ws
 WSGI	WSGI
 WSL	WSL
-Windows Subsystem for Linux	Windows Subsystem for Linux
-what the fuck	what the fuck
+Windows Subsystem for Linux	WSL
+what the fuck	wtf
 WTF	WTF
 WTO	WTO
 Wu	Wu
 Wuhan	Wuhan
 wunderlist	wunderlist
 WWDC	WWDC
-Apple Worldwide Developers Conference	Apple Worldwide Developers Conference
+Apple Worldwide Developers Conference	WWDC
 WWI	WWI
-World War I	World War I
+World War I	WWI
 WWII	WWII
-World War II	World War II
+World War II	WWII
 WWIII	WWIII
-World War III	World War III
+World War III	WWIII
 www	www
 Wyandotte	Wyandotte
 Wyatt	Wyatt
@@ -71045,7 +71045,7 @@ Wyner	Wyner
 Wynn	Wynn
 Wyoming	Wyoming
 WYSIWYG	WYSIWYG
-What You See Is What You Get	What You See Is What You Get
+What You See Is What You Get	WYSIWYG
 X-ray	X-ray
 X11	X11
 x64	x64
@@ -71059,10 +71059,10 @@ xanthous	xanthous
 Xanthus	Xanthus
 Xavier	Xavier
 Xbox	Xbox
-Xbox One	Xbox One
-Xbox One X	Xbox One X
-Xbox Series	Xbox Series
-Xbox Series S	Xbox Series S
+Xbox One	XboxOne
+Xbox One X	XboxOneX
+Xbox Series	XboxSeries
+Xbox Series S	XboxSeriesS
 xcode	xcode
 XDM	XDM
 Xebec	Xebec
@@ -71092,7 +71092,7 @@ Xeroxing	Xeroxing
 Xerxes	Xerxes
 Xhosa	Xhosa
 XHTML	XHTML
-eXtensible HyperText Markup Language	eXtensible HyperText Markup Language
+eXtensible HyperText Markup Language	XHTML
 xi	xi
 xiphoid	xiphoid
 xla	xla
@@ -71101,12 +71101,12 @@ xlsx	xlsx
 xmas	xmas
 xmind	xmind
 XML	XML
-Extensible Markup Language	Extensible Markup Language
+Extensible Markup Language	XML
 xnip	xnip
 xorg	xorg
 xray	xray
 Xray-core	Xray-core
-xScope	xScope
+xScope	XScope
 xshell	xshell
 XtraFinder	XtraFinder
 xwindow	xwindow
@@ -71144,8 +71144,8 @@ Yalta	Yalta
 yam	yam
 Yamaha	Yamaha
 yaml	yaml
-.yaml	.yaml
-YAML Ain't Markup Language	YAML Ain't Markup Language
+.yaml	yaml
+YAML Ain't Markup Language	yaml
 yammer	yammer
 yan	yan
 yandex	yandex
@@ -71300,7 +71300,7 @@ youthfully	youthfully
 youthfulness	youthfulness
 youths	youths
 YouTube	YouTube
-YouTube Music	YouTube Music
+YouTube Music	YouTubeMusic
 YouTuber	YouTuber
 yow	yow
 yowl	yowl
@@ -71391,7 +71391,7 @@ zeroes	zeroes
 zeroing	zeroing
 zeros	zeros
 zeroth	zeroth
-Zero Trust	Zero Trust
+Zero Trust	ZeroTrust
 zest	zest
 zestful	zestful
 zeta	zeta
@@ -71442,7 +71442,7 @@ zirconium	zirconium
 zither	zither
 zitherist	zitherist
 zizz	zizz
-zkSync	zkSync
+zkSync	ZkSync
 zloty	zloty
 zmodem	zmodem
 zodiac	zodiac
