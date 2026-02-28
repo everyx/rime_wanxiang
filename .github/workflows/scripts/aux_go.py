@@ -1,5 +1,70 @@
 import os
 import re
+from typing import Dict, List, Optional
+
+# ---------- 极广的汉字正则匹配：涵盖基础汉字、扩展区 A-H 以及 "〇" ----------
+CJK_PATTERN = re.compile(r'[〇\u3400-\u4DBF\u4E00-\u9FFF\U00020000-\U000323AF]')
+
+# ---------- 中英文本边界解析与智能对齐 ----------
+def tokenize_word(word: str) -> List[Dict[str, str]]:
+    """将词组按照汉字和非汉字块进行拆分"""
+    units = []
+    buf = []
+    for char in word:
+        if char.isspace():
+            continue
+        if CJK_PATTERN.match(char):
+            if buf:
+                units.append({'type': 'en', 'text': ''.join(buf)})
+                buf = []
+            units.append({'type': 'cn', 'text': char})
+        else:
+            buf.append(char)
+    if buf:
+        units.append({'type': 'en', 'text': ''.join(buf)})
+    return units
+
+def get_alignment(units: List[Dict[str, str]], segs: List[str], u_idx: int, s_idx: int, get_aux_fn) -> Optional[List[str]]:
+    """
+    递归匹配：将汉字和非汉字块对齐到拼音分段。
+    这里接收一个 get_aux_fn 函数，用于动态获取当前汉字对应的辅助码片段。
+    """
+    if u_idx == len(units) and s_idx == len(segs):
+        return []
+    if u_idx == len(units) or s_idx == len(segs):
+        return None
+    
+    unit = units[u_idx]
+    if unit['type'] == 'cn':
+        # 汉字：严格消耗 1 个拼音段
+        res = get_alignment(units, segs, u_idx + 1, s_idx + 1, get_aux_fn)
+        if res is not None:
+            return [get_aux_fn(unit['text'])] + res
+        return None
+    else:
+        # 非汉字（如 AI，C++）：可能消耗 1 个或多个拼音段
+        en_text = unit['text'].lower()
+        current_seg_text = ""
+        
+        # 策略 1：优先尝试拼音字符串完全匹配
+        for k in range(s_idx, len(segs)):
+            current_seg_text += segs[k].lower()
+            if current_seg_text == en_text:
+                res = get_alignment(units, segs, u_idx + 1, k + 1, get_aux_fn)
+                if res is not None:
+                    return [''] * (k - s_idx + 1) + res
+        
+        # 策略 2：如果字符串无法完全匹配，根据剩余汉字数量进行容错组合
+        remaining_cn = sum(1 for u in units[u_idx+1:] if u['type'] == 'cn')
+        max_consume = len(segs) - s_idx - remaining_cn
+        
+        for consume_len in range(max_consume, 0, -1):
+            res = get_alignment(units, segs, u_idx + 1, s_idx + consume_len, get_aux_fn)
+            if res is not None:
+                return [''] * consume_len + res
+        
+        return None
+
 
 # ---------- 在第一个点前插入后缀（例：base.dict.yaml -> base.pro.dict.yaml） ----------
 def add_suffix_before_extensions(filename: str, suffix: str) -> str:
@@ -96,18 +161,27 @@ def process_file_for_range_streaming(in_file, out_file, aux_map, start_idx, end_
             continue
 
         pinyins = col2.split(' ') if col2 else []
-        if len(pinyins) != len(han):
-            warn = f"# 警告: 拼音数与字数不匹配（{in_file}) => {raw}"
+        
+        # 动态获取当前字符特定区间的辅助码
+        def get_aux_str(ch: str) -> str:
+            aux_list = aux_map.get(ch)
+            return select_aux_segment(aux_list, start_idx, end_idx) if aux_list is not None else ''
+
+        # 使用智能对齐逻辑替代原来的 len(pinyins) != len(han) 死板校验
+        units = tokenize_word(han)
+        aligned_aux = get_alignment(units, pinyins, 0, 0, get_aux_str)
+
+        if aligned_aux is None:
+            # 当对齐完全失败时（如纯汉字漏拼音等错位情况），保留原脚本写入警告的逻辑
+            warn = f"# 警告: 拼音数与字数不匹配或无法对齐（{in_file}) => {raw}"
             print(warn)
             fout.write(warn + '\n')
             continue
 
-        _get = aux_map.get
         new_cols = []
-        for i, ch in enumerate(han):
-            aux_list = _get(ch)
-            piece = select_aux_segment(aux_list, start_idx, end_idx) if aux_list is not None else ''
-            new_cols.append(pinyins[i] + sep + piece)  # 空也占位：拼音;片段
+        for i, py in enumerate(pinyins):
+            aux = aligned_aux[i] if i < len(aligned_aux) else ''
+            new_cols.append(py + sep + aux)
 
         new_col2 = ' '.join(new_cols)
         if col4:
