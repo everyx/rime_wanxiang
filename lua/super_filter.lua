@@ -12,7 +12,7 @@
 --   - 兜底重建，当有些单词类型输入斜杠后不产出候选就将前面产生的进行构造候选
 --   - 输入为空时释放缓存/锁定
 -- 功能D 字符集过滤，默认8105+𰻝𰻝，可以在方案中定义黑白名单来实现用户自己的范围微调addlist: []和blacklist: [𰻝, 𰻞]
--- 功能E 由于在混输场景中输入comment commit等等之类的英文时候，由于直接辅助码的派生能力，会将三个好不想干的单字组合在一起，这会造成不好的体验
+-- 功能E 由于在混输场景中输入comment commit等等之类的英文时候，由于直接辅助码的派生能力，会将三个豪不想干的单字组合在一起，这会造成不好的体验
 --      因此在首选已经是英文的时候，且type=completion且大于等于4个字符，这个时候后面如果有type=sentence的派生词则直接干掉，这个还要依赖，表翻译器
 --      权重设置与主翻译器不可相差太大
 
@@ -881,6 +881,16 @@ function M.func(input, env)
         end
         return
     end
+    local function check_and_yield_fallback()  --三码无候选兜底
+        if visual_idx == 0 and code_len == 3 then
+            local fallback_text = env.phrase_history_dict[2]
+            if fallback_text then
+                local nc = Candidate("fallback", 0, code_len, fallback_text, "~")
+                nc.preedit = string.sub(code, 1, 2) .. " " .. string.sub(code, 3, 3)
+                yield(nc)
+            end
+        end
+    end
     -- 模式 1: 非分组 (Direct Pass)
     if not do_group then
         local idx = 0
@@ -900,7 +910,7 @@ function M.func(input, env)
                 }
 
                 if idx == 1 then
-                    if (utf8_len(txt) or 0) > 1 then
+                    if (utf8_len(txt) or 0) >= 1 then
                         env.phrase_history_dict[#code] = txt
                     end
                     -- 英文长句过滤触发器
@@ -948,6 +958,7 @@ function M.func(input, env)
             end
             ::continue_loop::
         end
+        check_and_yield_fallback()
         return
     end
 
@@ -1020,7 +1031,7 @@ function M.func(input, env)
             }
 
             if idx2 == 1 then
-                if (utf8_len(txt) or 0) > 1 then
+                if (utf8_len(txt) or 0) >= 1 then
                     env.phrase_history_dict[#code] = txt
                 end
                 if not env.locked then env.cache = clone_candidate(format_and_autocap(cand)) end
@@ -1090,5 +1101,6 @@ function M.func(input, env)
     if mode == "grouping" then
         try_flush_page_sort(true)
     end
+    check_and_yield_fallback()
 end
 return M
