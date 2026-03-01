@@ -2,9 +2,9 @@
 -- 功能 A：候选文本中的转义序列格式化（始终开启）
 --         \n \t \r \\ \s(空格) \d(-)
 -- 功能 B：候选重排（仅编码长度 2..6 时）
---         - 第一候选不动
---         - 其余按组输出：①不含字母(table/user_table) → ②其他
---         - 若第二候选为 table/user_table，则不排序，直接透传
+--     第一候选不动
+--     其余按组输出：①不含字母(table/user_table) → ②其他
+--     若第二候选为 table/user_table，则不排序，直接透传
 -- 功能 C：成对符号包裹（触发：最后分段完整消耗且出现 prefix\suffix；suffix 命中映射时吞掉 \suffix）
 -- 缓存/锁定：
 --   - 未锁定时记录第一候选为缓存
@@ -137,9 +137,12 @@ local function get_shichen_and_ke(hour, min)
     
     return "未知时辰", "未知刻"
 end
-
+local time_tokens_pattern = "\\[YymdNjWwHGIoOTKMSPOpA]"
 -- 2. 核心：处理动态时间（只负责替换，不负责保护）
 local function process_datetime_internal(s)
+    if not string.find(s, time_tokens_pattern) then
+        return s
+    end
     local dt = os.date("*t")
     
     -- 获取时辰和刻数
@@ -698,7 +701,8 @@ function M.func(input, env)
     -- 3. 符号与分段分析
     local symbol = env.symbol
     local symbol_pos = symbol and #symbol == 1 and find(code, symbol, 1, true)
-    local code_has_symbol = symbol_pos and symbol_pos > 1
+    local code_has_symbol = symbol_pos and symbol_pos > 1 and symbol_pos < #code 
+                            and not code:find("\\\\$")
     if not code_has_symbol then
         env.page_cache = {}
     end
@@ -845,7 +849,9 @@ function M.func(input, env)
     if _G.WanxiangSharedState.sorter_active and _G.WanxiangSharedState.last_input == raw_code then
         target_cache = _G.WanxiangSharedState.page_cache
     end
-
+    if code:sub(-1) == symbol or code:find("\\\\$") then 
+        code_has_symbol = false 
+    end
     if code_has_symbol and target_cache and #target_cache > 0 then
         for _, c in ipairs(target_cache) do
             local text = c.text
