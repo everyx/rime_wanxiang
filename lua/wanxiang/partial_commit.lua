@@ -1,6 +1,6 @@
 -- @amzxyz  https://github.com/amzxyz/rime_wanxiang
 -- Ctrl+1..9,0：上屏首选前 N 字；按 preedit/script_text 的前 N 音节对齐 raw input
-local wanxiang = require("wanxiang")
+local wanxiang = require("wanxiang/wanxiang")
 
 local M = {}
 

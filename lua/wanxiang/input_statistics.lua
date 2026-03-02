@@ -3,7 +3,7 @@
 -- Rime 统计增强版 (LevelDB / 滚动时间窗口 / 效率仪表盘 / 汉字提纯)
 -- 维度升级：1, 2, 3, 4, ≥5 字独立统计
 
-local userdb = require("lib/userdb")
+local userdb = require("wanxiang/userdb")
 -- 1. 初始化数据库
 local db = userdb.LevelDb("lua/stats")
 

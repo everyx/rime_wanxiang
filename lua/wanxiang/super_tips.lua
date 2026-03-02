@@ -6,8 +6,8 @@
 --     key_binder/tips_key: "slash" # 上屏按键配置
 --     tips/disabled_types: [] # 禁用的 tips 类型
 
-local wanxiang = require("wanxiang")
-local userdb = require("lib/userdb")
+local wanxiang = require("wanxiang/wanxiang")
+local userdb = require("wanxiang/userdb")
 
 -- 尝试打开数据库
 local tips_db = userdb.LevelDb("lua/tips")

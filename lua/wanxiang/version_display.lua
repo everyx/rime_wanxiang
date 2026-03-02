@@ -1,4 +1,4 @@
-local wanxiang = require("wanxiang")
+local wanxiang = require("wanxiang/wanxiang")
 
 --输入'/wx'，显示万象项目地址和当前版本号
 local function translator(input, seg, env)

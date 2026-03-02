@@ -16,9 +16,9 @@
 -- 3) 初始化：先 flush 本机增量到导出 → 外部合并(所有设备文件+本机DB，LWW) → 重写本机导出(含墓碑) → 导入覆盖DB，p=0删除键，不导入
 -- 4) 同步路径策略：能从 installation.yaml 读取到 sync_dir 就用它；读不到才用默认 user_dir/sync
 -- 带 Ctrl 可视化标记
--- ✨是给上一层滤镜传递信息的代码，不用时便与删除
-local wanxiang = require("wanxiang")
-local userdb   = require("lib/userdb")
+-- ✨是给上一层滤镜传递排序上下文信息的代码，不用时便于删除
+local wanxiang = require("wanxiang/wanxiang")
+local userdb   = require("wanxiang/userdb")
 
 ------------------------------------------------------------
 -- 一、常量与键位
@@ -605,10 +605,21 @@ function F.func(input, env)
     if not is_code_has_symbol then
         _G.WanxiangSharedState.last_input = code
         _G.WanxiangSharedState.page_cache = {}
-    end  -- ✨
+    end  
 
-    local function original_list() for cand in input:iter() do yield(cand) end end
-    local context = env.engine.context
+    local cache_limit = (env.page_size or 5) * 2
+
+    -- ✨ 没有任何排序记录时，原样输出并缓存
+    local function original_list() 
+        local top_count = 0
+        for cand in input:iter() do 
+            if not is_code_has_symbol and top_count < cache_limit then
+                table.insert(_G.WanxiangSharedState.page_cache, clone_candidate(cand))
+                top_count = top_count + 1
+            end
+            yield(cand) 
+        end 
+    end -- ✨
 
     local adjustment_allowed = not (wanxiang.is_function_mode_active(context) and seq_property.get(context) == nil)
     if not adjustment_allowed then return original_list() end
@@ -673,9 +684,8 @@ function F.func(input, env)
         -- 直接覆盖内存中的旧记录
         prev_adjustments[key] = curr_adjustment
     end
-    local cache_limit = (env.page_size or 5) * 2 --✨ 缓存前两页
-    local count = 0 -- ✨
-    -- 渲染可视化标记
+    
+    local bottom_count = 0 
     for _, cand in ipairs(cands) do
         local cmt = cand.comment or ""
         if show_markers and prev_adjustments then
@@ -697,14 +707,14 @@ function F.func(input, env)
                         mark = " ●"          -- 原地不动
                     end
                     cand.comment = (cand.comment or "") .. mark
-
                 end
             end
         end
+        
         -- ✨ 把带好标记、排好序的终极状态，克隆进全局缓存，等包裹脚本来取！
-        if not is_code_has_symbol and count < cache_limit then
+        if not is_code_has_symbol and bottom_count < cache_limit then
             table.insert(_G.WanxiangSharedState.page_cache, clone_candidate(cand))
-            count = count + 1
+            bottom_count = bottom_count + 1
         end  -- ✨
         yield(cand)
     end

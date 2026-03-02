@@ -97,8 +97,8 @@ local function safe_require(name)
     return nil
 end
 
-local userdb = safe_require("lib/userdb") or safe_require("userdb")
-local wanxiang = safe_require("wanxiang")
+local userdb = safe_require("wanxiang/userdb")
+local wanxiang = safe_require("wanxiang/wanxiang")
 
 -- UTF-8 辅助
 local function get_utf8_offsets(text)
@@ -309,10 +309,11 @@ end
 function M.init(env)
     local ns = env.name_space
     ns = s_gsub(ns, "^%*", "")
+    ns = string.match(ns, "([^%.]+)$") or ns
     local config = env.engine.schema.config
   
-    local user_dir = rime_api:get_user_data_dir()
-    local shared_dir = rime_api:get_shared_data_dir()
+    local user_dir = rime_api.get_user_data_dir()
+    local shared_dir = rime_api.get_shared_data_dir()
 
     -- 1. 基础配置
     local db_name = config:get_string(ns .. "/db_name") or "lua/replacer"

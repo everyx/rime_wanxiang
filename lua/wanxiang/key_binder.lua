@@ -3,7 +3,7 @@
 -- 也即，在输入编码不同时，可以将按键绑定到不同的功能
 
 -- RIME_PROCESS_RESULTS 定义在 wanxiang.lua 中，这里需要引入才能使用
-local wanxiang = require("wanxiang")
+local wanxiang = require("wanxiang/wanxiang")
 
 local this = {}
 

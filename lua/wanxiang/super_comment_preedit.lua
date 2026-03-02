@@ -1,7 +1,7 @@
 --@amzxyz https://github.com/amzxyz/rime_wanxiang
 
 
-local wanxiang = require('wanxiang')
+local wanxiang = require('wanxiang/wanxiang')
 
 local tone_map = {
     ['ā']='a', ['á']='a', ['ǎ']='a', ['à']='a',

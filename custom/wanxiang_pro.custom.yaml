@@ -25,6 +25,7 @@ patch:
       user_table: ""
       completion: ""
       abbrev: ""
+      fallback: "~"
 
   super_replacer:
     db_name: lua/replacer

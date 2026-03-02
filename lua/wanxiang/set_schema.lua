@@ -1,4 +1,4 @@
-local wanxiang = require("wanxiang")
+local wanxiang = require("wanxiang/wanxiang")
 
 -- 文件复制函数
 local function copy_file(src, dest)

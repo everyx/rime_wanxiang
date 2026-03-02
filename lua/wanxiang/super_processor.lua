@@ -5,7 +5,7 @@
 -- 
 -- 用法: 在 schema.yaml 中 engine/processors 列表添加 - lua_processor@*super_processor
 
-local wanxiang = require("wanxiang")
+local wanxiang = require("wanxiang/wanxiang")
 local M = {}
 
 local K_REJECT, K_ACCEPT, K_NOOP = 0, 1, 2

@@ -2439,17 +2439,6 @@ local function translator(input, seg, env)
     local context = engine.context
     local config  = engine.schema.config
     local segment = context.composition:back()
-    local function set_ndate_tag(ctx, on)
-        local comp = ctx and ctx.composition
-        if not comp or comp:empty() then return end
-        local back_seg = comp:back()
-        if not back_seg then return end
-        if on then
-            back_seg.tags = back_seg.tags + Set({ "Ndate" })
-        else
-            back_seg.tags = back_seg.tags - Set({ "Ndate" })
-        end
-    end
     local handled = false  -- 仅当我们真正产出了候选，才设置为 true 并 return
 
     local function set_ndate_tag(context, on)

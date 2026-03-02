@@ -232,6 +232,8 @@ function F.init(env)
         if timeout then env.spacing_timeout = timeout end
         local key = cfg:get_string("wanxiang_lookup/key")
         if key and key ~= "" then env.lookup_key = key end
+        local max_cands = cfg:get_int("wanxiang_english/max_candidates")
+        if max_cands then env.max_eng_cands = max_cands end
     end
     env.lookup_key_esc = gsub(env.lookup_key, "([%%%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1")
     local delimiter_str = " '" 
@@ -375,7 +377,8 @@ function F.func(input, env)
     else
         single_char_injected = true 
     end
-
+    local eng_yield_count = 0
+    local max_eng_cands = env.max_eng_cands
     for cand in input:iter() do
         local good_cand = restore_sentence_spacing(cand, env.split_pattern, env.delim_check_pattern)
         local fmt_cand = apply_formatting(good_cand, code_ctx)
@@ -401,44 +404,57 @@ function F.func(input, env)
         end
         
         if not is_garbage then
-            has_valid_candidate = true
-            
-            -- [VIP 优先逻辑]
-            local is_vip_type = (c_type == "user_table" or c_type == "fixed" or c_type == "phrase")
-            local is_hidden_vip = (not is_vip_type) and (not is_ascii)
-            local treat_as_vip = is_vip_type or is_hidden_vip
-
-            if treat_as_vip then
-                -- VIP 通道：不仅是 user_table，包括汉字等，都直接输出，不让单字母插队
-                if not best_candidate_saved and cand.comment ~= "~" and not env.block_derivation then
-                    env.memory[curr_input] = {
-                        text = fmt_cand.text,
-                        preedit = curr_input
-                    }
-                    best_candidate_saved = true
+            local skip_cand = false
+            local safe_max_cands = tonumber(max_eng_cands) or 0
+            if is_ascii then
+                if safe_max_cands > 0 and eng_yield_count >= safe_max_cands then
+                    skip_cand = true
+                else
+                    eng_yield_count = eng_yield_count + 1
                 end
-                yield(fmt_cand)
+            end
 
-            else
-                -- 普通通道：允许单字母插队到前面
-                if has_single_chars and not single_char_injected then
-                    if not best_candidate_saved then
-                        env.memory[curr_input] = { text = single_chars[1].text, preedit = curr_input }
+            -- 如果未被限流，则照常输出
+            if not skip_cand then
+                has_valid_candidate = true
+                
+                -- [VIP 优先逻辑]
+                local is_vip_type = (c_type == "user_table" or c_type == "fixed" or c_type == "phrase")
+                local is_hidden_vip = (not is_vip_type) and (not is_ascii)
+                local treat_as_vip = is_vip_type or is_hidden_vip
+
+                if treat_as_vip then
+                    -- VIP 通道：不仅是 user_table，包括汉字等，都直接输出，不让单字母插队
+                    if not best_candidate_saved and cand.comment ~= "~" and not env.block_derivation then
+                        env.memory[curr_input] = {
+                            text = fmt_cand.text,
+                            preedit = curr_input
+                        }
                         best_candidate_saved = true
                     end
-                    for _, c in ipairs(single_chars) do yield(c) end
-                    single_char_injected = true
-                    has_valid_candidate = true
+                    yield(fmt_cand)
+
+                else
+                    -- 普通通道：允许单字母插队到前面
+                    if has_single_chars and not single_char_injected then
+                        if not best_candidate_saved then
+                            env.memory[curr_input] = { text = single_chars[1].text, preedit = curr_input }
+                            best_candidate_saved = true
+                        end
+                        for _, c in ipairs(single_chars) do yield(c) end
+                        single_char_injected = true
+                        has_valid_candidate = true
+                    end
+                    
+                    if not best_candidate_saved and cand.comment ~= "~" and not env.block_derivation then
+                        env.memory[curr_input] = {
+                            text = fmt_cand.text,
+                            preedit = curr_input
+                        }
+                        best_candidate_saved = true
+                    end
+                    yield(fmt_cand)
                 end
-                
-                if not best_candidate_saved and cand.comment ~= "~" and not env.block_derivation then
-                    env.memory[curr_input] = {
-                        text = fmt_cand.text,
-                        preedit = curr_input
-                    }
-                    best_candidate_saved = true
-                end
-                yield(fmt_cand)
             end
         end
     end

@@ -3,7 +3,7 @@
 -- @author: amzxyz
 
 local ForceUpperAux = {}
-local wanxiang = require("wanxiang")
+local wanxiang = require("wanxiang/wanxiang")
 
 -- 获取 UTF-8 字符
 local function get_utf8_char(str, index)
