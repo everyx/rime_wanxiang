@@ -6,7 +6,7 @@
         ".": {
             "release-type": "simple",
             "extra-files": [
-                "lua/wanxiang.lua"
+                "lua/wanxiang/wanxiang.lua"
             ],
             "changelog-sections": [
                 {
