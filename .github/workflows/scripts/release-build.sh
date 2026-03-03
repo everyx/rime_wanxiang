@@ -134,6 +134,7 @@ package_schema() {
     fi
 
     ZIP_NAME=$(basename "$OUT_DIR").zip
+    echo "^.*[.]custom.*$" > "$OUT_DIR/include_keyboard_rime_files.txt" #注入元书要用的文件
     # 构建 zip 的排除列表格式：-x "dicts/file1" "dicts/file2" ...
     ZIP_EXCLUDE_ARGS=()
     for file in "${EXCLUDE_DICT_FILES[@]}"; do
