@@ -457,11 +457,16 @@ function M.init(env)
 end
 
 function M.fini(env)
-    -- 我们只是断开当前 env 对全局 db 的引用
     env.db = nil
 end
-
--- [Core Function] 核心逻辑 (保持原有逻辑不变)
+local shared_pending = {}
+local shared_comments = {}
+local function clear_table(t)
+    for i = 1, #t do
+        t[i] = nil
+    end
+end
+-- [Core Function] 核心逻辑
 function M.func(input, env)
     local ctx = env.engine.context
     local input_code = ctx.input
@@ -474,6 +479,9 @@ function M.func(input, env)
     local input_type = "unknown"
     if not ctx:is_composing() or ctx.input == "" then
         fmm_cache = {}
+        collectgarbage("step", 200)
+        for cand in input:iter() do yield(cand) end
+        return
     end
     -- 如果数据库未连接，直接透传
     if not env.types or #env.types == 0 or not env.db then
@@ -494,8 +502,8 @@ function M.func(input, env)
         local show_main = true
         local current_main_comment = cand.comment
       
-        local pending_candidates = {}
-        local comments = {}
+        clear_table(shared_pending)
+        clear_table(shared_comments)
       
         for _, t in ipairs(types) do
             if t.mode ~= "abbrev" then
@@ -532,7 +540,7 @@ function M.func(input, env)
                         if mode == "comment" then
                             local parts = {}
                             for p in s_gmatch(val, split_pat) do insert(parts, p) end
-                            insert(comments, concat(parts, " "))
+                            insert(shared_comments, concat(parts, " "))
                           
                         elseif mode == "replace" then
                             if is_chain then
@@ -544,18 +552,18 @@ function M.func(input, env)
                                         elseif t.comment_mode == "text" then current_main_comment = cand.text end
                                         first = false
                                     else
-                                        insert(pending_candidates, { text=p, comment=rule_comment })
+                                        insert(shared_pending, { text=p, comment=rule_comment })
                                     end
                                 end
                             else
                                 show_main = false
                                 for p in s_gmatch(val, split_pat) do
-                                    insert(pending_candidates, { text=p, comment=rule_comment })
+                                    insert(shared_pending, { text=p, comment=rule_comment })
                                 end
                             end
                         elseif mode == "append" then
                             for p in s_gmatch(val, split_pat) do
-                                insert(pending_candidates, { text=p, comment=rule_comment })
+                                insert(shared_pending, { text=p, comment=rule_comment })
                             end
                         end
                     end
@@ -563,8 +571,8 @@ function M.func(input, env)
             end
         end
 
-        if #comments > 0 then
-            local comment_str = concat(comments, " ")
+        if #shared_comments > 0 then
+            local comment_str = concat(shared_comments, " ")
             local fmt = s_format(comment_fmt, comment_str)
             if cand.comment and cand.comment ~= "" then
                 cand.comment = cand.comment .. fmt
@@ -584,7 +592,7 @@ function M.func(input, env)
             end
         end
 
-        for _, item in ipairs(pending_candidates) do
+        for _, item in ipairs(shared_pending) do
             if not (show_main and item.text == current_text) then
                 local nc = Candidate("derived", cand.start, cand._end, item.text, item.comment)
                 nc.preedit = cand.preedit
@@ -621,9 +629,20 @@ function M.func(input, env)
                 end
 
                 if is_tag_match then
-                    -- 2. 探明开关状态
-                    local lazy = t.triggers[1] and (t.triggers[1] == true or ctx:get_option(t.triggers[1]))
-                    local always = t.triggers[2] and (t.triggers[2] == true or ctx:get_option(t.triggers[2]))
+                    local lazy = false
+                    local always = false
+                    
+                    for _, trigger in ipairs(t.triggers) do
+                        if trigger == true or (type(trigger) == "string" and ctx:get_option(trigger)) then
+                            -- 根据开关名称包含的关键字进行智能路由
+                            if type(trigger) == "string" and s_match(trigger, "lazy") then
+                                lazy = true
+                            else
+                                -- 如果名称带有 always，或纯 true，或自定义名称，默认视为 always
+                                always = true
+                            end
+                        end
+                    end
 
                     -- 3. 核心决断：lazy 遇词组则死，always 无视词组
                     if (lazy and not has_phrase) or always then
@@ -674,7 +693,7 @@ function M.func(input, env)
                 abbrev_triggered = true
                 pending_cands = {} 
             else
-                table.insert(pending_cands, cand)
+                insert(pending_cands, cand)
             end
         end
     end
