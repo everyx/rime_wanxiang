@@ -505,6 +505,7 @@ wanxiang_english:
   initial_quality: 2.1
   comment_format:  #这里很重要如果残留带声调字母，剩余编码提示计算出错引发程序崩溃
     - xform/^~.+$//
+  #以下是lua相关配置，与原生处理器无关
   #英文自动加空格，除关闭外共有3种模式可供选择
   #off: 关闭; before: 总是前加; after: 总是后加; 
   #smart: 智能模式连续输入英文时第二个单词前开始加空格，非输入状态的回车与空格都能打断加空格状态
@@ -512,6 +513,7 @@ wanxiang_english:
   english_spacing: smart
   spacing_timeout: 5
   max_candidates: 3  #英文候选输出最大候选数(适用于需要选单字组词的用户)
+  trigger: "\\"  #英文造词符号\，写一个用时双击
 
 wanxiang_mixedcode:
   dictionary: wanxiang_mixedcode

@@ -611,8 +611,12 @@ function M.func(input, env)
     end
     
     -- 状态转换判断
-    if code:sub(-1) == symbol or code:find("\\\\$") then 
+    local is_double = (string.sub(code, -2) == symbol .. symbol)
+    if code:sub(-1) == symbol or is_double then 
         code_has_symbol = false 
+        if is_double then
+            env.locked = false
+        end
     end
 
     if code_has_symbol and target_cache and #target_cache > 0 then
@@ -699,10 +703,19 @@ function M.func(input, env)
                     local base = format_and_autocap(env.cache)
                     local start_pos = (last_seg and last_seg.start) or 0
                     local end_pos   = (last_seg and last_seg._end) or code_len
-                    if keep_tail_len > 0 then end_pos = math.max(start_pos, end_pos - keep_tail_len) end
-
+                    local is_only_slash = (keep_tail_len > 0 and sub(code, -1) == symbol)
+                
+                    if keep_tail_len > 0 and not is_only_slash then 
+                        end_pos = math.max(start_pos, end_pos - keep_tail_len) 
+                    end
+                    
                     local nc = Candidate(base.type, start_pos, end_pos, base.text, base.comment)
-                    nc.preedit = base.preedit
+                    local cur_pre = base.preedit or base.text
+                    if is_only_slash and sub(cur_pre, -1) ~= symbol then
+                        nc.preedit = cur_pre .. symbol
+                    else
+                        nc.preedit = base.preedit
+                    end
 
                     if emit_with_pipeline({cand=nc, text=base.text, has_eng=w.has_eng}, emit_ctx) then
                         visual_idx = visual_idx + 1
@@ -813,9 +826,18 @@ function M.func(input, env)
                 local base = format_and_autocap(env.cache)
                 local start_pos = (last_seg and last_seg.start) or 0
                 local end_pos   = (last_seg and last_seg._end) or code_len
-                if keep_tail_len > 0 then end_pos = math.max(start_pos, end_pos - keep_tail_len) end
+                local is_only_slash = (keep_tail_len > 0 and sub(code, -1) == symbol)
+                
+                if keep_tail_len > 0 and not is_only_slash then 
+                    end_pos = math.max(start_pos, end_pos - keep_tail_len) 
+                end
+                
                 local nc = Candidate(base.type, start_pos, end_pos, base.text, base.comment)
-                nc.preedit = base.preedit
+                if is_only_slash and sub(cur_pre, -1) ~= symbol then
+                    nc.preedit = cur_pre .. symbol
+                else
+                    nc.preedit = base.preedit
+                end
                 if emit_with_pipeline({cand=nc, text=base.text, has_eng=w.has_eng}, emit_ctx) then
                     visual_idx = visual_idx + 1; emitted = true
                 end
