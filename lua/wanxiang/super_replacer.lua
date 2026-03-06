@@ -423,22 +423,27 @@ function M.init(env)
                 local fmm = config:get_bool(entry_path .. "/sentence")
                 if fmm == nil then fmm = false end
 
-                -- 读取 abbrev 的子属性：类型与物理置顶位
-                local abbrev_type = config:get_string(entry_path .. "/abbrev_type") or "lazy"
-                local index = config:get_int(entry_path .. "/index") or 1
+                -- 解析 abbrev_rule: "数量,位置"
+                local always_qty = 1
+                local always_idx = 1
+                if mode == "abbrev" then
+                    local rule_str = config:get_string(entry_path .. "/abbrev_rule") or "1,1"
+                    local qty_str, idx_str = s_match(rule_str, "^(%d+)%s*,%s*(%d+)$")
+                    always_qty = tonumber(qty_str) or 1
+                    always_idx = tonumber(idx_str) or 1
+                end
 
                 insert(env.types, {
                     triggers = triggers,
                     tags = target_tags,
                     prefix = prefix,
                     mode  = mode,
-                    abbrev_type = abbrev_type,
-                    index = index,
+                    always_qty = always_qty,
+                    always_idx = always_idx,
                     comment_mode = comment_mode,
                     fmm = fmm
                 })
 
-                -- 收集文件路径 (仅用于可能发生的 rebuild)
                 local keys_to_check = {"files", "file"}
                 for _, key in ipairs(keys_to_check) do
                     local d_path = entry_path .. "/" .. key
@@ -446,19 +451,16 @@ function M.init(env)
                     if list then
                         for j = 0, list.size - 1 do
                             local p = resolve_path(config:get_string(d_path .. "/@" .. j))
-                            -- 将 conversion_map 传入任务列表
                             if p then insert(tasks, { path = p, prefix = prefix, conversion = conversion_map }) end
                         end
                     else
                         local p = resolve_path(config:get_string(d_path))
-                        -- 将 conversion_map 传入任务列表
                         if p then insert(tasks, { path = p, prefix = prefix, conversion = conversion_map }) end
                     end
                 end
             end
         end
     end
-    -- 3. DB 初始化 (使用单例连接)
     env.db = connect_db(db_name, current_version, env.delimiter, tasks)
 end
 
@@ -497,7 +499,6 @@ function M.func(input, env)
     local seg = ctx.composition:back()
     local current_seg_tags = seg and seg.tags or {}
     
-    -- [Helper] process_rules 纯函数，返回处理后的候选数组
     local function process_rules(cand)
         local results = {}
         local current_text = cand.text
@@ -605,7 +606,7 @@ function M.func(input, env)
         return results
     end
 
-    -- 流式拦截器架构
+    -- 流式拦截器 + 候车室 架构
     local yield_count = 0
     local quality_dropped = false
     local has_exact_phrase = false
@@ -613,8 +614,9 @@ function M.func(input, env)
     local global_yielded = {}
     local always_cands = {}
     local lazy_cands = {}
+    local top_buffer = {}
 
-    -- 提前提取简码候选
+    -- 第一步：提前提取简码候选，分配阵营
     for _, t in ipairs(types) do
         if t.mode == "abbrev" then
             local is_active = false
@@ -636,15 +638,18 @@ function M.func(input, env)
                 local val = db:fetch(key) or (not s_match(input_code, "[A-Z]") and db:fetch(t.prefix .. s_upper(input_code)))
                 
                 if val then
+                    local count = 0
                     for p in s_gmatch(val, split_pat) do
                         if not seen_texts[p] then
                             seen_texts[p] = true
                             local abbrev_cand = Candidate("abbrev", 0, #input_code, p, "")
-                            abbrev_cand.quality = (t.abbrev_type == "always") and 999 or 98
+                            count = count + 1
                             
-                            if t.abbrev_type == "always" then
-                                insert(always_cands, { cand = abbrev_cand, index = t.index })
+                            if count <= t.always_qty then
+                                abbrev_cand.quality = 999
+                                insert(always_cands, { cand = abbrev_cand, index = t.always_idx + (count - 1) })
                             else
+                                abbrev_cand.quality = 98
                                 insert(lazy_cands, abbrev_cand)
                             end
                         end
@@ -654,10 +659,9 @@ function M.func(input, env)
         end
     end
 
-    -- 将 always_cands 按 index 升序排列
     table.sort(always_cands, function(a, b) return a.index < b.index end)
 
-    -- 统一吐词函数，包含强插与防撞车逻辑
+    -- 标准吐词函数（含精准定位插队）
     local function output_cand(cand)
         local processed_cands = process_rules(cand)
         for _, pc in ipairs(processed_cands) do
@@ -665,7 +669,6 @@ function M.func(input, env)
                 local ac = table.remove(always_cands, 1)
                 local ac_processed = process_rules(ac.cand)
                 for _, apc in ipairs(ac_processed) do
-                    -- 对去重
                     if not global_yielded[apc.text] then
                         global_yielded[apc.text] = true
                         yield(apc)
@@ -673,7 +676,6 @@ function M.func(input, env)
                     end
                 end
             end
-            -- 原生词如果跟刚才强插的简码一样
             if not global_yielded[pc.text] then
                 global_yielded[pc.text] = true
                 yield(pc)
@@ -682,40 +684,89 @@ function M.func(input, env)
         end
     end
 
-    -- 遍历底层流
+    -- 清空候车室机制
+    local function flush_buffer()
+        if has_exact_phrase then
+            -- 正常有词,执行定位插队，替补直接销毁
+            for _, cand in ipairs(top_buffer) do
+                output_cand(cand)
+            end
+        else
+            -- 空码救场
+            for _, cand in ipairs(top_buffer) do
+                local processed_cands = process_rules(cand)
+                for _, pc in ipairs(processed_cands) do
+                    if not global_yielded[pc.text] then
+                        global_yielded[pc.text] = true
+                        yield(pc)
+                        yield_count = yield_count + 1
+                    end
+                end
+            end
+            
+            -- 立刻倾泻所有主力简码（无视设定的 index 坑位了，紧紧跟在后面）
+            while #always_cands > 0 do
+                local ac = table.remove(always_cands, 1)
+                local ac_processed = process_rules(ac.cand)
+                for _, apc in ipairs(ac_processed) do
+                    if not global_yielded[apc.text] then
+                        global_yielded[apc.text] = true
+                        yield(apc)
+                        yield_count = yield_count + 1
+                    end
+                end
+            end
+            
+            -- 立刻倾泻所有替补简码
+            for _, lc in ipairs(lazy_cands) do
+                local lc_processed = process_rules(lc)
+                for _, lpc in ipairs(lc_processed) do
+                    if not global_yielded[lpc.text] then
+                        global_yielded[lpc.text] = true
+                        yield(lpc)
+                        yield_count = yield_count + 1
+                    end
+                end
+            end
+            lazy_cands = {}
+        end
+        top_buffer = {}
+    end
+
+    -- 第二步：遍历底层流
     for cand in input:iter() do
-        if cand.type == "phrase" or cand.type == "user_phrase" then 
+        if cand.type == "phrase" or cand.type == "user_phrase" then
             has_exact_phrase = true 
         end
         local q = cand.quality or 0
 
-        -- 跌破 99 时结算
-        if not quality_dropped and q < 99 then
-            quality_dropped = true
-            if not has_exact_phrase and #lazy_cands > 0 then
-                for _, lc in ipairs(lazy_cands) do
-                    output_cand(lc)
-                end
-                lazy_cands = {} 
+        if not quality_dropped then
+            if q >= 99 then
+                insert(top_buffer, cand)
+            else
+                quality_dropped = true
+                flush_buffer()
+                output_cand(cand)
             end
-        end
-
-        output_cand(cand)
-    end
-
-    -- 兜底逻辑
-    if not quality_dropped and not has_exact_phrase and #lazy_cands > 0 then
-        for _, lc in ipairs(lazy_cands) do 
-            output_cand(lc) 
+        else
+            output_cand(cand)
         end
     end
 
-    for _, ac in ipairs(always_cands) do
+    -- 第三步：如果流从头到尾都没跌破 99（很短的流），做最后的兜底收尾
+    if not quality_dropped then
+        flush_buffer()
+    end
+
+    -- 清理残余（应对 index 设定极大，流长度不够的情况）
+    while #always_cands > 0 do
+        local ac = table.remove(always_cands, 1)
         local ac_processed = process_rules(ac.cand)
         for _, apc in ipairs(ac_processed) do
             if not global_yielded[apc.text] then
                 global_yielded[apc.text] = true
                 yield(apc)
+                yield_count = yield_count + 1 
             end
         end
     end
