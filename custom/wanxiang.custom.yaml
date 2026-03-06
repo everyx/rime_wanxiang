@@ -89,6 +89,7 @@ patch:
         # 然后空码或只有英文等自定义词组的时候直接全部兜底显示,这个新的设计简化的应用层面,我们只需要维护一个数据库即可.
         files:
           - lua/data/abbrev.txt
+          - lua/data/chengyu.txt
   # 字符集过滤lua
   # a,通用规范汉字表
   # b,GB2312,
@@ -136,9 +137,6 @@ patch:
     #小键盘数字处理逻辑
     #  "compose" : 小键盘数字始终不上屏参与编码
     #  "auto"    : 输入中 push，空闲时 commit（默认）
-
-  #成语简码前置位置，只能设置在第一页，大于当前页数量则默认在最后一个，0代表关闭前置
-  idiom_preposition: 0
 
   #shijian:仅仅作为提示使用，编码已经写死，引导键可以在key_binder下修改前缀
   #时间：osj 或者 /sj

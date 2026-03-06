@@ -82,7 +82,6 @@ engine:
     - lua_translator@*wanxiang.super_calculator     #超级计算器，Lua内查看高级用法
     - lua_translator@*wanxiang.input_statistics     #一个输入统计的脚本，以日、周、月、年等维度的统计
     - table_translator@custom_phrase       #自定义短语 custom_phrase.txt，用于置顶自定义编码候选词
-    - table_translator@chengyu             #简码成语词汇表导入
     - table_translator@wanxiang_english    #英文词汇表导入
     - table_translator@wanxiang_mixedcode  #混合编码词汇表导入
     - reverse_lookup_translator@wanxiang_reverse    #挂接部件组字和笔画反查
@@ -186,7 +185,7 @@ super_replacer:
       # 然后空码或只有英文等自定义词组的时候直接全部兜底显示,这个新的设计简化的应用层面,我们只需要维护一个数据库即可.
       files:
         - lua/data/abbrev.txt
-
+        - lua/data/chengyu.txt
 
 # 字符集过滤lua
 # a,通用规范汉字表
@@ -235,9 +234,6 @@ kp_number_mode: auto
   #小键盘数字处理逻辑
   #  "compose" : 小键盘数字始终不上屏参与编码
   #  "auto"    : 输入中 push，空闲时 commit（默认）
-
-#成语简码前置位置，只能设置在第一页，大于当前页数量则默认在最后一个，0代表关闭前置
-idiom_preposition: 0
 
 #shijian:仅仅作为提示使用，编码已经写死，引导键可以在key_binder下修改前缀
 #时间：osj 或者 /sj
@@ -482,16 +478,6 @@ custom_phrase:
   enable_sentence: false    #禁止造句
   initial_quality: 99       #custom_phrase 的权重应该比 pinyin 和 wanxiang_en 大
 
-
-# 简码词库导入位于dicts得chengyu.txt文件词库
-chengyu:
-  dictionary: ""
-  user_dict: dicts/chengyu
-  db_class: stabledb
-  enable_sentence: false
-  enable_completion: false
-  initial_quality: 1.3
-
 # 中文、英文、数字、符号等混合词汇
 wanxiang_english:
   dictionary: wanxiang_english
@@ -541,7 +527,6 @@ recognizer:
   patterns:  # 再增加方案专有的：
     punct: "^/([0-9]|10|[A-Za-z]+)$"    # 响应 symbols.yaml 的 symbols
     wanxiang_reverse: "^`[A-Za-z]*$"      # 响应部件拆字与笔画的反查，与 wanxiang_reverse/prefix 匹配
-    #add_user_dict: "^ac[A-Za-z/`']*$"   #引导式造词
     unicode: "^U[a-f0-9]+"              # U 作为触发前缀，响应 lua_translator@unicode，输出 Unicode 字符
     number: "^R[0-9]+[.]?[0-9]*"        # R 作为触发前缀, 响应 lua_translator@number_translator，数字金额大写
     sjc: "^[/o]rc\\d+[-+=op]?$"
@@ -554,7 +539,7 @@ recognizer:
     nyr1: "^N19?[0-9]?[0-9]?[0-1]?[0-9]?[0-9]?[0-9]?"
     nyr2: "^N20?[0-9]?[0-9]?[0-1]?[0-9]?[0-9]?[0-9]?"
     calculator: "^V.*$"                 # V 作为触发前缀，计算器功能引导
-    #add_user_dict: "^ac[A-Za-z/`']*$"      #自造词引导方式
+    #add_user_dict: "^``[A-Za-z/`']*$"      #自造词引导方式
     email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"                            # email @ 之后不上屏
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"  # URL
 

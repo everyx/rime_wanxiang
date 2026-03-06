@@ -89,7 +89,6 @@ engine:
     - lua_translator@*wanxiang.super_calculator     #超级计算器，Lua内查看高级用法
     - lua_translator@*wanxiang.input_statistics     #一个输入统计的脚本，以日、周、月、年等维度的统计
     - table_translator@custom_phrase       #自定义短语 custom_phrase.txt，用于置顶自定义编码候选词
-    - table_translator@chengyu             #简码成语词汇表导入
     - table_translator@wanxiang_english    #英文词汇表导入
     - table_translator@wanxiang_mixedcode  #混合编码词汇表导入
     - reverse_lookup_translator@wanxiang_reverse    #挂接部件组字和笔画反查
@@ -151,9 +150,6 @@ kp_number_mode: auto
   #小键盘数字处理逻辑
   #  "compose" : 小键盘数字始终不上屏参与编码
   #  "auto"    : 输入中 push，空闲时 commit（默认）
-
-#成语简码前置位置，只能设置在第一页，大于当前页数量则默认在最后一个，0代表关闭前置
-idiom_preposition: 0
 
 super_replacer:
   db_name: lua/replacer
@@ -227,7 +223,7 @@ super_replacer:
       # 然后空码或只有英文等自定义词组的时候直接全部兜底显示,这个新的设计简化的应用层面,我们只需要维护一个数据库即可.
       files:
         - lua/data/abbrev.txt
-
+        - lua/data/chengyu.txt
 # 字符集过滤lua
 # a,通用规范汉字表
 # b,GB2312,
@@ -496,16 +492,6 @@ custom_phrase:
   enable_completion: false # 补全提示
   enable_sentence: false   # 禁止造句
   initial_quality: 99      # custom_phrase 的权重应该比 pinyin 和 wanxiang_en 大
-
-
-# 简码词库导入位于dicts得txt文件词库
-chengyu:
-  dictionary: ""
-  user_dict: dicts/chengyu
-  db_class: stabledb
-  enable_sentence: false
-  enable_completion: false
-  initial_quality: 1.2 #本表词和系统词重码居后
 
 # 中文、英文、数字、符号等混合词汇
 wanxiang_english:
