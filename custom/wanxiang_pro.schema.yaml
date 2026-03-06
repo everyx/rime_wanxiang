@@ -213,14 +213,17 @@ super_replacer:
       files:
         - lua/data/TWVariants.txt
     - option: abbrev_lazy
-      mode: abbrev          # <--- 新增的简码模式
+      mode: abbrev          # 简码模式
+      abbrev_type: lazy     # 空出简码,跟在用户词后面,英文和单字前面
       tags: [abc]
       prefix: "_al_"
       files:
         - lua/data/abbrev_lazy.txt # 格式：zm\t怎么|在吗
     - option: abbrev_always
-      mode: abbrev          # <--- 新增的简码模式
+      mode: abbrev
       tags: [abc]
+      abbrev_type: always   # abbrev_type: always|lazy  是 mode: abbrev模式下的子参数控制出简两种模式,注意上面option只是同名表达意思,开关名称不固定
+      index: 2    #总出简模式下支持设置出简的起始范围
       #conv: "abcdefghijklmnopqrstuvwxyz>ABCDEFGHIJKLMNOPQRSTUVWXYZ" #从txt里编码转换为实际打字需要的编码，例如九键维护用字母加载数据库变数字
       prefix: "_aa_"
       files:
