@@ -208,13 +208,6 @@ super_replacer:
       prefix: "_s2tw_"
       files:
         - lua/data/TWVariants.txt
-    - option: abbrev_lazy
-      mode: abbrev          # 简码模式
-      abbrev_type: lazy     # 空出简码,跟在用户词后面,英文和单字前面
-      tags: [abc]
-      prefix: "_al_"
-      files:
-        - lua/data/abbrev_lazy.txt # 格式：zm\t怎么|在吗
     - option: abbrev      # 对应上面开关名称
       mode: abbrev
       prefix: "_abbr_"
