@@ -46,12 +46,6 @@ local function pure(s)
     return gsub(s, "[^a-zA-Z]", ""):lower()
 end
 
-local function get_first_utf8_char(s)
-    if not s or s == "" then return "" end
-    local offset = utf8.offset(s, 2)
-    return offset and sub(s, 1, offset - 1) or s
-end
-
 local no_spacing_words = {
     ["http"]  = true, ["https"] = true, ["www"]   = true, ["ftp"]   = true,
     ["ssh"]   = true, ["mailto"]= true, ["file"]  = true, ["tel"]   = true,
@@ -69,6 +63,7 @@ local allowed_ascii_symbols = {
     [53]=true, [54]=true, [55]=true, [56]=true, [57]=true,
 }
 
+-- 必须包含至少一个英文字母，否则纯数字/符号直接返回 false
 local function is_ascii_phrase_fast(s)
     if not s or s == "" then return false end
     local len = #s
@@ -247,11 +242,11 @@ function F.init(env)
         local max_cands = cfg:get_int("wanxiang_english/max_candidates")
         if max_cands then env.max_eng_cands = max_cands end
         local sym = cfg:get_string("wanxiang_english/trigger")
-        if sym and #sym > 0 then env.pair_symbol = get_first_utf8_char(sym) end
+        if sym and #sym > 0 then env.pair_symbol = sub(sym, 1, 1) end
         delimiter_str = cfg:get_string('speller/delimiter') or delimiter_str
     end
     env.lookup_key_esc = gsub(env.lookup_key, "([%%%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1")
-    env.delimiter_char = get_first_utf8_char(delimiter_str)
+    env.delimiter_char = sub(delimiter_str, 1, 1)
     local escaped_delims = gsub(delimiter_str, "([%%%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1")
     env.split_pattern = "[^" .. escaped_delims .. "]+"     
     env.delim_check_pattern = "[" .. escaped_delims .. "]" 
@@ -326,21 +321,20 @@ function F.func(input, env)
 
     local curr_input = ctx.input
     local symbol = env.pair_symbol
-    local sym_len = #symbol
-
     if not has_letters(curr_input) then
         for cand in input:iter() do
             yield(cand)
         end
         return 
     end
+    -- ===
     local has_valid_candidate = false
     local best_candidate_saved = false
     local code_len = #curr_input
 
     -- [Feature] 强制英文造词
-    if code_len > sym_len * 2 and sub(curr_input, -(sym_len * 2)) == symbol .. symbol then
-        local raw_text = sub(curr_input, 1, code_len - (sym_len * 2))
+    if code_len > 2 and sub(curr_input, -2) == symbol .. symbol then
+        local raw_text = sub(curr_input, 1, code_len - 2)
         if is_ascii_phrase_fast(raw_text) then
             if ctx.composition and not ctx.composition:empty() then
                 ctx.composition:back().prompt = "〔英文造词〕"
@@ -392,6 +386,7 @@ function F.func(input, env)
     end
 
     local eng_yield_count = 0
+    -- 如果存在单字母派生，预先将这两个候选计入配额
     if has_single_chars then
         eng_yield_count = 2
     end
@@ -403,6 +398,7 @@ function F.func(input, env)
         local c_type = cand.type
         local raw_text = cand.text
         
+        -- [垃圾词判定]：保护符号，只去重单字母
         local is_garbage = (c_type == "raw") 
         if not is_garbage and code_len == 1 and has_letters(curr_input) then
              if lower(raw_text) == lower(curr_input) then
@@ -414,8 +410,10 @@ function F.func(input, env)
             local skip_cand = false
             local is_ascii = is_ascii_phrase_fast(raw_text)
             
+            -- [前置判断]
             if is_ascii then
                 if c_type == "user_phrase" then
+                    -- 命中用户自定义词库(纯英文)，直接放行，既不拦截也不消耗限流名额
                 elseif safe_max_cands > 0 and eng_yield_count >= safe_max_cands then
                     skip_cand = true
                 else
@@ -424,6 +422,7 @@ function F.func(input, env)
             end
 
             if skip_cand then
+                -- 即使当前的词被丢弃，也要确保单字母（若存在）成功插队输出
                 if has_single_chars and not single_char_injected then
                     if not best_candidate_saved then
                         env.memory[curr_input] = { text = single_chars[1].text, preedit = curr_input }
@@ -500,16 +499,12 @@ function F.func(input, env)
         if env.schema_id == "wanxiang_english" and has_letters(curr_input) then
             local anchor = nil
             local diff = ""
-            local u_len = utf8.len(curr_input) or 0
-            for i = u_len - 1, 1, -1 do
-                local offset = utf8.offset(curr_input, i + 1)
-                if offset then
-                    local prefix = sub(curr_input, 1, offset - 1)
-                    if env.memory[prefix] then
-                        anchor = env.memory[prefix]
-                        diff = sub(curr_input, offset)
-                        break
-                    end
+            for i = #curr_input - 1, 1, -1 do
+                local prefix = sub(curr_input, 1, i)
+                if env.memory[prefix] then
+                    anchor = env.memory[prefix]
+                    diff = sub(curr_input, i + 1)
+                    break
                 end
             end
             
@@ -518,14 +513,14 @@ function F.func(input, env)
                 
                 if is_code_mode then
                     local clean_diff = diff
-                    if sub(clean_diff, -sym_len) == symbol then
-                        clean_diff = sub(clean_diff, 1, -(sym_len + 1))
+                    if sub(clean_diff, -1) == symbol then
+                        clean_diff = sub(clean_diff, 1, -2)
                     end
                     local output_text = anchor.text .. clean_diff
                     local output_preedit = (anchor.preedit or anchor.text) .. diff
                     output_text = apply_segment_formatting(output_text, curr_input)
                     
-                    local cand = Candidate("fallback", 0, #curr_input, output_text, "")
+                    local cand = Candidate("completion", 0, #curr_input, output_text, "~")
                     cand.preedit = output_preedit
                     cand.quality = 999
                     yield(cand)
@@ -550,7 +545,7 @@ function F.func(input, env)
                     end
                     
                     output_text = apply_segment_formatting(output_text, curr_input)
-                    local cand = Candidate("fallback", 0, #curr_input, output_text, "")
+                    local cand = Candidate("completion", 0, #curr_input, output_text, "~")
                     cand.preedit = output_preedit
                     cand.quality = 999
                     yield(cand)
@@ -562,10 +557,10 @@ function F.func(input, env)
         -- [Phase 4] 兜底
         if not yielded_derived then
             local text = curr_input
-            if sub(text, -sym_len) == symbol then
-                text = sub(text, 1, -(sym_len + 1))
+            if sub(text, -1) == symbol then
+                text = sub(text, 1, -2)
             end
-            local cand = Candidate("fallback", 0, #curr_input, text, "")
+            local cand = Candidate("completion", 0, #curr_input, text, "~")
             cand.preedit = curr_input
             yield(cand)
         end
