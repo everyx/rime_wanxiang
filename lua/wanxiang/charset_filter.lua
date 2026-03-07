@@ -13,16 +13,12 @@ local sub = string.sub
 local utf8_codes = utf8.codes
 local utf8_len = utf8.len
 
--- ==========================================
 -- 内部辅助函数
--- ==========================================
-
 -- 检查交集
 local function check_intersection(db_attr, config_base_set)
     if not db_attr or db_attr == "" then return false end
-    for i = 1, #db_attr do
-        local c = sub(db_attr, i, i)
-        if config_base_set[c] then
+    for char in db_attr:gmatch("[%z\1-\127\194-\244][\128-\191]*") do
+        if config_base_set[char] then
             return true
         end
     end
@@ -124,11 +120,7 @@ local function check_text_has_rare_char(env, ctx, text)
     end
     return false
 end
-
--- ==========================================
 -- 生命周期管理
--- ==========================================
-
 function M.init(env)
     local cfg = env.engine and env.engine.schema and env.engine.schema.config
     
@@ -188,8 +180,8 @@ function M.init(env)
 
             local base_str = cfg:get_string(entry_path .. "/base")
             if base_str and #base_str > 0 then
-                for j = 1, #base_str do
-                    rule_base_set[sub(base_str, j, j)] = true
+                for char in base_str:gmatch("[%z\1-\127\194-\244][\128-\191]*") do
+                    rule_base_set[char] = true
                 end
             end
 
@@ -225,11 +217,7 @@ function M.fini(env)
     env.filters = nil
     env.phrase_history_dict = nil
 end
-
--- ==========================================
 -- 核心过滤流水线
--- ==========================================
-
 function M.func(input, env)
     local ctx = env.engine.context
     local code = ctx.input or ""
@@ -255,12 +243,13 @@ function M.func(input, env)
     
     local charset_active = (env.filters and #env.filters > 0) and (not is_functional)
     
+    -- code:sub 这里是安全的，因为 ctx.input 获取的是纯英文字符串（原始按键编码）
     if #code == 5 and code:sub(-1):find("[^%w]") then
         charset_active = false
     end
 
     -- 3. 遍历候选词
-    local has_recorded_history = false -- 【修复点】：只有第一个有效产出的词才记入历史
+    local has_recorded_history = false
     
     -- 内部帮助函数：记录历史并推入管道
     local function yield_and_record(cand, text)
@@ -274,11 +263,10 @@ function M.func(input, env)
     for cand in input:iter() do
         local text = cand.text
         
-        -- 如果未开启过滤，直接放行并记录历史
         if not charset_active or text == "" then
             yield_and_record(cand, text)
         else
-            local text_length = utf8_len(text)
+            local text_length = utf8_len(text) or 0
 
             if text_length < 2 then
                 -- 单字过滤：如果不符合就直接丢弃，不执行兜底，也不执行记录
@@ -298,7 +286,7 @@ function M.func(input, env)
                     local current_code_length = #code
                     for history_length = current_code_length - 1, 1, -1 do
                         local history_text = env.phrase_history_dict[history_length]
-                        if history_text and utf8_len(history_text) == text_length then
+                        if history_text and (utf8_len(history_text) or 0) == text_length then
                             fallback_text = history_text
                             break
                         end
@@ -307,13 +295,18 @@ function M.func(input, env)
                     if fallback_text then
                         -- 构造兜底候选
                         local preedit_text = cand.preedit or code
-                        if #preedit_text > 1 and preedit_text:sub(-1):match("[%w%p]") then
-                            preedit_text = sub(preedit_text, 1, -2) .. " " .. sub(preedit_text, -1)
+                        if preedit_text and preedit_text ~= "" then
+                            local offset = utf8.offset(preedit_text, -1)
+                            if offset and offset > 1 then
+                                local last_char = preedit_text:sub(offset)
+                                if last_char:match("^[%w%p]$") then
+                                    preedit_text = preedit_text:sub(1, offset - 1) .. " " .. last_char
+                                end
+                            end
                         end
                         
                         local nc = Candidate(cand.type, cand.start, cand._end, fallback_text, cand.comment or "")
                         nc.preedit = preedit_text
-                        
                         -- 验证兜底词自身不是生僻词
                         if in_charset(env, ctx, nc.text) then
                             yield_and_record(nc, nc.text)

@@ -245,11 +245,12 @@ local function split_lookup_input(input, key, bypass_prefix)
         from = s + 1
     end
 
-    if not s_start then return nil end
+    local s_start_safe = utf8.offset(input, utf8.len(input:sub(1, s_start)) or 0) or s_start
+    local s_end_safe = utf8.offset(input, (utf8.len(input:sub(1, s_end)) or 0) + 1) or (s_end + 1)
 
-    local code = input:sub(1, s_start - 1)
-    local fuma = input:sub(s_end + 1)
-    return code, fuma, s_start, s_end
+    local code = input:sub(1, s_start_safe - 1)
+    local fuma = input:sub(s_end_safe)
+    return code, fuma, s_start_safe, s_end_safe - 1
 end
 
 local function parse_comment_codes(comment, pattern, target_len, enable_tone)
@@ -270,8 +271,11 @@ local function parse_comment_codes(comment, pattern, target_len, enable_tone)
         local codes_part
         
         if p1 then
-            pinyin_part = part:sub(1, p1 - 1)
-            codes_part = part:sub(p2 + 1)
+            local offset_p1 = utf8.offset(part, utf8.len(part:sub(1, p1)) or 0) or p1
+            local offset_p2 = utf8.offset(part, (utf8.len(part:sub(1, p2)) or 0) + 1) or (p2 + 1)
+            
+            pinyin_part = part:sub(1, offset_p1 - 1)
+            codes_part = part:sub(offset_p2)
         else
             pinyin_part = part
             codes_part = ""

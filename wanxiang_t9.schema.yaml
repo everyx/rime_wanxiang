@@ -89,14 +89,7 @@ super_comment:                 # 超级注释模块，子项配置 true 开启�
   corrector_type: "comment"    # 注意9键里应原状态输出，不要加括号。随意更换左右括号，比如"〔comment〕" 不加括号为无括号，comment占位不能动
   chaifen: "〔chaifen〕"         # 随意更换左右括号，比如"〔chaifen〕" 不加括号为无括号，chaifen占位不能动
   cand_type:
-    user_phrase: ""
-    sentence: ""
-    phrase: ""
-    table: ""
-    user_table: ""
-    completion: ""
-    abbrev: ""
-    fallback: "~"
+
 # 字符集过滤lua
 # a,通用规范汉字表
 # b,GB2312,
