@@ -1833,6 +1833,7 @@ pro:
       - derive|^(.*?)(\d?);.*?,(\w)(\w).*$|$1$2/$3$4| # 双拼+直接声调+/间接2位辅助码的情况
       - erase/^(.+);(.+)$/    # 删除原始编码加速检索
       - xform/◯/;/  #对于微软双拼、搜狗双拼，前面将分号保护了起来，现在放出来让其发挥作用
+      - xlit/QWRTYUIOPSDFGHMJCKLZXVBN/qwrtyuiopsdfghmjcklzxvbn/
       # 以下直接大写辅助
       - derive|^(..)(\d?)/([a-z])([a-z]?)$|$1$2\u$3\u$4|
       - derive|^(..)(\d?)/([a-z])([a-z]?)$|$1\u$3$2\u$4|
