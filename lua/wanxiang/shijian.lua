@@ -2404,10 +2404,19 @@ local function get_upcoming_holidays()
 end
 
 -- 下面这个用于统一生成候选的逻辑
-local function generate_candidates(type, seg, candidates)
+local function generate_candidates(input, alias, seg, candidates)
+    local prefix = ""
+    if input:match("^%d") then
+        prefix = "o"
+    elseif input:match("^/%d") then
+        prefix = "/"
+    end
     for _, item in ipairs(candidates) do
-        local candidate = Candidate(type, seg.start, seg._end, item[1], item[2])
-        candidate.quality = 1000000 -- 设定高优先级
+        local candidate = Candidate("shijian", seg.start, seg._end, item[1], item[2])
+        candidate.quality = 1000000
+        if prefix ~= "" then
+            candidate.preedit = prefix .. alias
+        end
         yield(candidate)
     end
 end
@@ -2507,7 +2516,7 @@ local function translator(input, seg, env)
                                 table.insert(candidates, { processed, "" })
                             end
                         end
-                        generate_candidates("shijian", seg, candidates)
+                        generate_candidates(input, "shijian", seg, candidates)
                         handled = true
                     end
                 end
@@ -2532,7 +2541,7 @@ local function translator(input, seg, env)
                     for i = 1, #lunar do
                         candidates[#candidates + 1] = { lunar[i][1], lunar[i][2] }
                     end
-                    generate_candidates("shijian", seg, candidates)
+                    generate_candidates(input, "shijian", seg, candidates)
                     handled = true
                 end
             end
@@ -2619,7 +2628,7 @@ local function translator(input, seg, env)
         for _, variant in ipairs(lunar_variants) do
             table.insert(candidates, variant) 
         end
-        generate_candidates("shijian", seg, candidates)
+        generate_candidates(input, "rq", seg, candidates)
         set_prompt_if_invalid(context, num_year)
         return
     end
@@ -2703,7 +2712,7 @@ local function translator(input, seg, env)
             table.insert(candidates, variant)
         end
         
-        generate_candidates("shijian", seg, candidates)
+        generate_candidates(input, "rc", seg, candidates)
         set_prompt_if_invalid(context, num_year)
         return
     end
@@ -2740,7 +2749,7 @@ local function translator(input, seg, env)
         -- 时辰
         table.insert(candidates, { GetLunarSichen(os.date("%H"), 1), "" })
 
-        generate_candidates("shijian", seg, candidates)
+        generate_candidates(input, "sj", seg, candidates)
         set_prompt_if_invalid(context, time_discrpt)
         return
     end
@@ -2822,7 +2831,7 @@ local function translator(input, seg, env)
             table.insert(candidates, { target_str, comment })
         end
 
-        generate_candidates("shijian", seg, candidates)
+        generate_candidates(input, "utc", seg, candidates)
         return
     end
     -- **日期+时间（/dt，别名）**
@@ -2849,7 +2858,7 @@ local function translator(input, seg, env)
             }
         end
 
-        generate_candidates("shijian", seg, candidates)
+        generate_candidates(input, "dt", seg, candidates)
         return
     end
 
@@ -2881,7 +2890,7 @@ local function translator(input, seg, env)
             { os.date("%Y%m%d%H%M%S"),                   "〔YYYYMMDDHHMMSS〕" },
         }
 
-        generate_candidates("shijian", seg, candidates)
+        generate_candidates(input, "tt", seg, candidates)
         return
     end
     -- **农历候选项**
@@ -2897,7 +2906,7 @@ local function translator(input, seg, env)
             { lunarJzl(os.date("%Y%m%d%H")),                                         "" },
             { Date2LunarDate(os.date("%Y%m%d")) .. GetLunarSichen(os.date("%H"), 1), "" }
         }
-        generate_candidates("shijian", seg, candidates)
+        generate_candidates(input, "nl", seg, candidates)
         set_prompt_if_invalid(context, year) -- 显示“〔2025年〕”风格的提示
         return
     end
@@ -2913,7 +2922,7 @@ local function translator(input, seg, env)
         local candidates = {
             { chinese_weekday2(os.date("%w")), num_weekday },
             { chinese_weekday(os.date("%w")),  num_weekday } }
-        generate_candidates("shijian", seg, candidates)
+        generate_candidates(input, "xq", seg, candidates)
         return
     end
 
@@ -2927,7 +2936,7 @@ local function translator(input, seg, env)
         local weekno_str = tostring(weekno)
 
         local candidates = { { "W" .. weekno_str, "" }, { "第" .. weekno_str .. "周", "" } }
-        generate_candidates("shijian", seg, candidates)
+        generate_candidates(input, "ww", seg, candidates)
         return
     end
 
@@ -2937,7 +2946,7 @@ local function translator(input, seg, env)
         context:set_property("sequence_adjustment_code", "/jq")
         local jqs = GetNowTimeJq(os.date("%Y%m%d", os.time()))
         --local jqs = GetNowTimeJq(os.date("%Y%m%d", os.time() - 3600 * 24 * 15)) 向前获取一个历史节气
-        local jq_variants = {}
+        local candidates = {}
         for _, jq in ipairs(jqs) do
             local jieqi_name, date_str = jq:match("^(%S+)%s+(%d+-%d+-%d+)$")
             local days_diff = ""  -- 默认注释为空
@@ -2970,7 +2979,7 @@ local function translator(input, seg, env)
                 table.insert(candidates, { jq, "" })
             end
         end
-        generate_candidates("shijian", seg, candidates)
+        generate_candidates(input, "jq", seg, candidates)
         return
     end
 
@@ -2996,7 +3005,7 @@ local function translator(input, seg, env)
             end
         end
         -- 使用 generate_candidates 函数生成候选项
-        generate_candidates("shijian", seg, candidates)
+        generate_candidates(input, "jr", seg, candidates)
         return
     end
 
@@ -3144,7 +3153,7 @@ local function translator(input, seg, env)
             string.format("◈ %s < [ %d ]天", upcoming_jqs[2], jieqi_days[2])
 
         local candidates = { { summary, "" } }
-        generate_candidates("shijian", seg, candidates)
+        generate_candidates(input, "day", seg, candidates)
         return
     end
     -- 取消tag

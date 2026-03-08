@@ -462,6 +462,10 @@ function ZH.func(input, env)
 
     for cand in input:iter() do
         local genuine_cand = cand:get_genuine()
+        if genuine_cand.type == "shijian" then
+            yield(genuine_cand)
+            goto continue
+        end
         local preedit = genuine_cand.preedit or ""
         local initial_comment = genuine_cand.comment
         local final_comment = initial_comment
