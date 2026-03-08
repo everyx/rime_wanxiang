@@ -520,7 +520,7 @@ function F.func(input, env)
                     local output_preedit = (anchor.preedit or anchor.text) .. diff
                     output_text = apply_segment_formatting(output_text, curr_input)
                     
-                    local cand = Candidate("completion", 0, #curr_input, output_text, "~")
+                    local cand = Candidate("fallback", 0, #curr_input, output_text, "")
                     cand.preedit = output_preedit
                     cand.quality = 999
                     yield(cand)
@@ -545,7 +545,7 @@ function F.func(input, env)
                     end
                     
                     output_text = apply_segment_formatting(output_text, curr_input)
-                    local cand = Candidate("completion", 0, #curr_input, output_text, "~")
+                    local cand = Candidate("fallback", 0, #curr_input, output_text, "")
                     cand.preedit = output_preedit
                     cand.quality = 999
                     yield(cand)
@@ -560,7 +560,7 @@ function F.func(input, env)
             if sub(text, -1) == symbol then
                 text = sub(text, 1, -2)
             end
-            local cand = Candidate("completion", 0, #curr_input, text, "~")
+            local cand = Candidate("fallback", 0, #curr_input, text, "")
             cand.preedit = curr_input
             yield(cand)
         end
