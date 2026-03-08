@@ -9,7 +9,7 @@ super_replacer:
     delimiter: "|"
     comment_format: "〔%s〕"
     chain: true  #true表示流水线作业，上一个option产出交给下一个处理，典型的s2t>t2hk=s2hk，false就是并行，直接用text转换
-    types:
+    rules:
       # 场景1：输入 '哈哈' -> 变成 '1.哈哈 2.😄'
       - option: emoji          # 开关名称与上面开关名称保持一致
         mode: append            # 新增候选append 替换原候选replace 替换注释comment
@@ -69,9 +69,8 @@ super_replacer:
         prefix: "_abbr_"
         files:
           - lua/data/abbrev.txt # 格式：zm\t怎么|在吗
+        #t9_optimization: true  #t9优化,从txt里编码转换为实际打字需要的编码，例如九键维护用字母加载数据库变数字,源编码携带上用于preedit
 ]]
-
-
 local M = {}
 
 -- 性能优化：本地化常用库函数
@@ -116,6 +115,7 @@ local function get_utf8_offsets(text)
     insert(offsets, len + 1)
     return offsets
 end
+
 -- 光速文件特征采样（替代耗时的全量哈希计算）
 local function generate_files_signature(tasks)
     local sig_parts = {}
@@ -128,38 +128,31 @@ local function generate_files_signature(tasks)
             local tail = ""
             
             if size > 0 then
-                -- 截取头 64 字节
                 f:seek("set", 0)
                 head = f:read(64) or ""
-                
-                -- 截取尾 64 字节
                 local tail_pos = size - 64
                 if tail_pos < 0 then tail_pos = 0 end
                 f:seek("set", tail_pos)
                 tail = f:read(64) or ""
-                
-                -- 截取中间 64 字节 (防止同字节数的等长替换)
                 local mid_pos = math.floor(size / 2)
                 f:seek("set", mid_pos)
                 mid = f:read(64) or ""
             end
             f:close()
-            
-            -- 将 前缀 + 大小 + 头中尾 拼接成该文件的唯一特征码
             insert(sig_parts, task.prefix .. size .. head .. mid .. tail)
         end
     end
-    -- 将所有文件的特征码合并
     return concat(sig_parts, "||")
 end
--- 重建数据库 (仅在 wanxiang 版本变更时运行)
-local function rebuild(tasks, db)
+
+-- 重建数据库 (支持多行合并和 T9 拼接)
+local function rebuild(tasks, db, delimiter)
     if db.empty then db:empty() end
     for _, task in ipairs(tasks) do
         local txt_path = task.path
         local prefix = task.prefix
-        -- 获取转换表
         local conversion = task.conversion
+        local p_delim = task.preedit_delim 
 
         local f = open(txt_path, "r")
         if f then
@@ -167,15 +160,28 @@ local function rebuild(tasks, db)
                 if line ~= "" and not s_match(line, "^%s*#") then
                     local k, v = s_match(line, "^(%S+)%s+(.+)")
                     if k and v then
-                        -- [新增] 逻辑：如果有转换表，先进行按键转换
-                        -- 使用 gsub 配合 table 进行单字符映射，非常高效且不关注顺序
+                        local orig_k = k
+
                         if conversion then
                             k = s_gsub(k, ".", conversion)
                         end
                         
-                        -- 转换完成后，再和 prefix 组合
                         v = s_match(v, "^%s*(.-)%s*$")
-                        db:update(prefix .. k, v)
+
+                        if p_delim and p_delim ~= "" then
+                            if not string.find(v, p_delim, 1, true) then
+                                v = v .. p_delim .. orig_k
+                            end
+                        end
+
+                        local db_key = prefix .. k
+                        local existing_v = db:fetch(db_key)
+
+                        if existing_v and existing_v ~= "" then
+                            v = existing_v .. delimiter .. v
+                        end
+
+                        db:update(db_key, v)
                     end
                 end
             end
@@ -185,9 +191,8 @@ local function rebuild(tasks, db)
     return true
 end
 
--- 连接或重连数据库 (Singleton Logic)
 -- 连接或重连数据库 (融入光速特征校验)
-local function connect_db(db_name, current_version, delimiter, tasks)
+local function connect_db(db_name, current_version, delimiter, tasks, config_sig)
     if replacer_instance then
         local status, _ = pcall(function() return replacer_instance:fetch("___test___") end)
         if status then return replacer_instance end
@@ -198,16 +203,14 @@ local function connect_db(db_name, current_version, delimiter, tasks)
     local db = userdb.LevelDb(db_name)
     if not db then return nil end
 
-    -- 1. 瞬间计算当前所有物理文件的特征码
-    local current_signature = generate_files_signature(tasks)
+    local current_signature = generate_files_signature(tasks) .. "||" .. (config_sig or "")
     
     local needs_rebuild = false
     if db:open_read_only() then
         local db_ver = db:meta_fetch("_wanxiang_ver") or ""
         local db_delim = db:meta_fetch("_delim")
-        local db_sig = db:meta_fetch("_files_sig") or ""  -- 读取数据库里存的特征码
+        local db_sig = db:meta_fetch("_files_sig") or ""
         
-        -- 核心优雅点：版本变了、分隔符变了、或者文件内容被用户改了，统统触发重建！
         if db_ver ~= current_version or db_delim ~= delimiter or db_sig ~= current_signature then
             needs_rebuild = true
         end
@@ -218,15 +221,13 @@ local function connect_db(db_name, current_version, delimiter, tasks)
 
     if needs_rebuild then
         if db:open() then
-            -- 优雅地清空旧数据，防止体积无意义膨胀
             if db.clear then db:clear() elseif db.empty then db:empty() end
             
-            rebuild(tasks, db)
-            fmm_cache = {} --只要词库重建，彻底清空旧缓存
-            -- 更新最新的烙印
+            rebuild(tasks, db, delimiter)
+            fmm_cache = {} 
             db:meta_update("_wanxiang_ver", current_version)
             db:meta_update("_delim", delimiter)
-            db:meta_update("_files_sig", current_signature) -- 记下当前的文件特征
+            db:meta_update("_files_sig", current_signature) 
             
             if log and log.info then
                 log.info("super_replacer: 数据已重载，最新特征已记录")
@@ -258,7 +259,6 @@ local function segment_convert(text, db, prefix, split_pat)
         local max_j = i + MAX_LOOKAHEAD
         if max_j > char_count + 1 then max_j = char_count + 1 end
 
-        -- 1. 长词 FMM 循环与缓存拦截
         for j = max_j, i + 2, -1 do
             local end_byte = offsets[j] - 1
             local sub_text = s_sub(text, start_byte, end_byte)
@@ -280,7 +280,6 @@ local function segment_convert(text, db, prefix, split_pat)
             end
         end
       
-        -- 2. 单字/单字符兜底（带缓存）
         if not matched then
             local single_char = s_sub(text, start_byte, offsets[i+1] - 1)
             local cache_key = prefix .. single_char
@@ -304,8 +303,8 @@ local function segment_convert(text, db, prefix, split_pat)
     end
     return concat(result_parts)
 end
--- 模块接口
 
+-- 模块接口
 function M.init(env)
     local ns = env.name_space
     ns = s_gsub(ns, "^%*", "")
@@ -315,13 +314,11 @@ function M.init(env)
     local user_dir = rime_api.get_user_data_dir()
     local shared_dir = rime_api.get_shared_data_dir()
 
-    -- 1. 基础配置
     local db_name = config:get_string(ns .. "/db_name") or "lua/replacer"
     local delim = config:get_string(ns .. "/delimiter") or "|"
     env.delimiter = delim
     env.comment_format = config:get_string(ns .. "/comment_format") or "〔%s〕"
   
-    -- 获取全局版本号
     local current_version = "v0.0.0"
     if wanxiang and wanxiang.version then
         current_version = wanxiang.version
@@ -333,9 +330,8 @@ function M.init(env)
     if delim == " " then env.split_pattern = "%S+"
     else local esc = s_gsub(delim, "[%-%.%+%[%]%(%)%$%^%%%?%*]", "%%%1"); env.split_pattern = "([^" .. esc .. "]+)" end
 
-    -- 2. 解析 Types (这部分必须保留在 init，因为不同 schema 可能配置不同)
-    env.types = {}
-    local tasks = {} -- 用于重建数据库的文件列表
+    env.rules = {}
+    local tasks = {} 
 
     local function resolve_path(relative)
         if not relative then return nil end
@@ -348,14 +344,13 @@ function M.init(env)
         return user_path
     end
 
-    local types_path = ns .. "/types"
-    local type_list = config:get_list(types_path)
+    local rules_path = ns .. "/rules"
+    local rule_list = config:get_list(rules_path)
   
-    if type_list then
-        for i = 0, type_list.size - 1 do
-            local entry_path = types_path .. "/@" .. i
+    if rule_list then
+        for i = 0, rule_list.size - 1 do
+            local entry_path = rules_path .. "/@" .. i
           
-            -- 解析 triggers
             local triggers = {}
             local opts_keys = {"option", "options"}
             for _, key in ipairs(opts_keys) do
@@ -376,7 +371,6 @@ function M.init(env)
                 end
             end
 
-            -- 解析 Tags
             local target_tags = nil
             local tag_keys = {"tag", "tags"}
             for _, key in ipairs(tag_keys) do
@@ -401,21 +395,18 @@ function M.init(env)
                 local prefix = config:get_string(entry_path .. "/prefix") or ""
                 local mode = config:get_string(entry_path .. "/mode") or "append"
                 
-                -- 解析 编码转换conv
+                -- 注入 T9 优化宏，触发时覆盖 map 并指定 delim
+                local t9_opt = config:get_bool(entry_path .. "/t9_optimization")
                 local conversion_map = nil
-                local conversion_str = config:get_string(entry_path .. "/conv")
-                if conversion_str then
-                    -- 分割 "from>to"，例如 "abc>123"
-                    local from_str, to_str = s_match(conversion_str, "^(.-)>(.+)$")
-                    if from_str and to_str and #from_str == #to_str then
-                        conversion_map = {}
-                        -- 构建映射表 {a='1', b='2', ...}
-                        for char_idx = 1, #from_str do
-                            local f_char = s_sub(from_str, char_idx, char_idx)
-                            local t_char = s_sub(to_str, char_idx, char_idx)
-                            conversion_map[f_char] = t_char
-                        end
+                local preedit_delim = nil
+                if t9_opt then
+                    conversion_map = {}
+                    local from_str = "abcdefghijklmnopqrstuvwxyz"
+                    local to_str   = "22233344455566677778889999"
+                    for char_idx = 1, #from_str do
+                        conversion_map[s_sub(from_str, char_idx, char_idx)] = s_sub(to_str, char_idx, char_idx)
                     end
+                    preedit_delim = "=="
                 end
 
                 local comment_mode = config:get_string(entry_path .. "/comment_mode")
@@ -423,7 +414,6 @@ function M.init(env)
                 local fmm = config:get_bool(entry_path .. "/sentence")
                 if fmm == nil then fmm = false end
 
-                -- 解析 abbrev_rule: "数量,位置"
                 local always_qty = 1
                 local always_idx = 1
                 if mode == "abbrev" then
@@ -433,7 +423,7 @@ function M.init(env)
                     always_idx = tonumber(idx_str) or 1
                 end
 
-                insert(env.types, {
+                insert(env.rules, {
                     triggers = triggers,
                     tags = target_tags,
                     prefix = prefix,
@@ -441,7 +431,9 @@ function M.init(env)
                     always_qty = always_qty,
                     always_idx = always_idx,
                     comment_mode = comment_mode,
-                    fmm = fmm
+                    fmm = fmm,
+                    preedit_delim = preedit_delim,
+                    t9_opt = t9_opt
                 })
 
                 local keys_to_check = {"files", "file"}
@@ -451,17 +443,25 @@ function M.init(env)
                     if list then
                         for j = 0, list.size - 1 do
                             local p = resolve_path(config:get_string(d_path .. "/@" .. j))
-                            if p then insert(tasks, { path = p, prefix = prefix, conversion = conversion_map }) end
+                            if p then insert(tasks, { path = p, prefix = prefix, conversion = conversion_map, preedit_delim = preedit_delim }) end
                         end
                     else
                         local p = resolve_path(config:get_string(d_path))
-                        if p then insert(tasks, { path = p, prefix = prefix, conversion = conversion_map }) end
+                        if p then insert(tasks, { path = p, prefix = prefix, conversion = conversion_map, preedit_delim = preedit_delim }) end
                     end
                 end
             end
         end
     end
-    env.db = connect_db(db_name, current_version, env.delimiter, tasks)
+    
+    -- 将影响数据的关键参数加入签名，变更即重建
+    local config_sig_parts = {}
+    for _, t in ipairs(env.rules) do
+        insert(config_sig_parts, tostring(t.t9_opt or false))
+    end
+    local config_sig = concat(config_sig_parts, "|")
+
+    env.db = connect_db(db_name, current_version, env.delimiter, tasks, config_sig)
 end
 
 function M.fini(env)
@@ -474,12 +474,24 @@ local function clear_table(t)
         t[i] = nil
     end
 end
+
+--解析连接符工具函数
+local function parse_item(p, delim)
+    if delim and delim ~= "" then
+        local pos = string.find(p, delim, 1, true)
+        if pos then
+            return string.sub(p, 1, pos - 1), string.sub(p, pos + #delim)
+        end
+    end
+    return p, nil
+end
+
 -- [Core Function] 核心逻辑
 function M.func(input, env)
     local ctx = env.engine.context
     local input_code = ctx.input
     local db = env.db
-    local types = env.types
+    local rules = env.rules
     local split_pat = env.split_pattern
     local comment_fmt = env.comment_format
     local is_chain = env.chain
@@ -491,13 +503,14 @@ function M.func(input, env)
         return
     end
 
-    if not env.types or #env.types == 0 or not env.db then
+    if not env.rules or #env.rules == 0 or not env.db then
         for cand in input:iter() do yield(cand) end
         return
     end
 
     local seg = ctx.composition:back()
     local current_seg_tags = seg and seg.tags or {}
+    if seg then input_code = string.sub(ctx.input, seg.start + 1, seg._end) end
     
     local function process_rules(cand)
         local results = {}
@@ -508,7 +521,7 @@ function M.func(input, env)
         clear_table(shared_pending)
         clear_table(shared_comments)
       
-        for _, t in ipairs(types) do
+        for _, t in ipairs(rules) do
             if t.mode ~= "abbrev" then
                 local is_active = false
                 for _, trigger in ipairs(t.triggers) do
@@ -617,7 +630,7 @@ function M.func(input, env)
     local top_buffer = {}
 
     -- 第一步：提前提取简码候选，分配阵营
-    for _, t in ipairs(types) do
+    for _, t in ipairs(rules) do
         if t.mode == "abbrev" then
             local is_active = false
             for _, trigger in ipairs(t.triggers) do
@@ -633,16 +646,24 @@ function M.func(input, env)
                 end
             end
 
-            if is_active and is_tag_match then
+            if is_active and is_tag_match and input_code ~= "" then -- 加上输入非空保护
                 local key = t.prefix .. input_code
                 local val = db:fetch(key) or (not s_match(input_code, "[A-Z]") and db:fetch(t.prefix .. s_upper(input_code)))
                 
                 if val then
                     local count = 0
                     for p in s_gmatch(val, split_pat) do
-                        if not seen_texts[p] then
-                            seen_texts[p] = true
-                            local abbrev_cand = Candidate("abbrev", 0, #input_code, p, "")
+                        local item_text, item_preedit = parse_item(p, t.preedit_delim) -- T9预编辑切割
+
+                        if not seen_texts[item_text] then
+                            seen_texts[item_text] = true
+                            local abbrev_cand = Candidate("abbrev", seg and seg.start or 0, seg and seg._end or #input_code, item_text, "")
+                            
+                            -- 附加预编辑码
+                            if item_preedit and item_preedit ~= "" then
+                                abbrev_cand.preedit = item_preedit
+                            end
+
                             count = count + 1
                             
                             if count <= t.always_qty then
