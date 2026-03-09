@@ -116,7 +116,7 @@ local function get_utf8_offsets(text)
     return offsets
 end
 
--- 光速文件特征采样（替代耗时的全量哈希计算）
+-- 光速文件特征采样
 local function generate_files_signature(tasks)
     local sig_parts = {}
     for _, task in ipairs(tasks) do
@@ -191,7 +191,7 @@ local function rebuild(tasks, db, delimiter)
     return true
 end
 
--- 连接或重连数据库 (融入光速特征校验)
+-- 连接或重连数据库
 local function connect_db(db_name, current_version, delimiter, tasks, config_sig)
     if replacer_instance then
         local status, _ = pcall(function() return replacer_instance:fetch("___test___") end)
@@ -323,7 +323,10 @@ function M.init(env)
     if wanxiang and wanxiang.version then
         current_version = wanxiang.version
     end
-  
+    env.input_type = "unknown"
+    if wanxiang and wanxiang.get_input_method_type then
+        env.input_type = wanxiang.get_input_method_type(env)
+    end
     env.chain = config:get_bool(ns .. "/chain")
     if env.chain == nil then env.chain = false end
 
@@ -395,7 +398,6 @@ function M.init(env)
                 local prefix = config:get_string(entry_path .. "/prefix") or ""
                 local mode = config:get_string(entry_path .. "/mode") or "append"
                 
-                -- 注入 T9 优化宏，触发时覆盖 map 并指定 delim
                 local t9_opt = config:get_bool(entry_path .. "/t9_optimization")
                 local conversion_map = nil
                 local preedit_delim = nil
@@ -413,6 +415,9 @@ function M.init(env)
                 if not comment_mode then comment_mode = "comment" end
                 local fmm = config:get_bool(entry_path .. "/sentence")
                 if fmm == nil then fmm = false end
+                
+                -- 解析 cand_type
+                local custom_cand_type = config:get_string(entry_path .. "/cand_type")
 
                 local always_qty = 1
                 local always_idx = 1
@@ -433,7 +438,8 @@ function M.init(env)
                     comment_mode = comment_mode,
                     fmm = fmm,
                     preedit_delim = preedit_delim,
-                    t9_opt = t9_opt
+                    t9_opt = t9_opt,
+                    cand_type = custom_cand_type
                 })
 
                 local keys_to_check = {"files", "file"}
@@ -454,10 +460,9 @@ function M.init(env)
         end
     end
     
-    -- 将影响数据的关键参数加入签名，变更即重建
     local config_sig_parts = {}
     for _, t in ipairs(env.rules) do
-        insert(config_sig_parts, tostring(t.t9_opt or false))
+        insert(config_sig_parts, tostring(t.t9_opt or false) .. (t.cand_type or ""))
     end
     local config_sig = concat(config_sig_parts, "|")
 
@@ -517,6 +522,7 @@ function M.func(input, env)
         local current_text = cand.text
         local show_main = true
         local current_main_comment = cand.comment
+        local matched_cand_type = nil
       
         clear_table(shared_pending)
         clear_table(shared_comments)
@@ -548,6 +554,8 @@ function M.func(input, env)
                     end
                   
                     if val then
+                        matched_cand_type = t.cand_type or matched_cand_type
+
                         local mode = t.mode
                         local rule_comment = ""
                         if t.comment_mode == "text" then rule_comment = cand.text
@@ -598,7 +606,8 @@ function M.func(input, env)
 
         if show_main then
             if is_chain and current_text ~= cand.text then
-                local nc = Candidate(cand.type or "kv", cand.start, cand._end, current_text, current_main_comment)
+                local final_type = matched_cand_type or cand.type or "kv"
+                local nc = Candidate(final_type, cand.start, cand._end, current_text, current_main_comment)
                 nc.preedit = cand.preedit
                 nc.quality = cand.quality
                 insert(results, nc)
@@ -610,7 +619,8 @@ function M.func(input, env)
 
         for _, item in ipairs(shared_pending) do
             if not (show_main and item.text == current_text) then
-                local nc = Candidate("derived", cand.start, cand._end, item.text, item.comment)
+                local final_type = matched_cand_type or "derived"
+                local nc = Candidate(final_type, cand.start, cand._end, item.text, item.comment)
                 nc.preedit = cand.preedit
                 nc.quality = cand.quality
                 insert(results, nc)
@@ -631,7 +641,7 @@ function M.func(input, env)
 
     -- 第一步：提前提取简码候选，分配阵营
     for _, t in ipairs(rules) do
-        if t.mode == "abbrev" then
+        if t.mode == "abbrev" and env.input_type ~= "pinyin" then
             local is_active = false
             for _, trigger in ipairs(t.triggers) do
                 if trigger == true then is_active = true; break
@@ -657,7 +667,10 @@ function M.func(input, env)
 
                         if not seen_texts[item_text] then
                             seen_texts[item_text] = true
-                            local abbrev_cand = Candidate("abbrev", seg and seg.start or 0, seg and seg._end or #input_code, item_text, "")
+                            
+                            --简码也支持强制注入 type
+                            local final_type = t.cand_type or "abbrev"
+                            local abbrev_cand = Candidate(final_type, seg and seg.start or 0, seg and seg._end or #input_code, item_text, "")
                             
                             -- 附加预编辑码
                             if item_preedit and item_preedit ~= "" then
