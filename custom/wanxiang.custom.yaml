@@ -114,15 +114,15 @@ patch:
         - "诶濛硷氽尛躝〇冇吔咗囧屌鲶芶咲畑垅𰻝𰻞"
       blacklist: []
     - option: s2t
-      base: f
+      base: fa
       addlist: []
       blacklist: []
     - option: s2hk
-      base: h
+      base: ha
       addlist: []
       blacklist: []
     - option: s2tw
-      base: t
+      base: ta
       addlist: []
       blacklist: []
 
