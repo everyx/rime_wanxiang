@@ -86,6 +86,7 @@ patch:
           - lua/data/TWVariants.txt
       - option: abbrev      # 对应上面开关名称
         mode: abbrev
+        tags: [abc]
         prefix: "_abbr_"
         abbrev_rule: "1,6"  
         # 前置数量1，前置位置6,数量说的是你维护得数据库编码后面分割了几个词前几个要前置显示,位置说的是你要前置到第二候选还是第几
