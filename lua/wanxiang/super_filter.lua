@@ -92,23 +92,30 @@ local ke_names = {"初刻", "二刻", "三刻", "四刻", "五刻", "六刻", "�
 
 local function get_shichen_and_ke(hour, min)
     local total_minutes = hour * 60 + min
-    
     for _, shichen in ipairs(shichen_data) do
         local shichen_name = shichen.name
         local start_hour = shichen.start_hour
         local end_hour = shichen.end_hour
-        
         local start_minutes = start_hour * 60
         local end_minutes = end_hour * 60
-        
+        local is_match = false
         if start_hour > end_hour then
-            end_minutes = end_hour * 60 + 1440
+            if total_minutes >= start_minutes or total_minutes < end_minutes then
+                is_match = true
+            end
+        else
+            if total_minutes >= start_minutes and total_minutes < end_minutes then
+                is_match = true
+            end
         end
-        
-        if total_minutes >= start_minutes and total_minutes < end_minutes then
-            local offset_minutes = total_minutes - start_minutes
-            local ke_index = math.floor(offset_minutes / 15)
+        if is_match then
+            local calc_minutes = total_minutes
+            if start_hour > end_hour and total_minutes < end_minutes then
+                calc_minutes = total_minutes + 1440
+            end
             
+            local offset_minutes = calc_minutes - start_minutes
+            local ke_index = math.floor(offset_minutes / 15)
             if ke_index >= 8 then
                 ke_index = 7
             end
@@ -188,7 +195,7 @@ local function process_datetime_internal(s)
     }
 
     return s:gsub("\\(%a)", function(char)
-        return time_map[char] or char 
+        return time_map[char] or ("\\" .. char) 
     end)
 end
 

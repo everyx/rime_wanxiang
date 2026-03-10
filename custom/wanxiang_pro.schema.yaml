@@ -128,6 +128,17 @@ super_comment:                  # 超级注释模块，子项配置 true 开启�
     abbrev: ""
     fallback: "~"
 
+super_processor:
+  enable_backspace_limit: true # 开启/关闭退格限制
+  enable_seg_loop: true        # 开启/关闭分词符（'）循环
+  enable_tone_fallback: true   # 启用声调回退
+  kp_number_mode: auto         # 小键盘模式 (auto / compose)
+  limit_repeated: "8,40"       #格式："最大重复声母数,最大候选字数"
+  select_character: "[,]"      # 开启以词定字，自动拆解第一位上屏首字，第二位上屏尾字
+  # 下面这些写法都支持：
+  # select_character: "[,]"                      # [ 上屏首字，] 上屏尾字（推荐）
+  # select_character: "bracketleft, bracketright"  # [ 上屏首字，] 上屏尾字（英文全拼）
+
 force_upper_aux:
   hotkey: "period"  #用来固定候选的快捷键，原理是用双大写字母定字,能用组合键能用符号Tab等，按一下固定当前可见候选，按两下固定N-1个字状态下记录的字
   symbol: "›" #用来替代双大写字母辅助的preedit视觉拉长的问题
@@ -572,9 +583,6 @@ punctuator:
 # 从 default 继承快捷键
 key_binder:
   import_preset: default  # 从 default.yaml 继承通用的
-  # Lua 配置: 以词定字（上屏当前词句的第一个或最后一个字），和中括号翻页有冲突
-  select_first_character: "bracketleft"  # 左中括号 [
-  select_last_character: "bracketright"  # 右中括号 ]
   sequence: # Lua 配置：手动排序的快捷键 super_sequence.lua，不要用方向键，各种冲突，一定要避免冲突
     up: "Control+j"    # 上移
     down: "Control+k"  # 下移

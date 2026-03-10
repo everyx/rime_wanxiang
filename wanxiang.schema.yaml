@@ -120,6 +120,17 @@ super_comment:                  # 超级注释模块，子项配置 true 开启�
     completion: ""
     abbrev: ""
 
+super_processor:
+  enable_backspace_limit: true # 开启/关闭退格限制
+  enable_seg_loop: true        # 开启/关闭分词符（'）循环
+  enable_tone_fallback: true   # 启用声调回退
+  kp_number_mode: auto         # 小键盘模式 (auto / compose)
+  limit_repeated: "8,40"       #格式："最大重复声母数,最大候选字数"
+  select_character: "[,]"      # 开启以词定字，自动拆解第一位上屏首字，第二位上屏尾字
+  # 下面这些写法都支持：
+  # select_character: "[,]"                      # [ 上屏首字，] 上屏尾字（推荐）
+  # select_character: "bracketleft, bracketright"  # [ 上屏首字，] 上屏尾字（英文全拼）
+
 super_replacer:
   db_name: lua/replacer
   delimiter: "|"
@@ -569,9 +580,6 @@ key_binder:
   shijian_keys: ["/", "o"]
   # Lua 配置: 超级tips上屏按键
   tips_key: "comma"   #修改时候去default找
-  # Lua 配置: 以词定字（上屏当前词句的第一个或最后一个字），和中括号翻页有冲突
-  select_first_character: "bracketleft"  # 左中括号 [
-  select_last_character: "bracketright"  # 右中括号 ]
   bindings:               # 也可以再增加方案专有的
 # 通过按下/发送/+1节约一个按键，不冲突的时候可以开启
     #- { match: "[a-z]{1,4}", accept: "/",  send_sequence: "/1" }
