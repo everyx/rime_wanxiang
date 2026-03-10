@@ -476,6 +476,9 @@ function M.func(input, env)
     if not code or code == "" or (comp and comp:empty()) then
         env.last_2code_char = nil 
         env.page_cache = {}
+        for cand in input:iter() do
+            yield(cand)
+        end
         return
     end
 

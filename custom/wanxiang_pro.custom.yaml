@@ -38,6 +38,17 @@ patch:
     # select_character: "[,]"                      # [ 上屏首字，] 上屏尾字（推荐）
     # select_character: "bracketleft, bracketright"  # [ 上屏首字，] 上屏尾字（英文全拼）
 
+  # 下面这个快解除注释后就能用预测，下载地址：https://cnb.cool/amzxyz/rime-wanxiang/-/releases/download/model/wanxiang-lts-zh-hans-predict.db
+  #'engine/processors/@before 0': predictor
+  #'engine/translators/@before 0': predict_translator
+  #switches/+:
+  #  - name: prediction
+  #    states: [ 预测关, 预测开 ]
+  #predictor:
+  #  db: wanxiang-lts-zh-hans-predict.db
+  #  max_candidates: 10
+  #  max_iterations: 1
+
   super_replacer:
     db_name: lua/replacer
     delimiter: "|"
