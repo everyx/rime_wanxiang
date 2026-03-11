@@ -179,6 +179,8 @@ function M.init(env)
     env.enable_seg_loop = true
     env.enable_tone_fallback = true
     env.enable_limit_repeated = true
+    env.enable_predict_space = true
+    env.pending_predict_space = false
     env.max_repeat = 8
     env.max_segments = 40
     env.sc_first_key = nil
@@ -195,6 +197,8 @@ function M.init(env)
         local ok_tf, tf_val = pcall(function() return config:get_bool("super_processor/enable_tone_fallback") end)
         if ok_tf and tf_val ~= nil then env.enable_tone_fallback = tf_val end
 
+        local ok_ps, ps_val = pcall(function() return config:get_bool("super_processor/enable_predict_space") end)
+        if ok_ps and ps_val ~= nil then env.enable_predict_space = ps_val end
         -- 长度限制配置加载（支持 false, "", "8,40"）
         local ok_lr_bool, lr_bool = pcall(function() return config:get_bool("super_processor/limit_repeated") end)
         local ok_lr_str, lr_str = pcall(function() return config:get_string("super_processor/limit_repeated") end)
@@ -297,9 +301,13 @@ function M.init(env)
     -- [2] 统一 Update Notifier (状态缓存与自动处理)
 
     env.conn_update = context.update_notifier:connect(function(ctx)
-        -- 核心修复：必须把 input 的获取提炼到最外层，否则下方逻辑会拿到 nil
         local input = ctx.input or ""
-        
+        if env.pending_predict_space then
+            env.pending_predict_space = false
+            ctx:set_option("_dummy_predict_update", false)
+            ctx:clear()
+            env.engine:commit_text(" ")
+        end
         -- A. [ToneFallback] 执行声调压缩
         if env.enable_tone_fallback then
             local t_state = env.tone_state or "idle"
@@ -388,6 +396,16 @@ local function handle_quick_symbol_intercept(key, env, ctx)
     return false
 end
 
+-- [Predict Space] 联想空格接力起跑点
+local function handle_predict_space(key, env, ctx)
+    if not env.enable_predict_space then return false end
+    if (not ctx:is_composing() or ctx.input == "") and ctx:has_menu() then
+        env.pending_predict_space = true
+        ctx:set_option("_dummy_predict_update", true)
+        return true 
+    end
+    return false
+end
 -- [SuperSegmentation] 处理分词符 '
 local function handle_segmentation(key, env, ctx)
     if not env.enable_seg_loop then return false end
@@ -711,6 +729,11 @@ function M.func(key, env)
     end
 
     local kc = key.keycode
+
+    -- [Predict Space] 联想空格
+    if kc == 0x20 then
+        if handle_predict_space(key, env, ctx) then return K_ACCEPT end
+    end
 
     if ctx.composition:empty() then
         if kc == 0xff0d or kc == 0xff8d or kc == 0x20 then

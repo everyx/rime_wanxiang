@@ -48,6 +48,7 @@ switches:
 # 输入引擎
 engine:
   processors:
+    - lua_processor@*wanxiang.super_processor   #KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
     - t9_processor                              #元书T9处理器
     - lua_processor@*wanxiang.super_tips        #超级提示模块：表情、简码、翻译、化学式、等等靠你想象
     - lua_processor@*wanxiang.super_sequence*P  #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+l 移除位移  ctrl+p 置顶
@@ -89,6 +90,18 @@ super_comment:                 # 超级注释模块，子项配置 true 开启�
   corrector_type: "comment"    # 注意9键里应原状态输出，不要加括号。随意更换左右括号，比如"〔comment〕" 不加括号为无括号，comment占位不能动
   chaifen: "〔chaifen〕"         # 随意更换左右括号，比如"〔chaifen〕" 不加括号为无括号，chaifen占位不能动
   cand_type:
+
+super_processor:
+  enable_backspace_limit: false # 开启/关闭退格限制
+  enable_seg_loop: false        # 开启/关闭分词符（'）循环
+  enable_tone_fallback: false   # 启用声调回退
+  enable_predict_space: true   # 启用联想空格打断，直接上屏空格并清空联想，对齐大厂
+  kp_number_mode: auto         # 小键盘模式 (auto / compose)
+  limit_repeated: "8,40"       #格式："最大重复声母数,最大候选字数"
+  select_character: "[,]"      # 开启以词定字，自动拆解第一位上屏首字，第二位上屏尾字
+  # 下面这些写法都支持：
+  # select_character: "[,]"                      # [ 上屏首字，] 上屏尾字（推荐）
+  # select_character: "bracketleft, bracketright"  # [ 上屏首字，] 上屏尾字（英文全拼）
 
 # 字符集过滤lua
 # a,通用规范汉字表
