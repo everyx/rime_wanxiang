@@ -2,15 +2,17 @@
 -- 采用leveldb数据库,支持大数据遍历,支持多种类型混合,多种拼音编码混合,维护简单
 -- 支持候选匹配和编码匹配两种，候选支持方向键高亮遍历
 -- https://github.com/amzxyz/rime_wanxiang
---     - lua_processor@*super_tips
---     key_binder/tips_key: "slash" # 上屏按键配置
---     tips/disabled_types: [] # 禁用的 tips 类型
+-- 配置示例：
+-- super_tips:
+--   db_name: "lua/tips"   # 可选，自定义数据库名称/路径，默认值为 "lua/tips"
+--   tips_key: "slash"     # 上屏按键配置
+--   disabled_types: []    # 禁用的 tips 类型
 
 local wanxiang = require("wanxiang/wanxiang")
 local userdb = require("wanxiang/userdb")
 
--- 尝试打开数据库
-local tips_db = userdb.LevelDb("lua/tips")
+-- 声明数据库变量，待配置加载后初始化
+local tips_db 
 
 local tips = {}
 
@@ -88,6 +90,13 @@ end
 function tips.init(config)
     if tips.status ~= "pending" then return end
 
+    -- 0. 获取自定义数据库名称并实例化，缺省为 "lua/tips"
+    local db_name = config:get_string("super_tips/db_name")
+    if not db_name or db_name == "" then
+        db_name = "lua/tips"
+    end
+    tips_db = userdb.LevelDb(db_name)
+
     -- 1. 确保目录存在 (仅非特定发行版)
     local dist = rime_api.get_distribution_code_name() or ""
     if dist ~= "hamster" and dist ~= "hamster3" and dist ~= "Weasel" then
@@ -98,7 +107,7 @@ function tips.init(config)
     -- 2. 读取 disabled_types 配置
     -- 这是轻量级操作，必须每次读取以生成指纹
     local disabled_keys = {}
-    local disabled_types_list = config:get_list("tips/disabled_types")
+    local disabled_types_list = config:get_list("super_tips/disabled_types")
     if disabled_types_list then
         for i = 1, disabled_types_list.size do
             local item = disabled_types_list:get_value_at(i - 1)
@@ -213,9 +222,7 @@ local P = {}
 function P.init(env)
     local config = env.engine.schema.config
     tips.init(config)
-
-    P.tips_key = config:get_string("key_binder/tips_key")
-
+    P.tips_key = config:get_string("super_tips/tips_key")
     local context = env.engine.context
     env.tips_update_connection = context.update_notifier:connect(function(ctx)
         update_tips_prompt(ctx, env)
@@ -254,8 +261,6 @@ function P.func(key, env)
         context:clear()
         return wanxiang.RIME_PROCESS_RESULTS.kAccepted
     end
-
     return wanxiang.RIME_PROCESS_RESULTS.kNoop
 end
-
 return P
