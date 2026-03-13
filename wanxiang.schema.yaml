@@ -314,6 +314,14 @@ tone_preedit:
   "9": "³"
   "0": "⁴"
 
+super_sequence:  # Lua 配置：手动排序的快捷键 super_sequence.lua，不要用方向键，各种冲突，一定要避免冲突
+  db_name: "lua/sequence"
+  up: "Control+j"    # 上移
+  down: "Control+k"  # 下移
+  reset: "Control+l" # 重置
+  pin: "Control+p"   # 置顶
+
+
 # a/、单字母组合，触发预设编码自动上屏快符，支持将值设为"repeat" 以支持对应按键重复上屏功能，custom>schema>lua最终合并键值
 # 现在就支持26字母快符，结合成对符号输入，这边的压力小一些
 quick_symbol_text:
@@ -590,11 +598,6 @@ punctuator:
 # 从 default 继承快捷键
 key_binder:
   import_preset: default  # 从 default.yaml 继承通用的
-  sequence: # Lua 配置：手动排序的快捷键 super_sequence.lua，不要用方向键，各种冲突，一定要避免冲突
-    up: "Control+j"    # 上移
-    down: "Control+k"  # 下移
-    reset: "Control+l" # 重置
-    pin: "Control+p"   # 置顶
   # Lua 配置: shijian.lua 的引导符，涉及：日期、时间、节日、节气、生日、问候模板等功能
   shijian_keys: ["/", "o"]
   bindings:               # 也可以再增加方案专有的
