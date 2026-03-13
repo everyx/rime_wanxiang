@@ -132,6 +132,15 @@ super_processor:
   # select_character: "[,]"                      # [ 上屏首字，] 上屏尾字（推荐）
   # select_character: "bracketleft, bracketright"  # [ 上屏首字，] 上屏尾字（英文全拼）
 
+super_tips:
+  db_name: "lua/tips"  # 可选字段，不写的话默认使用 "lua/tips"，相对路径
+  tips_key: "comma"    # key英文单词不清楚去default找
+  disabled_types:
+    - "禁用类型A"
+    - "禁用类型B"
+    # 禁用的 tips 类型，初始化 tips 数据库的时候会直接忽略相关规则，修改部署后生效
+    # 可选项为：偏旁，符号，化学式，时间，符号，组字，翻译，表情，货币，车牌, 单位
+
 super_replacer:
   db_name: lua/replacer
   delimiter: "|"
@@ -235,18 +244,6 @@ charset:
     base: ta
     addlist: []
     blacklist: []
-
-# Tips 配置项
-tips:
-  # 禁用的 tips 类型，初始化 tips 数据库的时候会直接忽略相关规则，修改部署后生效
-  # 可选项为：偏旁，符号，化学式，时间，符号，组字，翻译，表情，货币，车牌, 单位
-  disabled_types: []
-
-# 给 kp_number_processor 用的小键盘模式，能自动读取recognizer下面正则与之功能对齐
-kp_number_mode: auto
-  #小键盘数字处理逻辑
-  #  "compose" : 小键盘数字始终不上屏参与编码
-  #  "auto"    : 输入中 push，空闲时 commit（默认）
 
 #shijian:仅仅作为提示使用，编码已经写死，引导键可以在key_binder下修改前缀
 #时间：osj 或者 /sj
@@ -579,8 +576,6 @@ key_binder:
     pin: "Control+p"   # 置顶
   # Lua 配置: shijian.lua 的引导符，涉及：日期、时间、节日、节气、生日、问候模板等功能
   shijian_keys: ["/", "o"]
-  # Lua 配置: 超级tips上屏按键
-  tips_key: "comma"   #修改时候去default找
   bindings:               # 也可以再增加方案专有的
 # 通过按下/发送/+1节约一个按键，不冲突的时候可以开启
     #- { match: "[a-z]{1,4}", accept: "/",  send_sequence: "/1" }
