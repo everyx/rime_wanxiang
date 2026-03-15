@@ -68,14 +68,14 @@ jobs:
             python3 "$SCRIPT_PATH" "$GITHUB_WORKSPACE/temp_scheme/opencc"
           fi
           # 从主仓库(wanxiang_root)的 custom 目录拿 zip，解压到 temp_scheme
-          if [ -f "$REPO_ROOT/custom/简纯.zip" ]; then
+          if [ -f "$REPO_ROOT/custom/主题.zip" ]; then
               echo ">>> 📦 发现主题包，正在解压到 temp_scheme..."
-              unzip -o "$REPO_ROOT/custom/简纯.zip" -d temp_scheme/
+              unzip -o "$REPO_ROOT/custom/主题.zip" -d temp_scheme/
           fi
           cd temp_scheme
-          if [ -f "简纯+.trime.yaml" ]; then
-              echo ">>> 🎨 重命名 简纯+.trime.yaml -> trime.yaml"
-              mv -f "简纯+.trime.yaml" "trime.yaml"
+          if [ -f "7.trime.yaml" ]; then
+              echo ">>> 🎨 重命名 7.trime.yaml -> trime.yaml"
+              mv -f "7.trime.yaml" "trime.yaml"
           fi
           for pattern in ${{ env.DELETE_LIST }}; do rm -rf $pattern || true; done
           cd ..
@@ -265,7 +265,7 @@ jobs:
               ### 🛠️ 构建信息
               - **构建时间**: ${{ steps.date.outputs.date }}
               - **包名**: `amzxyz.wanxiang.trime`
-              - **主题**: 默认集成简纯主题
+              - **主题**: 默认集成色彩主题
               - **用户目录**: `wanxiang`
               - 更新内容参照同文及万象的commit
               ## 📢 版权与归属声明
