@@ -31,12 +31,12 @@ jobs:
       - name: Get Trime Latest Release Tag
         id: trime_version
         run: |
-          # 调用 GitHub API 获取最新的 release tag (例如 v3.3.9)
-          LATEST_TAG=$(curl -s https://api.github.com/repos/osfans/trime/releases/latest | jq -r .tag_name)
+          LATEST_TAG=$(curl -s https://api.github.com/repos/osfans/trime/tags | jq -r 'map(select(.name | startswith("v"))) | .[0].name')
+          
           echo "TRIME_LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
-          echo ">>> 检测到 Trime 最新稳定版为: $LATEST_TAG"
+          echo ">>> 成功获取到 Trime 最新版本为: $LATEST_TAG"
 
-      - name: Checkout Trime Source (Latest Release)
+      - name: Checkout Trime Source (Strict Release)
         uses: actions/checkout@v4
         with:
           repository: osfans/trime
