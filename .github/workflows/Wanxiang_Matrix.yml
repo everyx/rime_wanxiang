@@ -28,10 +28,19 @@ jobs:
         with:
           path: wanxiang_root
 
-      - name: Checkout Trime Source
-        uses: actions/checkout@v6
+      - name: Get Trime Latest Release Tag
+        id: trime_version
+        run: |
+          # 调用 GitHub API 获取最新的 release tag (例如 v3.3.9)
+          LATEST_TAG=$(curl -s https://api.github.com/repos/osfans/trime/releases/latest | jq -r .tag_name)
+          echo "TRIME_LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
+          echo ">>> 检测到 Trime 最新稳定版为: $LATEST_TAG"
+
+      - name: Checkout Trime Source (Latest Release)
+        uses: actions/checkout@v4
         with:
           repository: osfans/trime
+          ref: ${{ env.TRIME_LATEST_TAG }}
           submodules: recursive
           fetch-depth: 0
           path: trime_src
