@@ -1598,6 +1598,7 @@ pro:
       - derive/^ng(\d)(;.*)$/eng$1$2/
       - xform/^n(\d)(;.*)$/en$1$2/
       - xform/^m(\d)(;.*)/me$1$2/
+      - derive/^([jqxy])u(\d)(;.*)$/$1v$2$3/
       - xform/^([aoe].*)(\d)(;.*)$/Ⓞ$1$2$3/
       - xform/ei(\d)(;.*)$/Ⓠ$1$2/
       - xform/ian(\d)(;.*)$/Ⓦ$1$2/
