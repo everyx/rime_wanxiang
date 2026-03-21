@@ -9,8 +9,11 @@
 -- 3. 数据淘汰系统 (0分冷冻机制 + 15元末位淘汰 + 30天/90天绝对生命周期)
 -- 4. 事务级回滚机制 (拦截上屏立即退格，复原上次数据库操作)
 -- 5. LWW 智能合并 (导入数据时采用 Last Write Wins 策略，保留最新时间戳数据)
--- 6. ABA回头输入防写入BA，让数据库少记录无效数据
--- 7. 继承rime ctrl+del shift+del主动删除预测数据，不同点在于，清空即clear
+-- 6. ABA 防折返输入 (拦截如"你好"->"你好"的自我循环，减少数据库无效记录)
+-- 7. 继承原生主动删除 (Ctrl+Del / Shift+Del 物理销毁当前候选词的多维关联)
+-- 8. 语境隔离与时效防御 (精准识别标点断句，外加 5秒 语境超时自动熔断防穿透)
+-- 9. 语气助词智能白名单 (特许“吧呢吗”等助词接标点的合法性，实现终结符平滑解耦)
+-- 10. 跨平台双层按键防线 (针对移动端软键盘强删字节的底层特性，彻底免疫退格乱码)
 
 local insert   = table.insert
 local remove   = table.remove
@@ -224,221 +227,215 @@ function P.init(env)
     env.just_committed = false
     
     env.commit_cb = function(ctx)
-        local status, err = pcall(function()
-            local text = ctx:get_commit_text()
-            if not text or text == PH_CHAR or text == "" then return end
+        local text = ctx:get_commit_text()
+        if not text or text == PH_CHAR or text == "" then return end
+        
+        if is_punctuation_or_space(text) then
+            reset_memory_chain(env, "输入断句符")
+            return
+        end
+
+        -- 降级获取时间
+        local current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
+        if last_commit ~= "" and (current_time - last_commit_time) > CONFIG.CONTEXT_TIMEOUT_MS then
+            reset_memory_chain(env, "输入超时") 
+        end
+
+        -- 预测状态更新：处理当下
+        if not is_predicting then 
+            is_predicting = true 
+            predict_count = 1
+        else
+            predict_count = predict_count + 1
+        end
+        -- 如果预测步数超过了设定的最大值，不关闭预测，而是把步数重置
+        if predict_count > CONFIG.MAX_PREDICTIONS then
+            is_predicting = false
+            predict_count = 0
+            pending_cands = nil
+            return
+        end
+
+        env.last_written_keys = {} 
+        local function update_memory(key)
+            local val = db:fetch(key)
+            local now = os_time()
+            env.last_written_keys[key] = val or ""
             
-            if is_punctuation_or_space(text) then
-                reset_memory_chain(env, "输入断句符")
-                return
-            end
-
-            -- 时效防御：必须放在最前面！先斩断过去！
-            local current_time = rime_api.get_time_ms()
-            if last_commit ~= "" and (current_time - last_commit_time) > CONFIG.CONTEXT_TIMEOUT_MS then
-                reset_memory_chain(env, "输入超时") 
-            end
-
-            -- 预测状态更新：处理当下
-            -- 放宽级联预测条件。只要上屏的不是被拦截的标点，
-            -- 无论你是手打的还是选的联想词，都无条件开启/重置预测模式，继续往下推词！
-            if not is_predicting then 
-                is_predicting = true 
-                predict_count = 1
+            if not val or val == "" then
+                if is_tone_symbol(text) then
+                    db:update(key, "1|" .. tostring(now)) -- 标点秒记
+                else
+                    db:update(key, "0|" .. tostring(now))
+                end
             else
-                predict_count = predict_count + 1
-            end
-            -- 如果预测步数超过了设定的最大值，不关闭预测，而是把步数重置
-            if predict_count > CONFIG.MAX_PREDICTIONS then
-                is_predicting = false
-                predict_count = 0
-                pending_cands = nil
-                return
-            end
-
-            env.last_written_keys = {} 
-            local function update_memory(key)
-                local val = db:fetch(key)
-                local now = os_time()
-                env.last_written_keys[key] = val or ""
-                
-                if not val or val == "" then
-                    if is_tone_symbol(text) then
-                        db:update(key, "1|" .. tostring(now)) -- 标点秒记
+                local c_str, ts_str = s_match(val, "^([^|]+)|?(.*)$")
+                local count = tonumber(c_str) or 0
+                local ts = tonumber(ts_str) or 0
+                local age = now - ts
+                if age > CONFIG.EXPIRY_SECONDS then
+                    db:update(key, "0|" .. tostring(now))
+                elseif count == 0 then
+                    if age <= CONFIG.ACTIVATION_SECONDS then
+                        db:update(key, "1|" .. tostring(now)) 
                     else
-                        db:update(key, "0|" .. tostring(now))
+                        db:update(key, "0|" .. tostring(now)) 
                     end
                 else
-                    local c_str, ts_str = s_match(val, "^([^|]+)|?(.*)$")
-                    local count = tonumber(c_str) or 0
-                    local ts = tonumber(ts_str) or 0
-                    local age = now - ts
-                    if age > CONFIG.EXPIRY_SECONDS then
-                        db:update(key, "0|" .. tostring(now))
-                    elseif count == 0 then
-                        if age <= CONFIG.ACTIVATION_SECONDS then
-                            db:update(key, "1|" .. tostring(now)) 
-                        else
-                            db:update(key, "0|" .. tostring(now)) 
-                        end
-                    else
-                        db:update(key, tostring(count + 1) .. "|" .. tostring(now))
-                    end
+                    db:update(key, tostring(count + 1) .. "|" .. tostring(now))
                 end
             end
+        end
 
-            -- 防御与终结符解耦体系
-            local current_time = rime_api.get_time_ms()
-            local should_record = true
-            local is_terminal_symbol = false -- 解耦标记
+        -- 降级获取时间
+        current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
+        
+        local should_record = true
+        local is_terminal_symbol = false -- 解耦标记
 
-
-            -- 2. 语气助词校验
-            if should_record and is_tone_symbol(text) then
-                local last_char = s_sub(last_commit, -3) 
-                if not PARTICLE_WHITELIST[last_char] then
-                    should_record = false
-                    reset_memory_chain(env, "非助词接标点") 
-                else
-                    is_terminal_symbol = true -- 允许写入，但标记为终结符
-                end
-            end
-
-            -- 3. 防复读机
-            if should_record and last_commit == text then
+        -- 2. 语气助词校验
+        if should_record and is_tone_symbol(text) then
+            local last_char = s_sub(last_commit, -3) 
+            if not PARTICLE_WHITELIST[last_char] then
                 should_record = false
+                reset_memory_chain(env, "非助词接标点") 
+            else
+                is_terminal_symbol = true -- 允许写入，但标记为终结符
             end
+        end
 
-            -- 4. 柔性 ABBA 拦截：退回B保留A
-            if should_record and #history >= 2 then
-                if text == history[#history - 1] then
-                    should_record = false
-                    remove(history, #history)
-                    last_commit = history[#history] or ""
-                end
-            end
+        -- 3. 防复读机
+        if should_record and last_commit == text then
+            should_record = false
+        end
 
-            -- 【一：写入逻辑】
-            if should_record and last_commit ~= "" then
-                local chars = get_utf8_chars(last_commit)
-                local lengths_to_learn = get_suffix_lengths(#chars)
-                for _, l in ipairs(lengths_to_learn) do
-                    update_memory("P\t" .. table.concat(chars, "", #chars - l + 1, #chars) .. "\t" .. text)
-                end
-                if #history >= 1 then update_memory("1\t" .. history[#history] .. "\t" .. text) end
-                if #history >= 2 then update_memory("2\t" .. history[1] .. "\t" .. history[2] .. "\t" .. text) end
+        -- 4. 柔性 ABBA 拦截：退回B保留A
+        if should_record and #history >= 2 then
+            if text == history[#history - 1] then
+                should_record = false
+                remove(history, #history)
+                last_commit = history[#history] or ""
             end
-            
-            -- 【二：调用逻辑解耦】
-            if should_record then
-                if is_terminal_symbol then
-                    reset_memory_chain(env, "终结符上屏完毕") -- 终结符写完即刻洗白，绝不成为下文
-                else
-                    insert(history, text)
-                    if #history > 2 then remove(history, 1) end
-                    last_commit = text
-                end
+        end
+
+        -- 【一：写入逻辑】
+        if should_record and last_commit ~= "" then
+            local chars = get_utf8_chars(last_commit)
+            local lengths_to_learn = get_suffix_lengths(#chars)
+            for _, l in ipairs(lengths_to_learn) do
+                update_memory("P\t" .. table.concat(chars, "", #chars - l + 1, #chars) .. "\t" .. text)
             end
-            
-            last_commit_time = current_time
-            env.just_committed = true
-            
-            -- 通过 Rime 原生 prediction 开关判断是否推送联想
-            if predict_count <= CONFIG.MAX_PREDICTIONS and ctx:get_option("prediction") then
-                pending_cands = get_predictions(env, last_commit)
-                if pending_cands then 
-                    env.need_push = true 
-                else
-                    predict_count = 0; is_predicting = false; pending_cands = nil
-                end
+            if #history >= 1 then update_memory("1\t" .. history[#history] .. "\t" .. text) end
+            if #history >= 2 then update_memory("2\t" .. history[1] .. "\t" .. history[2] .. "\t" .. text) end
+        end
+        
+        -- 【二：调用逻辑解耦】
+        if should_record then
+            if is_terminal_symbol then
+                reset_memory_chain(env, "终结符上屏完毕") -- 终结符写完即刻洗白，绝不成为下文
+            else
+                insert(history, text)
+                if #history > 2 then remove(history, 1) end
+                last_commit = text
+            end
+        end
+        
+        last_commit_time = current_time
+        env.just_committed = true
+        
+        -- 通过 Rime 原生 prediction 开关判断是否推送联想
+        if predict_count <= CONFIG.MAX_PREDICTIONS and ctx:get_option("prediction") then
+            pending_cands = get_predictions(env, last_commit)
+            if pending_cands then 
+                env.need_push = true 
             else
                 predict_count = 0; is_predicting = false; pending_cands = nil
             end
-        end)
+        else
+            predict_count = 0; is_predicting = false; pending_cands = nil
+        end
     end
     
     env.update_cb = function(ctx)
-        local status, err = pcall(function()
-            local input = ctx.input
-            if not input then return end
-            
-            -- 数据序列化导出模块
-            if input == "outpredict" then
-                ctx:clear()
-                local sync_path = rime_api.get_user_data_dir() .. "/predict_export.txt"
-                local f = io.open(sync_path, "w")
-                if f then
-                    for k, v in db:query(""):iter() do
-                        if s_sub(k, 1, 1) ~= "\1" then
-                            f:write(k .. "\t" .. v .. "\n")
-                        end
+        local input = ctx.input
+        if not input then return end
+        
+        -- 数据序列化导出模块
+        if input == "outpredict" then
+            ctx:clear()
+            local sync_path = rime_api.get_user_data_dir() .. "/predict_export.txt"
+            local f = io.open(sync_path, "w")
+            if f then
+                for k, v in db:query(""):iter() do
+                    if s_sub(k, 1, 1) ~= "\1" then
+                        f:write(k .. "\t" .. v .. "\n")
                     end
-                    f:close()
                 end
-                reset_memory_chain(env, "导出结束")
-                return
+                f:close()
             end
+            reset_memory_chain(env, "导出结束")
+            return
+        end
 
-            -- LWW 算法智能合并模块 (Last Write Wins)
-            if input == "inpredict" then
-                ctx:clear()
-                local sync_path = rime_api.get_user_data_dir() .. "/predict_import.txt"
-                local f = io.open(sync_path, "r")
-                if f then
-                    for line in f:lines() do
-                        local k, v = s_match(line, "^([^\t]+)\t(.*)$")
-                        if k and v then
-                            local old_v = db:fetch(k)
-                            if old_v and old_v ~= "" then
-                                local _, old_ts = s_match(old_v, "^([^|]+)|?(.*)$")
-                                local _, new_ts = s_match(v, "^([^|]+)|?(.*)$")
-                                local o_ts = tonumber(old_ts) or 0
-                                local n_ts = tonumber(new_ts) or 0
-                                
-                                if n_ts > o_ts then
-                                    db:update(k, v)
-                                end
-                            else
+        -- LWW 算法智能合并模块 (Last Write Wins)
+        if input == "inpredict" then
+            ctx:clear()
+            local sync_path = rime_api.get_user_data_dir() .. "/predict_import.txt"
+            local f = io.open(sync_path, "r")
+            if f then
+                for line in f:lines() do
+                    local k, v = s_match(line, "^([^\t]+)\t(.*)$")
+                    if k and v then
+                        local old_v = db:fetch(k)
+                        if old_v and old_v ~= "" then
+                            local _, old_ts = s_match(old_v, "^([^|]+)|?(.*)$")
+                            local _, new_ts = s_match(v, "^([^|]+)|?(.*)$")
+                            local o_ts = tonumber(old_ts) or 0
+                            local n_ts = tonumber(new_ts) or 0
+                            
+                            if n_ts > o_ts then
                                 db:update(k, v)
                             end
+                        else
+                            db:update(k, v)
                         end
                     end
-                    f:close()
                 end
-                reset_memory_chain(env, "导入结束")
-                return
+                f:close()
             end
+            reset_memory_chain(env, "导入结束")
+            return
+        end
 
-            local expected_ph = string.rep(PH_CHAR, predict_count)
-            local expected_len = string.len(expected_ph)
+        local expected_ph = string.rep(PH_CHAR, predict_count)
+        local expected_len = string.len(expected_ph)
 
-            if env.need_push and input == "" then
-                env.need_push = false
-                ctx:push_input(expected_ph)
-                ctx.caret_pos = expected_len
+        if env.need_push and input == "" then
+            env.need_push = false
+            ctx:push_input(expected_ph)
+            ctx.caret_pos = expected_len
+            return
+        end
+        
+        if s_find(input, PH_CHAR) then
+            if input ~= expected_ph then
+                local clean_text = string.gsub(input, PH_CHAR, "")
+                ctx:clear()
+                predict_count = 0
+                is_predicting = false
+                pending_cands = nil
+                if clean_text ~= "" then ctx:push_input(clean_text) end
                 return
-            end
-            
-            if s_find(input, PH_CHAR) then
-                if input ~= expected_ph then
-                    local clean_text = string.gsub(input, PH_CHAR, "")
+            else
+                if ctx.caret_pos < expected_len then 
                     ctx:clear()
                     predict_count = 0
                     is_predicting = false
                     pending_cands = nil
-                    if clean_text ~= "" then ctx:push_input(clean_text) end
-                    return
-                else
-                    if ctx.caret_pos < expected_len then 
-                        ctx:clear()
-                        predict_count = 0
-                        is_predicting = false
-                        pending_cands = nil
-                        return 
-                    end
+                    return 
                 end
             end
-        end)
+        end
     end
 
     env.commit_connection = env.engine.context.commit_notifier:connect(env.commit_cb)
@@ -452,62 +449,11 @@ function P.func(key, env)
     
     local repr = key:repr()
 
-    -- 强制拦截物理标点按键转为 commit 动作，确保被记录
-    if not ctx:is_composing() then
-        local symbol_map = { ["?"] = "？", ["!"] = "！", [","] = "，", ["."] = "。" }
-        if symbol_map[repr] then
-            env.engine:commit_text(symbol_map[repr])
-            return 1
-        end
-    end
-
-    -- 主动数据抹除功能：定位高亮候选项并从数据库多维关联中剔除
-    if ctx:has_menu() then
-        if (s_find(repr, "Shift") or s_find(repr, "Control")) and (s_find(repr, "Delete") or s_find(repr, "BackSpace")) then
-            local cand = ctx:get_selected_candidate()
-            
-            if cand and cand.type == "predict" then
-                local word = cand.text
-                local db = get_db(env)
-
-                local exact_key = nil
-                if pending_cands then
-                    for _, c in ipairs(pending_cands) do
-                        if c.word == word then
-                            exact_key = c.db_key
-                            break
-                        end
-                    end
-                end
-
-                if exact_key then
-                    if db.erase then db:erase(exact_key) else db:update(exact_key, "") end
-                end
-
-                -- 为了防止它是被 2-Gram 推出来的，删了 2-Gram 还有 1-Gram 兜底（导致删不干净）
-                local chars = get_utf8_chars(last_commit)
-                local lengths = get_suffix_lengths(#chars)
-                for _, l in ipairs(lengths) do
-                    local prefix = "P\t" .. table.concat(chars, "", #chars - l + 1, #chars) .. "\t"
-                    if db.erase then db:erase(prefix .. word) else db:update(prefix .. word, "") end
-                end
-                if #history >= 1 then 
-                    if db.erase then db:erase("1\t" .. history[#history] .. "\t" .. word) else db:update("1\t" .. history[#history] .. "\t" .. word, "") end
-                end
-                if #history >= 2 then 
-                    if db.erase then db:erase("2\t" .. history[1] .. "\t" .. history[2] .. "\t" .. word) else db:update("2\t" .. history[1] .. "\t" .. history[2] .. "\t" .. word, "") end
-                end
-                
-                ctx:clear()
-                reset_memory_chain(env, "主动抹除词条")
-                return 1 
-            end
-        end
-    end
-
-    -- 事务回滚模块：侦测上屏动作后的即刻退格，用于纠正输入误操作
-    if env.just_committed then
-        if repr == "BackSpace" then
+    -- 核心目标：上屏后反悔 + 彻底掐死乱码 8
+    if repr == "BackSpace" then
+        
+        -- 事务回滚（后悔药）：如果刚上屏，先把数据库权重撤回来
+        if env.just_committed then
             local db = get_db(env)
             for k, v in pairs(env.last_written_keys or {}) do
                 if v == "" then 
@@ -517,33 +463,64 @@ function P.func(key, env)
                 end
             end
             env.last_written_keys = {}
-            reset_memory_chain(env, "事务回滚(上屏即退格)")
-            env.just_committed = false
-            -- log.info("[Processor] 事务回滚: 检测到上屏立即退格, 已恢复最近一次数据库操作")
-            return 2 
-        elseif not s_match(repr, "Shift") and not s_match(repr, "Control") and not s_match(repr, "Alt") then
             env.just_committed = false
         end
-    end
-
-    if s_find(input, PH_CHAR) then
-        -- 针对配置的空格打断逻辑
-        if key.keycode == 0x20 and CONFIG.ENABLE_PREDICT_SPACE then
+        if is_predicting then
             ctx:clear()
-            reset_memory_chain(env, "空格打断联想")
-            env.engine:commit_text(" ")
-            -- log.info("[Processor] 联想打断: 空格键触发，已清空预测并上屏实体空格")
-            return 1
-        end
-        
-        -- 其他常规打断键
-        if repr == "Escape" or repr == "Return" or repr == "BackSpace" then
-            ctx:clear()
-            reset_memory_chain(env, "打断键(Esc/Enter/Backspace)清除预测") 
+            reset_memory_chain(env, "退格强清联想")
             return 1 
         end
     end
-    
+
+    -- Esc、回车、空格：直接清空联想并拦截
+    if is_predicting then
+        if repr == "Escape" or repr == "Return" or (key.keycode == 0x20 and CONFIG.ENABLE_PREDICT_SPACE) then
+            ctx:clear()
+            reset_memory_chain(env, "打断键清除预测") 
+            return 1
+        end
+    end
+
+    -- 物理标点劫持
+    -- 确保物理标点被 commit，从而被记录到记忆链条里
+    if not ctx:is_composing() then
+        local symbol_map = { ["?"] = "？", ["!"] = "！", [","] = "，", ["."] = "。" }
+        if symbol_map[repr] then
+            env.engine:commit_text(symbol_map[repr])
+            return 1
+        end
+    end
+
+    -- 主动抹除数据 (Shift/Ctrl + Del)】
+    -- 定位高亮候选词并物理销毁
+    if ctx:has_menu() and (s_find(repr, "Shift") or s_find(repr, "Control")) and (s_find(repr, "Delete") or s_find(repr, "BackSpace")) then
+        local cand = ctx:get_selected_candidate()
+        if cand and cand.type == "predict" then
+            local word = cand.text
+            local db = get_db(env)
+
+            -- 查找精确 key
+            local exact_key = nil
+            if pending_cands then
+                for _, c in ipairs(pending_cands) do
+                    if c.word == word then exact_key = c.db_key; break end
+                end
+            end
+            -- 数据库多维抹除（P-Gram, 1-Gram, 2-Gram）
+            if exact_key then
+                if db.erase then db:erase(exact_key) else db:update(exact_key, "") end
+            end
+            local chars = get_utf8_chars(last_commit)
+            local lengths = get_suffix_lengths(#chars)
+            for _, l in ipairs(lengths) do
+                local p_key = "P\t" .. table.concat(chars, "", #chars - l + 1, #chars) .. "\t" .. word
+                if db.erase then db:erase(p_key) else db:update(p_key, "") end
+            end
+            ctx:clear()
+            reset_memory_chain(env, "物理销毁词条")
+            return 1 
+        end
+    end
     return 2 
 end
 
