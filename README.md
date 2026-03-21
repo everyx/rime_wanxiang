@@ -881,6 +881,8 @@ xxx/sync/ios
 
 ## 生态
 
+[薄荷拼音](https://github.com/Mintimate/oh-my-rime) :使用万象词库的综合性方案，特别是其修改的地球拼音能够继承万象的词库声调编码。
+
 [鸢鸣万象](https://github.com/yuanz-12/wanxiang_yoemin) :一个基于万象拼音生态融合李氏三拼与辅助码能力的手机用方案。
 
 [万象虎](https://github.com/zhhwux/wxzhh) : 一个基于万象生态的虎码整句方案。

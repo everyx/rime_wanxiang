@@ -3,10 +3,10 @@
 -- by amzxyz
 -- 架构层: Processor (物理按键截取与逻辑分发) + Translator (候选词生成与上屏)
 -- 算法层:
--- v1.0.0
--- 1. 瀑布流查询模型 (2-Gram 精确 -> 1-Gram 降级 -> P-Gram 模糊抗抖动)
+-- v1.1.0 (深度定制版：存得严，查得准，清得快)
+-- 1. 瀑布流查询模型 (S-Gram -> 2-Gram 精确 -> 1-Gram 断崖回退 -> P-Gram 模糊抗抖动)
 -- 2. 双重衰减排名 (时间指数衰减 + 频次基础权重)
--- 3. 数据淘汰系统 (0分冷冻机制 + 15元末位淘汰 + 30天/90天绝对生命周期)
+-- 3. 数据淘汰系统 (P记录30天清理 + 1/2记录90天生命周期)
 -- 4. 事务级回滚机制 (拦截上屏立即退格，复原上次数据库操作)
 -- 5. LWW 智能合并 (导入数据时采用 Last Write Wins 策略，保留最新时间戳数据)
 -- 6. ABA 防折返输入 (拦截如"你好"->"你好"的自我循环，减少数据库无效记录)
@@ -26,6 +26,7 @@ local s_format = string.format
 local tonumber = tonumber
 local math_pow = math.pow
 local math_max = math.max
+local math_min = math.min
 local os_time  = os.time
 
 -- 内部运行参数默认值 (会被外部 YAML 配置覆盖)
@@ -33,12 +34,13 @@ local CONFIG = {
     MAX_CANDIDATES      = 5,             
     MAX_PREDICTIONS     = 3,             
     EXPIRY_SECONDS      = 90 * 24 * 3600,
+    P_EXPIRY_SECONDS    = 30 * 24 * 3600, -- 新增：P 记录只有 30 天生命
     ACTIVATION_SECONDS  = 7 * 24 * 3600, 
     MAX_MEMORY_BRANCHES = 15,            
     DECAY_RATE          = 0.85,          
     SCAN_LIMIT          = 80,            
-    ENABLE_PREDICT_SPACE = false,  -- 联想时空格是否打断并上屏实体空格
-    CONTEXT_TIMEOUT_MS  = 5000,    -- 语境超时时间(毫秒)
+    ENABLE_PREDICT_SPACE = false,  
+    CONTEXT_TIMEOUT_MS  = 5000,    
 }
 
 -- 新增：语气助词白名单与标点检测
@@ -61,7 +63,6 @@ local function load_config(env)
         CONFIG.MAX_MEMORY_BRANCHES = config:get_int("user_predict/max_memory_branches") or 15
         CONFIG.DECAY_RATE          = config:get_double("user_predict/decay_rate") or 0.85
         
-        -- 读取空格打断配置
         local ps_val = config:get_bool("user_predict/enable_predict_space")
         if ps_val ~= nil then CONFIG.ENABLE_PREDICT_SPACE = ps_val end
         
@@ -100,18 +101,18 @@ local function get_db(env)
     return db
 end
 
--- 语境分割算法：检测是否输入了标点符号或控制字符
+-- 语境分割算法
 local function is_punctuation_or_space(text)
     if not text or text == "" then return false end
-    if is_tone_symbol(text) then return false end -- 特权：放行语气标点去校验
-    -- 暴力拦截：空格、控制符、以及所有非语气标点，直接视为断句
+    if is_tone_symbol(text) then return false end
     if s_match(text, "[%p%c%s]") then return true end
+    if s_match(text, "^[a-zA-Z0-9]+$") then return true end
     local zh_punct = "；：“”‘’（）【】《》、·￥"
     if s_find(zh_punct, text, 1, true) then return true end
     return false
 end
 
--- 分词聚集算法：连续的英文字母或数字打包为一个词元，中文按 UTF-8 单字切割
+-- 分词聚集算法
 local function get_utf8_chars(str)
     if not str or str == "" then return {} end
     if s_match(str, "^[a-zA-Z0-9]+$") or is_tone_symbol(str) then return { str } end
@@ -122,7 +123,7 @@ local function get_utf8_chars(str)
     return chars
 end
 
--- 模糊查询降级参数：最多回退匹配最后 4 个词元
+-- 模糊查询降级参数 (现在统一供 1 和 P 使用)
 local function get_suffix_lengths(len)
     if len >= 4 then return {4, 3, 2} 
     elseif len == 3 then return {3, 2}    
@@ -130,48 +131,45 @@ local function get_suffix_lengths(len)
     elseif len == 1 then return {1} end
     return {}
 end
--- 终极清道夫模块：全局过期数据回收 (Active GC)
-local _last_sweep_memory = 0 -- 内存级缓存，避免频繁读库
 
+--全局过期数据回收
+local _last_sweep_memory = 0 
 local function sweep_expired_data(db)
     if not db then return end
     local now = os_time()
     
-    -- 1. 第一层极速拦截：看内存。不足 1 天直接退，不碰数据库
     if (now - _last_sweep_memory) < 86400 then return end
     
-    -- 2. 第二层拦截：看数据库（应对重新部署的情况）
     local last_sweep_str = db:fetch("\0_last_sweep")
     local db_last_sweep = tonumber(last_sweep_str) or 0
     
     if (now - db_last_sweep) < 86400 then 
-        _last_sweep_memory = db_last_sweep -- 同步到内存
+        _last_sweep_memory = db_last_sweep 
         return 
     end
-    
-    local expire_limit = CONFIG.EXPIRY_SECONDS
-    local erase_count = 0
     
     -- 开启全库扫描
     for k, v in db:query(""):iter() do
         if s_sub(k, 1, 1) ~= "\1" and s_sub(k, 1, 1) ~= "\0" then
             local c_str, ts_str = s_match(v, "^([^|]+)|?(.*)$")
+            local count = tonumber(c_str) or 0
             local ts = tonumber(ts_str) or 0
-            if ts == 0 then ts = now - expire_limit - 1 end
-            if (now - ts) > expire_limit then
+            
+            -- 区分 P 记录和正式记录的寿命
+            local is_p_gram = (s_sub(k, 1, 2) == "P\t")
+            local current_limit = is_p_gram and CONFIG.P_EXPIRY_SECONDS or CONFIG.EXPIRY_SECONDS
+            if ts == 0 then ts = now - current_limit - 1 end
+            if (now - ts) > current_limit then
                 if db.erase then db:erase(k) else db:update(k, "") end
-                erase_count = erase_count + 1
             end
         end
     end
     
-    -- 写入新的打扫时间
     db:update("\0_last_sweep", tostring(now))
-    -- log.info("[Predict GC] 触发每日大扫除，清理过期死数据: " .. erase_count .. " 条")
-    _last_sweep_memory = now -- 更新内存缓存
+    _last_sweep_memory = now 
 end
 
--- 核心预测与过滤模块
+-- 读取层预测核心
 local function get_predictions(env, prev_commit)
     if not prev_commit or prev_commit == "" then return nil end
     local db = get_db(env)
@@ -195,14 +193,17 @@ local function get_predictions(env, prev_commit)
                 local c_str, ts_str = s_match(v, "^([^|]+)|?(.*)$")
                 local count = tonumber(c_str) or 0
                 local ts = tonumber(ts_str) or 0
-                if ts == 0 then ts = now - CONFIG.EXPIRY_SECONDS - 1 end
-                local age_seconds = now - ts
                 
-                if age_seconds > CONFIG.EXPIRY_SECONDS then
+                local is_p_gram = (s_sub(k, 1, 2) == "P\t")
+                local limit = is_p_gram and CONFIG.P_EXPIRY_SECONDS or CONFIG.EXPIRY_SECONDS
+                
+                if ts == 0 then ts = now - limit - 1 end
+                
+                if (now - ts) > limit then
                     if db.erase then db:erase(k) else db:update(k, "") end
                 else
                     if count > 0 then
-                        local age_days = age_seconds / 86400.0
+                        local age_days = (now - ts) / 86400.0
                         local score = count * math_pow(CONFIG.DECAY_RATE, age_days) * multiplier
                         if score > 0.05 and word ~= "" then
                             insert(prefix_cands, { word = word, weight = score, db_key = k })
@@ -226,16 +227,41 @@ local function get_predictions(env, prev_commit)
         end
     end
 
+    -- S先读
     if #history >= 1 then fetch_and_clean("S\t" .. history[#history] .. "\t", 1000000) end
-    if #history >= 2 then fetch_and_clean("2\t" .. history[#history - 1] .. "\t" .. history[#history] .. "\t", 10000) end
-    if #cands < CONFIG.MAX_CANDIDATES and #history >= 1 then fetch_and_clean("1\t" .. history[#history] .. "\t", 100) end
+
+    -- 小于等于2先找上文组合查 2-Gram
+    if #history >= 2 then 
+        local u1 = history[#history]
+        if #get_utf8_chars(u1) <= 2 then
+            fetch_and_clean("2\t" .. history[#history - 1] .. "\t" .. u1 .. "\t", 10000) 
+        end
+    end
+
+    -- 查 1-Gram (统一 432 回退，如果是 1或2 查本身。查到即止)
+    if #cands < CONFIG.MAX_CANDIDATES and #history >= 1 then 
+        local u1 = history[#history]
+        local chars = get_utf8_chars(u1)
+        local len_u1 = #chars
+        
+        -- 起步最多为 4，底线为 1
+        local max_len = math_min(len_u1, 4)
+        local min_len = (len_u1 >= 2) and 2 or 1
+        
+        for l = max_len, min_len, -1 do
+            local lookup_u1 = table.concat(chars, "", len_u1 - l + 1, len_u1)
+            fetch_and_clean("1\t" .. lookup_u1 .. "\t", 100) 
+            if #cands > 0 then break end -- 匹配上就停止
+        end
+    end
+
+    -- 查不到再去拿 P 去匹配 (432 碎片兜底)
     if #cands < CONFIG.MAX_CANDIDATES then
         local chars = get_utf8_chars(prev_commit)
         local lengths_to_query = get_suffix_lengths(#chars)
         for _, l in ipairs(lengths_to_query) do
-            -- 提早跳出循环，节省 DB 查询
-            if #cands >= CONFIG.MAX_CANDIDATES then break end 
             fetch_and_clean("P\t" .. table.concat(chars, "", #chars - l + 1, #chars) .. "\t", 1)
+            if #cands > 0 then break end -- 匹配上就停止
         end
     end
 
@@ -245,9 +271,10 @@ local function get_predictions(env, prev_commit)
     end
     return nil
 end
+
 local P = {}
 function P.init(env)
-    load_config(env) -- 读取 YAML 配置
+    load_config(env) 
     local db = get_db(env)
     sweep_expired_data(db)
     env.need_push = false 
@@ -263,20 +290,18 @@ function P.init(env)
             return
         end
 
-        -- 降级获取时间
         local current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
         if last_commit ~= "" and (current_time - last_commit_time) > CONFIG.CONTEXT_TIMEOUT_MS then
             reset_memory_chain(env, "输入超时") 
         end
 
-        -- 预测状态更新：处理当下
         if not is_predicting then 
             is_predicting = true 
             predict_count = 1
         else
             predict_count = predict_count + 1
         end
-        -- 如果预测步数超过了设定的最大值，不关闭预测，而是把步数重置
+        
         if predict_count > CONFIG.MAX_PREDICTIONS then
             is_predicting = false
             predict_count = 0
@@ -292,7 +317,7 @@ function P.init(env)
             
             if not val or val == "" then
                 if is_tone_symbol(text) then
-                    db:update(key, "1|" .. tostring(now)) -- 标点秒记
+                    db:update(key, "1|" .. tostring(now)) 
                 else
                     db:update(key, "0|" .. tostring(now))
                 end
@@ -315,33 +340,33 @@ function P.init(env)
             end
         end
 
-        -- 降级获取时间
         current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
         
         local should_record = true
-        local is_terminal_symbol = false -- 解耦标记
+        local is_terminal_symbol = false 
 
-        local text_chars = get_utf8_chars(text)
-        if #text_chars > 6 then
+        -- 存的规矩：第一关，单个commit不能超过4
+        local v_chars = get_utf8_chars(text)
+        if #v_chars > 4 then
             should_record = false
         end
-        -- 2. 语气助词校验
+        
         if should_record and is_tone_symbol(text) then
-            local last_char = s_sub(last_commit, -3) 
+            local prev_chars = get_utf8_chars(last_commit)
+            local last_char = prev_chars[#prev_chars] or "" 
+            
             if not PARTICLE_WHITELIST[last_char] then
                 should_record = false
                 reset_memory_chain(env, "非助词接标点") 
             else
-                is_terminal_symbol = true -- 允许写入，但标记为终结符
+                is_terminal_symbol = true 
             end
         end
 
-        -- 3. 防复读机
         if should_record and last_commit == text then
             should_record = false
         end
 
-        -- 4. 柔性 ABBA 拦截：退回B保留A
         if should_record and #history >= 2 then
             if text == history[#history - 1] then
                 should_record = false
@@ -350,21 +375,39 @@ function P.init(env)
             end
         end
 
-        -- 【一：写入逻辑】
+        -- 写入层核心
         if should_record and last_commit ~= "" then
-            local chars = get_utf8_chars(last_commit)
-            local lengths_to_learn = get_suffix_lengths(#chars)
+            local u1_chars = get_utf8_chars(last_commit)
+            local len_u1 = #u1_chars
+            
+            -- 不管当前上文多长，都切分出最后 4、3、2 位存 P
+            -- P-Gram 模糊后缀写入 (拒绝与 1-Gram 产生 100% 重合的幽灵数据)
+            local lengths_to_learn = get_suffix_lengths(len_u1)
             for _, l in ipairs(lengths_to_learn) do
-                update_memory("P\t" .. table.concat(chars, "", #chars - l + 1, #chars) .. "\t" .. text)
+                if l < len_u1 or len_u1 > 4 then
+                    update_memory("P\t" .. table.concat(u1_chars, "", len_u1 - l + 1, len_u1) .. "\t" .. text)
+                end
             end
-            if #history >= 1 then update_memory("1\t" .. history[#history] .. "\t" .. text) end
-            if #history >= 2 then update_memory("2\t" .. history[1] .. "\t" .. history[2] .. "\t" .. text) end
+            
+            -- 如果上文是 1-4 个字，存 1-Gram
+            if len_u1 <= 4 and #history >= 1 then 
+                update_memory("1\t" .. last_commit .. "\t" .. text) 
+            end
+            
+            -- 如果上文是 1-4 个字，且上上文+上文 <= 5 个字，存 2-Gram
+            if len_u1 <= 4 and #history >= 2 then
+                local u0 = history[#history - 1]
+                local len_u0 = u0 and #get_utf8_chars(u0) or 0
+                if (len_u0 + len_u1) <= 5 then
+                    update_memory("2\t" .. u0 .. "\t" .. last_commit .. "\t" .. text)
+                end
+            end
         end
         
-        -- 【二：调用逻辑解耦】
+        -- 调用逻辑解耦
         if should_record then
             if is_terminal_symbol then
-                reset_memory_chain(env, "终结符上屏完毕") -- 终结符写完即刻洗白，绝不成为下文
+                reset_memory_chain(env, "终结符上屏完毕") 
             else
                 insert(history, text)
                 if #history > 2 then remove(history, 1) end
@@ -375,7 +418,6 @@ function P.init(env)
         last_commit_time = current_time
         env.just_committed = true
         
-        -- 通过 Rime 原生 prediction 开关判断是否推送联想
         if predict_count <= CONFIG.MAX_PREDICTIONS and ctx:get_option("prediction") then
             pending_cands = get_predictions(env, last_commit)
             if pending_cands then 
@@ -392,7 +434,6 @@ function P.init(env)
         local input = ctx.input
         if not input then return end
         
-        -- 数据序列化导出模块
         if input == "/outpredict" then
             ctx:clear()
             local sync_path = rime_api.get_user_data_dir() .. "/predict_export.txt"
@@ -409,7 +450,6 @@ function P.init(env)
             return
         end
 
-        -- LWW 算法智能合并模块 (Last Write Wins)
         if input == "/inpredict" then
             ctx:clear()
             local sync_path = rime_api.get_user_data_dir() .. "/predict_import.txt"
@@ -425,9 +465,7 @@ function P.init(env)
                             local o_ts = tonumber(old_ts) or 0
                             local n_ts = tonumber(new_ts) or 0
                             
-                            if n_ts > o_ts then
-                                db:update(k, v)
-                            end
+                            if n_ts > o_ts then db:update(k, v) end
                         else
                             db:update(k, v)
                         end
@@ -483,9 +521,8 @@ function P.func(key, env)
     if env.just_committed and repr ~= "BackSpace" and not s_match(repr, "Shift") and not s_match(repr, "Control") and not s_match(repr, "Alt") then
         env.just_committed = false
     end
-    -- 核心目标：上屏后反悔 + 彻底掐死乱码
+    
     if repr == "BackSpace" then
-        -- 事务回滚（后悔药）：如果刚上屏，先把数据库权重撤回来
         if env.just_committed then
             local current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
             if (current_time - last_commit_time) <= CONFIG.CONTEXT_TIMEOUT_MS then
@@ -507,7 +544,7 @@ function P.func(key, env)
             return 1 
         end
     end
-    -- Esc、回车、空格：直接清空联想并拦截
+    
     if is_predicting then
         if repr == "Escape" or repr == "Return" or (key.keycode == 0x20 and CONFIG.ENABLE_PREDICT_SPACE) then
             ctx:clear()
@@ -516,8 +553,6 @@ function P.func(key, env)
         end
     end
 
-    -- 物理标点劫持
-    -- 确保物理标点被 commit，从而被记录到记忆链条里
     if not ctx:is_composing() then
         local symbol_map = { ["?"] = "？", ["!"] = "！", [","] = "，", ["."] = "。" }
         if symbol_map[repr] then
@@ -526,22 +561,19 @@ function P.func(key, env)
         end
     end
 
-    -- 主动抹除数据 (Shift/Ctrl + Del)】
-    -- 定位高亮候选词并物理销毁
     if ctx:has_menu() and (s_find(repr, "Shift") or s_find(repr, "Control")) and (s_find(repr, "Delete") or s_find(repr, "BackSpace")) then
         local cand = ctx:get_selected_candidate()
         if cand and cand.type == "predict" then
             local word = cand.text
             local db = get_db(env)
 
-            -- 查找精确 key
             local exact_key = nil
             if pending_cands then
                 for _, c in ipairs(pending_cands) do
                     if c.word == word then exact_key = c.db_key; break end
                 end
             end
-            -- 数据库多维抹除（P-Gram, 1-Gram, 2-Gram）
+            
             if exact_key then
                 if db.erase then db:erase(exact_key) else db:update(exact_key, "") end
             end
@@ -566,7 +598,7 @@ end
 
 local T = {}
 function T.init(env)
-    load_config(env) -- 读取 YAML 配置
+    load_config(env) 
     get_db(env)
 end
 
