@@ -82,6 +82,7 @@ engine:
     - lua_translator@*wanxiang.number_translator    #数字、金额大写，通过输入大写R1234获得候选输出
     - reverse_lookup_translator@wanxiang_reverse    #挂接部件组字和笔画反查
   filters:
+    - lua_filter@*wanxiang.super_lookup                      #字词输入中反查辅助筛选
     - lua_filter@*wanxiang.super_replacer                    #OpenCC替代器，更灵活的处理方式，更自由的自定义方式，支持简繁转换、简码模式、支持候选替换、注释替换、候选派生等等
     - lua_filter@*wanxiang.super_filter                      #replacer后面，先进行转换后过滤，这样能繁体继承简体权重。本质功能相关功能见Lua文件
     - lua_filter@*wanxiang.super_comment_preedit             #超级注释模块、超级preedit，支持错词提示、辅助码显示，部件组字读音注释，有声调、无声调全拼编码的转换，支持个性化配置和关闭相应的功能，详情搜索super_comment_preedit进行详细配置
@@ -119,6 +120,14 @@ user_predict:
   decay_rate: 0.85             # 衰减率：单日时间权重打 85 折
   enable_predict_space: false   # true: 联想时按空格上屏空格; false: 默认行为（根据输入法设定选词等）一般手机开电脑关
   context_timeout: 5000         # 上文超时时间毫秒
+
+super_sequence:  # Lua 配置：手动排序的快捷键 super_sequence.lua，不要用方向键，各种冲突，一定要避免冲突
+  db_name: "lua/sequence"
+  up: "Control+j"      # 上移
+  down: "Control+k"    # 下移
+  reset: "Control+l"   # 重置
+  pin: "Control+p"     # 置顶
+
 # 字符集过滤lua
 # a,通用规范汉字表
 # b,GB2312,
@@ -396,11 +405,6 @@ t9_sym:
 # 从 default 继承快捷键
 key_binder:
   import_preset: default  # 从 default.yaml 继承通用的
-  sequence: # Lua 配置：手动排序的快捷键 super_sequence.lua，不要用方向键，各种冲突，一定要避免冲突
-    up: "Control+j"    # 上移
-    down: "Control+k"  # 下移
-    reset: "Control+l" # 重置
-    pin: "Control+p"   # 置顶
   # Lua 配置: shijian.lua 的引导符，涉及：日期、时间、节日、节气、生日、问候模板等功能
   shijian_keys: ["/", "6"]
   bindings:               # 也可以再增加方案专有的
