@@ -48,17 +48,6 @@ patch:
     enable_predict_space: false   # true: 联想时按空格上屏空格; false: 默认行为（根据输入法设定选词等）一般手机开电脑关
     context_timeout: 5000         # 上文超时时间毫秒
 
-  # 下面这个快解除注释后就能用预测，下载地址：https://cnb.cool/amzxyz/rime-wanxiang/-/releases/download/model/wanxiang-lts-zh-hans-predict.db
-  #'engine/processors/@before 0': predictor
-  #'engine/translators/@before 0': predict_translator
-  #switches/+:
-  #  - name: prediction
-  #    states: [ 预测关, 预测开 ]
-  #predictor:
-  #  db: wanxiang-lts-zh-hans-predict.db
-  #  max_candidates: 10
-  #  max_iterations: 1
-
   super_replacer:
     db_name: lua/replacer
     delimiter: "|"

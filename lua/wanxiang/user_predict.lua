@@ -361,7 +361,7 @@ function P.init(env)
         if not input then return end
         
         -- 数据序列化导出模块
-        if input == "outpredict" then
+        if input == "/outpredict" then
             ctx:clear()
             local sync_path = rime_api.get_user_data_dir() .. "/predict_export.txt"
             local f = io.open(sync_path, "w")
@@ -378,7 +378,7 @@ function P.init(env)
         end
 
         -- LWW 算法智能合并模块 (Last Write Wins)
-        if input == "inpredict" then
+        if input == "/inpredict" then
             ctx:clear()
             local sync_path = rime_api.get_user_data_dir() .. "/predict_import.txt"
             local f = io.open(sync_path, "r")
