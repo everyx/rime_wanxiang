@@ -130,6 +130,46 @@ local function get_suffix_lengths(len)
     elseif len == 1 then return {1} end
     return {}
 end
+-- 终极清道夫模块：全局过期数据回收 (Active GC)
+local _last_sweep_memory = 0 -- 内存级缓存，避免频繁读库
+
+local function sweep_expired_data(db)
+    if not db then return end
+    local now = os_time()
+    
+    -- 1. 第一层极速拦截：看内存。不足 1 天直接退，不碰数据库
+    if (now - _last_sweep_memory) < 86400 then return end
+    
+    -- 2. 第二层拦截：看数据库（应对重新部署的情况）
+    local last_sweep_str = db:fetch("\0_last_sweep")
+    local db_last_sweep = tonumber(last_sweep_str) or 0
+    
+    if (now - db_last_sweep) < 86400 then 
+        _last_sweep_memory = db_last_sweep -- 同步到内存
+        return 
+    end
+    
+    local expire_limit = CONFIG.EXPIRY_SECONDS
+    local erase_count = 0
+    
+    -- 开启全库扫描
+    for k, v in db:query(""):iter() do
+        if s_sub(k, 1, 1) ~= "\1" and s_sub(k, 1, 1) ~= "\0" then
+            local c_str, ts_str = s_match(v, "^([^|]+)|?(.*)$")
+            local ts = tonumber(ts_str) or 0
+            if ts == 0 then ts = now - expire_limit - 1 end
+            if (now - ts) > expire_limit then
+                if db.erase then db:erase(k) else db:update(k, "") end
+                erase_count = erase_count + 1
+            end
+        end
+    end
+    
+    -- 写入新的打扫时间
+    db:update("\0_last_sweep", tostring(now))
+    -- log.info("[Predict GC] 触发每日大扫除，清理过期死数据: " .. erase_count .. " 条")
+    _last_sweep_memory = now -- 更新内存缓存
+end
 
 -- 核心预测与过滤模块
 local function get_predictions(env, prev_commit)
@@ -141,7 +181,7 @@ local function get_predictions(env, prev_commit)
     local seen = {}
     local scan_limit = CONFIG.SCAN_LIMIT 
     
-    local function fetch_and_clean(query_key)
+    local function fetch_and_clean(query_key, multiplier)
         local da = db:query(query_key)
         if not da then return end
         local scan_count = 0
@@ -150,23 +190,20 @@ local function get_predictions(env, prev_commit)
         
         for k, v in da:iter() do
             if scan_count >= scan_limit or not s_find(k, query_key, 1, true) then break end
-            
             if s_sub(k, 1, 1) ~= "\1" then
                 local word = s_sub(k, s_len(query_key) + 1)
                 local c_str, ts_str = s_match(v, "^([^|]+)|?(.*)$")
                 local count = tonumber(c_str) or 0
                 local ts = tonumber(ts_str) or 0
-                
                 if ts == 0 then ts = now - CONFIG.EXPIRY_SECONDS - 1 end
                 local age_seconds = now - ts
                 
-                -- 绝对生命周期：过期清理 vs 衰减打分
                 if age_seconds > CONFIG.EXPIRY_SECONDS then
                     if db.erase then db:erase(k) else db:update(k, "") end
                 else
                     if count > 0 then
                         local age_days = age_seconds / 86400.0
-                        local score = count * math_pow(CONFIG.DECAY_RATE, age_days)
+                        local score = count * math_pow(CONFIG.DECAY_RATE, age_days) * multiplier
                         if score > 0.05 and word ~= "" then
                             insert(prefix_cands, { word = word, weight = score, db_key = k })
                         end
@@ -177,15 +214,11 @@ local function get_predictions(env, prev_commit)
         end
         da = nil
         
-        -- 15杀：分支末位淘汰机制
         if #prefix_cands > 0 then
             sort(prefix_cands, function(a, b) return a.weight > b.weight end)
             for i, c in ipairs(prefix_cands) do
                 if i <= CONFIG.MAX_MEMORY_BRANCHES then
-                    if not seen[c.word] then
-                        insert(cands, c)
-                        seen[c.word] = true
-                    end
+                    if not seen[c.word] then insert(cands, c); seen[c.word] = true end
                 else
                     db:update(c.db_key, "0|" .. tostring(now))
                 end
@@ -193,21 +226,16 @@ local function get_predictions(env, prev_commit)
         end
     end
 
-    -- 瀑布流查询：优先级递减，命中即阻断，优化性能
-    if #history >= 2 then
-        fetch_and_clean("2\t" .. history[#history - 1] .. "\t" .. history[#history] .. "\t")
-    end
-
-    if #cands < CONFIG.MAX_CANDIDATES and #history >= 1 then 
-        fetch_and_clean("1\t" .. history[#history] .. "\t")
-    end
-
+    if #history >= 1 then fetch_and_clean("S\t" .. history[#history] .. "\t", 1000000) end
+    if #history >= 2 then fetch_and_clean("2\t" .. history[#history - 1] .. "\t" .. history[#history] .. "\t", 10000) end
+    if #cands < CONFIG.MAX_CANDIDATES and #history >= 1 then fetch_and_clean("1\t" .. history[#history] .. "\t", 100) end
     if #cands < CONFIG.MAX_CANDIDATES then
         local chars = get_utf8_chars(prev_commit)
         local lengths_to_query = get_suffix_lengths(#chars)
         for _, l in ipairs(lengths_to_query) do
-            if #cands >= CONFIG.MAX_CANDIDATES then break end
-            fetch_and_clean("P\t" .. table.concat(chars, "", #chars - l + 1, #chars) .. "\t")
+            -- 提早跳出循环，节省 DB 查询
+            if #cands >= CONFIG.MAX_CANDIDATES then break end 
+            fetch_and_clean("P\t" .. table.concat(chars, "", #chars - l + 1, #chars) .. "\t", 1)
         end
     end
 
@@ -217,11 +245,11 @@ local function get_predictions(env, prev_commit)
     end
     return nil
 end
-
 local P = {}
 function P.init(env)
     load_config(env) -- 读取 YAML 配置
     local db = get_db(env)
+    sweep_expired_data(db)
     env.need_push = false 
     env.last_written_keys = {}
     env.just_committed = false
@@ -293,6 +321,10 @@ function P.init(env)
         local should_record = true
         local is_terminal_symbol = false -- 解耦标记
 
+        local text_chars = get_utf8_chars(text)
+        if #text_chars > 6 then
+            should_record = false
+        end
         -- 2. 语气助词校验
         if should_record and is_tone_symbol(text) then
             local last_char = s_sub(last_commit, -3) 
@@ -367,7 +399,7 @@ function P.init(env)
             local f = io.open(sync_path, "w")
             if f then
                 for k, v in db:query(""):iter() do
-                    if s_sub(k, 1, 1) ~= "\1" then
+                    if s_sub(k, 1, 1) ~= "\1" and s_sub(k, 1, 1) ~= "\0" then
                         f:write(k .. "\t" .. v .. "\n")
                     end
                 end
@@ -384,7 +416,7 @@ function P.init(env)
             local f = io.open(sync_path, "r")
             if f then
                 for line in f:lines() do
-                    local k, v = s_match(line, "^([^\t]+)\t(.*)$")
+                    local k, v = s_match(line, "^(.*)\t([^\t]+)$")
                     if k and v then
                         local old_v = db:fetch(k)
                         if old_v and old_v ~= "" then
@@ -448,21 +480,25 @@ function P.func(key, env)
     if not input then return 2 end
     
     local repr = key:repr()
-
-    -- 核心目标：上屏后反悔 + 彻底掐死乱码 8
+    if env.just_committed and repr ~= "BackSpace" and not s_match(repr, "Shift") and not s_match(repr, "Control") and not s_match(repr, "Alt") then
+        env.just_committed = false
+    end
+    -- 核心目标：上屏后反悔 + 彻底掐死乱码
     if repr == "BackSpace" then
-        
         -- 事务回滚（后悔药）：如果刚上屏，先把数据库权重撤回来
         if env.just_committed then
-            local db = get_db(env)
-            for k, v in pairs(env.last_written_keys or {}) do
-                if v == "" then 
-                    if db.erase then db:erase(k) else db:update(k, "") end
-                else 
-                    db:update(k, v) 
+            local current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
+            if (current_time - last_commit_time) <= CONFIG.CONTEXT_TIMEOUT_MS then
+                local db = get_db(env)
+                for k, v in pairs(env.last_written_keys or {}) do
+                    if v == "" then 
+                        if db.erase then db:erase(k) else db:update(k, "") end
+                    else 
+                        db:update(k, v) 
+                    end
                 end
+                env.last_written_keys = {}
             end
-            env.last_written_keys = {}
             env.just_committed = false
         end
         if is_predicting then
@@ -471,7 +507,6 @@ function P.func(key, env)
             return 1 
         end
     end
-
     -- Esc、回车、空格：直接清空联想并拦截
     if is_predicting then
         if repr == "Escape" or repr == "Return" or (key.keycode == 0x20 and CONFIG.ENABLE_PREDICT_SPACE) then
