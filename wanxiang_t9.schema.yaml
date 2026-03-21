@@ -30,6 +30,8 @@ switches:
   - name: charset_filter               #字符集过滤，默认开启8105通规显示，即小字集，可通过开关实时开启全字集，快捷键配套ctrl+g,归属：super_filter.lua
     states: [ 大字集, 小字集 ]
     reset: 0
+  - name: prediction
+    states: [ 预测关, 预测开 ]            # 这个名称能用于插件也能用于万象的lua实现，用来开启关闭预测功能
   - options: [ raw_input, tone_display, full_pinyin ]   #开启后在输入编码的位置实时转换为带声调全拼或者不带声调全拼，不开启则采用系统配置原始编码，影响的是preedit_format,归属：super_preedit.lua
     states: [ 原编码, 有声调, 无声调 ]
     reset: 2     #对于开关组从0开始数，第几个就reset几可设为默认
@@ -49,6 +51,7 @@ switches:
 engine:
   processors:
     - lua_processor@*wanxiang.super_processor   #KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
+    - lua_processor@*wanxiang.user_predict*P    #靠自己养的专属预测联想处理器，不再依赖前端插件以及固定数据
     - t9_processor                              #元书T9处理器
     - lua_processor@*wanxiang.super_tips        #超级提示模块：表情、简码、翻译、化学式、等等靠你想象
     - lua_processor@*wanxiang.super_sequence*P  #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+l 移除位移  ctrl+p 置顶
@@ -71,6 +74,7 @@ engine:
   translators:
     - punct_translator                     #配合 punct_segmentor 转换标点符号
     - script_translator                    #脚本翻译器，用于拼音、粤拼等基于音节表的输入方案
+    - lua_translator@*wanxiang.user_predict*T       #靠自己养的专属预测联想处理器，不再依赖前端插件以及固定数据
     - lua_translator@*wanxiang.version_display      #输入'/wx'，显示万象项目网址和当前版本号
     - lua_translator@*wanxiang.shijian              #农历、日期、节气、节日、时间、周、问候模板等等，触发清单看下文
     - lua_translator@*wanxiang.super_calculator     #超级计算器，Lua内查看高级用法
@@ -105,6 +109,16 @@ super_processor:
   # select_character: "[,]"                      # [ 上屏首字，] 上屏尾字（推荐）
   # select_character: "bracketleft, bracketright"  # [ 上屏首字，] 上屏尾字（英文全拼）
 
+user_predict:
+  db_name: lua/predict         # 数据库名称（默认 predict，将生成 predict.userdb 文件夹）
+  max_candidates: 10           # 屏幕最多显示的联想词数量
+  max_predictions: 3           # 连续触发预测的最高次数限制
+  expiry_days: 90              # 绝对寿命（天）：不命中则物理销毁
+  activation_days: 7           # 激活期限（天）：冷冻期内输入第2次转正
+  max_memory_branches: 15      # 分支上限：单前缀最多保留15个后续预测
+  decay_rate: 0.85             # 衰减率：单日时间权重打 85 折
+  enable_predict_space: false   # true: 联想时按空格上屏空格; false: 默认行为（根据输入法设定选词等）一般手机开电脑关
+  context_timeout: 5000         # 上文超时时间毫秒
 # 字符集过滤lua
 # a,通用规范汉字表
 # b,GB2312,
@@ -401,8 +415,8 @@ speller:
 #  auto_select: true
 #  auto_select_pattern: ^[a-z]+/|^[a-df-zA-DF-Z]\w{3}|^e\w{4}
   # 如果不想让什么标点直接上屏，可以加在 alphabet，或者编辑标点符号为两个及以上的映射，alphabet就是将字符纳入输入编码的范畴
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA9876543210`/\
-  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA9876543210
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA9876543210`/\›
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA9876543210›
   delimiter: " '"        # 系统配置，第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
   visual_delimiter: " "  # super_preedit.lua配置：是否让分隔符号跟着一起转换，例如nǐ'hǎo 在实际使用中表现出视觉拥挤，我们可以让delimiter平时是'转换为拼音的时候使用空格nǐ hǎo，更符合实际。
   tone_isolate: true     # super_preedit.lua配置：是否将数字声调从转换后拼音中隔离出来（true=隔离， false 直接参与转换）例如：nǐ3
