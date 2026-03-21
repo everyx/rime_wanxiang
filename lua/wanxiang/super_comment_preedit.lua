@@ -248,78 +248,6 @@ local function get_fz_comment(cand, env, initial_comment)
     end
 end
 
-local SV = {}
-
--- 工具：取光标前的编码（安全处理 caret 越界）
-local function front_input(ctx)
-    if not ctx then return "" end
-    local raw_full = ctx.input or ""
-    local caret    = ctx.caret_pos or #raw_full
-    if caret < 0 then
-        caret = 0
-    elseif caret > #raw_full then
-        caret = #raw_full
-    end
-    return raw_full:sub(1, caret)
-end
-
--- 这个模块主要用于将滤镜阶段未修改前的注释或者 preedit
--- 存到上下文变量里，按键处理阶段使用；update_notifier 保证一致性
-function SV.init(env)
-    env._sv_seq_sig          = ""
-    env._sv_last_pre         = ""   -- 最近一次要写入的 preedit
-    env._saved_input_for_seq = ""   -- 上次对应的 raw_in（光标前编码）
-
-    local ctx = env.engine.context
-
-    env._sv_ctx_conn = ctx.update_notifier:connect(function(c)
-        local raw_in = front_input(c)
-
-        local pre = env._sv_last_pre or ""
-        if pre == "" or raw_in == "" then
-            return
-        end
-
-        -- 不重写：光标前编码 + preedit
-        local sig = raw_in .. "\t" .. pre
-        if env._sv_seq_sig == sig then
-            return
-        end
-
-        c:set_property("sequence_preedit_key", raw_in)
-        c:set_property("sequence_preedit_val", pre)
-        env._sv_seq_sig = sig
-    end)
-end
-
--- 断开 notifier，清理状态
-function SV.fini(env)
-    if env._sv_ctx_conn then
-        env._sv_ctx_conn:disconnect()
-        env._sv_ctx_conn = nil
-    end
-    env._sv_seq_sig          = nil
-    env._sv_last_pre         = nil
-    env._saved_input_for_seq = nil
-end
-
--- 限制更新范围：同一个 raw_in 只记第一次的 preedit
-function SV.update_preedit(env, preedit)
-    local ctx = env.engine.context
-    if not ctx then return end
-
-    local raw_in = front_input(ctx)
-    preedit = preedit or ""
-
-    if raw_in == "" or preedit == "" then
-        return
-    end
-
-    if env._saved_input_for_seq ~= raw_in then
-        env._saved_input_for_seq = raw_in
-        env._sv_last_pre         = preedit
-    end
-end
 -- 对 cand.preedit 应用 tone_preedit/0..9 的映射（数字 -> 上标等）
 -- 对 cand.preedit 应用转换：数字转上标，且隐藏双大写辅助码
 local function apply_tone_preedit(env, cand)
@@ -426,13 +354,11 @@ function ZH.init(env)
         end
     end
     CR.init(env)
-    SV.init(env)
     CF.init(env)
 end
 function ZH.fini(env)
     -- 清理
     CF.fini(env)
-    SV.fini(env)
 end
 function ZH.func(input, env)
     local config = env.engine.schema.config
@@ -470,8 +396,6 @@ function ZH.func(input, env)
         local initial_comment = genuine_cand.comment
         local final_comment = initial_comment
         index = index + 1
-
-        SV.update_preedit(env, preedit) --储存到环境变量
 
         -- preedit相关处理只跳过 preedit，不影响注释
         if is_radical_mode then
