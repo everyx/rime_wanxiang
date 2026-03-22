@@ -318,7 +318,6 @@ function M.init(env)
     local delim = config:get_string(ns .. "/delimiter") or "|"
     env.delimiter = delim
     env.comment_format = config:get_string(ns .. "/comment_format") or "〔%s〕"
-  
     local current_version = "v0.0.0"
     if wanxiang and wanxiang.version then
         current_version = wanxiang.version
@@ -439,7 +438,7 @@ function M.init(env)
                     fmm = fmm,
                     preedit_delim = preedit_delim,
                     t9_opt = t9_opt,
-                    cand_type = custom_cand_type
+                    cand_type = custom_cand_type -- 存入配置表
                 })
 
                 local keys_to_check = {"files", "file"}
@@ -522,7 +521,7 @@ function M.func(input, env)
         local current_text = cand.text
         local show_main = true
         local current_main_comment = cand.comment
-        local matched_cand_type = nil
+        local matched_cand_type = nil -- 记录命中的自定义类型
       
         clear_table(shared_pending)
         clear_table(shared_comments)
@@ -554,7 +553,7 @@ function M.func(input, env)
                     end
                   
                     if val then
-                        matched_cand_type = t.cand_type or matched_cand_type
+                        matched_cand_type = t.cand_type or matched_cand_type -- 赋予候选词特权身份
 
                         local mode = t.mode
                         local rule_comment = ""
@@ -563,8 +562,16 @@ function M.func(input, env)
 
                         if mode == "comment" then
                             local parts = {}
-                            for p in s_gmatch(val, split_pat) do insert(parts, p) end
-                            insert(shared_comments, concat(parts, " "))
+                            for p in s_gmatch(val, split_pat) do 
+                                -- 如果词库提示的简码，刚好等于用户当前已经敲下的编码，则不显示提示
+                                if p ~= input_code then
+                                    insert(parts, p) 
+                                end
+                            end
+                            -- 只有当 parts 里有剩余有效提示时，才追加到注释数组里
+                            if #parts > 0 then
+                                insert(shared_comments, concat(parts, " "))
+                            end
                         elseif mode == "replace" then
                             if is_chain then
                                 local first = true
@@ -668,7 +675,7 @@ function M.func(input, env)
                         if not seen_texts[item_text] then
                             seen_texts[item_text] = true
                             
-                            --简码也支持强制注入 type
+                            -- 简码也支持强制注入 type
                             local final_type = t.cand_type or "abbrev"
                             local abbrev_cand = Candidate(final_type, seg and seg.start or 0, seg and seg._end or #input_code, item_text, "")
                             
