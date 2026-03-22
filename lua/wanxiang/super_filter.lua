@@ -230,18 +230,35 @@ local function apply_escape_fast(text)
     return s, s ~= text
 end
 
-local function format_and_autocap(cand)
+local function format_and_autocap(cand, env)
     local text = cand.text
     if not text or text == "" then 
         return cand 
     end
     
-    local t2, changed = apply_escape_fast(text)
-    if not changed then 
-        return cand 
+    -- 1. 处理转义字符
+    local t2, text_changed = apply_escape_fast(text)
+    
+    -- 2. 处理尾巴符号追加
+    local current_comment = cand.comment or ""
+    local symbol = env.cand_type_symbols[fast_type(cand)]
+    local comment_changed = false
+    
+    if symbol and symbol ~= "" and current_comment ~= "~" then
+        -- 防重判断，避免因为各种原因重复追加
+        local escaped_symbol = symbol:gsub("[%-%^%$%(%)%%%.%[%]%*%+%?]", "%%%1")
+        if not current_comment:match(escaped_symbol .. "$") then
+            current_comment = current_comment .. symbol
+            comment_changed = true
+        end
     end
     
-    local nc = Candidate(cand.type, cand.start, cand._end, t2, cand.comment)
+    -- 如果文本和注释都没变，直接放行原候选词，节省性能
+    if not text_changed and not comment_changed then 
+        return cand 
+    end
+
+    local nc = Candidate(cand.type, cand.start, cand._end, text_changed and t2 or text, current_comment)
     nc.preedit = cand.preedit
     
     return nc
@@ -459,6 +476,17 @@ function M.init(env)
     -- 状态初始化
     env.page_cache = {}
     env.last_2code_char = nil 
+    -- 读取全局类型符号配置
+    env.cand_type_symbols = {}
+    local map = cfg and cfg:get_map("super_comment/cand_type")
+    if map then
+        for _, key in ipairs(map:keys()) do
+            local val = cfg:get_string("super_comment/cand_type/" .. key)
+            if val and val ~= "" then
+                env.cand_type_symbols[key] = val
+            end
+        end
+    end
 end
 
 function M.fini(env)
@@ -627,7 +655,7 @@ function M.func(input, env)
         if not should_skip then
             suppress_set[text] = true
             
-            local formatted_cand = format_and_autocap(cand)
+            local formatted_cand = format_and_autocap(cand, env)
             if not code_has_symbol and #env.page_cache < wrap_limit then
                 table.insert(env.page_cache, clone_candidate(formatted_cand))
             end
@@ -662,7 +690,7 @@ function M.func(input, env)
 
         if not should_skip then
             suppress_set[text] = true
-            yield(format_and_autocap(cand))
+            yield(format_and_autocap(cand, env))
         end
     end
     -- PHASE 3: 三码空候选兜底
