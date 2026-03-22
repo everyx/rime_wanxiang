@@ -240,7 +240,8 @@ local function format_and_autocap(cand, env)
     local t2, text_changed = apply_escape_fast(text)
     
     -- 2. 处理尾巴符号追加
-    local current_comment = cand.comment or ""
+    local genuine = cand:get_genuine()
+    local current_comment = genuine.comment or ""
     local symbol = env.cand_type_symbols[fast_type(cand)]
     local comment_changed = false
     
@@ -253,15 +254,18 @@ local function format_and_autocap(cand, env)
         end
     end
     
-    -- 如果文本和注释都没变，直接放行原候选词，节省性能
-    if not text_changed and not comment_changed then 
+    -- 分流处理！保住 spans 物理边界
+    if text_changed then
+        local nc = Candidate(cand.type, cand.start, cand._end, t2, current_comment)
+        nc.preedit = cand.preedit
+        return nc
+    elseif comment_changed then
+        genuine.comment = current_comment
+        return cand
+    else
+        -- 如果文本和注释都没变，直接放行原候选词，节省性能
         return cand 
     end
-
-    local nc = Candidate(cand.type, cand.start, cand._end, text_changed and t2 or text, current_comment)
-    nc.preedit = cand.preedit
-    
-    return nc
 end
 
 local function clone_candidate(c)
