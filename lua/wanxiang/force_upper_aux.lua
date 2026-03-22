@@ -65,19 +65,41 @@ function ForceUpperAux.init(env)
     env.snapshot_parts = nil 
     env.snapshot_current_full = ""
     env.original_input = ""
+    env.last_cand_len = 0
     
     env.on_update = function(ctx)
         if env.is_cycling or not ctx:is_composing() then 
-            if not ctx:is_composing() then env.history_first = {}; env.press_count = 0; env.is_cycling = false end
+            if not ctx:is_composing() then 
+                env.history_first = {}
+                env.press_count = 0
+                env.is_cycling = false 
+                env.last_cand_len = 0
+            end
             return 
         end
         
         local parts = get_script_text_parts(ctx)
         local n = #parts
         if n == 0 then return end
+        
         local segment = ctx.composition:back()
         local cand = segment:get_candidate_at(0)
+        
         if cand and cand.text then
+            local cand_len = utf8.len(cand.text) or 0
+            
+            --只有当候选词字数实质性变短时，才清理未来的记忆
+            local last_len = env.last_cand_len or 0
+            if cand_len < last_len then
+                for k in pairs(env.history_first) do
+                    if k > cand_len then 
+                        env.history_first[k] = nil 
+                    end
+                end
+            end
+            env.last_cand_len = cand_len
+            
+            -- 记录当前长度的“第一印象”
             if not env.history_first[n] then
                 env.history_first[n] = get_utf8_prefix(cand.text, n)
             end
@@ -88,6 +110,10 @@ end
 
 function ForceUpperAux.fini(env)
     if env.update_conn then env.update_conn:disconnect() end
+    env.dict = nil
+    env.aux_cache = nil
+    env.history_first = nil
+    env.snapshot_parts = nil
 end
 
 -- 核心逻辑
