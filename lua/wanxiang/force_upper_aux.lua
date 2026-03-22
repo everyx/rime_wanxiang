@@ -68,13 +68,24 @@ function ForceUpperAux.init(env)
     env.last_cand_len = 0
     
     env.on_update = function(ctx)
-        if env.is_cycling or not ctx:is_composing() then 
-            if not ctx:is_composing() then 
-                env.history_first = {}
-                env.press_count = 0
-                env.is_cycling = false 
-                env.last_cand_len = 0
-            end
+        ctx = ctx or env.engine.context
+        if not ctx then return end
+        -- 非正常拼音输入时立刻放行，防止移动端键盘卡死
+        local raw_in = ctx.input or ""
+        if raw_in == "" or not raw_in:match("^[a-zA-Z0-9]") then
+            return
+        end
+        -- 遇到转换模式或功能面板时立刻放行
+        local is_special_mode = wanxiang.s2t_conversion and wanxiang.s2t_conversion(ctx)
+        if env.is_cycling or wanxiang.is_function_mode_active(ctx) or is_special_mode then 
+            return 
+        end
+        
+        if not ctx:is_composing() then 
+            env.history_first = {}
+            env.press_count = 0
+            env.is_cycling = false 
+            env.last_cand_len = 0
             return 
         end
         
@@ -83,12 +94,13 @@ function ForceUpperAux.init(env)
         if n == 0 then return end
         
         local segment = ctx.composition:back()
-        local cand = segment:get_candidate_at(0)
+        if not segment then return end
         
+        local cand = segment:get_candidate_at(0)
         if cand and cand.text then
             local cand_len = utf8.len(cand.text) or 0
             
-            --只有当候选词字数实质性变短时，才清理未来的记忆
+            -- 只有当候选词字数实质性变短时，才清理未来的记忆
             local last_len = env.last_cand_len or 0
             if cand_len < last_len then
                 for k in pairs(env.history_first) do
@@ -120,9 +132,18 @@ end
 function ForceUpperAux.func(key_event, env)
     if key_event:release() then return 2 end
     local ctx = env.engine.context
+    
+    -- 拦截移动端的奇怪按键触发
     local raw_in = ctx.input or ""
-    if raw_in == "" or not raw_in:match("^[a-zA-Z0-9]") then return 2 end
-    if wanxiang.is_function_mode_active(ctx) then return 2 end
+    if raw_in == "" or not raw_in:match("^[a-zA-Z0-9/]") then 
+        return 2 
+    end
+    
+    -- 拦截转换状态
+    local is_special_mode = wanxiang.s2t_conversion and wanxiang.s2t_conversion(ctx)
+    if wanxiang.is_function_mode_active(ctx) or is_special_mode then 
+        return 2 
+    end
 
     local current_key = key_event:repr()
     
