@@ -45,7 +45,7 @@ local CONFIG = {
     ENABLE_CONTEXT_REORDER = true,
 }
 
--- 语气助词白名单与标点检测
+-- 语气助词白名单与高频句末白名单
 local PARTICLE_WHITELIST = {
     ["吧"]=true, ["呢"]=true, ["吗"]=true, ["啦"]=true,
     ["嘛"]=true, ["呀"]=true, ["恩"]=true, ["欸"]=true,
@@ -112,7 +112,7 @@ local function get_db(env)
     return db
 end
 
--- 语境分割算法
+-- 语境分割算法 (纯汉字白名单)
 local function is_chinese_char(char)
     local cp = utf8 and utf8.codepoint(char) or 0
     if not cp or cp == 0 then return false end
@@ -267,30 +267,29 @@ local function get_predictions(env, prev_commit)
         end
     end
 
-    -- 查 1-Gram (统一 432 回退，如果是 1或2 查本身。查到即止)
+    -- 查 1-Gram
     if #cands < CONFIG.MAX_CANDIDATES and #history >= 1 then 
         local u1 = history[#history]
         local chars = get_utf8_chars(u1)
         local len_u1 = #chars
         
-        -- 起步最多为 4，底线为 1
         local max_len = math_min(len_u1, 4)
         local min_len = (len_u1 >= 2) and 2 or 1
         
         for l = max_len, min_len, -1 do
             local lookup_u1 = table.concat(chars, "", len_u1 - l + 1, len_u1)
             fetch_and_clean("1\t" .. lookup_u1 .. "\t", 100) 
-            if #cands > 0 then break end -- 匹配上就停止
+            if #cands > 0 then break end
         end
     end
 
-    -- 查不到再去拿 P 去匹配 (432 碎片兜底)
+    -- 查不到再去拿 P 去匹配
     if #cands < CONFIG.MAX_CANDIDATES then
         local chars = get_utf8_chars(prev_commit)
         local lengths_to_query = get_suffix_lengths(#chars)
         for _, l in ipairs(lengths_to_query) do
             fetch_and_clean("P\t" .. table.concat(chars, "", #chars - l + 1, #chars) .. "\t", 1)
-            if #cands > 0 then break end -- 匹配上就停止
+            if #cands > 0 then break end
         end
     end
 
@@ -312,11 +311,12 @@ function P.init(env)
     
     env.commit_cb = function(ctx)
         local text = ctx:get_commit_text()
+        
         if not is_valid_commit_text(text) then
             reset_memory_chain(env, "非纯汉字阻断")
             return
         end
-        
+
         local current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
         if last_commit ~= "" and (current_time - last_commit_time) > CONFIG.CONTEXT_TIMEOUT_MS then
             reset_memory_chain(env, "输入超时") 
@@ -404,7 +404,7 @@ function P.init(env)
                 -- P-Gram
                 local lengths_to_learn = get_suffix_lengths(len_u1)
                 for _, l in ipairs(lengths_to_learn) do
-                    if l < len_u1 or len_u1 > 4 then
+                    if l < len_u1 or len_u1 >= 4 then
                         update_memory("P\t" .. table.concat(u1_chars, "", len_u1 - l + 1, len_u1) .. "\t" .. text, text_is_tone)
                     end
                 end
@@ -423,13 +423,12 @@ function P.init(env)
                     end
                 end
             end
-            -- 四字成语的 2+2 自我拆分学习 (深度识别 1-Gram 与 P-Gram)
+            -- 四字成语的 2+2 自我拆分学习
             if len_text == 4 then
                 local part1 = text_chars[1] .. text_chars[2]
                 local part2 = text_chars[3] .. text_chars[4]
                 
                 local is_known_prefix = false
-                -- 依次去 1-Gram (精准上文) 和 P-Gram (长句后缀) 里找 part1
                 for _, prefix in ipairs({"1", "P"}) do
                     local query_key = prefix .. "\t" .. part1 .. "\t"
                     local da = db:query(query_key)
@@ -443,7 +442,6 @@ function P.init(env)
                     end
                     if is_known_prefix then break end
                 end
-                -- 如果认识前半截，就把 2+2 作为 1-Gram 写入数据库 (传 false 表示非标点)
                 if is_known_prefix then
                     update_memory("1\t" .. part1 .. "\t" .. part2, false)
                 end
@@ -465,11 +463,11 @@ function P.init(env)
         env.undo_stack = env.undo_stack or {}
         if next(env.last_written_keys) then
             insert(env.undo_stack, env.last_written_keys)
-            if #env.undo_stack > 3 then remove(env.undo_stack, 1) end -- 只留最近 3 次
+            if #env.undo_stack > 3 then remove(env.undo_stack, 1) end
         end
 
         last_commit_time = current_time
-        env.last_action_time = current_time -- 记录最后动作时间，用于退格延时判定
+        env.last_action_time = current_time
         env.just_committed = true
         
         -- 如果两个开关都没开，绝对不去查库！绝对不建缓存
@@ -579,7 +577,7 @@ function P.func(key, env)
     local ctx = env.engine.context
     local input = ctx.input
     if not input then return 2 end
-    
+    if key:release() then return 2 end
     local repr = key:repr()
     if env.just_committed and repr ~= "BackSpace" and not s_match(repr, "Shift") and not s_match(repr, "Control") and not s_match(repr, "Alt") then
         env.just_committed = false
@@ -587,9 +585,12 @@ function P.func(key, env)
     
     if repr == "BackSpace" then
         local current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
-        -- 多级事务回滚系统 (Multi-level Undo)
-        if env.undo_stack and #env.undo_stack > 0 then
-            -- 延时策略：如果距离上一次动作（上屏或上一次退格）在规定时间内容
+        
+        -- 仅在“输入框完全为空”或者“只有联想占位符”时，才允许撤销数据库，彻底防范打拼音时误删！
+        local is_safe_to_undo = (not ctx:is_composing() or is_predicting)
+        
+        if is_safe_to_undo and env.undo_stack and #env.undo_stack > 0 then
+            -- 延时策略：如果在规定时间内连按退格
             if (current_time - (env.last_action_time or 0)) <= CONFIG.CONTEXT_TIMEOUT_MS then
                 local keys_to_undo = remove(env.undo_stack)
                 local db = get_db(env)
@@ -614,18 +615,15 @@ function P.func(key, env)
     end
     
     if is_predicting then
-        -- 1. 圈定你的专属“替身按键组”：Tab、方向右键、反斜杠(\)
-        local is_alt_key = (repr == "Tab" or repr == "Right" or repr == "backslash" or repr == "\\")
+        local is_alt_key = (repr == "Tab" or repr == "Right" or repr == "backslash" or repr == "\\" or repr == "Alt" or repr == "Alt_L" or repr == "Alt_R")
 
         if CONFIG.ENABLE_PREDICT_SPACE then
             -- enable_predict_space: true
-            -- 空格键 -> 输出物理空格
             if key.keycode == 0x20 then
                 ctx:clear()
                 reset_memory_chain(env, "空格打断联想并上屏")
                 env.engine:commit_text(" ")
                 return 1
-            -- 替身按键 -> 仅打断联想，不输出任何东西
             elseif is_alt_key then
                 ctx:clear()
                 reset_memory_chain(env, "替身键打断联想")
@@ -633,7 +631,6 @@ function P.func(key, env)
             end
         else
             -- enable_predict_space: false
-            -- 替身按键 -> 打断联想，并强行输出一个物理空格！
             if is_alt_key then
                 ctx:clear()
                 reset_memory_chain(env, "替身键打断联想并上屏空格")
@@ -641,9 +638,10 @@ function P.func(key, env)
                 return 1
             end
         end
+        
         if repr == "Return" then
             ctx:clear()
-            reset_memory_chain(env, "回车打断预测并放行") 
+            reset_memory_chain(env, "打断键清除预测") 
             return 1
         end
     end
