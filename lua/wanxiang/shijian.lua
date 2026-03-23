@@ -3,7 +3,6 @@
 -- https://github.com/amzxyz/rime_wanxiang
 ------------------------------------
 ------wirting by 98wubi Group-------
-------http://98wb.ys168.com/--------
 -----万象新增节日候选,格式化问候语,重写农历倒计
 -- *******农历节气计算部分
 --=====角度变换===============
@@ -1155,8 +1154,6 @@ function GanZhiLi:getShiZhi()
     return self:calR2(idx, 12)
 end
 
---=================以下是测试代码=============
-
 local jqB = { -- 节气表
     "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑",
     "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至", "小寒", "大寒" }
@@ -1346,16 +1343,6 @@ function diffDate(date1, date2)
     end
     return total
 end
-
--- 公历倒计时(每年)
-local function diffDate2(date1, date2)
-    while diffDate(date1, date2) == -1 do
-        date2 = tointeger(date2 + 1000000)
-    end
-    result = diffDate(date1, date2)
-    return result
-end
--- 公历倒计时结束
 
 -- 返回当年过了多少天
 function leaveDate(y)
@@ -1884,42 +1871,7 @@ local function QueryLunarInfo(env, date)
     end
     return result
 end
---[[ ---------------测试----------------
-local n=QueryLunarInfo(199105)
-for i=1,#n do
-    log.info(n[i][1]..n[i][2])
-end
---]] ----------------------------------
 
---[[
--- 农历倒计时
-local function nl_shengri(y, m, d)
-  nlsrsj = y .. m .. d -- 农历时间
-  date1 = os.date("%Y%m%d")
-  date2 = LunarDate2Date(nlsrsj, 0)
-  m = string.match(date2, "年(.-)月")
-  if #m == "2" then
-    date2 = string.gsub(date2, "年", "", "1")
-  else
-    date2 = string.gsub(date2, "年", "0", "1")
-  end
-  d = string.match(date2, "月(.-)日")
-  if #d == "2" then
-    date2 = string.gsub(date2, "月", "", "1")
-  else
-    date2 = string.gsub(date2, "月", "0", "1")
-  end
-  date2 = string.gsub(date2, "日", "", "1")
-
-end
-
-local function nl_shengri2(y, m, d)
-  while nl_shengri(y, m, d) == -1 do
-    y = tointeger(y + 1)
-  end
-  result = nl_shengri(y, m, d)
-  return result
-end  ]] --
 -- 万象新增三伏天计算函数
 -- 输入yyyymmdd返回:初伏(1)形式字符串
 -- 起点：夏至之后(查询节气表找到夏至的日期)
@@ -2099,7 +2051,7 @@ local month_map = {
 local function nl_shengri(y, m, d)
     -- 获取当前日期
     local date1 = os.date("%Y%m%d")
-    nlsrsj = y .. m .. d                  -- 农历时间
+    local nlsrsj = y .. m .. d                  -- 农历时间
     -- 提取农历日期的年份
     local year = string.sub(nlsrsj, 1, 4) -- 提取“2015”从“20150621”
 
@@ -2152,7 +2104,7 @@ local function nl_shengri(y, m, d)
     date2 = string.gsub(date2, "日", "", 1)
 
     -- 计算日期差异
-    result = diffDate(date1, date2)
+    local result = diffDate(date1, date2)
     return result
 end
 -- 二次循环跨年调用
@@ -2160,7 +2112,7 @@ local function nl_shengri2(y, m, d)
     while nl_shengri(y, m, d) == -1 do
         y = math.floor(y + 1)
     end
-    result = nl_shengri(y, m, d)
+    local result = nl_shengri(y, m, d)
     return result
 end
 
