@@ -24,7 +24,6 @@ local s_len    = string.len
 local s_find   = string.find
 local s_format = string.format
 local tonumber = tonumber
-local math_pow = math.pow
 local math_max = math.max
 local math_min = math.min
 local os_time  = os.time
@@ -233,7 +232,7 @@ local function get_predictions(env, prev_commit)
                 else
                     if count > 0 then
                         local age_days = (now - ts) / 86400.0
-                        local score = count * math_pow(CONFIG.DECAY_RATE, age_days) * multiplier
+                        local score = count * (CONFIG.DECAY_RATE ^ age_days) * multiplier
                         if score > 0.05 and word ~= "" then
                             insert(prefix_cands, { word = word, weight = score, db_key = k })
                         end
