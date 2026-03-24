@@ -40,7 +40,7 @@ function AP.is_chinese_only(text)
         if not (
             (cp >= 0x4E00 and cp <= 0x9FFF) or -- CJK Unified Ideographs
             (cp >= 0x3400 and cp <= 0x4DBF) or -- CJK Ext-A
-            (cp >= 0x20000 and cp <= 0x2EBEF)  -- CJK Ext-B~G
+            (cp >= 0x20000 and cp <= 0x323AF)  -- 覆盖 CJK Ext-B 到 Ext-H
         ) then
             return false
         end
@@ -190,44 +190,28 @@ function AP.commit_handler(ctx, env)
     local code_table = {}
     local config = env.engine.schema.config
     local delimiter = config:get_string("speller/delimiter") or " '"
-    local escaped_delimiter = utf8.char(utf8.codepoint(delimiter)):gsub("(%W)", "%%%1")
+    local escaped_delimiter = delimiter:gsub("(%W)", "%%%1") 
 
+    -- 遍历所有词段收集编码
     for i = 1, segments_count do
         local seg  = segments[i]
         local cand = seg:get_selected_candidate()
 
-        -- 无候选：可能是符号段
         if not cand then
-            if i == segments_count then
-                -- 最后一个 segment 无候选，允许跳过
-                goto continue
-            else
-                comment_cache = {}
-                return
-            end
+            comment_cache = {}
+            return
         end
 
-        -- 从缓存中取出该候选的注释（编码）
         local comment = comment_cache[cand.text]
-
-        -- 有候选但无编码
         if not comment or comment == "" then
-            if i == segments_count then
-                -- 最后一个 segment 无编码，允许跳过
-                goto continue
-            else
-                comment_cache = {}
-                return
-            end
+            comment_cache = {}
+            return
         end
 
-        -- 有编码，分割加入
         for part in comment:gmatch("[^" .. escaped_delimiter .. "]+") do
             table.insert(code_table, part)
         end
-
-        ::continue::
-    end
+    end -- 【注意这里】：循环在这里就必须闭合了！
 
     -- 最终至少需要一个编码片段
     if #code_table == 0 then
@@ -242,6 +226,7 @@ function AP.commit_handler(ctx, env)
         return
     end
 
+    -- 写入用户词典
     local dictEntry = DictEntry()
     dictEntry.text        = commit_text
     dictEntry.weight      = 1

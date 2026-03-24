@@ -271,7 +271,7 @@ end
 local function clone_candidate(c)
     local nc = Candidate(c.type, c.start, c._end, c.text, c.comment or "")
     nc.preedit = c.preedit
-    
+    nc.quality = c.quality
     return nc
 end
 --  包裹映射
