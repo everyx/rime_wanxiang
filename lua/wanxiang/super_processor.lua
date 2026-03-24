@@ -687,7 +687,7 @@ local function handle_number_logic(key, env, ctx)
                 end
             end
 
-            if input:find(env.lookup_key, 1, true) or input:find("›", 1, true) or is_func_mode or is_first_cand_has_eng then
+            if input:find(env.lookup_key, 1, true) or is_func_mode or is_first_cand_has_eng then
                 env.tone_state = "idle"
             else
                 env.tone_state = "compress"

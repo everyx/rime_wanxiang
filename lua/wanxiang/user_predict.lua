@@ -615,13 +615,27 @@ function P.func(key, env)
     
     if is_predicting then
         local is_alt_key = (repr == "Tab" or repr == "Right" or repr == "backslash" or repr == "\\" or repr == "Alt" or repr == "Alt_L" or repr == "Alt_R")
+
+        -- 根据选词范围分流数字键
         if s_match(repr, "^[0-9]$") or s_match(repr, "^KP_[0-9]$") then
             local digit = s_match(repr, "%d")
-            ctx:clear()
-            reset_memory_chain(env, "数字键打断联想并上屏")
-            env.engine:commit_text(digit)
-            return 1
+            local d = tonumber(digit)
+            if d == 0 then d = 10 end
+            -- 动态获取当前配置的每页候选词数（如 6）
+            local page_size = env.engine.schema.config:get_int("menu/page_size")
+            
+            if d > page_size then
+                -- 超出选词范围的数字（如 7890）：直接清空占位符，打断联想，并上屏数字
+                ctx:clear()
+                reset_memory_chain(env, "非选词数字打断联想并上屏")
+                env.engine:commit_text(digit)
+                return 1
+            else
+                -- 选词范围内的数字（如 1-6）：放行，让 super_processor 去执行正常的选词
+                return 2
+            end
         end
+
         if CONFIG.ENABLE_PREDICT_SPACE then
             -- enable_predict_space: true
             if key.keycode == 0x20 then
