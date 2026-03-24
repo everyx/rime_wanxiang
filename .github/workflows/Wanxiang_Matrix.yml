@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: Checkout Wanxiang Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: wanxiang_root
 
@@ -37,7 +37,7 @@ jobs:
           echo ">>> 成功获取到 Trime 最新版本为: $LATEST_TAG"
 
       - name: Checkout Trime Source (Strict Release)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: osfans/trime
           ref: ${{ env.TRIME_LATEST_TAG }}
@@ -201,7 +201,7 @@ jobs:
           mv "$ORIGINAL_APK" "$NEW_NAME"
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: APK-${{ matrix.branch }}
           path: trime_src/app/build/outputs/apk/release/trime-${{ matrix.branch }}-armv8a.apk

@@ -621,17 +621,30 @@ function P.func(key, env)
             local digit = s_match(repr, "%d")
             local d = tonumber(digit)
             if d == 0 then d = 10 end
-            -- 动态获取当前配置的每页候选词数（如 6）
-            local page_size = env.engine.schema.config:get_int("menu/page_size")
+            local config = env.engine.schema.config
+            local page_size = config:get_int("menu/page_size")
             
-            if d > page_size then
-                -- 超出选词范围的数字（如 7890）：直接清空占位符，打断联想，并上屏数字
+            local ctx = env.engine.context
+            local comp = ctx.composition
+            local seg = (comp and not comp:empty()) and comp:back() or nil
+            
+            local is_valid_candidate = false
+            
+            if seg then
+                local current_page = math.floor(seg.selected_index / page_size)
+                local target_index = current_page * page_size + (d - 1)
+                if seg:get_candidate_at(target_index) then
+                    is_valid_candidate = true
+                end
+            end
+            if d > page_size or not is_valid_candidate then
                 ctx:clear()
-                reset_memory_chain(env, "非选词数字打断联想并上屏")
+                if reset_memory_chain then
+                    reset_memory_chain(env, "非选词数字打断联想并上屏")
+                end
                 env.engine:commit_text(digit)
                 return 1
             else
-                -- 选词范围内的数字（如 1-6）：放行，让 super_processor 去执行正常的选词
                 return 2
             end
         end
