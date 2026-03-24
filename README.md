@@ -355,7 +355,7 @@ bash rime-install amzxyz/rime_wanxiang@wanxiang-shouyou-fuzhu:plum/dicts
 
 ![截图_选择区域_20240704121653.png](https://storage.deepin.org/thread/202407041144502563_截图_选择区域_20240704121653.png)
 
-⚙️**1. 直接辅助码 (仅 PRO 版)**
+⚙️**直接辅助码 (仅 PRO 版)**
 
 * **基本用法**：输入双拼后直接追加部首声母。
     * *示例*：输入“镇”字，双拼 `vf` + 金字旁声母 `j` → `vfj`。
@@ -369,13 +369,13 @@ bash rime-install amzxyz/rime_wanxiang@wanxiang-shouyou-fuzhu:plum/dicts
 
 ![截图_选择区域_20240821093701.png](https://storage.deepin.org/thread/202408210143144721_截图_选择区域_20240821093701.png)
 
-⚙️**2. 间接辅助码 (仅 PRO 版)**
+⚙️**间接辅助码 (仅 PRO 版)**
 
 * **基本用法**：使用 `/` 作为分隔符引导辅助码（格式：`拼音/辅码`）。
     * *示例*：`ni/re`。
 * **特性**：若不输入 `/`，系统将其视为普通拼音，绝不干扰整句切分。相比直接辅助码，此模式更适合新手或轻量级用户，无需担心重码干扰节奏。
 
-⚙️**3. 候选筛选 (输入后反查)**
+⚙️**候选筛选 (输入后反查)**
 
 针对当前输入的候选词，可通过引导符 ``` ` ``` (Tab上方的键) 进行二次筛选：
 
@@ -432,6 +432,8 @@ wanxiang_lookup:
 <img src="https://storage.deepin.org/thread/202505120222163619_截图_选择区域_20250512101713.png" height="130" width="520">
 
 ⚙️**大写辅助筛选** 在输入辅助码的时候可以穿插输入小写、大写、声调来定位，如：你ni/ni9/niRE/niR9E/nirE/niRe/ni9RE/niRE9/nire9/ni9re/nir9e.  
+
+⚙️**自学习双模式输入预测** 支持上屏后弹出预测候选或者输入上文后继续输入下文匹配到数据则置顶，两种模式相辅相成，开关中打开预测即可，具体详见：[user_predict.lua：Rime 智能联想与语境记忆引擎](https://github.com/amzxyz/rime_wanxiang/wiki/user_predict.lua%EF%BC%9ARime-%E6%99%BA%E8%83%BD%E8%81%94%E6%83%B3%E4%B8%8E%E8%AF%AD%E5%A2%83%E8%AE%B0%E5%BF%86%E5%BC%95%E6%93%8E)
 
 ⚙️**14/18键设定：**  在万象的的各主方案的custom示例文件中我们已经预设了相关*18jian*、*14jian*的转写段落，位于文件末尾，他的作用就是将方案原来的编码转换成键盘能打出来的字母或者数字，最终相呼应自然就能打出字了，万象默认转换成大写，因此需要键盘发送的也是大写：
 ```
