@@ -25,7 +25,7 @@ patch:
       user_table: ""
       completion: ""
       abbrev: ""
-      predict: "›"
+      predict: ""
       fallback: "~"
 
   super_processor:

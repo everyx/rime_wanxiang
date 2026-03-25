@@ -123,7 +123,7 @@ super_comment:                  # 超级注释模块，子项配置 true 开启�
     table: ""
     user_table: ""
     completion: ""
-    predict: "›"
+    predict: ""
     abbrev: ""
     fallback: "~"
 
