@@ -121,7 +121,7 @@ user_predict:
   activation_days: 7           # 激活期限（天）：冷冻期内输入第2次转正
   max_memory_branches: 15      # 分支上限：单前缀最多保留15个后续预测
   decay_rate: 0.85             # 衰减率：单日时间权重打 85 折
-  enable_predict_space: false   # true: 联想时按空格上屏空格; false: 默认行为（根据输入法设定选词等）一般手机开电脑关，这里有个布尔转换，空格当空格时其他按键打断，空格当上屏则，其他按键当作空格，有：Tab、Alt、右键、\斜杠
+  enable_predict_space: false   # true: 按空格上屏空格; false:空格提交候选。一般手机开电脑关，空格当上屏则，Tab、Alt按键当作空格
   context_timeout: 5000         # 上文超时时间毫秒
 
 super_sequence:  # Lua 配置：手动排序的快捷键 super_sequence.lua，不要用方向键，各种冲突，一定要避免冲突
