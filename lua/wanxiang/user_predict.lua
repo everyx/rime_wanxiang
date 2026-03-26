@@ -679,6 +679,10 @@ function P.func(key, env)
     end
 
     if not ctx:is_composing() then
+        if repr == "Return" or repr == "KP_Enter" or key.keycode == 0x20 then
+            reset_memory_chain(env, "非输入状态排版打断")
+            return 2 
+        end
         local symbol_map = { ["?"] = "？", ["!"] = "！", [","] = "，", ["."] = "。" }
         if symbol_map[repr] then
             env.engine:commit_text(symbol_map[repr])
