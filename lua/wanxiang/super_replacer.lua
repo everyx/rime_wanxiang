@@ -158,7 +158,7 @@ local function rebuild(tasks, db, delimiter)
         if f then
             for line in f:lines() do
                 if line ~= "" and not s_match(line, "^%s*#") then
-                    local k, v = s_match(line, "^(%S+)%s+(.+)")
+                    local k, v = s_match(line, "^([^\t]+)\t+(.+)")
                     if k and v then
                         local orig_k = k
 
@@ -318,7 +318,7 @@ function M.init(env)
     local delim = config:get_string(ns .. "/delimiter") or "|"
     env.delimiter = delim
     env.comment_format = config:get_string(ns .. "/comment_format") or "〔%s〕"
-    local current_version = "v0.0.0"
+    local current_version = "v0.0.1"
     if wanxiang and wanxiang.version then
         current_version = wanxiang.version
     end
@@ -562,7 +562,9 @@ function M.func(input, env)
                         local rule_comment = ""
                         if t.comment_mode == "text" then rule_comment = cand.text
                         elseif t.comment_mode == "comment" then rule_comment = cand.comment end
-
+                        if mode ~= "comment" and rule_comment ~= "" then
+                            rule_comment = s_format(comment_fmt, rule_comment)
+                        end
                         if mode == "comment" then
                             local parts = {}
                             for p in s_gmatch(val, split_pat) do 
