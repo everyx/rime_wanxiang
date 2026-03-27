@@ -614,7 +614,7 @@ function P.func(key, env)
     end
     
     if is_predicting then
-        local is_alt_key = (repr == "Tab" or repr == "backslash" or repr == "Alt" or repr == "Alt_L" or repr == "Alt_R")
+        local is_alt_key = (repr == "Tab" or repr == "Alt" or repr == "Alt_L" or repr == "Alt_R")
 
         -- 根据选词范围分流数字键
         if s_match(repr, "^[0-9]$") or s_match(repr, "^KP_[0-9]$") then
@@ -790,11 +790,12 @@ function F.func(input, env)
         return
     end
 
-    local boosted = {} 
-    local normal = {}  
+    local boosted = {}
+    local normal = {}
     local count = 0
-    local max_scan = 20
+    local max_scan = 50
     local stop_scanning = false
+    local target_len = 0 -- 用于记录首选词的字数
 
     -- 实时匹配与拦截
     for cand in input:iter() do
@@ -803,8 +804,16 @@ function F.func(input, env)
         else
             count = count + 1
             local text = cand.text or ""
-            if cand.type == "raw" or cand.type == "english" or s_match(text, "^[a-zA-Z]+$") then
+            
+            local current_len = #get_utf8_chars(text)
+
+            if count == 1 then
+                target_len = current_len
+            end
+
+            if cand.type == "raw" or cand.type == "english" or s_match(text, "^[a-zA-Z]+$") or (count > 1 and current_len ~= target_len) then
                 stop_scanning = true
+                -- 结算已经收集到的同等字数的词
                 sort(boosted, function(a, b) return a.rank < b.rank end)
                 for _, b in ipairs(boosted) do yield(b.cand) end
                 for _, n in ipairs(normal) do yield(n) end
