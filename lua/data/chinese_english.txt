@@ -18,6 +18,7 @@
 王牌	TCL
 硬币	coin
 默许	acquiesce
+分形	fractal
 传输控制协议	TCP
 对象关系映射	Object Relational Mapping
 造币	coinage
