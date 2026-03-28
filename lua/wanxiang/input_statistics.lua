@@ -103,11 +103,15 @@ local function clear_all_data()
         speed_buffer = {}
         return true
     end
-    local ok, iter = pcall(function() return db:query("") end)
-    if ok and iter then
+    local iter = db:query("")
+    if iter then
         local keys = {}
-        for key, _ in iter do table.insert(keys, key) end
-        for _, key in ipairs(keys) do db:erase(key) end
+        for key, _ in iter do 
+            table.insert(keys, key) 
+        end
+        for _, key in ipairs(keys) do 
+            db:erase(key) 
+        end
         speed_buffer = {}
         return true
     end
@@ -388,14 +392,6 @@ local function init(env)
         local script_text = ctx:get_script_text() or ""
         local code_len = string.len(script_text)
         if code_len == 0 then code_len = hanzi_len * 2 end 
-
-        local now_ms = os.clock()
-        if env.last_commit_time and (now_ms - env.last_commit_time < 0.05) then
-             if env.last_commit_text == commit_text then return end
-        end
-        env.last_commit_time = now_ms
-        env.last_commit_text = commit_text
-
         record_stats(hanzi_len, code_len)
     end)
 end
