@@ -140,7 +140,7 @@ patch:
     - option: charset_filter
       base: a  #可以填入多个类别如aj
       addlist:
-        - "诶濛硷氽尛躝〇冇吔咗囧屌鲶芶咲畑垅𰻝𰻞"
+        - "诶濛硷氽尛躝〇冇吔咗囧屌鲶芶咲畑垅𰻝𰻞龍"
       blacklist: []
     - option: s2t
       base: fa

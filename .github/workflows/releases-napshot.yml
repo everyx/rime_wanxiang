@@ -175,13 +175,12 @@ jobs:
             "dicts/*.*"
             "custom/*.*"
             "lua/*.*"
-            "lua/lib/*.*"
-            "lua/tips/*.*"
+            "lua/data/*.*"
+            "lua/wanxiang/*.*"
             "default.yaml"
             "weasel.yaml"
             "wanxiang*.*yaml"
             "README.md"
-            "简纯+.trime.yaml"
             "custom_phrase.txt"
           )
 
