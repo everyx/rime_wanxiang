@@ -433,7 +433,7 @@ wanxiang_lookup:
 
 ⚙️**大写辅助筛选** 在输入辅助码的时候可以穿插输入小写、大写、声调来定位，如：你ni/ni9/niRE/niR9E/nirE/niRe/ni9RE/niRE9/nire9/ni9re/nir9e.  
 
-⚙️**自学习双模式输入预测** 支持上屏后弹出预测候选或者输入上文后继续输入下文匹配到数据则置顶，两种模式相辅相成，开关中打开预测即可，具体详见：[user_predict.lua：Rime 智能联想与语境记忆引擎](https://github.com/amzxyz/rime_wanxiang/wiki/user_predict.lua%EF%BC%9ARime-%E6%99%BA%E8%83%BD%E8%81%94%E6%83%B3%E4%B8%8E%E8%AF%AD%E5%A2%83%E8%AE%B0%E5%BF%86%E5%BC%95%E6%93%8E)
+⚙️**自学习双模式输入预测** 支持上屏后弹出预测候选或者输入上文后继续输入下文匹配到数据则置顶，两种模式相辅相成，开关中打开预测即可，最好是在手机上两种模式全开，在PC上面只开上下文调频具体详见：[user_predict.lua：Rime 智能联想与语境记忆引擎](https://github.com/amzxyz/rime_wanxiang/wiki/user_predict.lua%EF%BC%9ARime-%E6%99%BA%E8%83%BD%E8%81%94%E6%83%B3%E4%B8%8E%E8%AF%AD%E5%A2%83%E8%AE%B0%E5%BF%86%E5%BC%95%E6%93%8E)
 
 ⚙️**14/18键设定：**  在万象的的各主方案的custom示例文件中我们已经预设了相关*18jian*、*14jian*的转写段落，位于文件末尾，他的作用就是将方案原来的编码转换成键盘能打出来的字母或者数字，最终相呼应自然就能打出字了，万象默认转换成大写，因此需要键盘发送的也是大写：
 ```
