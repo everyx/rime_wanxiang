@@ -1739,29 +1739,29 @@ pro:
       - xform/^([aoe])(ng)?(\d);/$1$1$2$3;/
       - xform/[iu]a(\d);/Ⓠ$1;/
       - xform/[vu]an(\d);/Ⓦ$1;/
-      - xform/en(\d);/Ⓡ$1;/
       - xform/ie(\d);/Ⓣ$1;/
       - xform/iu(\d);/Ⓨ$1;/
       - xform/uai(\d);/Ⓨ$1;/
       - xform/uo(\d);/Ⓞ$1;/
-      - xform/ou(\d);/Ⓟ$1;/
       - xform/i?ong(\d);/Ⓢ$1;/
       - xform/ian(\d);/Ⓓ$1;/
-      - xform/an(\d);/Ⓕ$1;/
       - xform/[iu]ang(\d);/Ⓝ$1;/
       - xform/iao(\d);/Ⓜ$1;/
       - xform/ang(\d);/Ⓖ$1;/
       - xform/eng(\d);/Ⓗ$1;/
       - xform/ing(\d);/Ⓙ$1;/
-      - xform/ai(\d);/Ⓚ$1;/
       - xform/in(\d);/Ⓛ$1;/
       - xform/er(\d);/Ⓛ$1;/
       - xform/[vu]n(\d);/Ⓩ$1;/
       - xform/[vu]e(\d);/Ⓧ$1;/
-      - xform/ao(\d);/Ⓒ$1;/
       - xform/v(\d);/Ⓥ$1;/
       - xform/ui(\d);/Ⓥ$1;/
-      - xform/ei(\d);/Ⓑ$1;/
+      - xform/([a-z]+)ao(\d);/$1Ⓒ$2;/
+      - xform/([a-z]+)ai(\d);/$1Ⓚ$2;/
+      - xform/([a-z]+)an(\d);/$1Ⓕ$2;/
+      - xform/([a-z]+)ou(\d);/$1Ⓟ$2;/
+      - xform/([a-z]+)ei(\d);/$1Ⓑ$2;/
+      - xform/([a-z]+)en(\d);/$1Ⓡ$2;/
       - xform/^zh/Ⓥ/
       - xform/^ch/Ⓘ/
       - xform/^sh/Ⓤ/
