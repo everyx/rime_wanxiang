@@ -76,6 +76,7 @@ jobs:
           pack_dict "dist/rime-wanxiang-wubi-fuzhu/dicts"    "pro-wubi-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-hanxin-fuzhu/dicts"  "pro-hanxin-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-shouyou-fuzhu/dicts" "pro-shouyou-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-shyplus-fuzhu/dicts" "pro-shyplus-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-base/dicts"          "base-dicts.zip"
 
       # 3. 删除旧的 Nightly/Preview Release 和 Tag
@@ -169,7 +170,7 @@ jobs:
         run: |
           set -euo pipefail
           ORIG_BRANCH="$(git rev-parse --abbrev-ref HEAD || echo 'wanxiang')"
-          schemes=("base" "shouyou-fuzhu" "zrm-fuzhu" "tiger-fuzhu" "moqi-fuzhu" "flypy-fuzhu" "wubi-fuzhu" "hanxin-fuzhu")
+          schemes=("base" "shouyou-fuzhu" "zrm-fuzhu" "tiger-fuzhu" "moqi-fuzhu" "flypy-fuzhu" "wubi-fuzhu" "hanxin-fuzhu" "shyplus-fuzhu")
 
           COMMON_FILES=(
             "dicts/*.*"

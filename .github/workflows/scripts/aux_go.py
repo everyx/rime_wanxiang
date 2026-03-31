@@ -235,7 +235,8 @@ if __name__ == '__main__':
         (4, 5, "pro-tiger-fuzhu-dicts"),
         (5, 6, "pro-wubi-fuzhu-dicts"),
         (6, 7, "pro-hanxin-fuzhu-dicts"),
-        (7, None, "pro-shouyou-fuzhu-dicts"),
+        (7, 8, "pro-shouyou-fuzhu-dicts"),
+        (8, None, "pro-shyplus-fuzhu-dicts"),
     ]
 
     # 路径

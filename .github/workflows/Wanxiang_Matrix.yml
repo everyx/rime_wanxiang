@@ -20,6 +20,7 @@ jobs:
           - wanxiang-tiger-fuzhu
           - wanxiang-zrm-fuzhu
           - wanxiang-shouyou-fuzhu
+          - wanxiang-shyplus-fuzhu
           - wanxiang-base
 
     steps:
