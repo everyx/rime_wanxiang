@@ -235,7 +235,7 @@ local function update_tips_prompt(context, env)
     
     if not context:get_option("super_tips") then return end
 
-    if not context.input or context.input == "" then
+    if not context.input or context.input == "" or string.find(context.input, "^›") then
         return 
     end
 
