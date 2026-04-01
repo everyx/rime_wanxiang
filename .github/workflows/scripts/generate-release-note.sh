@@ -3,6 +3,7 @@ set -e
 
 # 声明辅助码 zip 包类型显示名
 declare -A display_names=(
+  [wx]="万象"
   [zrm]="自然码"
   [moqi]="墨奇"
   [flypy]="小鹤"

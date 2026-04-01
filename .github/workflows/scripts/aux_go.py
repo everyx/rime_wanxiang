@@ -229,14 +229,15 @@ def process_batch(input_dir, aux_file_path, base_out_dir, index_mapping, files_w
 if __name__ == '__main__':
     # 六套区间（第 N 段，从 1 起）
     index_mapping = [
-        (1, 2, "pro-moqi-fuzhu-dicts"),
-        (2, 3, "pro-flypy-fuzhu-dicts"),
-        (3, 4, "pro-zrm-fuzhu-dicts"),
-        (4, 5, "pro-tiger-fuzhu-dicts"),
-        (5, 6, "pro-wubi-fuzhu-dicts"),
-        (6, 7, "pro-hanxin-fuzhu-dicts"),
-        (7, 8, "pro-shouyou-fuzhu-dicts"),
-        (8, None, "pro-shyplus-fuzhu-dicts"),
+        (1, 2, "pro-wx-fuzhu-dicts"),
+        (2, 3, "pro-moqi-fuzhu-dicts"),
+        (3, 4, "pro-flypy-fuzhu-dicts"),
+        (4, 5, "pro-zrm-fuzhu-dicts"),
+        (5, 6, "pro-tiger-fuzhu-dicts"),
+        (6, 7, "pro-wubi-fuzhu-dicts"),
+        (7, 8, "pro-hanxin-fuzhu-dicts"),
+        (8, 9, "pro-shouyou-fuzhu-dicts"),
+        (9, None, "pro-shyplus-fuzhu-dicts"),
     ]
 
     # 路径

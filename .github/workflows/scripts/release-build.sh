@@ -145,7 +145,7 @@ package_schema() {
     echo "✅ 完成打包: $ZIP_NAME"
 }
 
-SCHEMA_LIST=("base" "flypy" "hanxin" "moqi" "tiger" "wubi" "zrm" "shouyou" "shyplus")
+SCHEMA_LIST=("wx" "base" "flypy" "hanxin" "moqi" "tiger" "wubi" "zrm" "shouyou" "shyplus")
 
 # 如果没有传入参数，则循环 package 所有的
 if [[ -z "$SCHEMA_NAME" ]]; then

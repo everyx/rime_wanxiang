@@ -68,7 +68,7 @@ jobs:
               echo "Warning: $src does not exist, skipped."
             fi
           }
-
+          pack_dict "dist/rime-wanxiang-wx-fuzhu/dicts"    "pro-wx-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-moqi-fuzhu/dicts"    "pro-moqi-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-flypy-fuzhu/dicts"   "pro-flypy-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-zrm-fuzhu/dicts"     "pro-zrm-fuzhu-dicts.zip"
