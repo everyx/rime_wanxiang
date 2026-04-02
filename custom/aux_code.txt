@@ -1,5 +1,5 @@
 呵	;kk;kk;kk;kk;dz;ks;kk;kh;kh
-嗄	;kw;kw;kw;kx;dh;kd;kw;kh;kh
+嗄	;kx;kw;kw;kx;dh;kd;kw;kh;kh
 錒	;jk;jk;jk;ja;zz;qb;;jv
 𠼞	;ry;ry;ry;hy;jc;wg;;
 𥥩	;bk;bk;bk;xx;ed;pw;;
@@ -34802,7 +34802,7 @@
 过	;zc;zc;zc;zc;ku;fp;zc;hz;cz
 国	;ky;ky;ky;ky;ri;lg;wy;sh;sd
 锅	;jn;jn;jn;jg,jn;zj;qk;jn;jk;jk
-郭	;we;we;we;ex;gt;yb;we;dv;we
+郭	;xe;we;we;ex;gt;yb;we;dv;we
 果	;tm;tm;ln;ad,tm;qe;js;an;lm;lm
 裹	;wy;yg;wy;wy,yg;te;yj;wh;dd;wd
 粿	;mg;mg;mg;mg;pe;oj;mg;dl;jl
@@ -37571,7 +37571,7 @@
 璩	;wu;wu;wu;wj,wu;nj;gh;wn;ws;ws
 癯	;bv;bv;bf;bq,bv;au;uh;ba;dh;zq
 鸲	;jn;jn;bn;nj;gx;qk;jn;pp;bn
-戌	;wa;wa;wa;ga,wa;nf;dg;ag;hd;hd
+戌	;wh;wa;wa;ga,wa;nf;dg;ag;hd;hd
 蠼	;iy;iy;iy;ij,iy;cr;jh;iy;os;ol
 氍	;om;om;om;mq,mv;qv;hh;mm;sp;lp
 黢	;hw;lw;hw;hj;ph;lf;hw;sv;si
@@ -38728,7 +38728,7 @@
 雾	;yl;yl;yl;yw;ts;ft;yl;hp;yl
 捂	;fk;fk;fk;fw;ud;rg;fk;fh;fh
 伍	;rw;rw;rw;rw;jw;wg;rw;rh;rh
-戊	;gp;gp;gp;gp;nu;dn;pg;hd;hd
+戊	;gk;gp;gp;gp;nu;dn;pg;hd;hd
 污	;dk;dk;dk;dk;ka;if;dk;uh;uh
 呜	;kw;kw;kw;kw;dx;kq;kw;kp;kp
 午	;pg;pu;pg;ur;en;tf;pg;ps;pf
