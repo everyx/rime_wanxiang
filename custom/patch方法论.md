@@ -173,18 +173,7 @@ patch:
 patch:
   engine/filters:
     - lua_filter@*chars_filter                     
-    - lua_filter@*cold_word_drop.filter
-    - lua_filter@*assist_sort                       
-    - lua_filter@*autocap_filter                    
-    - reverse_lookup_filter@radical_reverse_lookup  
-    - lua_filter@*pro_preedit_format                
     - simplifier@emoji                            
-    - simplifier@traditionalize                     
-    - simplifier@mars                               
-    - simplifier@chinese_english                    
-    - simplifier@zrm_chaifen                        
-    - lua_filter@*search@radical_pinyin            
-    #- lua_filter@*en_spacer                         
     - lua_filter@*pro_comment_format                
     - uniquifier   
 ```
