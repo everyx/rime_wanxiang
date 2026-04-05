@@ -16,7 +16,6 @@ patch:
   super_comment:                  # 超级注释模块，子项配置 true 开启，false 关闭
     candidate_length: 2           # 候选词辅助码提醒的生效长度，0为关闭  但同时清空其它，应当使用上面开关来处理
     corrector_type: "〔comment〕"  # 随意更换左右括号，比如"〔comment〕" 不加括号为无括号，comment占位不能动
-    chaifen: "〔chaifen〕"         # 随意更换左右括号，比如"〔chaifen〕" 不加括号为无括号，chaifen占位不能动
     cand_type:
       user_phrase: "⁺"
       sentence: "∞"
@@ -67,6 +66,14 @@ patch:
         prefix: "_em_"          # 前缀用于区分同一个数据库的不同用途数据
         files:
           - lua/data/emoji.txt
+      # 单字拆分注释
+      - option: chaifen_switch
+        cand_type: chaifen
+        mode: comment
+        tags: [abc]
+        prefix: "_cf_"
+        files: 
+          - lua/data/chaifen.txt
       # 场景2：输入 'hello' -> 显示 'hello 〔你好 | 哈喽〕'
       - option: chinese_english
         mode: append        # <--- 添加注释模式

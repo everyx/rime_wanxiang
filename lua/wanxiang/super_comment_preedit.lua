@@ -21,65 +21,32 @@ local function remove_pinyin_tone(s)
 end
 
 -- ----------------------
--- # 辅助码拆分提示模块
--- PRO 专用
--- ----------------------
-local CF = {}
-function CF.init(env)
-    if wanxiang.is_pro_scheme(env) then -- pro 版直接初始化
-        CF.get_dict(env)
-    end
-end
-
-function CF.fini(env)
-    env.chaifen_dict = nil
-    collectgarbage()
-end
-
-function CF.get_dict(env)
-    if env.chaifen_dict == nil then
-        env.chaifen_dict = ReverseLookup("wanxiang_chaifen")
-    end
-    return env.chaifen_dict
-end
-
-function CF.get_comment(cand, env)
-    local dict = CF.get_dict(env)
-    if not dict then return "" end
-
-    local raw = dict:lookup(cand.text)
-    if not raw or raw == "" then return "" end
-
-    local tpl = (env and env.settings and env.settings.chaifen) or ""
-
-    if tpl ~= "" then
-        -- 取 chaifen 左右两边
-        local left, right = tpl:match("^(.-)chaifen(.-)$")
-        if left then
-            return left .. raw .. right
-        end
-    end
-
-    return raw
-end
-
--- ----------------------
 -- # 错音错字提示模块
 -- ----------------------
 local CR = {}
 local corrections_cache = nil -- 用于缓存已加载的词典
+local cached_dict_path = nil  -- 记录当前缓存的词典路径
+
 function CR.init(env)
+    -- 动态获取样式，因为配置可能在运行时被修改，所以这个不放进缓存拦截里
     CR.style = env.settings.corrector_type or '{comment}'
-    --if corrections_cache then return end
+    
     local auto_delimiter = env.settings.auto_delimiter
     local is_pro = wanxiang.is_pro_scheme(env)
     -- 根据方案选择加载路径
     local path = (is_pro and "dicts/cuoyin.pro.dict.yaml") or "dicts/cuoyin.dict.yaml"
+    
+    -- 如果缓存已经存在，并且文件路径没变，直接返回，不再读盘
+    if corrections_cache and cached_dict_path == path then
+        return
+    end
+
     local file, close_file, err = wanxiang.load_file_with_fallback(path)
     if not file then
         log.error(string.format("[super_comment]: 加载失败 %s，错误: %s", path, err))
         return
     end
+    
     corrections_cache = {}
     for line in file:lines() do
         if not line:match("^#") then
@@ -95,6 +62,9 @@ function CR.init(env)
         end
     end
     close_file()
+    
+    -- 记录本次成功加载的文件路径
+    cached_dict_path = path
 end
 
 function CR.get_comment(cand)
@@ -112,7 +82,6 @@ function CR.get_comment(cand)
         return correction.comment
     end
 end
-
 -- ----------------------
 -- 部件组字返回的注释
 -- ----------------------
@@ -336,16 +305,12 @@ function ZH.init(env)
         manual_delimiter = manual_delimiter,
         corrector_enabled = config:get_bool("super_comment/corrector") or true,
         corrector_type = config:get_string("super_comment/corrector_type") or "{comment}",
-        chaifen = config:get_string("super_comment/chaifen") or "〔chaifen〕",
         candidate_length = tonumber(config:get_string("super_comment/candidate_length")) or 1,
     }
 
     CR.init(env)
-    CF.init(env)
 end
 function ZH.fini(env)
-    -- 清理
-    CF.fini(env)
 end
 function ZH.func(input, env)
     local config = env.engine.schema.config
@@ -359,7 +324,6 @@ function ZH.func(input, env)
     local is_tone_comment = env.engine.context:get_option("tone_hint")
     local is_toneless_comment = env.engine.context:get_option("toneless_hint")
     local is_comment_hint = env.engine.context:get_option("fuzhu_hint")
-    local is_chaifen_enabled = env.engine.context:get_option("chaifen_switch")
     --preedit相关声明
     local delimiter = env.settings.delimiter
     local auto_delimiter = env.settings.auto_delimiter
@@ -369,9 +333,6 @@ function ZH.func(input, env)
     local is_tone_display = context:get_option("tone_display")
     local is_full_pinyin = context:get_option("full_pinyin")
     local index = 0
-    -- auto_phrase 相关声明
-    local enable_auto_phrase = config:get_bool("add_user_dict/enable_auto_phrase") or false
-    local enable_user_dict = config:get_bool("add_user_dict/enable_user_dict") or false
 
     for cand in input:iter() do
         local genuine_cand = cand:get_genuine()
@@ -537,15 +498,7 @@ function ZH.func(input, env)
             final_comment = ""
         end
 
-        -- ② 拆分注释
-        if is_chaifen_enabled then
-            local cf_comment = CF.get_comment(cand, env)
-            if cf_comment and cf_comment ~= "" then  --不为空很重要
-                final_comment = cf_comment
-            end
-        end
-
-        -- ③ 错音错字提示
+        -- ② 错音错字提示
         if env.settings.corrector_enabled then
             local cr_comment = CR.get_comment(cand)
             if cr_comment and cr_comment ~= "" then
@@ -553,7 +506,7 @@ function ZH.func(input, env)
             end
         end
 
-        -- ④ 反查模式提示
+        -- ③ 反查模式提示
         if is_radical_mode then
             local az_comment = get_az_comment(cand, env, initial_comment)
             if az_comment and az_comment ~= "" then

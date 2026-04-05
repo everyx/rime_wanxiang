@@ -26,8 +26,6 @@ package_schema_base() {
   mkdir -p "$OUT_DIR/custom"
   rsync -av --prune-empty-dirs \
     --include='*/' \
-    --exclude='wanxiang_chaifen_*.dict.yaml' \
-    --exclude='wanxiang_chaifen.schema.yaml' \
     --exclude='wanxiang_pro.custom.yaml' \
     --exclude='wanxiang_pro.dict.yaml' \
     --exclude='wanxiang_pro.schema.yaml' \
@@ -42,7 +40,6 @@ package_schema_base() {
     --exclude='/dist/' \
     --exclude='/release-please-config.json' \
     --exclude='/pro-*-fuzhu-dicts' \
-    --exclude='/chaifen' \
     --exclude='/CHANGELOG.md' \
     --exclude='/custom' \
     --exclude='/LICENSE' \
@@ -61,21 +58,21 @@ package_schema_pro() {
     mv "$ROOT_DIR/pro-$SCHEMA_NAME-fuzhu-dicts" "$OUT_DIR/dicts"
   fi
   # 1.1) 补充必要的附加文件
-  for f in en.dict.yaml "cn&en.dict.yaml" chengyu.txt people.dict.yaml; do
+  for f in en.dict.yaml "cn&en.dict.yaml"; do
     if [[ -f "$ROOT_DIR/dicts/$f" ]]; then
       cp "$ROOT_DIR/dicts/$f" "$OUT_DIR/dicts/"
     fi
   done
 
   # 2) 复制拆分表并重命名，同时拷贝 schema
-  src="$ROOT_DIR/custom/wanxiang_chaifen_${SCHEMA_NAME}.dict.yaml"
-  dst="$OUT_DIR/wanxiang_chaifen.dict.yaml"
+  src="$ROOT_DIR/custom/${SCHEMA_NAME}_chaifen.txt"
+  dst="$OUT_DIR/lua/data/chaifen.txt"
+  mkdir -p "$(dirname "$dst")"
   [[ -f "$src" ]] && cp "$src" "$dst"
 
   for f in \
     wanxiang_pro.dict.yaml \
-    wanxiang_pro.schema.yaml \
-    wanxiang_chaifen.schema.yaml
+    wanxiang_pro.schema.yaml
   do
     src="$ROOT_DIR/custom/$f"
     dst="$OUT_DIR/$f"
@@ -87,8 +84,6 @@ package_schema_pro() {
   rsync -av --prune-empty-dirs \
     --include='*/' \
     --exclude='wanxiang.custom*' \
-    --exclude='wanxiang_chaifen_*.dict.yaml' \
-    --exclude='wanxiang_chaifen.schema.yaml' \
     --exclude='wanxiang_pro.dict.yaml' \
     --exclude='wanxiang_pro.schema.yaml' \
     --include='*.yaml' --include='*.md' --include='*.jpg' --include='*.png' \

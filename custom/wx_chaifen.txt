@@ -1,12 +1,3 @@
-# Rime dictionary
-# encoding: utf-8
-# https://github.com/amzxyz/RIME-LMDG
-# wx zrm moqi flypy hanxin jdh  tiger wubi shouyou shyplus
----
-name: wanxiang_chaifen
-version: 1.0
-sort: original
-...
 呵	口可 kk
 嗄	口夏 kx
 錒	金可 jk
