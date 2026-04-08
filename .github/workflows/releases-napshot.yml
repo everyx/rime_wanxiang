@@ -170,7 +170,7 @@ jobs:
         run: |
           set -euo pipefail
           ORIG_BRANCH="$(git rev-parse --abbrev-ref HEAD || echo 'wanxiang')"
-          schemes=("base" "shouyou-fuzhu" "zrm-fuzhu" "tiger-fuzhu" "moqi-fuzhu" "flypy-fuzhu" "wubi-fuzhu" "hanxin-fuzhu" "shyplus-fuzhu")
+          schemes=("base" "wx-fuzhu" "shouyou-fuzhu" "zrm-fuzhu" "tiger-fuzhu" "moqi-fuzhu" "flypy-fuzhu" "wubi-fuzhu" "hanxin-fuzhu" "shyplus-fuzhu")
 
           COMMON_FILES=(
             "dicts/*.*"
