@@ -879,8 +879,11 @@ xxx/sync/ios
 
 - [词库刷拼音辅助码工具](https://github.com/amzxyz/RIME-LMDG/releases/tag/tool)
 
+⚙️**万象双拼：**
 
-<img alt="pay" src="./custom/万象输入方案.png">
+[参考万象拼音得由来](https://github.com/amzxyz/rime_wanxiang/wiki/%E4%B8%87%E8%B1%A1%E5%8F%8C%E6%8B%BC%E5%BE%97%E7%94%B1%E6%9D%A5)
+
+<img alt="pay" src="./custom/万象双拼.png">
 
 ## 生态
 
