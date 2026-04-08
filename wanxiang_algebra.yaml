@@ -838,9 +838,9 @@ base:
       - derive/^(..)(\d)$/$1/
       - derive/^(.).+(\d)$/$1$2/
 
-  万象双拼:
+  万象双拼:  #由来：https://github.com/amzxyz/RIME-LMDG/tree/wanxiang/%E4%B8%87%E8%B1%A1%E5%8F%8C%E6%8B%BC%E5%BE%97%E7%94%B1%E6%9D%A5
     __append:
-      - xform/Ⅸ//  #用于Lua判断输入类型的标记
+      - xform/Ⅹ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+)$/$1④/
       - xform/ā([a-z]*)$/a$1①/
       - xform/á([a-z]*)$/a$1②/
@@ -882,30 +882,30 @@ base:
       - xform/iu(\d)$/Ⓠ$1/
       - xform/[uv]an(\d)$/Ⓡ$1/
       - xform/er(\d)$/Ⓡ$1/
-      - xform/[uv]e(\d)$/Ⓣ$1/
-      - xform/[uv]n(\d)$/Ⓨ$1/
-      - xform/i?ong(\d)$/Ⓦ$1/
+      - xform/[uv]e(\d)$/Ⓧ$1/
+      - xform/[uv]n(\d)$/Ⓩ$1/
+      - xform/i?ong(\d)$/Ⓝ$1/
+      - xform/uo(\d)$/Ⓞ$1/
+      - xform/[iu]ang(\d)$/Ⓢ$1/
+      - xform/ang(\d)$/Ⓛ$1/
+      - xform/ing(\d)$/Ⓕ$1/
+      - xform/uai(\d)$/Ⓕ$1/
+      - xform/[iu]a(\d)$/Ⓦ$1/
+      - xform/ui(\d)$/Ⓥ$1/
+      - xform/in(\d)$/Ⓒ$1/
+      - xform/iao(\d)$/Ⓟ$1/
+      - xform/ian(\d)$/Ⓗ$1/
+      - xform/ie(\d)$/Ⓑ$1/
+      - xform/eng(\d)$/Ⓓ$1/
+      - xform/^(.+)en(\d)$/$1Ⓨ$2/
+      - xform/^(.+)ao(\d)$/$1Ⓜ$2/
+      - xform/^(.+)ai(\d)$/$1Ⓚ$2/
+      - xform/^(.+)ei(\d)$/$1Ⓣ$2/
+      - xform/^(.+)ou(\d)$/$1Ⓖ$2/
+      - xform/^(.+)an(\d)$/$1Ⓙ$2/
       - xform/^sh/Ⓤ/
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
-      - xform/uo(\d)$/Ⓞ$1/
-      - xform/[iu]ang(\d)$/Ⓓ$1/
-      - xform/ang(\d)$/Ⓢ$1/
-      - xform/ing(\d)$/Ⓖ$1/
-      - xform/uai(\d)$/Ⓖ$1/
-      - xform/[iu]a(\d)$/Ⓧ$1/
-      - xform/ui(\d)$/Ⓥ$1/
-      - xform/in(\d)$/Ⓑ$1/
-      - xform/iao(\d)$/Ⓝ$1/
-      - xform/ian(\d)$/Ⓜ$1/
-      - xform/ie(\d)$/Ⓟ$1/
-      - xform/eng(\d)$/Ⓙ$1/
-      - xform/^(.)en(\d)$/$1Ⓗ$2/
-      - xform/^(.)ao(\d)$/$1Ⓚ$2/
-      - xform/^(.)ai(\d)$/$1Ⓛ$2/
-      - xform/^(.)ei(\d)$/$1Ⓩ$2/
-      - xform/^(.)ou(\d)$/$1Ⓒ$2/
-      - xform/^(.)an(\d)$/$1Ⓕ$2/
       - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⓂⒿⒸⓀⓁⓏⓍⓋⒷⓃ/qwrtyuiopsdfghmjcklzxvbn/
       - derive/^(..)(\d)$/$1/
       - derive/^(.).+(\d)$/$1$2/
@@ -1048,30 +1048,30 @@ pro:
       - derive/^([aoe])([ioun])(\d);/$1$1$2$3;/
       - xform/^([aoe])(ng)?(\d);/$1$1$2$3;/
       - xform/iu(\d);/Ⓠ$1;/
+      - xform/[iu]a(\d);/Ⓦ$1;/
       - xform/[uv]an(\d);/Ⓡ$1;/
-      - xform/[uv]e(\d);/Ⓣ$1;/
-      - xform/[uv]n(\d);/Ⓨ$1;/
-      - xform/i?ong(\d);/Ⓦ$1;/
+      - xform/[uv]e(\d);/Ⓧ$1;/
+      - xform/[uv]n(\d);/Ⓩ$1;/
+      - xform/i?ong(\d);/Ⓝ$1;/
+      - xform/uo(\d);/Ⓞ$1;/
+      - xform/[iu]ang(\d);/Ⓢ$1;/
+      - xform/ang(\d);/Ⓛ$1;/
+      - xform/(ing|uai)(\d);/Ⓕ$2;/
+      - xform/ui(\d);/Ⓥ$1;/
+      - xform/iao(\d);/Ⓟ$1;/
+      - xform/ian(\d);/Ⓗ$1;/
+      - xform/ie(\d);/Ⓑ$1;/
+      - xform/eng(\d);/Ⓓ$1;/
+      - xform/in(\d);/Ⓒ$1;/
+      - xform/^(.+)en(\d);/$1Ⓨ$2;/
+      - xform/^(.+)ao(\d);/$1Ⓜ$2;/
+      - xform/^(.+)ai(\d);/$1Ⓚ$2;/
+      - xform/^(.+)ei(\d);/$1Ⓣ$2;/
+      - xform/^(.+)ou(\d);/$1Ⓖ$2;/
+      - xform/^(.+)an(\d);/$1Ⓙ$2;/
       - xform/^sh/Ⓤ/
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
-      - xform/uo(\d);/Ⓞ$1;/
-      - xform/[iu]ang(\d);/Ⓓ$1;/
-      - xform/ang(\d);/Ⓢ$1;/
-      - xform/(ing|uai)(\d);/Ⓖ$2;/
-      - xform/[iu]a(\d);/Ⓧ$1;/
-      - xform/ui(\d);/Ⓥ$1;/
-      - xform/iao(\d);/Ⓝ$1;/
-      - xform/ian(\d);/Ⓜ$1;/
-      - xform/ie(\d);/Ⓟ$1;/
-      - xform/eng(\d);/Ⓙ$1;/
-      - xform/in(\d);/Ⓑ$1;/
-      - xform/^(.)en(\d);/$1Ⓗ$2;/
-      - xform/^(.)ao(\d);/$1Ⓚ$2;/
-      - xform/^(.)ai(\d);/$1Ⓛ$2;/
-      - xform/^(.)ei(\d);/$1Ⓩ$2;/
-      - xform/^(.)ou(\d);/$1Ⓒ$2;/
-      - xform/^(.)an(\d);/$1Ⓕ$2;/
       - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⓂⒿⒸⓀⓁⓏⓍⓋⒷⓃ/qwrtyuiopsdfghmjcklzxvbn/
       #- xform/^(aj|ak|al|ob|ez|ef)(\d?)(;.*)$//
 
