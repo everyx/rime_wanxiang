@@ -879,7 +879,7 @@ base:
       - derive/^qiang(\d)$/fiang$1/  #单飞
       - derive/^qie(\d)$/zie$1/      #单飞
       - derive/^xie(\d)$/xei$1/      #单飞
-      - derive/^xin(\d)$/sin$1/      #单飞
+      - derive/^xin(\d)$/win$1/      #单飞
       - derive/^tie(\d)$/tue$1/      #单飞
       - derive/^yun(\d)$/bun$1/      #单飞
       - derive/^([jqxy])u(\d)$/$1v$2/
@@ -898,12 +898,12 @@ base:
       - xform/uai(\d)$/Ⓙ$1/
       - xform/[iu]a(\d)$/Ⓖ$1/
       - xform/ui(\d)$/Ⓥ$1/
-      - xform/in(\d)$/Ⓢ$1/
+      - xform/in(\d)$/Ⓦ$1/
       - xform/iao(\d)$/Ⓟ$1/
       - xform/ian(\d)$/Ⓜ$1/
       - xform/ie(\d)$/Ⓩ$1/
       - xform/eng(\d)$/Ⓓ$1/
-      - xform/^(.+)en(\d)$/$1Ⓦ$2/
+      - xform/^(.+)en(\d)$/$1Ⓢ$2/
       - xform/^(.+)ao(\d)$/$1Ⓝ$2/
       - xform/^(.+)ai(\d)$/$1Ⓛ$2/
       - xform/^(.+)ei(\d)$/$1Ⓧ$2/
@@ -1053,7 +1053,7 @@ pro:
       - derive/^qiang(\d);/fiang$1;/ #单飞
       - derive/^qie(\d);/zie$1;/     #单飞
       - derive/^xie(\d);/xei$1;/     #单飞
-      - derive/^xin(\d);/sin$1;/     #单飞
+      - derive/^xin(\d);/win$1;/     #单飞
       - derive/^tie(\d);/tue$1;/     #单飞
       - derive/^yun(\d);/bun$1;/     #单飞
       - derive/^([jqxy])u(\d);/$1v$2;/
@@ -1074,8 +1074,8 @@ pro:
       - xform/ian(\d);/Ⓜ$1;/
       - xform/ie(\d);/Ⓩ$1;/
       - xform/eng(\d);/Ⓓ$1;/
-      - xform/in(\d);/Ⓢ$1;/
-      - xform/^(.+)en(\d);/$1Ⓦ$2;/
+      - xform/in(\d);/Ⓦ$1;/
+      - xform/^(.+)en(\d);/$1Ⓢ$2;/
       - xform/^(.+)ao(\d);/$1Ⓝ$2;/
       - xform/^(.+)ai(\d);/$1Ⓛ$2;/
       - xform/^(.+)ei(\d);/$1Ⓧ$2;/
