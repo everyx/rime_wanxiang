@@ -647,7 +647,7 @@ local function handle_number_logic(key, env, ctx)
             if env.kp_is_composing then
                 if ctx.push_input then ctx:push_input(ch) else ctx.input = input .. ch end
             else
-                return false
+                env.engine:commit_text(ch)
             end
         else 
             if ctx.push_input then ctx:push_input(ch) else ctx.input = input .. ch end
