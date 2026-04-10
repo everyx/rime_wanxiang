@@ -882,6 +882,7 @@ base:
       - derive/^xin(\d)$/win$1/      #单飞
       - derive/^tie(\d)$/tue$1/      #单飞
       - derive/^yun(\d)$/bun$1/      #单飞
+      - derive/^deng(\d)/den$1/      #单飞
       - derive/^([jqxy])u(\d)$/$1v$2/
       - derive/^([aoe])([ioun])(\d)$/$1$1$2$3/
       - xform/^([aoe])(ng)?(\d)$/$1$1$2$3/
@@ -1056,6 +1057,7 @@ pro:
       - derive/^xin(\d);/win$1;/     #单飞
       - derive/^tie(\d);/tue$1;/     #单飞
       - derive/^yun(\d);/bun$1;/     #单飞
+      - derive/^deng(\d);/den$1;/    #单飞
       - derive/^([jqxy])u(\d);/$1v$2;/
       - derive/^([aoe])([ioun])(\d);/$1$1$2$3;/
       - xform/^([aoe])(ng)?(\d);/$1$1$2$3;/
