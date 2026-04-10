@@ -894,8 +894,8 @@ base:
       - xform/uo(\d)$/Ⓞ$1/
       - xform/[iu]ang(\d)$/Ⓕ$1/
       - xform/ang(\d)$/Ⓨ$1/
-      - xform/ing(\d)$/Ⓙ$1/
-      - xform/uai(\d)$/Ⓙ$1/
+      - xform/ing(\d)$/Ⓚ$1/
+      - xform/uai(\d)$/Ⓚ$1/
       - xform/[iu]a(\d)$/Ⓖ$1/
       - xform/ui(\d)$/Ⓥ$1/
       - xform/in(\d)$/Ⓦ$1/
@@ -908,7 +908,7 @@ base:
       - xform/^(.+)ai(\d)$/$1Ⓛ$2/
       - xform/^(.+)ei(\d)$/$1Ⓧ$2/
       - xform/^(.+)ou(\d)$/$1Ⓒ$2/
-      - xform/^(.+)an(\d)$/$1Ⓚ$2/
+      - xform/^(.+)an(\d)$/$1Ⓙ$2/
       - xform/^sh/Ⓤ/
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
@@ -1068,7 +1068,7 @@ pro:
       - xform/uo(\d);/Ⓞ$1;/
       - xform/[iu]ang(\d);/Ⓕ$1;/
       - xform/ang(\d);/Ⓨ$1;/
-      - xform/(ing|uai)(\d);/Ⓙ$2;/
+      - xform/(ing|uai)(\d);/Ⓚ$2;/
       - xform/ui(\d);/Ⓥ$1;/
       - xform/iao(\d);/Ⓟ$1;/
       - xform/ian(\d);/Ⓜ$1;/
@@ -1080,7 +1080,7 @@ pro:
       - xform/^(.+)ai(\d);/$1Ⓛ$2;/
       - xform/^(.+)ei(\d);/$1Ⓧ$2;/
       - xform/^(.+)ou(\d);/$1Ⓒ$2;/
-      - xform/^(.+)an(\d);/$1Ⓚ$2;/
+      - xform/^(.+)an(\d);/$1Ⓙ$2;/
       - xform/^sh/Ⓤ/
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
