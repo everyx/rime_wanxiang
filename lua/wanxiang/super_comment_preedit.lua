@@ -332,7 +332,6 @@ function ZH.func(input, env)
     local tone_isolate = config:get_bool("speller/tone_isolate")
     local is_tone_display = context:get_option("tone_display")
     local is_full_pinyin = context:get_option("full_pinyin")
-    local index = 0
 
     for cand in input:iter() do
         local genuine_cand = cand:get_genuine()
@@ -343,7 +342,6 @@ function ZH.func(input, env)
         local preedit = genuine_cand.preedit or ""
         local initial_comment = genuine_cand.comment
         local final_comment = initial_comment
-        index = index + 1
 
         -- preedit相关处理只跳过 preedit，不影响注释
         if is_radical_mode then
