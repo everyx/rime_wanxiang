@@ -165,7 +165,25 @@ local function compress_runs_keep_last(text)
     end)
     return out, changed
 end
-
+-- 执行符号快打 (双端通用)
+local function execute_quick_symbol(env, ctx, text)
+    local qkey = string.match(text, env.qs_trigger)
+    if qkey then
+        local symbol = env.qs_mapping[qkey]
+        if symbol and symbol ~= "" then
+            if type(symbol) == "string" and symbol:lower() == "repeat" then
+                if env.qs_last_commit ~= "" then
+                    env.engine:commit_text(env.qs_last_commit)
+                end
+            else
+                env.engine:commit_text(symbol)
+            end
+            ctx:clear()
+            return true
+        end
+    end
+    return false
+end
 -- 3. 初始化与资源管理 (Init & Fini)
 
 function M.init(env)
@@ -264,8 +282,8 @@ function M.init(env)
 
     -- [KpNumber] 小键盘
     env.kp_page_size = config:get_int("menu/page_size") or 6
-    local m = config:get_string("super_processor/kp_number_mode") or "auto"
-    env.kp_mode = (m == "auto" or m == "compose") and m or "auto"
+    local m = config:get_string("super_processor/kp_number_mode") or "select"
+    env.kp_mode = (m == "auto" or m == "compose" or m == "select") and m or "select"
     env.kp_func_patterns = wanxiang.load_regex_patterns(config, "recognizer/patterns")
 
     -- [LetterSelector] 字母选词状态位
@@ -358,21 +376,7 @@ function M.init(env)
         env.kp_has_menu = ctx:has_menu()
 
         -- E. [QuickSymbol] 自动上屏逻辑
-        local qkey = string.match(input, env.qs_trigger)
-        if qkey then
-            local symbol = env.qs_mapping[qkey]
-            if symbol and symbol ~= "" then
-                if type(symbol)=="string" and symbol:lower()=="repeat" then
-                    if env.qs_last_commit ~= "" then
-                        engine:commit_text(env.qs_last_commit)
-                        ctx:clear()
-                    end
-                else
-                    engine:commit_text(symbol)
-                    ctx:clear()
-                end
-            end
-        end
+        execute_quick_symbol(env, ctx, input)
     end)
     -- [3] 统一 Commit Notifier (记录上屏)
     env.conn_commit = context.commit_notifier:connect(function(ctx)
@@ -391,13 +395,14 @@ end
 
 -- [QuickSymbol] 拦截触发键，防止进入 Speller
 local function handle_quick_symbol_intercept(key, env, ctx)
+    local kc = key.keycode
+    if kc < 0x20 or kc > 0x7E then return false end
+    
     local input = ctx.input or ""
-    local matched = string.match(input, env.qs_trigger)
-    if matched then
-        local k = matched
-        if env.qs_mapping[k] and env.qs_mapping[k] ~= "" then
-            return true -- Accepted
-        end
+    local next_input = input .. string.char(kc)
+    
+    if execute_quick_symbol(env, ctx, next_input) then
+        return true
     end
     return false
 end
@@ -629,21 +634,41 @@ local function handle_number_logic(key, env, ctx)
 
     local kp_num = KP_MAP[kc]
 
-    -- A. 桌面端专属：小键盘不上屏处理 (移动端直接跳过此区)
-    if kp_num ~= nil and not wanxiang.is_mobile_device() then
+    -- A. 小键盘不上屏处理
+    if kp_num ~= nil then
         if key:ctrl() or key:alt() or key:super() or key:shift() then return false end
         
         if env.enable_tone_fallback then
             env.tone_state = "skip"
         end
-
         local ch = tostring(kp_num)
-        
         if is_function_code_after_digit(env, ctx, ch) then
             if ctx.push_input then ctx:push_input(ch) else ctx.input = input .. ch end
             return true
         end
-        if env.kp_mode == "auto" then
+
+        -- 在 select 模式下且有候选时，小键盘像主键盘一样选词上屏
+        if env.kp_mode == "select" and env.kp_has_menu then
+            local d = kp_num
+            if d == 0 then d = 10 end
+            if d >= 1 and d <= env.kp_page_size then
+                local comp = ctx.composition
+                if comp and not comp:empty() then
+                    local seg = comp:back()
+                    local menu = seg and seg.menu
+                    if menu and not menu:empty() then
+                        local sel_index = seg.selected_index or 0
+                        local page_start = math.floor(sel_index / env.kp_page_size) * env.kp_page_size
+                        local index = page_start + (d - 1)
+                        ctx:select(index)
+                        return true
+                    end
+                end
+            end
+            return true -- 防止越界按键变成拼音
+        end
+
+        if env.kp_mode == "auto" or env.kp_mode == "select" then
             if env.kp_is_composing then
                 if ctx.push_input then ctx:push_input(ch) else ctx.input = input .. ch end
             else
@@ -659,8 +684,6 @@ local function handle_number_logic(key, env, ctx)
     local digit_str = nil
     if r:match("^[0-9]$") then
         digit_str = r
-    elseif kp_num ~= nil and wanxiang.is_mobile_device() then
-        digit_str = tostring(kp_num) -- 移动端小键盘视为标准数字
     end
 
     if digit_str then
@@ -717,14 +740,12 @@ local function handle_number_logic(key, env, ctx)
                         local sel_index = seg.selected_index or 0
                         local page_start = math.floor(sel_index / env.kp_page_size) * env.kp_page_size
                         local index = page_start + (d - 1)
-                        if index < menu:candidate_count() then
-                            -- 这里执行纯净的 ctx:select，不干涉物理按键事件
-                            if ctx:select(index) then return true end
-                        end
+                        ctx:select(index)
+                        return true
                     end
                 end
             end
-            return false 
+            return false
         end
     else
         -- 非数字键重置状态，保证声调压缩不越界

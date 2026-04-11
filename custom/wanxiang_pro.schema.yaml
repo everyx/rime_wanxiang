@@ -136,7 +136,7 @@ super_processor:
   enable_seg_loop: true        # 开启/关闭分词符（'）循环
   enable_tone_fallback: true   # 启用声调回退
   enable_predict_space: false   # 启用联想空格打断，直接上屏空格并清空联想，对齐大厂，如果用原生librime-predict这个还有用留着
-  kp_number_mode: auto         # 小键盘模式 (auto / compose)
+  kp_number_mode: auto         # 小键盘模式 (auto / compose / select)
   limit_repeated: "8,40"       #格式："最大重复声母数,最大候选字数"
   select_character: "[,]"      # 开启以词定字，自动拆解第一位上屏首字，第二位上屏尾字
   # 下面这些写法都支持：
