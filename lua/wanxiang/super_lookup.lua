@@ -35,6 +35,61 @@ local function get_tone_from_pinyin(pinyin)
     end
     return "0"
 end
+-- 提取指定位置的 UTF-8 字符
+local function get_utf8_char_at(text, idx)
+    local i = 1
+    for _, code in utf8.codes(text) do
+        if i == idx then return utf8.char(code) end
+        i = i + 1
+    end
+    return ""
+end
+-- 替换指定位置的 UTF-8 字符
+local function replace_utf8_char_at(text, index, new_char)
+    local out = {}
+    local i = 1
+    for _, code in utf8.codes(text) do
+        if i == index then
+            table.insert(out, new_char)
+        else
+            table.insert(out, utf8.char(code))
+        end
+        i = i + 1
+    end
+    return table.concat(out)
+end
+
+-- 拼音分段提取法
+local function get_script_text_parts(ctx, search_key_str)
+    local parts = {}
+    if not ctx or not ctx.composition or ctx.composition:empty() then return parts end
+    
+    local spans = ctx.composition:spans()
+    if not spans then return parts end
+
+    local count = type(spans.count) == "function" and spans:count() or spans.count
+    if count == 0 then return parts end
+    
+    local vertices = type(spans.vertices) == "function" and spans:vertices() or spans.vertices
+    if not vertices or #vertices < 2 then return parts end
+
+    local raw_in = ctx.input or ""
+    for i = 1, #vertices - 1 do
+        local start_byte = vertices[i] + 1 
+        local end_byte = vertices[i + 1]   
+        local raw_syl = raw_in:sub(start_byte, end_byte)
+        
+        if raw_syl and raw_syl ~= "" then
+            if search_key_str and search_key_str ~= "" then
+                local split_pos = raw_syl:find(search_key_str, 1, true)
+                if split_pos then raw_syl = raw_syl:sub(1, split_pos - 1) end
+            end
+            raw_syl = raw_syl:gsub("['%s]", "")
+            if raw_syl ~= "" then table.insert(parts, raw_syl) end
+        end
+    end
+    return parts
+end
 
 -- 规则加载
 local function parse_and_separate_rules(schema_id)
@@ -148,17 +203,14 @@ local function build_reverse_group(main_projection, xlit_projection, db_table, t
         local code = db:lookup(text)
         if code and #code > 0 then
             for part in code:gmatch('%S+') do
-                -- 接收分离的两种数据
                 local main_variants, xlit_variants = expand_code_variant(main_projection, xlit_projection, part)
                 
-                -- 装填主数据
                 for _, v in ipairs(main_variants) do 
                     if not seen_main[v] then 
                         seen_main[v] = true 
                         group_main[#group_main + 1] = v 
                     end 
                 end
-                -- 装填 xlit 数据
                 for _, v in ipairs(xlit_variants) do 
                     if not seen_xlit[v] then 
                         seen_xlit[v] = true 
@@ -225,13 +277,10 @@ local function list_contains(list, target)
     return false
 end
 
--- 解析输入中的反查分隔点。
--- 兼容动态获取的造词前缀：如果输入以 bypass_prefix 开头，则跳过它，只把后续反查引导符当作筛选分隔点。
 local function split_lookup_input(input, key, bypass_prefix)
     if not input or input == "" or not key or key == "" then return nil end
 
     local scan_from = 1
-    -- 如果有配置造词前缀，且当前输入是以它开头，就把扫描起点后移
     if bypass_prefix and bypass_prefix ~= "" and input:sub(1, #bypass_prefix) == bypass_prefix then
         scan_from = #bypass_prefix + 1
     end
@@ -278,19 +327,15 @@ local function parse_comment_codes(comment, pattern, target_len, enable_tone)
         end
         
         local codes_list = {}
-        -- 1. 提取辅码
         if #codes_part > 0 then
             for c in codes_part:gmatch("[^,]+") do 
                 local trimmed = c:gsub("^%s+", ""):gsub("%s+$", "")
                 if #trimmed > 0 then table.insert(codes_list, trimmed) end
             end
         end
-        -- 2. 提取声调 (如果开启)
         if enable_tone then
             local tone = get_tone_from_pinyin(pinyin_part)
-            if tone then
-                table.insert(codes_list, tone)
-            end
+            if tone then table.insert(codes_list, tone) end
         end
         result[i] = codes_list
     end
@@ -302,11 +347,10 @@ local f = {}
 function f.init(env)
     local config = env.engine.schema.config
     
-    -- 1. 开启声调
     env.enable_tone = config:get_bool('wanxiang_lookup/enable_tone')
     if env.enable_tone == nil then env.enable_tone = true end
-
-    -- 2. 读取数据源
+    env.mem = Memory(env.engine, env.engine.schema)
+    
     local sources_list = config:get_list('wanxiang_lookup/data_source')
     env.data_sources = {}
     
@@ -326,7 +370,6 @@ function f.init(env)
         env.has_db = true
     end
 
-    -- 核心逻辑：只要配置了 aux 源，或者开启了 enable_tone (需要借声调)，就必须解析注释
     env.has_comment = config_has_aux_source or env.enable_tone
 
     env.db_table = nil
@@ -388,6 +431,22 @@ function f.init(env)
     env._global_db_cache = {}
     env._global_comment_cache = {}
     env.cache_size = 0 
+    
+    -- 用于提前保存input完美物理切分
+    env.history_parts = {}
+    env.history_input = ""
+    env.update_conn = env.engine.context.update_notifier:connect(function(ctx)
+        if not ctx:is_composing() then return end
+        local raw_in = ctx.input or ""
+        local key = env.search_key_str or "`"
+        if key ~= "" and not raw_in:find(key, 1, true) then
+            local parts = get_script_text_parts(ctx, key)
+            if #parts > 0 then
+                env.history_parts = parts
+                env.history_input = raw_in
+            end
+        end
+    end)
 end
 
 function f.func(input, env)
@@ -404,8 +463,7 @@ function f.func(input, env)
     end
 
     local ctx_input = env.engine.context.input
-    -- 传入 env.bypass_prefix
-    local _, fuma, s_start, s_end = split_lookup_input(ctx_input, env.search_key_str, env.bypass_prefix)
+    local pure_code, fuma, s_start, s_end = split_lookup_input(ctx_input, env.search_key_str, env.bypass_prefix)
     if not s_start then for cand in input:iter() do yield(cand) end return end
     if #fuma == 0 then for cand in input:iter() do yield(cand) end return end
 
@@ -436,17 +494,128 @@ function f.func(input, env)
     local db_cache = env._global_db_cache
     local comment_cache = env._global_comment_cache
 
+    local aux_chunk_size = 2 
+    local fuma_chunks = {}
+    for i = 1, #clean_fuma, aux_chunk_size do
+        local chunk = clean_fuma:sub(i, i + aux_chunk_size - 1)
+        if #chunk == aux_chunk_size then
+            table.insert(fuma_chunks, string.upper(chunk))
+        end
+    end
+
+    local is_first_cand = true
+    
+    local ctx = env.engine.context
+    local syllables = {}
+    if pure_code == env.history_input and #env.history_parts > 0 then
+        for _, v in ipairs(env.history_parts) do table.insert(syllables, v) end
+    else
+        syllables = get_script_text_parts(ctx, env.search_key_str)
+    end
+
     for cand in input:iter() do
-        if cand.type == 'sentence' then goto skip end
+        local cand_len = get_utf8_len(cand.text)
+        
+        if is_first_cand then
+            is_first_cand = false
+            
+            if cand_len > 1 and #syllables >= cand_len then
+                local current_text = cand.text
+                local corrected_count = 0
+                local match_count = 0
+                local search_start_idx = 1 
+
+                if #fuma_chunks > 0 then
+                    for _, chunk_fuma in ipairs(fuma_chunks) do
+                        local target_idx = nil
+                        local new_char = nil
+                        
+                        for i = search_start_idx, cand_len do
+                            local found = false
+                            local orig_char = get_utf8_char_at(current_text, i)
+                            local pinyin_code = syllables[i]
+                            local probe_code = pinyin_code .. chunk_fuma
+
+                            local is_orig_valid = false
+                            local first_cand = nil
+
+                            if env.mem:dict_lookup(probe_code, true, 50) then
+                                for entry in env.mem:iter_dict() do
+                                    if get_utf8_len(entry.text) == 1 then
+                                        if not first_cand then first_cand = entry.text end
+                                        if entry.text == orig_char then
+                                            is_orig_valid = true
+                                            break
+                                        end
+                                    end
+                                end
+                            end
+                            
+                            if not is_orig_valid and env.mem:user_lookup(probe_code, true) then
+                                for entry in env.mem:iter_user() do
+                                    if get_utf8_len(entry.text) == 1 then
+                                        if not first_cand then first_cand = entry.text end
+                                        if entry.text == orig_char then
+                                            is_orig_valid = true
+                                            break
+                                        end
+                                    end
+                                end
+                            end
+
+                            if is_orig_valid then
+                                target_idx = i
+                                new_char = orig_char
+                                found = true
+                            elseif first_cand then
+                                target_idx = i
+                                new_char = first_cand
+                                found = true
+                            end
+
+                            if found then break end
+                        end
+
+                        if target_idx and new_char then
+                            match_count = match_count + 1
+                            if new_char ~= get_utf8_char_at(current_text, target_idx) then
+                                current_text = replace_utf8_char_at(current_text, target_idx, new_char)
+                                corrected_count = corrected_count + 1
+                            end
+                            search_start_idx = target_idx + 1 
+                        end
+                    end
+
+                    if match_count == #fuma_chunks then
+                        if corrected_count > 0 then
+                            local fixed_cand = Candidate(cand.type, cand.start, cand._end, current_text, cand.comment or "")
+                            fixed_cand.quality = cand.quality
+                            fixed_cand.preedit = cand.preedit
+                            yield(fixed_cand)
+                        else
+                            yield(cand)
+                        end
+                        goto skip
+                    else
+                        goto skip
+                    end
+                else
+                    goto skip
+                end
+            end
+        end
+
+        if cand.type == 'sentence' and cand_len > 1 then
+            goto skip
+        end
+
         local cand_text = cand.text
-        local cand_len = get_utf8_len(cand_text)
         if not cand_len or cand_len == 0 then goto skip end
         local b = string.byte(cand_text, 1)
         if b and b < 128 then goto skip end
 
         local raw_data = {}
         
-        -- 数据加载 A: Aux Data (From Comment)
         if env.has_comment then
             local genuine = cand:get_genuine()
             local comment_text = genuine and genuine.comment or ""
@@ -458,13 +627,11 @@ function f.func(input, env)
                 end
                 if comment_cache[cache_key] then
                     raw_data.aux = comment_cache[cache_key]
-                    -- 同时赋给 _comment_internal，用于 data_source: [db] 借用声调
                     raw_data._comment_internal = comment_cache[cache_key]
                 end
             end
         end
 
-        -- 数据加载 B: DB Data
         if env.has_db then
             raw_data.db = {}
             local i = 0
@@ -472,7 +639,6 @@ function f.func(input, env)
                 i = i + 1
                 local char_str = utf8.char(code_point)
                 
-                -- 1. 查缓存，如果没有就调用底层函数，拿到分离后的两种数据
                 if not db_cache[char_str] then
                     local main_codes, xlit_codes = build_reverse_group(env.main_projection, env.xlit_projection, env.db_table, char_str)
                     db_cache[char_str] = {
@@ -482,7 +648,6 @@ function f.func(input, env)
                     env.cache_size = env.cache_size + 1 
                 end
                 
-                -- 2. 核心分配逻辑：控制词组取什么数据
                 if cand_len == 1 then
                     local combined = {}
                     for _, v in ipairs(db_cache[char_str].main) do table.insert(combined, v) end
@@ -495,7 +660,6 @@ function f.func(input, env)
             end
         end
 
-        -- 提取借用声调
         local borrowed_tones = {} 
         if raw_data._comment_internal then
             for k, codes in ipairs(raw_data._comment_internal) do
@@ -604,10 +768,13 @@ function f.tags_match(seg, env)
 end
 
 function f.fini(env)
+    if env.update_conn then env.update_conn:disconnect() end
     if env.notifier then env.notifier:disconnect() end
+    if env.mem then env.mem:disconnect() end
     env.db_table = nil
     env._global_db_cache = nil
     env._global_comment_cache = nil
+    env.history_parts = nil
     collectgarbage('collect')
 end
 
