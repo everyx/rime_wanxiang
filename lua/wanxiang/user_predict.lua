@@ -260,9 +260,14 @@ local function get_predictions(env, prev_commit)
 
     -- 小于等于2先找上文组合查 2-Gram
     if #history >= 2 then 
+        local u0 = history[#history - 1]
         local u1 = history[#history]
-        if #get_utf8_chars(u1) <= 2 then
-            fetch_and_clean("2\t" .. history[#history - 1] .. "\t" .. u1 .. "\t", 10000) 
+        local len_u0 = #get_utf8_chars(u0)
+        local len_u1 = #get_utf8_chars(u1)
+        
+        -- 对齐写入时的条件：u1不超过4，且总和不超过5
+        if len_u1 <= 4 and (len_u0 + len_u1) <= 5 then
+            fetch_and_clean("2\t" .. u0 .. "\t" .. u1 .. "\t", 10000) 
         end
     end
 
@@ -771,10 +776,13 @@ function F.func(input, env)
     if f_last_commit ~= last_commit then
         f_last_commit = last_commit
         f_reorder_map = nil
-        
-        -- 严格判断调频开关是否开启，没开绝不查库
-        if last_commit ~= "" and CONFIG.ENABLE_CONTEXT_REORDER then
-            -- 优先白嫖 P 模块查好的全局缓存，如果 P 模块没查（比如没开联想），F 就自己查一次作为兜底
+        local context_len = 0
+        if #history >= 2 then
+            local u0_len = #get_utf8_chars(history[#history - 1])
+            local u1_len = #get_utf8_chars(history[#history])
+            context_len = u0_len + u1_len
+        end
+        if context_len >= 3 and CONFIG.ENABLE_CONTEXT_REORDER then
             local preds = pending_cands or get_predictions(env, last_commit)
             if preds then
                 f_reorder_map = {}
