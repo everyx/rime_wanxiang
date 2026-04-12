@@ -534,6 +534,9 @@ function f.func(input, env)
                             local found = false
                             local orig_char = get_utf8_char_at(current_text, i)
                             local pinyin_code = syllables[i]
+                            if #pinyin_code > 2 then
+                                pinyin_code = string.sub(pinyin_code, 1, 2)
+                            end
                             local probe_code = pinyin_code .. chunk_fuma
 
                             local is_orig_valid = false
