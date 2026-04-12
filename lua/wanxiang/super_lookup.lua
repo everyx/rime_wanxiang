@@ -494,13 +494,9 @@ function f.func(input, env)
     local db_cache = env._global_db_cache
     local comment_cache = env._global_comment_cache
 
-    local aux_chunk_size = 2 
     local fuma_chunks = {}
-    for i = 1, #clean_fuma, aux_chunk_size do
-        local chunk = clean_fuma:sub(i, i + aux_chunk_size - 1)
-        if #chunk == aux_chunk_size then
-            table.insert(fuma_chunks, string.upper(chunk))
-        end
+    for code, digit in fuma:gmatch("(%a%a)(%d*)") do
+        table.insert(fuma_chunks, string.upper(code) .. digit)
     end
 
     local is_first_cand = true
@@ -523,20 +519,28 @@ function f.func(input, env)
                 local current_text = cand.text
                 local corrected_count = 0
                 local match_count = 0
-                local search_start_idx = 1 
 
                 if #fuma_chunks > 0 then
-                    for _, chunk_fuma in ipairs(fuma_chunks) do
+                    local search_end_idx = cand_len 
+                    
+                    -- 辅码倒序遍历
+                    for c_idx = #fuma_chunks, 1, -1 do
+                        local chunk_fuma = fuma_chunks[c_idx]
                         local target_idx = nil
                         local new_char = nil
                         
-                        for i = search_start_idx, cand_len do
+                        -- 文本倒序扫描
+                        for i = search_end_idx, 1, -1 do
                             local found = false
                             local orig_char = get_utf8_char_at(current_text, i)
                             local pinyin_code = syllables[i]
+                            
+                            if not pinyin_code then goto next_i end
+
                             if #pinyin_code > 2 then
                                 pinyin_code = string.sub(pinyin_code, 1, 2)
                             end
+                            -- 此时 chunk_fuma 已经包含了数字(声调)，例如 yb + UO7 = ybUO7
                             local probe_code = pinyin_code .. chunk_fuma
 
                             local is_orig_valid = false
@@ -566,10 +570,9 @@ function f.func(input, env)
                                 end
                             end
 
+                            -- 相同跳过不消耗
                             if is_orig_valid then
-                                target_idx = i
-                                new_char = orig_char
-                                found = true
+                                goto next_i
                             elseif first_cand then
                                 target_idx = i
                                 new_char = first_cand
@@ -577,6 +580,7 @@ function f.func(input, env)
                             end
 
                             if found then break end
+                            ::next_i::
                         end
 
                         if target_idx and new_char then
@@ -585,7 +589,8 @@ function f.func(input, env)
                                 current_text = replace_utf8_char_at(current_text, target_idx, new_char)
                                 corrected_count = corrected_count + 1
                             end
-                            search_start_idx = target_idx + 1 
+                            -- 限制边界，下一个辅码只能在前面的字里找
+                            search_end_idx = target_idx - 1 
                         end
                     end
 
@@ -603,6 +608,8 @@ function f.func(input, env)
                         goto skip
                     end
                 else
+                    -- 辅码不足2位时，安全放行原句
+                    yield(cand)
                     goto skip
                 end
             end
