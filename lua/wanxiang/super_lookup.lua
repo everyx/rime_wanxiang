@@ -515,7 +515,7 @@ function f.func(input, env)
         if is_first_cand then
             is_first_cand = false
             
-            if cand_len > 1 and #syllables >= cand_len then
+            if cand.type == 'sentence' and cand_len > 1 and #syllables >= cand_len then
                 local current_text = cand.text
                 local corrected_count = 0
                 local match_count = 0
