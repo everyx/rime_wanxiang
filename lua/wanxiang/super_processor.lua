@@ -647,28 +647,11 @@ local function handle_number_logic(key, env, ctx)
             return true
         end
 
-        -- 在 select 模式下且有候选时，小键盘像主键盘一样选词上屏
-        if env.kp_mode == "select" and env.kp_has_menu then
-            local d = kp_num
-            if d == 0 then d = 10 end
-            if d >= 1 and d <= env.kp_page_size then
-                local comp = ctx.composition
-                if comp and not comp:empty() then
-                    local seg = comp:back()
-                    local menu = seg and seg.menu
-                    if menu and not menu:empty() then
-                        local sel_index = seg.selected_index or 0
-                        local page_start = math.floor(sel_index / env.kp_page_size) * env.kp_page_size
-                        local index = page_start + (d - 1)
-                        ctx:select(index)
-                        return true
-                    end
-                end
-            end
-            return true -- 防止越界按键变成拼音
+        if env.kp_mode == "select" then
+            return false
         end
 
-        if env.kp_mode == "auto" or env.kp_mode == "select" then
+        if env.kp_mode == "auto" then
             if env.kp_is_composing then
                 if ctx.push_input then ctx:push_input(ch) else ctx.input = input .. ch end
             else
@@ -826,5 +809,4 @@ function M.func(key, env)
 
     return K_NOOP
 end
-
 return M
