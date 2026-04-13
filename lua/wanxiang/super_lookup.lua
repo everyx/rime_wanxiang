@@ -7,6 +7,7 @@
   --enable_tone: true  #启用声调反查
 
 -- 工具函数：转义正则特殊字符
+local wanxiang = require("wanxiang/wanxiang")
 local function alt_lua_punc(s)
     return s and s:gsub('([%.%+%-%*%?%[%]%^%$%(%)%%])', '%%%1') or ''
 end
@@ -481,7 +482,6 @@ function f.func(input, env)
 
     local if_single_char_first = env.engine.context:get_option('char_priority')
     local buckets = {}
-    for i = 1, #env.data_sources do buckets[i] = {} end
     local long_word_cands = {}
     local max_len = 0
     local has_any_match = false 
@@ -526,12 +526,14 @@ function f.func(input, env)
                     -- 辅码倒序遍历
                     for c_idx = #fuma_chunks, 1, -1 do
                         local chunk_fuma = fuma_chunks[c_idx]
-                        local target_idx = nil
-                        local new_char = nil
                         
+                        -- 全局最优解记录器
+                        local global_target_idx = nil
+                        local global_new_char = nil
+                        local global_max_weight = -1000
+                        local perfect_match_idx = nil 
                         -- 文本倒序扫描
                         for i = search_end_idx, 1, -1 do
-                            local found = false
                             local orig_char = get_utf8_char_at(current_text, i)
                             local pinyin_code = syllables[i]
                             
@@ -540,57 +542,72 @@ function f.func(input, env)
                             if #pinyin_code > 2 then
                                 pinyin_code = string.sub(pinyin_code, 1, 2)
                             end
-                            -- 此时 chunk_fuma 已经包含了数字(声调)，例如 yb + UO7 = ybUO7
                             local probe_code = pinyin_code .. chunk_fuma
 
                             local is_orig_valid = false
-                            local first_cand = nil
+                            local local_best_cand = nil
+                            local local_max_weight = -1000
 
-                            if env.mem:dict_lookup(probe_code, true, 50) then
+                            if env.mem:dict_lookup(probe_code, true, 200) then
                                 for entry in env.mem:iter_dict() do
                                     if get_utf8_len(entry.text) == 1 then
-                                        if not first_cand then first_cand = entry.text end
                                         if entry.text == orig_char then
                                             is_orig_valid = true
                                             break
+                                        end
+                                        local current_weight = entry.weight or 0
+                                        if current_weight > local_max_weight then
+                                            local_max_weight = current_weight
+                                            local_best_cand = entry.text
                                         end
                                     end
                                 end
                             end
                             
+                            -- 2. 查用户词典
                             if not is_orig_valid and env.mem:user_lookup(probe_code, true) then
                                 for entry in env.mem:iter_user() do
                                     if get_utf8_len(entry.text) == 1 then
-                                        if not first_cand then first_cand = entry.text end
                                         if entry.text == orig_char then
                                             is_orig_valid = true
                                             break
+                                        end
+                                        local current_weight = (entry.weight or 0) + 999
+                                        if current_weight > local_max_weight then
+                                            local_max_weight = current_weight
+                                            local_best_cand = entry.text
                                         end
                                     end
                                 end
                             end
 
-                            -- 相同跳过不消耗
                             if is_orig_valid then
+                                if not perfect_match_idx then
+                                    perfect_match_idx = i
+                                end
                                 goto next_i
-                            elseif first_cand then
-                                target_idx = i
-                                new_char = first_cand
-                                found = true
+                            elseif local_best_cand then
+                                -- 将当前节点选出的最高分，与之前的全局最高分比拼
+                                if local_max_weight > global_max_weight then
+                                    global_max_weight = local_max_weight
+                                    global_target_idx = i
+                                    global_new_char = local_best_cand
+                                end
                             end
 
-                            if found then break end
                             ::next_i::
                         end
 
-                        if target_idx and new_char then
+                        if global_target_idx and global_new_char then
                             match_count = match_count + 1
-                            if new_char ~= get_utf8_char_at(current_text, target_idx) then
-                                current_text = replace_utf8_char_at(current_text, target_idx, new_char)
+                            if global_new_char ~= get_utf8_char_at(current_text, global_target_idx) then
+                                current_text = replace_utf8_char_at(current_text, global_target_idx, global_new_char)
                                 corrected_count = corrected_count + 1
                             end
-                            -- 限制边界，下一个辅码只能在前面的字里找
-                            search_end_idx = target_idx - 1 
+                            search_end_idx = global_target_idx - 1 
+                        elseif perfect_match_idx then
+                            match_count = match_count + 1
+                            search_end_idx = perfect_match_idx - 1
                         end
                     end
 
@@ -605,6 +622,7 @@ function f.func(input, env)
                         end
                         goto skip
                     else
+                        yield(cand) 
                         goto skip
                     end
                 else
@@ -680,7 +698,7 @@ function f.func(input, env)
             end
         end
 
-        local matched_idx = nil
+        local is_match_any = false
 
         for i, source_type in ipairs(env.data_sources) do
             local codes_seq = raw_data[source_type]
@@ -719,20 +737,20 @@ function f.func(input, env)
                     end
                     
                     if is_match then
-                        matched_idx = i
+                        is_match_any = true
                         break 
                     end
                 end
             end
         end
 
-        if matched_idx then
+        if is_match_any then
             has_any_match = true
             if if_single_char_first and cand_len > 1 then
                 table.insert(long_word_cands, cand)
             else
-                if not buckets[matched_idx][cand_len] then buckets[matched_idx][cand_len] = {} end
-                table.insert(buckets[matched_idx][cand_len], cand)
+                if not buckets[cand_len] then buckets[cand_len] = {} end
+                table.insert(buckets[cand_len], cand)
                 if cand_len > max_len then max_len = cand_len end
             end
         end
@@ -740,19 +758,13 @@ function f.func(input, env)
     end
 
     if if_single_char_first then
-        for i = 1, #env.data_sources do
-            if buckets[i][1] then for _, c in ipairs(buckets[i][1]) do yield(c) end end
-        end
+        if buckets[1] then for _, c in ipairs(buckets[1]) do yield(c) end end
         for l = max_len, 2, -1 do
-            for i = 1, #env.data_sources do
-                if buckets[i][l] then for _, c in ipairs(buckets[i][l]) do yield(c) end end
-            end
+            if buckets[l] then for _, c in ipairs(buckets[l]) do yield(c) end end
         end
     else
         for l = max_len, 1, -1 do
-            for i = 1, #env.data_sources do
-                if buckets[i][l] then for _, c in ipairs(buckets[i][l]) do yield(c) end end
-            end
+            if buckets[l] then for _, c in ipairs(buckets[l]) do yield(c) end end
         end
     end
     
