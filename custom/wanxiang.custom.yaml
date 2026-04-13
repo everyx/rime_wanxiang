@@ -2,17 +2,14 @@
 patch:
   speller/algebra:
     __patch:
-      #- 模糊音                                  # 这里启用后，本文件末尾可配置具体条目
+      #- wanxiang_algebra:/模糊音               # 这里启用后，本文件末尾可配置具体条目
       - wanxiang_algebra:/base/全拼            # 可选输入方案名称：全拼，自然码, 自然龙, 汉心龙，小鹤双拼, 搜狗双拼, 微软双拼, 智能ABC, 紫光双拼, 国标双拼，拼音加加，乱序17
-  ##########################以上格式受指令初始化控制，最好保持格式不变，如果发生变更请不要使用指令修改相关数据#####################################
+##########################以上格式受指令初始化控制，最好保持格式不变，如果发生变更请不要使用指令修改相关数据#####################################
   #custom_phrase/user_dict: custom_phrasexx    # 这里改成什么就需要手动创建同名的 custom_phrasexx.txt 文件在用户目录，这个文件主要用于置顶，编码为自定义编码的词汇
   #translator/packs/+:
     #- userxx                                  #导入根目录下名称为userxx.dict.yaml的自定义固定词典，编码要与固定词库一致，编码权重都不要少，形如姓名、专有名词公司名称等等
   #下面是候选数量
   menu/page_size: 6  #不要超过6，7890用于代表声调1234，6个管够你用了，如果你非要10个，不要问我😜。
-
-
-
 
 
   #下面用来改变你的windows小狼毫右下角软件图标
@@ -29,44 +26,4 @@ patch:
   #add_user_dict/enable_user_dict: true
   # 取消注释以开启自动无词频造词
   #add_user_dict/enable_auto_phrase: true
-#按需造词全功能段落结束---------------------------------------------------------------
 
-模糊音: 
-  __append:
-    # n - l
-    - derive/^l/n
-    - derive/^n/l
-    # r - y     开头
-    - derive/^y/r
-    - derive/^r/y
-    # h - f     开头
-    - derive/^h/f
-    - derive/^f/h
-    # r - l     开头
-    - derive/^r/l
-    - derive/^l/r
-    # k - g     开头
-    - derive/^k/g
-    - derive/^g/k
-    # en - eng
-    - derive/(ē|é|ě|è|e)ng(.*)$/$1n$2
-    - derive/(ē|é|ě|è|e)n(.*)$/$1ng$2
-    # in - ing
-    - derive/(ī|í|ǐ|ì|i)ng(.*)$/$1n$2
-    - derive/(ī|í|ǐ|ì|i)n(.*)$/$1ng$2
-    # c - ch
-    - derive/^c([^h]*)/ch$1
-    - derive/^ch/c
-    # z - zh
-    - derive/^z([^h]*)/zh$1
-    - derive/^zh/z
-    # s - sh
-    - derive/^s([^h]*)/sh$1
-    - derive/^sh/s
-#使用方案跟在拼写运算后面
-18jian:
-  __append:
-    - xlit/qwertyuiopasdfghjklzxcvbnm/QWWRRYUIIPASSFFHJJLZXXVBBM
-14jian:
-  __append:
-    - xlit/qwertyuiopasdfghjklzxcvbnm/QQEETTUUOOAADDGGJJLZZCCBBM
