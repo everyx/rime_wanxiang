@@ -6,12 +6,11 @@
   --data_source: [ aux, db ] # 优先级：写在前面优先。即使只写db，只要开启enable_tone也能从注释获取声调。
   --enable_tone: true  #启用声调反查
 
--- 工具函数：转义正则特殊字符
 local wanxiang = require("wanxiang/wanxiang")
 local function alt_lua_punc(s)
     return s and s:gsub('([%.%+%-%*%?%[%]%^%$%(%)%%])', '%%%1') or ''
 end
--- 声调映射表
+
 local tones_map = {
     ["ā"]="7", ["á"]="8", ["ǎ"]="9", ["à"]="0",
     ["ō"]="7", ["ó"]="8", ["ǒ"]="9", ["ò"]="0",
@@ -20,23 +19,21 @@ local tones_map = {
     ["ū"]="7", ["ú"]="8", ["ǔ"]="9", ["ù"]="0",
     ["ǖ"]="7", ["ǘ"]="8", ["ǚ"]="9", ["ǜ"]="0"
 }
--- 高性能 UTF8 长度获取
+
 local function get_utf8_len(s)
     if utf8 and utf8.len then return utf8.len(s) end
     local _, count = string.gsub(s, "[^\128-\193]", "")
     return count
 end
--- 提取声调数字 (无声调/轻声 -> 默认归为 0)
+
 local function get_tone_from_pinyin(pinyin)
     if not pinyin or #pinyin == 0 then return nil end
     for char, tone in pairs(tones_map) do
-        if string.find(pinyin, char, 1, true) then
-            return tone
-        end
+        if string.find(pinyin, char, 1, true) then return tone end
     end
     return "0"
 end
--- 提取指定位置的 UTF-8 字符
+
 local function get_utf8_char_at(text, idx)
     local i = 1
     for _, code in utf8.codes(text) do
@@ -45,7 +42,7 @@ local function get_utf8_char_at(text, idx)
     end
     return ""
 end
--- 替换指定位置的 UTF-8 字符
+
 local function replace_utf8_char_at(text, index, new_char)
     local out = {}
     local i = 1
@@ -60,26 +57,20 @@ local function replace_utf8_char_at(text, index, new_char)
     return table.concat(out)
 end
 
--- 拼音分段提取法
 local function get_script_text_parts(ctx, search_key_str)
     local parts = {}
     if not ctx or not ctx.composition or ctx.composition:empty() then return parts end
-    
     local spans = ctx.composition:spans()
     if not spans then return parts end
-
     local count = type(spans.count) == "function" and spans:count() or spans.count
     if count == 0 then return parts end
-    
     local vertices = type(spans.vertices) == "function" and spans:vertices() or spans.vertices
     if not vertices or #vertices < 2 then return parts end
-
     local raw_in = ctx.input or ""
     for i = 1, #vertices - 1 do
         local start_byte = vertices[i] + 1 
         local end_byte = vertices[i + 1]   
         local raw_syl = raw_in:sub(start_byte, end_byte)
-        
         if raw_syl and raw_syl ~= "" then
             if search_key_str and search_key_str ~= "" then
                 local split_pos = raw_syl:find(search_key_str, 1, true)
@@ -92,7 +83,23 @@ local function get_script_text_parts(ctx, search_key_str)
     return parts
 end
 
--- 规则加载
+-- 🛠️ 核心质检工具：验证单字是否符合辅码条件
+local function check_char_fuma_match(env, pinyin, fuma, target_char)
+    local probe = pinyin .. fuma
+    if env.mem:dict_lookup(probe, true, 200) then
+        for e in env.mem:iter_dict() do
+            if e.text == target_char then return true end
+        end
+    end
+    if env.mem:user_lookup(probe, true) then
+        for e in env.mem:iter_user() do
+            if e.text == target_char then return true end
+        end
+    end
+    return false
+end
+
+-- 以下为反查组相关工具函数...
 local function parse_and_separate_rules(schema_id)
     if not schema_id or #schema_id == 0 then return nil, nil end
     local schema = Schema(schema_id)
@@ -101,16 +108,12 @@ local function parse_and_separate_rules(schema_id)
     if not config then return nil, nil end
     local algebra_list = config:get_list('speller/algebra')
     if not algebra_list or algebra_list.size == 0 then return nil, nil end
-    
     local main_rules, xlit_rules = {}, {}
     for i = 0, algebra_list.size - 1 do
         local rule = algebra_list:get_value_at(i).value
         if rule and #rule > 0 then
-            if rule:match("^xlit/HSPZN/") then
-                table.insert(xlit_rules, rule)
-            else
-                table.insert(main_rules, rule)
-            end
+            if rule:match("^xlit/HSPZN/") then table.insert(xlit_rules, rule)
+            else table.insert(main_rules, rule) end
         end
     end
     if #main_rules == 0 and #xlit_rules == 0 then return nil, nil end
@@ -131,18 +134,8 @@ end
 local function expand_code_variant(main_projection, xlit_projection, part)
     local out, seen = {}, {}
     local out_xlit, seen_xlit = {}, {}
-    local function add(s) 
-        if s and #s > 0 and not seen[s] then 
-            seen[s] = true 
-            table.insert(out, s) 
-        end 
-    end
-    local function add_xlit(s) 
-        if s and #s > 0 and not seen_xlit[s] then 
-            seen_xlit[s] = true 
-            table.insert(out_xlit, s) 
-        end 
-    end
+    local function add(s) if s and #s > 0 and not seen[s] then seen[s] = true table.insert(out, s) end end
+    local function add_xlit(s) if s and #s > 0 and not seen_xlit[s] then seen_xlit[s] = true table.insert(out_xlit, s) end end
     local function extract_odd_positions(s)
         if not s or not s:match("^%l+$") or #s % 2 ~= 0 then return nil end
         local res = ""
@@ -151,11 +144,9 @@ local function expand_code_variant(main_projection, xlit_projection, part)
     end
     local function get_v_variant(s)
         if not s or not s:match("^%l+$") or #s % 2 ~= 0 then return nil end
-        local res = ""
-        local has_change = false
+        local res, has_change = "", false
         for i = 1, #s, 2 do
-            local char_odd = s:sub(i, i)
-            local char_even = s:sub(i+1, i+1)
+            local char_odd, char_even = s:sub(i, i), s:sub(i+1, i+1)
             if (char_odd == 'j' or char_odd == 'q' or char_odd == 'x' or char_odd == 'y') and char_even == 'v' then
                 res = res .. char_odd .. 'u'
                 has_change = true
@@ -169,9 +160,7 @@ local function expand_code_variant(main_projection, xlit_projection, part)
     local _, quote_count = part:gsub("'", "")
     if quote_count == 1 then
         local s1, s2 = part:match("^([^']*)'([^']*)$")
-        if s1 and s2 and #s1 > 0 and #s2 > 0 then
-            add(s1:sub(1,1) .. s2:sub(1,1))
-        end
+        if s1 and s2 and #s1 > 0 and #s2 > 0 then add(s1:sub(1,1) .. s2:sub(1,1)) end
     end
     if part:match("^%l+$") then add(part) end
     local raw_extracted = extract_odd_positions(part)
@@ -189,9 +178,7 @@ local function expand_code_variant(main_projection, xlit_projection, part)
     end
     if part:match('^%u+$') and xlit_projection then
         local xlit_result = xlit_projection:apply(part, true)
-        if xlit_result and #xlit_result > 0 then 
-            add_xlit(xlit_result) 
-        end
+        if xlit_result and #xlit_result > 0 then add_xlit(xlit_result) end
     end
     return out, out_xlit
 end
@@ -199,24 +186,16 @@ end
 local function build_reverse_group(main_projection, xlit_projection, db_table, text)
     local group_main, seen_main = {}, {}
     local group_xlit, seen_xlit = {}, {}
-    
     for _, db in ipairs(db_table) do
         local code = db:lookup(text)
         if code and #code > 0 then
             for part in code:gmatch('%S+') do
                 local main_variants, xlit_variants = expand_code_variant(main_projection, xlit_projection, part)
-                
                 for _, v in ipairs(main_variants) do 
-                    if not seen_main[v] then 
-                        seen_main[v] = true 
-                        group_main[#group_main + 1] = v 
-                    end 
+                    if not seen_main[v] then seen_main[v] = true group_main[#group_main + 1] = v end 
                 end
                 for _, v in ipairs(xlit_variants) do 
-                    if not seen_xlit[v] then 
-                        seen_xlit[v] = true 
-                        group_xlit[#group_xlit + 1] = v 
-                    end 
+                    if not seen_xlit[v] then seen_xlit[v] = true group_xlit[#group_xlit + 1] = v end 
                 end
             end
         end
@@ -226,40 +205,31 @@ end
 
 local function group_match(group, fuma)
     if not group then return false end
-    for i = 1, #group do 
-        if string.sub(group[i], 1, #fuma) == fuma then return true end 
-    end
+    for i = 1, #group do if string.sub(group[i], 1, #fuma) == fuma then return true end end
     return false
 end
 
 local function match_fuzzy_recursive(codes_sequence, idx, input_str, input_idx, memo, is_phrase_mode)
     if input_idx > #input_str then return true end
     if idx > #codes_sequence then return false end
-    
     local state_key = idx * 1000 + input_idx
     if memo[state_key] ~= nil then return memo[state_key] end
-
     local codes = codes_sequence[idx]
     local result = false
-    
     if codes then
         for _, code in ipairs(codes) do
             local skip = false
             if is_phrase_mode and #code > 3 then skip = true end
-
             if code:match("^%d+$") then skip = true end
             if not skip then
-                local i_curr = input_idx
-                local c_curr = 1
-                local i_limit = #input_str
-                local c_limit = #code
+                local i_curr, c_curr = input_idx, 1
+                local i_limit, c_limit = #input_str, #code
                 while i_curr <= i_limit and c_curr <= c_limit do
                     if input_str:byte(i_curr) == code:byte(c_curr) then i_curr = i_curr + 1 end
                     c_curr = c_curr + 1
                 end
                 if match_fuzzy_recursive(codes_sequence, idx + 1, input_str, i_curr, memo, is_phrase_mode) then
-                    result = true
-                    break
+                    result = true break
                 end
             end
         end
@@ -272,20 +242,16 @@ end
 
 local function list_contains(list, target)
     if not list then return false end
-    for _, v in ipairs(list) do
-        if v == target then return true end
-    end
+    for _, v in ipairs(list) do if v == target then return true end end
     return false
 end
 
 local function split_lookup_input(input, key, bypass_prefix)
     if not input or input == "" or not key or key == "" then return nil end
-
     local scan_from = 1
     if bypass_prefix and bypass_prefix ~= "" and input:sub(1, #bypass_prefix) == bypass_prefix then
         scan_from = #bypass_prefix + 1
     end
-
     local s_start, s_end = nil, nil
     local from = scan_from
     while true do
@@ -294,9 +260,7 @@ local function split_lookup_input(input, key, bypass_prefix)
         s_start, s_end = s, e
         from = s + 1
     end
-
     if not s_start then return nil end
-
     local code = input:sub(1, s_start - 1)
     local fuma = input:sub(s_end + 1)
     return code, fuma, s_start, s_end
@@ -305,28 +269,16 @@ end
 local function parse_comment_codes(comment, pattern, target_len, enable_tone)
     if not comment or comment == "" then return nil end
     local parts = {}
-    
-    if target_len == 1 then
-        parts = { comment }
+    if target_len == 1 then parts = { comment }
     else
         for seg in comment:gmatch(pattern) do table.insert(parts, seg) end
         if #parts ~= target_len then return nil end
     end
-    
     local result = {}
     for i, part in ipairs(parts) do
         local p1, p2 = part:find(";")
-        local pinyin_part
-        local codes_part
-        
-        if p1 then
-            pinyin_part = part:sub(1, p1 - 1)
-            codes_part = part:sub(p2 + 1)
-        else
-            pinyin_part = part
-            codes_part = ""
-        end
-        
+        local pinyin_part = p1 and part:sub(1, p1 - 1) or part
+        local codes_part = p1 and part:sub(p2 + 1) or ""
         local codes_list = {}
         if #codes_part > 0 then
             for c in codes_part:gmatch("[^,]+") do 
@@ -347,14 +299,20 @@ local f = {}
 
 function f.init(env)
     local config = env.engine.schema.config
-    
     env.enable_tone = config:get_bool('wanxiang_lookup/enable_tone')
     if env.enable_tone == nil then env.enable_tone = true end
+    
     env.mem = Memory(env.engine, env.engine.schema)
+    
+    -- 🚀 实例化 Translator！让它在滤镜里为我们打工！
+    if Component and Component.Translator then
+        pcall(function() 
+            env.main_translator = Component.Translator(env.engine, "translator", "script_translator")
+        end)
+    end
     
     local sources_list = config:get_list('wanxiang_lookup/data_source')
     env.data_sources = {}
-    
     local config_has_aux_source = false
     env.has_db = false
     
@@ -404,9 +362,7 @@ function f.init(env)
     local tag = config:get_list('wanxiang_lookup/tags')
     if tag and tag.size > 0 then
         env.tag = {}
-        for i = 0, tag.size - 1 do
-            table.insert(env.tag, tag:get_value_at(i).value)
-        end
+        for i = 0, tag.size - 1 do table.insert(env.tag, tag:get_value_at(i).value) end
     else
         env.tag = { 'abc' }
     end
@@ -415,7 +371,6 @@ function f.init(env)
         local input = ctx.input
         local code, fuma = split_lookup_input(input, env.search_key_str, env.bypass_prefix)
         if (not code or #code == 0) then return end
-
         local preedit = ctx:get_preedit()
         local no_search_string = code
         local preedit_text = (preedit and preedit.text) or ""
@@ -433,7 +388,6 @@ function f.init(env)
     env._global_comment_cache = {}
     env.cache_size = 0 
     
-    -- 用于提前保存input完美物理切分
     env.history_parts = {}
     env.history_input = ""
     env.update_conn = env.engine.context.update_notifier:connect(function(ctx)
@@ -472,11 +426,8 @@ function f.func(input, env)
     local clean_fuma = ""
     for i = 1, #fuma do
         local char = fuma:sub(i, i)
-        if char == "7" or char == "8" or char == "9" or char == "0" then
-            table.insert(tone_filter_seq, char)
-        else
-            clean_fuma = clean_fuma .. char
-        end
+        if char == "7" or char == "8" or char == "9" or char == "0" then table.insert(tone_filter_seq, char)
+        else clean_fuma = clean_fuma .. char end
     end
     local apply_tone_filter = env.enable_tone and (#tone_filter_seq > 0)
 
@@ -500,7 +451,6 @@ function f.func(input, env)
     end
 
     local is_first_cand = true
-    
     local ctx = env.engine.context
     local syllables = {}
     if pure_code == env.history_input and #env.history_parts > 0 then
@@ -522,95 +472,163 @@ function f.func(input, env)
 
                 if #fuma_chunks > 0 then
                     local search_end_idx = cand_len 
-                    
-                    -- 辅码倒序遍历
-                    for c_idx = #fuma_chunks, 1, -1 do
-                        local chunk_fuma = fuma_chunks[c_idx]
-                        
-                        -- 全局最优解记录器
-                        local global_target_idx = nil
-                        local global_new_char = nil
-                        local global_max_weight = -1000
-                        local perfect_match_idx = nil 
-                        -- 文本倒序扫描
-                        for i = search_end_idx, 1, -1 do
-                            local orig_char = get_utf8_char_at(current_text, i)
-                            local pinyin_code = syllables[i]
+                    local fuma_len = #fuma_chunks
+                    local phrase_matched = false
+
+                    -- 词组快车道调用 Translator 查出原生词组，进行逐字辅码质检
+                    if fuma_len > 1 and fuma_len <= search_end_idx and env.main_translator then
+                        for w_start = search_end_idx - fuma_len + 1, 1, -1 do
+                            local w_end = w_start + fuma_len - 1
+                            local pure_pinyin_parts = {}
+                            local valid_window = true
                             
-                            if not pinyin_code then goto next_i end
-
-                            if #pinyin_code > 2 then
-                                pinyin_code = string.sub(pinyin_code, 1, 2)
+                            for k = 1, fuma_len do
+                                local syl = syllables[w_start + k - 1]
+                                if not syl then valid_window = false break end
+                                if #syl > 2 then syl = string.sub(syl, 1, 2) end
+                                table.insert(pure_pinyin_parts, syl)
                             end
-                            local probe_code = pinyin_code .. chunk_fuma
+                            
+                            if valid_window then
+                                local query_str = table.concat(pure_pinyin_parts, "")
+                                local best_phrase = nil
+                                
+                                -- 贴上 `abc` 标签，让 Translator 接单！
+                                local seg_trans = Segment(0, #query_str)
+                                seg_trans.tags = Set{'abc'}
+                                
+                                local translation = env.main_translator:query(query_str, seg_trans)
+                                
+                                if translation then
+                                    for c in translation:iter() do
+                                        local phrase_text = c.text
+                                        if get_utf8_len(phrase_text) == fuma_len then
+                                            local match_all = true
+                                            local char_idx = 1
+                                            
+                                            for _, code_pt in utf8.codes(phrase_text) do
+                                                local char = utf8.char(code_pt)
+                                                if not check_char_fuma_match(env, pure_pinyin_parts[char_idx], fuma_chunks[char_idx], char) then
+                                                    match_all = false
+                                                    break
+                                                end
+                                                char_idx = char_idx + 1
+                                            end
 
-                            local is_orig_valid = false
-                            local local_best_cand = nil
-                            local local_max_weight = -1000
-
-                            if env.mem:dict_lookup(probe_code, true, 200) then
-                                for entry in env.mem:iter_dict() do
-                                    if get_utf8_len(entry.text) == 1 then
-                                        if entry.text == orig_char then
-                                            is_orig_valid = true
-                                            break
-                                        end
-                                        local current_weight = entry.weight or 0
-                                        if current_weight > local_max_weight then
-                                            local_max_weight = current_weight
-                                            local_best_cand = entry.text
+                                            if match_all then
+                                                best_phrase = phrase_text
+                                                break
+                                            end
                                         end
                                     end
                                 end
-                            end
-                            
-                            -- 2. 查用户词典
-                            if not is_orig_valid and env.mem:user_lookup(probe_code, true) then
-                                for entry in env.mem:iter_user() do
-                                    if get_utf8_len(entry.text) == 1 then
-                                        if entry.text == orig_char then
-                                            is_orig_valid = true
-                                            break
+                                
+                                -- 如果成功查出原生词组，执行整体替换！
+                                if best_phrase then
+                                    local out = {}
+                                    local char_idx = 1
+                                    for _, code_pt in utf8.codes(current_text) do
+                                        if char_idx >= w_start and char_idx <= w_end then
+                                            if char_idx == w_start then table.insert(out, best_phrase) end
+                                        else
+                                            table.insert(out, utf8.char(code_pt))
                                         end
-                                        local current_weight = (entry.weight or 0) + 999
-                                        if current_weight > local_max_weight then
-                                            local_max_weight = current_weight
-                                            local_best_cand = entry.text
-                                        end
+                                        char_idx = char_idx + 1
                                     end
+                                    
+                                    local orig_phrase = ""
+                                    for k = w_start, w_end do orig_phrase = orig_phrase .. get_utf8_char_at(current_text, k) end
+                                    if orig_phrase ~= best_phrase then corrected_count = corrected_count + 1 end
+                                    
+                                    current_text = table.concat(out)
+                                    match_count = fuma_len
+                                    phrase_matched = true
+                                    search_end_idx = w_start - 1
+                                    break
                                 end
                             end
-
-                            if is_orig_valid then
-                                if not perfect_match_idx then
-                                    perfect_match_idx = i
-                                end
-                                goto next_i
-                            elseif local_best_cand then
-                                -- 将当前节点选出的最高分，与之前的全局最高分比拼
-                                if local_max_weight > global_max_weight then
-                                    global_max_weight = local_max_weight
-                                    global_target_idx = i
-                                    global_new_char = local_best_cand
-                                end
-                            end
-
-                            ::next_i::
-                        end
-
-                        if global_target_idx and global_new_char then
-                            match_count = match_count + 1
-                            if global_new_char ~= get_utf8_char_at(current_text, global_target_idx) then
-                                current_text = replace_utf8_char_at(current_text, global_target_idx, global_new_char)
-                                corrected_count = corrected_count + 1
-                            end
-                            search_end_idx = global_target_idx - 1 
-                        elseif perfect_match_idx then
-                            match_count = match_count + 1
-                            search_end_idx = perfect_match_idx - 1
                         end
                     end
 
+                    -- 词组没查到退回底层单字最高权重匹配
+                    if not phrase_matched then
+                        for c_idx = #fuma_chunks, 1, -1 do
+                            local chunk_fuma = fuma_chunks[c_idx]
+                            local best_pos = nil
+                            local best_char = nil
+                            local max_weight = -10000
+                            local perfect_match_idx = nil 
+                            
+                            for i = search_end_idx, 1, -1 do
+                                local orig_char = get_utf8_char_at(current_text, i)
+                                local pinyin_code = syllables[i]
+                                
+                                if not pinyin_code then goto next_i end
+                                if #pinyin_code > 2 then pinyin_code = string.sub(pinyin_code, 1, 2) end
+                                local probe_code = pinyin_code .. chunk_fuma
+
+                                local is_orig_valid = false
+                                local local_best_cand = nil
+                                local local_max_weight = -10000
+
+                                if env.mem:dict_lookup(probe_code, true, 200) then
+                                    for entry in env.mem:iter_dict() do
+                                        if get_utf8_len(entry.text) == 1 then
+                                            if entry.text == orig_char then
+                                                is_orig_valid = true
+                                                break
+                                            end
+                                            if (entry.weight or 0) > local_max_weight then
+                                                local_max_weight = entry.weight or 0
+                                                local_best_cand = entry.text
+                                            end
+                                        end
+                                    end
+                                end
+                                
+                                if not is_orig_valid and env.mem:user_lookup(probe_code, true) then
+                                    for entry in env.mem:iter_user() do
+                                        if get_utf8_len(entry.text) == 1 then
+                                            if entry.text == orig_char then
+                                                is_orig_valid = true
+                                                break
+                                            end
+                                            if ((entry.weight or 0) + 500) > local_max_weight then
+                                                local_max_weight = (entry.weight or 0) + 500
+                                                local_best_cand = entry.text
+                                            end
+                                        end
+                                    end
+                                end
+
+                                if is_orig_valid then
+                                    if not perfect_match_idx then perfect_match_idx = i end
+                                    goto next_i
+                                elseif local_best_cand then
+                                    if local_max_weight > max_weight then
+                                        max_weight = local_max_weight
+                                        best_pos = i
+                                        best_char = local_best_cand
+                                    end
+                                end
+                                ::next_i::
+                            end
+
+                            if best_pos then
+                                match_count = match_count + 1
+                                if best_char ~= get_utf8_char_at(current_text, best_pos) then
+                                    current_text = replace_utf8_char_at(current_text, best_pos, best_char)
+                                    corrected_count = corrected_count + 1
+                                end
+                                search_end_idx = best_pos - 1 
+                            elseif perfect_match_idx then
+                                match_count = match_count + 1
+                                search_end_idx = perfect_match_idx - 1
+                            end
+                        end
+                    end
+
+                    -- 最终结算上屏
                     if match_count == #fuma_chunks then
                         if corrected_count > 0 then
                             local fixed_cand = Candidate(cand.type, cand.start, cand._end, current_text, cand.comment or "")
@@ -626,24 +644,19 @@ function f.func(input, env)
                         goto skip
                     end
                 else
-                    -- 辅码不足2位时，安全放行原句
                     yield(cand)
                     goto skip
                 end
             end
         end
 
-        if cand.type == 'sentence' and cand_len > 1 then
-            goto skip
-        end
-
+        if cand.type == 'sentence' and cand_len > 1 then goto skip end
         local cand_text = cand.text
         if not cand_len or cand_len == 0 then goto skip end
         local b = string.byte(cand_text, 1)
         if b and b < 128 then goto skip end
 
         local raw_data = {}
-        
         if env.has_comment then
             local genuine = cand:get_genuine()
             local comment_text = genuine and genuine.comment or ""
@@ -666,16 +679,11 @@ function f.func(input, env)
             for _, code_point in utf8.codes(cand_text) do
                 i = i + 1
                 local char_str = utf8.char(code_point)
-                
                 if not db_cache[char_str] then
                     local main_codes, xlit_codes = build_reverse_group(env.main_projection, env.xlit_projection, env.db_table, char_str)
-                    db_cache[char_str] = {
-                        main = main_codes or {},
-                        xlit = xlit_codes or {}
-                    }
+                    db_cache[char_str] = { main = main_codes or {}, xlit = xlit_codes or {} }
                     env.cache_size = env.cache_size + 1 
                 end
-                
                 if cand_len == 1 then
                     local combined = {}
                     for _, v in ipairs(db_cache[char_str].main) do table.insert(combined, v) end
@@ -699,7 +707,6 @@ function f.func(input, env)
         end
 
         local is_match_any = false
-
         for i, source_type in ipairs(env.data_sources) do
             local codes_seq = raw_data[source_type]
             if codes_seq then
@@ -746,8 +753,7 @@ function f.func(input, env)
 
         if is_match_any then
             has_any_match = true
-            if if_single_char_first and cand_len > 1 then
-                table.insert(long_word_cands, cand)
+            if if_single_char_first and cand_len > 1 then table.insert(long_word_cands, cand)
             else
                 if not buckets[cand_len] then buckets[cand_len] = {} end
                 table.insert(buckets[cand_len], cand)
@@ -799,5 +805,4 @@ function f.fini(env)
     env.history_parts = nil
     collectgarbage('collect')
 end
-
 return f
