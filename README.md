@@ -327,7 +327,6 @@ bash rime-install amzxyz/rime_wanxiang@wanxiang-shouyou-fuzhu:plum/dicts
 | --- | --- | --- |
 | `renming.dict.yaml` | **人名词库，按需下载，pro使用万象工具箱刷新编码即可** | 下载后复制内容，追加到根目录的 `wanxiang.dict.yaml` 中。 |
 | `wuzhong.dict.yaml` | **物种词库，含动物植物分类等词条，按需下载，pro使用万象工具箱刷新编码即可** | 下载后复制内容，追加到根目录的 `wanxiang.dict.yaml` 中。 |
-| `tips_user.txt` | **Tips 翻译扩展数据** | 下载后放入 `lua/data` 目录中，重新部署即可生效。 |
 
 #### 9. 📂 数据管理
 | 文件名 | 用途 | 注意事项 |
@@ -340,7 +339,6 @@ bash rime-install amzxyz/rime_wanxiang@wanxiang-shouyou-fuzhu:plum/dicts
 | `lua/data/*Phrases.txt` | **OpenCC简繁转换词组数据库** | 数据库位于lua/replacer.userdb中。HK香港TW台湾 |
 | `lua/data/*Characters.txt` | **OpenCC简繁转换单字数据库** | 数据库位于lua/replacer.userdb中。ST简繁、TS繁简 |
 | `tips_show.txt` | **Tips 自带数据** | 数据库位于tips.userdb |
-| `tips_user.txt` | **Tips 用户数据** | 空文件交给用户自定义，数据库位于lua/tips.userdb  |
 | `input_statistics.lua` | **输入统计lua创建的实时数据** | 数据库位于lua/stats.userdb |
 | `super_sequence.lua` | **手动排序lua创建的实时数据** | 数据库位于lua/sequence.userdb |
 
@@ -452,14 +450,14 @@ wanxiang_lookup:
 
 ⚙️**自学习双模式输入预测** 支持上屏后弹出预测候选或者输入上文后继续输入下文匹配到数据则置顶，两种模式相辅相成，开关中打开预测即可，最好是在手机上两种模式全开，在PC上面只开上下文调频具体详见：[user_predict.lua：Rime 智能联想与语境记忆引擎](https://github.com/amzxyz/rime_wanxiang/wiki/user_predict.lua%EF%BC%9ARime-%E6%99%BA%E8%83%BD%E8%81%94%E6%83%B3%E4%B8%8E%E8%AF%AD%E5%A2%83%E8%AE%B0%E5%BF%86%E5%BC%95%E6%93%8E)
 
-⚙️**14/18键设定：**  在万象的的各主方案的custom示例文件中我们已经预设了相关*18jian*、*14jian*的转写段落，位于文件末尾，他的作用就是将方案原来的编码转换成键盘能打出来的字母或者数字，最终相呼应自然就能打出字了，万象默认转换成大写，因此需要键盘发送的也是大写：
+⚙️**14/18键设定：**  在万象的的各主方案的custom示例文件中我们已经预设了相关*18jian*、*14jian*的转写段落，位于wanxiang_algebra文件末尾，他的作用就是将方案原来的编码转换成键盘能打出来的字母或者数字，最终相呼应自然就能打出字了，当然这一切都可以自定义在custom文件中归你管理：
 ```
 18jian:
   __append:
-    - xlit/qwertyuiopasdfghjklzxcvbnm/QWWRRYUIIPASSFFHJJLZXXVBBM
+    - xlit/qwertyuiopasdfghjklzxcvbnm/qwwrryuiipassffhjjlzxxvbbm
 14jian:
   __append:
-    - xlit/qwertyuiopasdfghjklzxcvbnm/QQEETTUUOOAADDGGJJLZZCCBBM
+    - xlit/qwertyuiopasdfghjklzxcvbnm/qqeettuuooaaddggjjlzzccbbm
 ```
 
 开启方式，就是将相应的段落引用到custom头部的拼写运算后面
@@ -468,9 +466,9 @@ wanxiang_lookup:
 patch:
   speller/algebra:
     __patch:
-      #- 模糊音
+      #- wanxiang_algebra:/模糊音
       - wanxiang_algebra:/base/全拼
-      - 18jian    #引用到这里即可，⚠️注意，这一行必须是最后一行，不管前面有什么
+      - wanxiang_algebra:/18jian    #引用到这里即可，⚠️注意，这一行必须是最后一行，不管前面有什么
 ```
 
 ⚙️**英文方案：**  
