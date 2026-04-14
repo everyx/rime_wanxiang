@@ -465,7 +465,7 @@ function f.func(input, env)
         if is_first_cand then
             is_first_cand = false
             
-            if cand.type == 'sentence' and cand_len > 1 and #syllables >= cand_len then
+            if ((cand.type == 'sentence' and cand_len > 1) or (cand.type == 'phrase' and cand_len > 2)) and #syllables >= cand_len then
                 local current_text = cand.text
                 local corrected_count = 0
                 local match_count = 0
@@ -475,7 +475,7 @@ function f.func(input, env)
                     local fuma_len = #fuma_chunks
                     local phrase_matched = false
 
-                    -- 词组快车道调用 Translator 查出原生词组，进行逐字辅码质检
+                    -- 【路线1：词组快车道】调用 Translator 查出原生词组，进行逐字辅码质检
                     if fuma_len > 1 and fuma_len <= search_end_idx and env.main_translator then
                         for w_start = search_end_idx - fuma_len + 1, 1, -1 do
                             local w_end = w_start + fuma_len - 1
@@ -493,9 +493,9 @@ function f.func(input, env)
                                 local query_str = table.concat(pure_pinyin_parts, "")
                                 local best_phrase = nil
                                 
-                                -- 贴上 `abc` 标签，让 Translator 接单！
+                                -- ⚡ 贴上 `abc` 标签，让 Translator 接单！
                                 local seg_trans = Segment(0, #query_str)
-                                seg_trans.tags = Set{'abc'}
+                                seg_trans.tags = Set({"abc"})
                                 
                                 local translation = env.main_translator:query(query_str, seg_trans)
                                 
@@ -514,7 +514,8 @@ function f.func(input, env)
                                                 end
                                                 char_idx = char_idx + 1
                                             end
-
+                                            
+                                            -- 质检通过：这个原生词组每个字都符合辅码要求！
                                             if match_all then
                                                 best_phrase = phrase_text
                                                 break
@@ -544,13 +545,84 @@ function f.func(input, env)
                                     match_count = fuma_len
                                     phrase_matched = true
                                     search_end_idx = w_start - 1
+                                    break -- 打断滑动窗口，跳出！
+                                end
+                            end
+                        end
+                    end
+
+                    -- 【路线1.B：单辅码推导词组】解决“天上星星”改“天上行星”的逻辑
+                    if not phrase_matched and fuma_len == 1 and search_end_idx >= 2 and env.main_translator then
+                        for w_start = search_end_idx - 1, 1, -1 do
+                            local w_end = w_start + 1
+                            local pure_pinyin_parts = {}
+                            local valid_window = true
+                            
+                            for k = 0, 1 do
+                                local syl = syllables[w_start + k]
+                                if not syl then valid_window = false break end
+                                if #syl > 2 then syl = string.sub(syl, 1, 2) end
+                                table.insert(pure_pinyin_parts, syl)
+                            end
+                            
+                            if valid_window then
+                                local query_str = pure_pinyin_parts[1] .. pure_pinyin_parts[2]
+                                local seg_trans = Segment(0, #query_str)
+                                seg_trans.tags = Set({"abc"})
+                                
+                                -- 加个安全防护，防止 Translator 异常
+                                local ok, translation = pcall(function() return env.main_translator:query(query_str, seg_trans) end)
+                                local best_phrase = nil
+                                
+                                if ok and translation then
+                                    local orig_char1 = get_utf8_char_at(current_text, w_start)
+                                    local orig_char2 = get_utf8_char_at(current_text, w_end)
+                                    local fuma = fuma_chunks[1]
+
+                                    for c in translation:iter() do
+                                        if get_utf8_len(c.text) == 2 then
+                                            local char1 = get_utf8_char_at(c.text, 1)
+                                            local char2 = get_utf8_char_at(c.text, 2)
+                                            
+                                            -- 模式A：左变右不变 (例如: 星星 -> 行星)
+                                            local case_a = (char2 == orig_char2) and check_char_fuma_match(env, pure_pinyin_parts[1], fuma, char1)
+                                            -- 模式B：左不变右变 (例如: 星星 -> 星形)
+                                            local case_b = (char1 == orig_char1) and check_char_fuma_match(env, pure_pinyin_parts[2], fuma, char2)
+                                            
+                                            if case_a or case_b then
+                                                best_phrase = c.text
+                                                break
+                                            end
+                                        end
+                                    end
+                                end
+                                
+                                if best_phrase then
+                                    local out = {}
+                                    local char_idx = 1
+                                    for _, code_pt in utf8.codes(current_text) do
+                                        if char_idx >= w_start and char_idx <= w_end then
+                                            if char_idx == w_start then table.insert(out, best_phrase) end
+                                        else
+                                            table.insert(out, utf8.char(code_pt))
+                                        end
+                                        char_idx = char_idx + 1
+                                    end
+                                    
+                                    local orig_phrase = get_utf8_char_at(current_text, w_start) .. get_utf8_char_at(current_text, w_end)
+                                    if orig_phrase ~= best_phrase then corrected_count = corrected_count + 1 end
+                                    
+                                    current_text = table.concat(out)
+                                    match_count = 1
+                                    phrase_matched = true
+                                    search_end_idx = w_start - 1
                                     break
                                 end
                             end
                         end
                     end
 
-                    -- 词组没查到退回底层单字最高权重匹配
+                    -- 【路线2：单字精准兜底】词组没查到或用户散敲，退回底层单字最高权重匹配
                     if not phrase_matched then
                         for c_idx = #fuma_chunks, 1, -1 do
                             local chunk_fuma = fuma_chunks[c_idx]
@@ -650,7 +722,7 @@ function f.func(input, env)
             end
         end
 
-        if cand.type == 'sentence' and cand_len > 1 then goto skip end
+        if (cand.type == 'sentence' and cand_len > 1) or (cand.type == 'phrase' and cand_len > 2) then goto skip end
         local cand_text = cand.text
         if not cand_len or cand_len == 0 then goto skip end
         local b = string.byte(cand_text, 1)
@@ -805,4 +877,5 @@ function f.fini(env)
     env.history_parts = nil
     collectgarbage('collect')
 end
+
 return f
