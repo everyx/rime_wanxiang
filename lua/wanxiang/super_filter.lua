@@ -520,7 +520,7 @@ function M.func(input, env)
     local enable_taichi = env.enable_taichi_filter
 
     -- 及时清理兜数据
-    if seg_len < 2 or seg_len > 3 then
+    if seg_len < 2 then
         env.last_2code_char = nil
     end
 
@@ -706,9 +706,10 @@ function M.func(input, env)
             if start_pos < 0 then 
                 start_pos = 0 
             end
-            
             local end_pos = last_seg and last_seg._end or #code
-            local nc = Candidate("fallback", start_pos, end_pos, fallback_text, "")
+            local c_type = "fallback"
+            local symbol = env.cand_type_symbols[c_type] or ""
+            local nc = Candidate(c_type, start_pos, end_pos, fallback_text, symbol)
             
             local seg_str = sub(code, start_pos + 1, end_pos)
             if #seg_str >= 3 then
@@ -726,5 +727,4 @@ function M.func(input, env)
         end
     end
 end
-
 return M

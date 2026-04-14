@@ -650,6 +650,7 @@ bgbw	不管不问
 bgcf	不甘雌伏
 bgdt	不共戴天
 bgdy	半个多月
+bgeb	不告而别
 bgee	不过尔尔
 bgeq	不告而取
 bggl	不敢告劳
