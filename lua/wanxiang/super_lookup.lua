@@ -493,16 +493,20 @@ function f.func(input, env)
                                 local query_str = table.concat(pure_pinyin_parts, "")
                                 local best_phrase = nil
                                 
-                                -- ⚡ 贴上 `abc` 标签，让 Translator 接单！
+                                -- 贴上 `abc` 标签，让 Translator 接单
                                 local seg_trans = Segment(0, #query_str)
                                 seg_trans.tags = Set({"abc"})
                                 
                                 local translation = env.main_translator:query(query_str, seg_trans)
-                                
+                                local best_phrase = nil
+                                local orig_phrase_text = ""
+                                for k = 0, fuma_len - 1 do 
+                                    orig_phrase_text = orig_phrase_text .. get_utf8_char_at(current_text, w_start + k) 
+                                end
                                 if translation then
                                     for c in translation:iter() do
                                         local phrase_text = c.text
-                                        if get_utf8_len(phrase_text) == fuma_len then
+                                        if get_utf8_len(phrase_text) == fuma_len and phrase_text ~= orig_phrase_text then
                                             local match_all = true
                                             local char_idx = 1
                                             
@@ -577,10 +581,10 @@ function f.func(input, env)
                                 if ok and translation then
                                     local orig_char1 = get_utf8_char_at(current_text, w_start)
                                     local orig_char2 = get_utf8_char_at(current_text, w_end)
+                                    local orig_phrase_text = orig_char1 .. orig_char2
                                     local fuma = fuma_chunks[1]
-
                                     for c in translation:iter() do
-                                        if get_utf8_len(c.text) == 2 then
+                                        if get_utf8_len(c.text) == 2 and c.text ~= orig_phrase_text then
                                             local char1 = get_utf8_char_at(c.text, 1)
                                             local char2 = get_utf8_char_at(c.text, 2)
                                             
