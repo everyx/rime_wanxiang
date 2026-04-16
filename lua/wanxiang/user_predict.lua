@@ -43,7 +43,21 @@ local CONFIG = {
     ENABLE_POST_PREDICT = true,
     ENABLE_CONTEXT_REORDER = true,
 }
+local is_after_number = false  --量词调频状态
+-- 量词动态查找表与构建函数
+local CLASSIFIER_LOOKUP = {}
+-- 量词兜底字符串
+local default_classifiers = "个只名位口头匹条群批伙张把件台部块根颗粒滴片朵面扇顶栋座所辆艘架盏支枝杆双对副套打串束排阵堆叠摞扎杯瓶盒包份碗锅盆桶袋罐盘次场局回趟顿番遍声项宗桩款步招年月天周岁秒分刻代期届任夜季本册篇首句段卷幅节堂门帖字行米寸尺里斤两吨克升元角毛笔"
 
+local function build_classifier_lookup(str)
+    CLASSIFIER_LOOKUP = {}
+    if not str or str == "" then return end 
+    for c in string.gmatch(str, "[%z\1-\127\194-\244][\128-\191]*") do
+        if not s_match(c, "%s") then 
+            CLASSIFIER_LOOKUP[c] = true
+        end
+    end
+end
 -- 语气助词白名单与高频句末白名单
 local PARTICLE_WHITELIST = {
     ["吧"]=true, ["呢"]=true, ["吗"]=true, ["啦"]=true,
@@ -78,6 +92,24 @@ local function load_config(env)
         if post_val ~= nil then CONFIG.ENABLE_POST_PREDICT = post_val end
         local reorder_val = config:get_bool("user_predict/enable_context_reorder")
         if reorder_val ~= nil then CONFIG.ENABLE_CONTEXT_REORDER = reorder_val end
+        local custom_node = config:get_item("user_predict/custom_classifiers")
+        if custom_node then
+            local custom_str = ""
+            local list = config:get_list("user_predict/custom_classifiers")
+            if list then
+                for i = 0, list.size - 1 do
+                    local val = list:get_value_at(i)
+                    if val then 
+                        custom_str = custom_str .. val:get_string() 
+                    end
+                end
+            else
+                custom_str = config:get_string("user_predict/custom_classifiers") or ""
+            end
+            build_classifier_lookup(custom_str)
+        else
+            build_classifier_lookup(default_classifiers)
+        end
     end
 end
 
@@ -315,7 +347,9 @@ function P.init(env)
     
     env.commit_cb = function(ctx)
         local text = ctx:get_commit_text()
-        
+        if not s_match(text, "^[0-9]+$") then
+            is_after_number = false
+        end
         if not is_valid_commit_text(text) then
             reset_memory_chain(env, "非纯汉字阻断")
             return
@@ -684,6 +718,11 @@ function P.func(key, env)
     end
 
     if not ctx:is_composing() then
+        if s_match(repr, "^[0-9]$") or s_match(repr, "^KP_[0-9]$") then
+            is_after_number = true
+        elseif repr == "BackSpace" then
+            is_after_number = false
+        end
         if repr == "Return" or repr == "KP_Enter" or key.keycode == 0x20 then
             reset_memory_chain(env, "非输入状态排版打断")
             return 2 
@@ -793,7 +832,9 @@ function F.func(input, env)
         end
     end
 
-    if not f_reorder_map or not next(f_reorder_map) or (ctx.input or "") == "" then
+    local do_reorder = f_reorder_map and next(f_reorder_map)
+    local do_classifier = is_after_number and next(CLASSIFIER_LOOKUP) ~= nil
+    if (not do_reorder and not do_classifier) or (ctx.input or "") == "" then
         for cand in input:iter() do yield(cand) end
         return
     end
@@ -805,6 +846,13 @@ function F.func(input, env)
     local stop_scanning = false
     local target_len = 0 -- 用于记录首选词的字数
 
+    local function stable_sort(a, b)
+        if a.rank == b.rank then
+            return a.index < b.index
+        end
+        return a.rank < b.rank
+    end
+
     -- 实时匹配与拦截
     for cand in input:iter() do
         if stop_scanning then
@@ -812,31 +860,30 @@ function F.func(input, env)
         else
             count = count + 1
             local text = cand.text or ""
-            
             local current_len = #get_utf8_chars(text)
-
             if count == 1 then
                 target_len = current_len
             end
-
             if cand.type == "raw" or cand.type == "english" or s_match(text, "^[a-zA-Z]+$") or (count > 1 and current_len ~= target_len) then
                 stop_scanning = true
-                -- 结算已经收集到的同等字数的词
-                sort(boosted, function(a, b) return a.rank < b.rank end)
+                sort(boosted, stable_sort)
                 for _, b in ipairs(boosted) do yield(b.cand) end
                 for _, n in ipairs(normal) do yield(n) end
                 yield(cand) 
             else
-                local rank = f_reorder_map[text]
-                if rank then
-                    insert(boosted, { cand = cand, rank = rank })
+                local rank = f_reorder_map and f_reorder_map[text]
+                local is_classifier = do_classifier and CLASSIFIER_LOOKUP[text]
+                if rank or is_classifier then
+                    local final_rank = rank or 0
+                    if is_classifier then final_rank = -1 end 
+                    insert(boosted, { cand = cand, rank = final_rank, index = count })
                 else
                     insert(normal, cand)
                 end
 
                 if count >= max_scan then
                     stop_scanning = true
-                    sort(boosted, function(a, b) return a.rank < b.rank end)
+                    sort(boosted, stable_sort)
                     for _, b in ipairs(boosted) do yield(b.cand) end
                     for _, n in ipairs(normal) do yield(n) end
                 end
@@ -845,7 +892,7 @@ function F.func(input, env)
     end
     -- 兜底排放
     if not stop_scanning then
-        sort(boosted, function(a, b) return a.rank < b.rank end)
+        sort(boosted, stable_sort)
         for _, b in ipairs(boosted) do yield(b.cand) end
         for _, n in ipairs(normal) do yield(n) end
     end
