@@ -498,7 +498,6 @@ function f.func(input, env)
                                 seg_trans.tags = Set({"abc"})
                                 
                                 local translation = env.main_translator:query(query_str, seg_trans)
-                                local best_phrase = nil
                                 local orig_phrase_text = ""
                                 for k = 0, fuma_len - 1 do 
                                     orig_phrase_text = orig_phrase_text .. get_utf8_char_at(current_text, w_start + k) 
