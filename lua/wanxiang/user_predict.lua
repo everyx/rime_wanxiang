@@ -47,7 +47,7 @@ local is_after_number = false  --量词调频状态
 -- 量词动态查找表与构建函数
 local CLASSIFIER_LOOKUP = {}
 -- 量词兜底字符串
-local default_classifiers = "个只名位口头匹条群批伙张把件台部块根颗粒滴片朵面扇顶栋座所辆艘架盏支枝杆双对副套打串束排阵堆叠摞扎杯瓶盒包份碗锅盆桶袋罐盘次场局回趟顿番遍声项宗桩款步招年月天周岁秒分刻代期届任夜季本册篇首句段卷幅节堂门帖字行米寸尺里斤两吨克升元角毛笔"
+local default_classifiers = "个只名位口头匹条群批伙张把件台部块根颗粒滴片朵面扇顶栋座所辆艘架盏支枝杆双对副套打串束排阵堆叠摞扎杯瓶盒包份碗锅盆桶袋罐盘次场局回趟顿番遍声项宗桩款步招年月天周岁秒分刻代期届任夜季本册篇首句段卷幅节堂门帖字行米寸尺里斤两吨克升元角毛笔百千万亿"
 
 local function build_classifier_lookup(str)
     CLASSIFIER_LOOKUP = {}
