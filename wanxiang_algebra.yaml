@@ -1056,7 +1056,7 @@ pro:
       - derive/^die(\d);/dn$1;/      #单飞
       - derive/^qie(\d);/qo$1;/      #单飞
       - derive/^xie(\d);/xo$1;/      #单飞
-      - derive/^xin(\d);/win$1;/     #单飞
+      - derive/^xin(\d);/xx$1;/     #单飞
       - derive/^tie(\d);/tue$1;/     #单飞
       - derive/^yun(\d);/bun$1;/     #单飞
       - derive/^deng(\d);/den$1;/    #单飞
