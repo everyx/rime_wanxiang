@@ -19,6 +19,7 @@
 硬币	coin
 默许	acquiesce
 分形	fractal
+索引器	indexer
 传输控制协议	TCP
 对象关系映射	Object Relational Mapping
 造币	coinage

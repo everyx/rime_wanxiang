@@ -876,14 +876,15 @@ base:
       - derive/^ng(\d)$/eng$1/
       - xform/^n(\d)/en$1/
       - xform/^m(\d)/me$1/
-      - derive/^qiang(\d)$/fiang$1/  #单飞
-      - derive/^die(\d)/dn$1/        #单飞
-      - derive/^qie(\d)/qo$1/        #单飞
-      - derive/^xie(\d)/xo$1/        #单飞
-      - derive/^xin(\d)$/win$1/      #单飞
-      - derive/^tie(\d)$/tue$1/      #单飞
-      - derive/^yun(\d)$/bun$1/      #单飞
-      - derive/^deng(\d)/den$1/      #单飞
+      - derive/^qiang(\d)/ff$1/    #单飞
+      - derive/^xiu(\d)/xj$1/      #单飞
+      - derive/^xin(\d)/xl$1/      #单飞
+      - derive/^die(\d)/dn$1/      #单飞
+      - derive/^qie(\d)/qo$1/      #单飞
+      - derive/^xie(\d)/xo$1/      #单飞
+      - derive/^tie(\d)/tt$1/      #单飞
+      - derive/^yun(\d)/bb$1/      #单飞
+      - derive/^deng(\d)/ds$1/     #单飞
       - derive/^([jqxy])u(\d)$/$1v$2/
       - derive/^([aoe])([ioun])(\d)$/$1$1$2$3/
       - xform/^([aoe])(ng)?(\d)$/$1$1$2$3/
@@ -1052,14 +1053,15 @@ pro:
       - derive/^ng(\d);/eng$1;/
       - xform/^n(\d);/en$1;/
       - xform/^m(\d);/me$1;/
-      - derive/^qiang(\d);/fiang$1;/ #单飞
+      - derive/^qiang(\d);/ff$1;/    #单飞
+      - derive/^xiu(\d);/xj$1;/      #单飞
+      - derive/^xin(\d);/xl$1;/      #单飞
       - derive/^die(\d);/dn$1;/      #单飞
       - derive/^qie(\d);/qo$1;/      #单飞
       - derive/^xie(\d);/xo$1;/      #单飞
-      - derive/^xin(\d);/xx$1;/     #单飞
-      - derive/^tie(\d);/tue$1;/     #单飞
-      - derive/^yun(\d);/bun$1;/     #单飞
-      - derive/^deng(\d);/den$1;/    #单飞
+      - derive/^tie(\d);/tt$1;/      #单飞
+      - derive/^yun(\d);/bb$1;/      #单飞
+      - derive/^deng(\d);/ds$1;/     #单飞
       - derive/^([jqxy])u(\d);/$1v$2;/
       - derive/^([aoe])([ioun])(\d);/$1$1$2$3;/
       - xform/^([aoe])(ng)?(\d);/$1$1$2$3;/

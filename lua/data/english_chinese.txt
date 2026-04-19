@@ -4807,6 +4807,7 @@ autoinatic	自动
 autoincrement	自增
 autoincremented	自增的
 autoincrements	自增
+indexer	索引器
 autoindex	自动索引
 autoindexing	自动索引
 autoinfection	自感染
