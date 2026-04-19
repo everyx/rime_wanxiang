@@ -876,7 +876,6 @@ base:
       - derive/^ng(\d)$/eng$1/
       - xform/^n(\d)/en$1/
       - xform/^m(\d)/me$1/
-      - derive/^qiang(\d)/ff$1/    #单飞
       - derive/^xiu(\d)/xj$1/      #单飞
       - derive/^xin(\d)/xl$1/      #单飞
       - derive/^qie(\d)/qo$1/      #单飞
@@ -893,7 +892,7 @@ base:
       - xform/[uv]n(\d)$/Ⓑ$1/
       - xform/i?ong(\d)$/Ⓗ$1/
       - xform/uo(\d)$/Ⓞ$1/
-      - xform/[iu]ang(\d)$/Ⓕ$1/
+      - xform/[iu]ang(\d)$/Ⓓ$1/
       - xform/ang(\d)$/Ⓨ$1/
       - xform/ing(\d)$/Ⓚ$1/
       - xform/uai(\d)$/Ⓚ$1/
@@ -903,9 +902,9 @@ base:
       - xform/iao(\d)$/Ⓟ$1/
       - xform/ian(\d)$/Ⓜ$1/
       - xform/ie(\d)$/Ⓩ$1/
-      - xform/eng(\d)$/Ⓓ$1/
-      - xform/^(.+)en(\d)$/$1Ⓢ$2/
-      - xform/^(.+)ao(\d)$/$1Ⓖ$2/
+      - xform/eng(\d)$/Ⓖ$1/
+      - xform/^(.+)en(\d)$/$1Ⓕ$2/
+      - xform/^(.+)ao(\d)$/$1Ⓢ$2/
       - xform/^(.+)ai(\d)$/$1Ⓛ$2/
       - xform/^(.+)ei(\d)$/$1Ⓧ$2/
       - xform/^(.+)ou(\d)$/$1Ⓒ$2/
@@ -1051,14 +1050,12 @@ pro:
       - derive/^ng(\d);/eng$1;/
       - xform/^n(\d);/en$1;/
       - xform/^m(\d);/me$1;/
-      - derive/^qiang(\d);/ff$1;/    #单飞
       - derive/^xiu(\d);/xj$1;/      #单飞
       - derive/^xin(\d);/xl$1;/      #单飞
       - derive/^qie(\d);/qo$1;/      #单飞
       - derive/^xie(\d);/xo$1;/      #单飞
       - derive/^tie(\d);/tt$1;/      #单飞
       - derive/^yun(\d);/bb$1;/      #单飞
-      - derive/^deng(\d);/ds$1;/     #单飞
       - derive/^([jqxy])u(\d);/$1v$2;/
       - derive/^([aoe])([ioun])(\d);/$1$1$2$3;/
       - xform/^([aoe])(ng)?(\d);/$1$1$2$3;/
@@ -1069,17 +1066,17 @@ pro:
       - xform/[uv]n(\d);/Ⓑ$1;/
       - xform/i?ong(\d);/Ⓗ$1;/
       - xform/uo(\d);/Ⓞ$1;/
-      - xform/[iu]ang(\d);/Ⓕ$1;/
+      - xform/[iu]ang(\d);/Ⓓ$1;/
       - xform/ang(\d);/Ⓨ$1;/
       - xform/(ing|uai)(\d);/Ⓚ$2;/
       - xform/ui(\d);/Ⓥ$1;/
       - xform/iao(\d);/Ⓟ$1;/
       - xform/ian(\d);/Ⓜ$1;/
       - xform/ie(\d);/Ⓩ$1;/
-      - xform/eng(\d);/Ⓓ$1;/
       - xform/in(\d);/Ⓦ$1;/
-      - xform/^(.+)en(\d);/$1Ⓢ$2;/
-      - xform/^(.+)ao(\d);/$1Ⓖ$2;/
+      - xform/eng(\d);/Ⓖ$1;/
+      - xform/^(.+)en(\d);/$1Ⓕ$2;/
+      - xform/^(.+)ao(\d);/$1Ⓢ$2;/
       - xform/^(.+)ai(\d);/$1Ⓛ$2;/
       - xform/^(.+)ei(\d);/$1Ⓧ$2;/
       - xform/^(.+)ou(\d);/$1Ⓒ$2;/
