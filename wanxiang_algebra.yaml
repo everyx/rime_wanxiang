@@ -887,7 +887,6 @@ base:
       - xform/^([aoe])(ng)?(\d)$/$1$1$2$3/
       - xform/iu(\d)$/Ⓠ$1/
       - xform/[uv]an(\d)$/Ⓡ$1/
-      - xform/er(\d)$/Ⓡ$1/
       - xform/[uv]e(\d)$/Ⓣ$1/
       - xform/[uv]n(\d)$/Ⓑ$1/
       - xform/i?ong(\d)$/Ⓗ$1/

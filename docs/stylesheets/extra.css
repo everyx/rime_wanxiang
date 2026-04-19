@@ -1,0 +1,225 @@
+/* docs/stylesheets/extra.css */
+
+/* =========================================
+   1. 全局色彩：用户指定清新莫兰迪绿
+   ========================================= */
+[data-md-color-primary="custom"],
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color:        #61A165; /* morandi_green (主色) */
+  --md-primary-fg-color--light: #7EBA82; /* 悬浮浅色 */
+  --md-primary-fg-color--dark:  #49814D; /* morandi_dark_green (深色/强调) */
+  
+  --md-default-bg-color:        #F0F5F1; /* morandi_light_green (全局底色) */
+  --md-code-bg-color:           #E8EFE9; /* 代码块底色 */
+  
+  --md-typeset-color:           #2D382E; /* 文本主色：深墨绿，极其清晰 */
+  --md-typeset-a-color:         #49814D; /* 超链接颜色 */
+  --md-typeset-font-size:       16px;
+}
+
+/* 顶栏阴影更利落 */
+.md-header {
+  background-color: var(--md-primary-fg-color) !important;
+  box-shadow: 0 2px 8px rgba(97, 161, 101, 0.2) !important; 
+}
+
+/* 导航栏激活项 */
+.md-nav__link--active {
+  color: var(--md-primary-fg-color--dark) !important;
+  font-weight: 700;
+}
+
+/* =========================================
+   2. 基础元素圆角与线条
+   ========================================= */
+.md-typeset pre, 
+.md-typeset code,
+.md-search__inner,
+.md-search__form,
+.admonition {
+  border-radius: 8px !important;
+}
+
+/* 虚线分割线 */
+.md-typeset hr {
+  border-bottom: 1px dashed #61A165;
+  opacity: 0.5;
+}
+
+/* 引用块 */
+.md-typeset blockquote {
+  border-left: 4px solid #61A165;
+  color: #49814D; 
+  background-color: rgba(97, 161, 101, 0.08); 
+  padding: 0.5rem 1rem;
+  border-radius: 0 8px 8px 0; 
+}
+
+/* =========================================
+   3. 表格终极美化 (现代大厂风)
+   ========================================= */
+/* 1. 强制表格容器（MkDocs 自动生成的 div）占满宽度 */
+.md-typeset__table {
+  width: 100%;
+  margin: 1.5em 0;
+  overflow: visible !important; /* 防止容器剪裁阴影或圆角 */
+}
+
+/* 2. 强制表格元素本身占满宽度 */
+.md-typeset table:not([class]) {
+  display: table !important;    /* 强制以表格模式显示 */
+  width: 100% !important;      /* 强制满宽 */
+  table-layout: auto;          /* 让列宽根据内容自适应扩展，但总宽固定 100% */
+  border-collapse: collapse;
+  border: 1px solid #61A165; 
+  border-radius: 8px; 
+  overflow: hidden;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(97, 161, 101, 0.1); /* 淡淡的立体感 */
+}
+
+/* 3. 表头样式 */
+.md-typeset table:not([class]) th {
+  background-color: #F0F5F1;   /* morandi_light_green */
+  color: #49814D;              /* morandi_dark_green */
+  border-bottom: 2px solid #61A165; 
+  font-weight: bold;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+/* 4. 单元格样式 */
+.md-typeset table:not([class]) td {
+  border-bottom: 1px solid rgba(97, 161, 101, 0.15);
+  padding: 12px 16px;
+  line-height: 1.5;
+}
+
+/* 5. 斑马纹 */
+.md-typeset table:not([class]) tr:nth-child(even) td {
+  background-color: rgba(240, 245, 241, 0.5); /* 极浅的交替色 */
+}
+
+/* 6. 悬浮变色 */
+.md-typeset table:not([class]) tr:hover td {
+  background-color: rgba(97, 161, 101, 0.05);
+}
+
+/* =========================================
+   4. 首页网格卡片 (Grid Cards) 
+   ========================================= */
+.md-typeset .grid.cards > :is(ul, ol) > li {
+  background-color: #FFFFFF; 
+  border: 1px solid rgba(97, 161, 101, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
+.md-typeset .grid.cards > :is(ul, ol) > li:hover {
+  box-shadow: 0 8px 24px rgba(97, 161, 101, 0.15); 
+  border-color: #61A165;
+  transform: translateY(-3px); 
+}
+/* =========================================
+   Markdown 元素线条与边框：清新莫兰迪绿深度定制
+   ========================================= */
+
+/* 1. 分割线 (Markdown 中的 ---) */
+.md-typeset hr {
+  /* 使用清新的主绿色虚线 */
+  border-bottom: 1px dashed #61A165;
+  opacity: 0.6; 
+}
+
+/* 2. 表格的外边线和表头 (Markdown 中的 |...|) */
+.md-typeset table:not([class]) {
+  width: 100%; /* 强制表格占满正文区域 */
+  border: 1px solid #61A165; /* 外边框使用主绿色 */
+  border-radius: 6px; 
+  overflow: hidden;
+  margin: 1em 0; 
+  background-color: #FFFFFF; /* 表格内部底色为白 */
+}
+
+.md-typeset table:not([class]) th {
+  background-color: #F0F5F1; /* 表头使用浅绿底色 */
+  color: #49814D; /* 表头文字使用深绿色强调 */
+  border-bottom: 2px solid #61A165; /* 表头底部加粗线为主绿色 */
+  font-weight: bold;
+}
+
+.md-typeset table:not([class]) td {
+  /* 单元格下边框使用带透明度的主绿色 (97, 161, 101 是 #61A165 的 RGB) */
+  border-bottom: 1px solid rgba(97, 161, 101, 0.2); 
+}
+
+/* 斑马纹：偶数行也加上你的浅绿底色，增加阅读层次感 */
+.md-typeset table:not([class]) tr:nth-child(even) td {
+  background-color: #F0F5F1;
+}
+
+/* 3. 块级引用左侧的竖线 (Markdown 中的 >) */
+.md-typeset blockquote {
+  border-left: 4px solid #61A165; /* 主绿色竖线 */
+  color: #49814D; /* 深绿色文字 */
+  background-color: rgba(97, 161, 101, 0.08); /* 极浅的绿色背景 */
+}
+/* =========================================
+   5. 顶部标签页 (Tabs) 清晰扎实版
+   ========================================= */
+
+/* 标签之间的间距 */
+.md-tabs__list {
+  gap: 16px; 
+}
+
+/* 标签基础样式：提升字号、强制加粗、高对比度 */
+.md-tabs__link {
+  background-color: transparent !important;
+  font-weight: 700 !important; /* 强制加粗 */
+  font-size: 16px !important;  /* 字号放大，更加清晰 */
+  color: #FFFFFF !important;
+  opacity: 0.85 !important;    /* 提高基础能见度，拒绝发灰 */
+  padding: 8px 16px !important; 
+  border-radius: 6px !important; /* 轻微圆角 */
+  transition: all 0.3s ease;
+  /* 关键：用极弱的黑色阴影把白字“托”起来，解决发飘问题 */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); 
+  position: relative;
+}
+
+/* 鼠标悬浮：文字变纯白，加一层非常微弱的底色光晕 */
+.md-tabs__link:hover {
+  opacity: 1 !important;
+  background-color: rgba(255, 255, 255, 0.1) !important; 
+}
+
+/* 激活(当前)状态：极度清晰，底色稍微加深以示区分 */
+.md-tabs__link--active {
+  opacity: 1 !important;
+  font-weight: 800 !important; /* 激活时字重达到极限 */
+  background-color: rgba(255, 255, 255, 0.18) !important; 
+}
+
+/* 底部加粗版的指示横线，更有力量感 */
+.md-tabs__link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px; /* 线条加粗 */
+  background-color: #FFFFFF; 
+  border-radius: 4px 4px 0 0;
+  transform: scaleX(0); 
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.md-tabs__link--active::after {
+  transform: scaleX(1);
+}
+
+.md-tabs__link:hover::after {
+  transform: scaleX(1);
+  opacity: 0.7; 
+}
