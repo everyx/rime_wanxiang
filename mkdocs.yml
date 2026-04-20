@@ -94,7 +94,7 @@ nav:
       - 💡 智能提示与 Tips: lua/super_tips.md       # 包含超级Tips、超级注释、音调显示、字符集过滤
       - ✍️ 符号与排版: lua/symbols_format.md        # 包含快符a/、成对符号包裹\a、短语格式化、金额大写
       - 🎮 键盘与候选控制: lua/keyboard_control.md  # 包含手动排序、候选切割机、Tab切换、小键盘妙用、锁定语句(F1)
-      - 🔄 超级替换 (Super Replacer): lua/super_replacer.md # 专属完整说明书
+      - 🔄 超级替换 (Super Replacer): guide/super_replacer.md # 专属完整说明书
       
   - 🛠️ 进阶配置与数据:
       - Custom 补丁机制: advanced/custom_patch.md   # 教学如何安全打补丁

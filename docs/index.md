@@ -1,6 +1,6 @@
-# 🌌 万象拼音
+# 万象拼音
 
-> **极致变革与追求，带来由内而外的输入体验升华。** > 万象是一个基于深度优化词库、语法模型与前沿Lua 脚本构建的**全能输入生态**。
+> **重塑 Rime 生态，极致变革与追求，带来由内而外的输入体验升华。**
 
 ---
 
@@ -11,7 +11,7 @@
 -   :material-rocket-launch: __快速上手__
     ---
     从零开始，为您在 Windows、macOS 以及 iOS/Android 移动端部署万象。
-    [:octicons-arrow-right-24: 立即安装](guide/install.md)
+    [:octicons-arrow-right-24: 立即安装](guide/intro.md)
 
 -   :material-keyboard-variant: __核心输入体系__
     ---
@@ -58,5 +58,5 @@
 
 <br>
 <div align="center">
-    <i>用更现代的方式，接管你的候选词。</i>
+    <i>用更现代的数据，接管你的候选词。</i>
 </div>
