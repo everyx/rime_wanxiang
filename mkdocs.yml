@@ -68,7 +68,8 @@ nav:
             - Squirrel (鼠须管): guide/squirrel.md
             - Fcitx5-macOS （小企鹅）: guide/fcitx5-mac.md
         - 🐧 Linux:
-            - 通用部署指引: guide/linux/index.md
+            - Fcitx5-Linux （小企鹅）: guide/fcitx5-linux.md
+            - ibus-rime: guide/ibus-rime.md
         - 📱 iOS:
             - Hamster (仓输入法): guide/hamster.md
             - Hamster3 (元书输入法): guide/hamster3.md
@@ -78,8 +79,9 @@ nav:
         - ⭕ 鸿蒙 HarmonyOS NEXT:
             - 超越输入法: guide/chaoyue.md
         - ⚙️ 进阶安装:
-            - 语法模型与配套工具: guide/tools.md
-            - 第三方脚本与 Plum: guide/plum.md
+            - 使用万象工具链: guide/tools.md
+            - 使用东风破 Plum: guide/plum.md
+            - 手动设置: guide/manual.md
       
   - ⌨️ 核心输入体系:
       - 辅助码系统全解: core/aux_code.md     # 包含直接/间接辅码、候选筛选、输入前反查、声调辅查
@@ -103,3 +105,9 @@ nav:
       - 万象双拼键位图: appendix/wanxiang_shuangpin.md
       - 衍生方案与鸣谢: appendix/ecosystem.md
       - 赞赏支持: appendix/donate.md
+
+copyright: Copyright &copy; 2024 万象拼音-开源项目文档
+
+extra:
+  # 关掉底部的 "Made with Material for MkDocs"
+  generator: false

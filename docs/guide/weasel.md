@@ -22,7 +22,7 @@
 
 **📦 3. 下载语法模型**
 
-* [语法模型](https://cnb.cool/amzxyz/rime-wanxiang/-/releases/download/model/wanxiang-lts-zh-hans.gram)
+* [:octicons-download-24: wanxiang-lts-zh-hans.gram](https://cnb.cool/amzxyz/rime-wanxiang/-/releases/download/model/wanxiang-lts-zh-hans.gram)
 
 !!! tip "指南：Base 包与 Pro 包该下哪个？"
     万象提供了不同策略的安装包，请按您的输入习惯选择：
@@ -85,7 +85,7 @@
 * 🔵 **Pro 增强版**：默认开启 **自然码双拼**。
 
 !!! tip "强烈建议执行一次激活指令"
-    即使默认方案恰好是您需要的，我们也建议您利用万象强大的 [万能斜杠指令](../slash_commands.md) 进行一次主动切换。这一步操作涉及到四个方案文件的自定义输入类型，不仅仅是主方案，背后的逻辑参照custom patch相关教程
+    即使默认方案恰好是您需要的，我们也建议您利用万象强大的 [斜杠指令](../slash_commands.md) 进行一次主动切换。这一步操作涉及到四个方案文件的自定义输入类型，不仅仅是主方案，背后的逻辑参照custom patch相关教程
     
     例如，**任意输入框，中文模式** 直接打字输入 **`/zrm`** (切换自然码双拼) 或 **`/flypy`** (切换小鹤双拼)，然后再去状态栏点击一次 **【重新部署】**。这能确保万象的底层按键绑定完美契合您的输入习惯。
 
