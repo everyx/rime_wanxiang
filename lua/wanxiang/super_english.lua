@@ -299,7 +299,7 @@ function F.init(env)
             else
                 env.last_commit_time = 0
             end
-            ctx:set_property("english_spacing", "")
+            _G.english_spacing_break = false
             env.block_derivation = false
         end)
     end
@@ -314,10 +314,10 @@ end
 function F.func(input, env)
     local ctx = env.engine.context
 
-    if ctx:get_property("force_sticky_code") == "true" then
+    if _G.force_sticky_code == true then
         env.sticky_countdown = STICKY_BUFFER_SIZE
         env.prev_commit_is_eng = false
-        ctx:set_property("force_sticky_code", "")
+        _G.force_sticky_code = false 
     end
 
     local curr_input = ctx.input
@@ -347,7 +347,7 @@ function F.func(input, env)
         end
     end
     
-    local break_signal = (ctx:get_property("english_spacing") == "true")
+    local break_signal = (_G.english_spacing_break == true)
     local effective_prev_is_eng = env.prev_commit_is_eng
 
     if break_signal then 

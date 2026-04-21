@@ -758,10 +758,10 @@ function M.func(key, env)
 
     if ctx.composition:empty() then
         if kc == 0xff0d or kc == 0xff8d or kc == 0x20 then
-            ctx:set_property("english_spacing", "true") 
+            _G.english_spacing_break = true
         end
         if kc == 0x5c or kc == 0x2f then
-            ctx:set_property("force_sticky_code", "true")
+            _G.force_sticky_code = true
         end
     end
 
