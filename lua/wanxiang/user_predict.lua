@@ -805,23 +805,33 @@ end
 function F.func(input, env)
     local ctx = env.engine.context
     
-    -- 过滤开关规避 (总开关没开、调频没开、或者正在联想)，原样放行，0 损耗
     if not ctx:get_option("prediction") or not CONFIG.ENABLE_CONTEXT_REORDER or s_match(ctx.input or "", "^[›]+$") then
         for cand in input:iter() do yield(cand) end
         return
     end
 
-    -- 独立生命周期管理与“缓存白嫖”机制
     if f_last_commit ~= last_commit then
         f_last_commit = last_commit
         f_reorder_map = nil
-        local context_len = 0
+        
+        -- 防止单字造成的调频异常波动
+        local is_context_valid = false
+        local u1_len = #get_utf8_chars(last_commit)
+        
         if #history >= 2 then
+            -- 历史有2个词以上时：前后加起来必须 >= 3 个字
             local u0_len = #get_utf8_chars(history[#history - 1])
-            local u1_len = #get_utf8_chars(history[#history])
-            context_len = u0_len + u1_len
+            if (u0_len + u1_len) >= 3 then
+                is_context_valid = true
+            end
+        else
+            -- 历史只有1个词（刚开始输入）：这一个词必须 >= 2 个字（如“家族”）
+            if u1_len >= 2 then
+                is_context_valid = true
+            end
         end
-        if context_len >= 3 and CONFIG.ENABLE_CONTEXT_REORDER then
+
+        if is_context_valid and CONFIG.ENABLE_CONTEXT_REORDER then
             local preds = pending_cands or get_predictions(env, last_commit)
             if preds then
                 f_reorder_map = {}
@@ -832,8 +842,10 @@ function F.func(input, env)
         end
     end
 
+    -- 两个权限判断
     local do_reorder = f_reorder_map and next(f_reorder_map)
-    local do_classifier = is_after_number and next(CLASSIFIER_LOOKUP) ~= nil
+    local do_classifier = is_after_number and CLASSIFIER_LOOKUP and next(CLASSIFIER_LOOKUP)
+    
     if (not do_reorder and not do_classifier) or (ctx.input or "") == "" then
         for cand in input:iter() do yield(cand) end
         return
@@ -844,16 +856,13 @@ function F.func(input, env)
     local count = 0
     local max_scan = 50
     local stop_scanning = false
-    local target_len = 0 -- 用于记录首选词的字数
+    local target_len = 0 
 
     local function stable_sort(a, b)
-        if a.rank == b.rank then
-            return a.index < b.index
-        end
+        if a.rank == b.rank then return a.index < b.index end
         return a.rank < b.rank
     end
 
-    -- 实时匹配与拦截
     for cand in input:iter() do
         if stop_scanning then
             yield(cand)
@@ -861,10 +870,17 @@ function F.func(input, env)
             count = count + 1
             local text = cand.text or ""
             local current_len = #get_utf8_chars(text)
-            if count == 1 then
-                target_len = current_len
+            
+            if count == 1 then target_len = current_len end
+            
+            local length_mismatch_stop = false
+            if do_classifier then
+                if count > 1 and current_len < target_len then length_mismatch_stop = true end
+            else
+                if count > 1 and current_len ~= target_len then length_mismatch_stop = true end
             end
-            if cand.type == "raw" or cand.type == "english" or s_match(text, "^[a-zA-Z]+$") or (count > 1 and current_len ~= target_len) then
+
+            if cand.type == "raw" or cand.type == "english" or s_match(text, "^[a-zA-Z]+$") or length_mismatch_stop then
                 stop_scanning = true
                 sort(boosted, stable_sort)
                 for _, b in ipairs(boosted) do yield(b.cand) end
@@ -873,7 +889,8 @@ function F.func(input, env)
             else
                 local rank = f_reorder_map and f_reorder_map[text]
                 local is_classifier = do_classifier and CLASSIFIER_LOOKUP[text]
-                if rank or is_classifier then
+                
+                if (rank or is_classifier) and current_len == target_len then
                     local final_rank = rank or 0
                     if is_classifier then final_rank = -1 end 
                     insert(boosted, { cand = cand, rank = final_rank, index = count })
@@ -890,7 +907,7 @@ function F.func(input, env)
             end
         end
     end
-    -- 兜底排放
+    
     if not stop_scanning then
         sort(boosted, stable_sort)
         for _, b in ipairs(boosted) do yield(b.cand) end
