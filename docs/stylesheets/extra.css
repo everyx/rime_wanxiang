@@ -273,3 +273,49 @@ body {
   align-items: center;
   gap: 0.5rem;
 }
+/* =========================================
+   14. Grid 左右分栏代码块优雅对齐 (等高 & 无痕滚动条)
+   ========================================= */
+.md-typeset .grid {
+  align-items: stretch !important; /* 强制左右容器等高 */
+}
+
+/* 让代码块外壳撑满整个高度 */
+.md-typeset .grid > .md-code,
+.md-typeset .grid > .highlight,
+.md-typeset .grid > div[class*="language-"] {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--md-code-bg-color) !important; /* 强制统一下方底色 */
+}
+
+/* 让实际的代码区域 (pre) 填满剩余的下半部分空白 */
+.md-typeset .grid pre {
+  flex-grow: 1;
+  margin: 0 !important;
+}
+
+/* -----------------------------------------
+   优化滚动条：让莫兰迪绿底色透出来
+----------------------------------------- */
+/* Webkit 浏览器 (Chrome/Edge/Safari) */
+.md-typeset .grid pre::-webkit-scrollbar {
+  height: 6px; /* 让滚动条变细一点更精致 */
+}
+.md-typeset .grid pre::-webkit-scrollbar-track {
+  background: transparent !important; /* 核心：把灰色轨道变透明，透出绿色底色 */
+}
+.md-typeset .grid pre::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15) !important; /* 半透明的灰色滑块 */
+  border-radius: 4px;
+}
+.md-typeset .grid pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Firefox 浏览器 */
+.md-typeset .grid pre > code {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent; 
+}

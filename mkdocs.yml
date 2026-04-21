@@ -98,7 +98,8 @@ nav:
       
   - 🛠️ 进阶配置与数据:
       - rime工作机制: guide/Rime设计逻辑与配置哲学.md
-      - Custom 补丁机制: advanced/custom_patch.md   # 教学如何安全打补丁
+      - patch方法论: guide/patch方法论.md
+      - 自定义万象方案: guide/schema_custom.md
       - 词库与数据管理: advanced/data_dict.md       # txt数据位置、线上数据扩展、自定义词库迁移
       - 万能斜杠 / 机制拆解: advanced/slash_commands.md
       
