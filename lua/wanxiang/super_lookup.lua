@@ -302,15 +302,6 @@ function f.init(env)
     env.enable_tone = config:get_bool('wanxiang_lookup/enable_tone')
     if env.enable_tone == nil then env.enable_tone = true end
     
-    env.mem = Memory(env.engine, env.engine.schema)
-    
-    -- 🚀 实例化 Translator！让它在滤镜里为我们打工！
-    if Component and Component.Translator then
-        pcall(function() 
-            env.main_translator = Component.Translator(env.engine, "translator", "script_translator")
-        end)
-    end
-    
     local sources_list = config:get_list('wanxiang_lookup/data_source')
     env.data_sources = {}
     local config_has_aux_source = false
@@ -421,6 +412,14 @@ function f.func(input, env)
     local pure_code, fuma, s_start, s_end = split_lookup_input(ctx_input, env.search_key_str, env.bypass_prefix)
     if not s_start then for cand in input:iter() do yield(cand) end return end
     if #fuma == 0 then for cand in input:iter() do yield(cand) end return end
+    if not env.mem then
+        env.mem = Memory(env.engine, env.engine.schema)
+    end
+    if not env.main_translator and Component and Component.Translator then
+        pcall(function() 
+            env.main_translator = Component.Translator(env.engine, "translator", "script_translator")
+        end)
+    end
 
     local tone_filter_seq = {}
     local clean_fuma = ""
