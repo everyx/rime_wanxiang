@@ -741,6 +741,7 @@ local function handle_number_logic(key, env, ctx)
 end
 -- 5. 主入口函数 (Main Logic Flow)
 function M.func(key, env)
+    collectgarbage("step", 2)
     local ctx = env.engine.context
     
     -- 1. 优先处理按键释放
