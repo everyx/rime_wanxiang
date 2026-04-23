@@ -3183,3 +3183,17 @@ english:
 14jian:
   __append:
     - xlit/qwertyuiopasdfghjklzxcvbnm/qqeettuuooaaddggjjlzzccbbm
+9jian:
+  __append:
+    - xform/ⅱ//  # 用于 Lua 判断输入类型的标记
+    - xform/^(.*);.*$/$1/
+    - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜüńňǹḿm̀/aaaaooooeeeeiiiiuuuuvvvvvnnnmmm/ # 剥离声调
+    - derive/^ng$/eng/
+    - xform/^n$/en/
+    - xform/^m$/me/
+    - derive/^(.*)$/\U$1/  # 转换为大写，为后续数字映射做准备
+    - derive/^([nl])ve$/$1ue/
+    - derive/^([NL])VE$/$1UE/
+    - derive/^([jqxy])u/$1v/
+    - derive/^([JQXY])U/$1V/
+    - xlit/ABCDEFGHIJKLMNOPQRSTUVWXYZ/22233344455566677778889999/ # 标准九宫格数字映射
