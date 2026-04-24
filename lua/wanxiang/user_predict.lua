@@ -27,7 +27,8 @@ local tonumber = tonumber
 local math_max = math.max
 local math_min = math.min
 local os_time  = os.time
-
+local shared_reverted_code = ""
+local shared_is_backspacing = false
 -- 内部运行参数默认值 (会被外部 YAML 配置覆盖)
 local CONFIG = {
     MAX_CANDIDATES      = 5,             
@@ -42,6 +43,7 @@ local CONFIG = {
     CONTEXT_TIMEOUT_MS  = 5000,
     ENABLE_POST_PREDICT = true,
     ENABLE_CONTEXT_REORDER = true,
+    ENABLE_FALLBACK_REORDER = true,
 }
 local is_after_number = false  --量词调频状态
 -- 量词动态查找表与构建函数
@@ -96,6 +98,8 @@ local function load_config(env)
         if post_val ~= nil then CONFIG.ENABLE_POST_PREDICT = post_val end
         local reorder_val = config:get_bool("user_predict/enable_context_reorder")
         if reorder_val ~= nil then CONFIG.ENABLE_CONTEXT_REORDER = reorder_val end
+        local fallback_val = config:get_bool("user_predict/enable_fallback_reorder")
+        if fallback_val ~= nil then CONFIG.ENABLE_FALLBACK_REORDER = fallback_val end
         local custom_node = config:get_item("user_predict/custom_classifiers")
         if custom_node then
             local custom_str = ""
@@ -319,6 +323,8 @@ function P.init(env)
     env.just_committed = false
     
     env.commit_cb = function(ctx)
+        shared_reverted_code = ""
+        shared_max_input_code = ""
         local text = ctx:get_commit_text()
         if not s_match(text, "^[0-9]+$") then
             is_after_number = false
@@ -503,8 +509,7 @@ function P.init(env)
     end
     
     env.update_cb = function(ctx)
-        local input = ctx.input
-        if not input then return end
+        local input = ctx.input or ""
         if input == "/clean" then
             ctx:clear()
             local now = os_time()
@@ -614,14 +619,28 @@ function P.func(key, env)
     if not input then return 2 end
     if key:release() then return 2 end
     local repr = key:repr()
+    if repr == "BackSpace" then
+        if not shared_is_backspacing and ctx:is_composing() then
+            local current_input = ctx.input or ""
+            if current_input ~= "" then
+                if shared_reverted_code == current_input then
+                    shared_reverted_code = "" 
+                else
+                    shared_reverted_code = current_input
+                end
+            end
+        end
+        shared_is_backspacing = true
+    elseif not s_find(repr, "Shift", 1, true) and not s_find(repr, "Control", 1, true) and not s_find(repr, "Alt", 1, true) then
+        shared_is_backspacing = false
+    end
+
     if env.just_committed and repr ~= "BackSpace" and not s_find(repr, "Shift", 1, true) and not s_find(repr, "Control", 1, true) and not s_find(repr, "Alt", 1, true) then
         env.just_committed = false
     end
     
     if repr == "BackSpace" then
         local current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
-        
-        -- 仅在“输入框完全为空”或者“只有联想占位符”时，才允许撤销数据库，彻底防范打拼音时误删！
         local is_safe_to_undo = (not ctx:is_composing() or is_predicting)
         
         if is_safe_to_undo and env.undo_stack and #env.undo_stack > 0 then
@@ -794,10 +813,17 @@ local F = {}
 
 local f_last_commit = ""
 local f_reorder_map = nil
+local shared_boosted = {}
+local shared_normal = {}
+local shared_final_list = {}
+local boosted_obj_pool = {}
+local boosted_pool_idx = 0
 
-function F.init(env)
-    -- 占位
+local function clear_array(t)
+    for i = 1, #t do t[i] = nil end
 end
+
+function F.init(env) end
 
 local function stable_sort(a, b)
     if a.rank == b.rank then return a.index < b.index end
@@ -807,7 +833,12 @@ end
 function F.func(input, env)
     local ctx = env.engine.context
     
-    if not ctx:get_option("prediction") or not CONFIG.ENABLE_CONTEXT_REORDER or s_match(ctx.input or "", "^[›]+$") then
+    if not ctx:get_option("prediction") or s_match(ctx.input or "", "^[›]+$") then
+        for cand in input:iter() do yield(cand) end
+        return
+    end
+
+    if not CONFIG.ENABLE_CONTEXT_REORDER and not CONFIG.ENABLE_FALLBACK_REORDER then
         for cand in input:iter() do yield(cand) end
         return
     end
@@ -844,13 +875,39 @@ function F.func(input, env)
     local do_reorder = f_reorder_map and next(f_reorder_map)
     local do_classifier = is_after_number and CLASSIFIER_LOOKUP and next(CLASSIFIER_LOOKUP)
     
-    if (not do_reorder and not do_classifier) or (ctx.input or "") == "" then
+    -- 动态监听当前是否满足首选次选互换条件
+    local current_input = ctx.input or ""
+    local do_fallback = CONFIG.ENABLE_FALLBACK_REORDER and current_input == shared_reverted_code and shared_reverted_code ~= ""
+    
+    if (not do_reorder and not do_classifier and not do_fallback) or current_input == "" then
         for cand in input:iter() do yield(cand) end
         return
     end
 
-    local boosted = {}
-    local normal = {}
+    -- 极速旁路通道
+    if not do_reorder and not do_classifier and do_fallback then
+        local idx = 0
+        local c1 = nil
+        for cand in input:iter() do
+            idx = idx + 1
+            if idx == 1 then
+                c1 = cand
+            elseif idx == 2 then
+                yield(cand)
+                yield(c1)
+            else
+                yield(cand)
+            end
+        end
+        if idx == 1 and c1 then yield(c1) end
+        return
+    end
+    
+    clear_array(shared_boosted)
+    clear_array(shared_normal)
+    clear_array(shared_final_list)
+    boosted_pool_idx = 0
+    
     local count = 0
     local max_scan = 50
     local target_len = 0 
@@ -869,34 +926,56 @@ function F.func(input, env)
             if count > 1 and current_len ~= target_len then length_mismatch_stop = true end
         end
 
-        -- 如果触发终止条件（遇到 raw/english、字母、长度不匹配、或超过最大扫描数）
+        -- 触发终止条件时的输出逻辑
         if cand.type == "raw" or cand.type == "english" or s_match(text, "^[a-zA-Z]+$") or length_mismatch_stop or count > max_scan then
-            -- 集中处理已拦截的候选词
-            sort(boosted, stable_sort)
-            for _, b in ipairs(boosted) do yield(b.cand) end
-            for _, n in ipairs(normal) do yield(n) end
-            yield(cand)
+            sort(shared_boosted, stable_sort)
+
+            for i = 1, #shared_boosted do insert(shared_final_list, shared_boosted[i].cand) end
+            for i = 1, #shared_normal do insert(shared_final_list, shared_normal[i]) end
             
+            if do_fallback and #shared_final_list >= 2 then 
+                shared_final_list[1], shared_final_list[2] = shared_final_list[2], shared_final_list[1] 
+            end
+            for i = 1, #shared_final_list do yield(shared_final_list[i]) end
+            
+            yield(cand)
             for rest_cand in input:iter() do yield(rest_cand) end
             return
         end
 
-        -- 分类逻辑
+        -- 分类与排名逻辑
         local rank = f_reorder_map and f_reorder_map[text]
         local is_classifier = do_classifier and CLASSIFIER_LOOKUP[text]
         
         if (rank or is_classifier) and current_len == target_len then
             local final_rank = rank or 0
             if is_classifier then final_rank = -1 end 
-            insert(boosted, { cand = cand, rank = final_rank, index = count })
+
+            boosted_pool_idx = boosted_pool_idx + 1
+            if not boosted_obj_pool[boosted_pool_idx] then
+                boosted_obj_pool[boosted_pool_idx] = {}
+            end
+            local b_obj = boosted_obj_pool[boosted_pool_idx]
+            b_obj.cand = cand
+            b_obj.rank = final_rank
+            b_obj.index = count
+            
+            insert(shared_boosted, b_obj)
         else
-            insert(normal, cand)
+            insert(shared_normal, cand)
         end
     end
     
-    sort(boosted, stable_sort)
-    for _, b in ipairs(boosted) do yield(b.cand) end
-    for _, n in ipairs(normal) do yield(n) end
+    -- 循环自然结束时的输出逻辑
+    sort(shared_boosted, stable_sort)
+    for i = 1, #shared_boosted do insert(shared_final_list, shared_boosted[i].cand) end
+    for i = 1, #shared_normal do insert(shared_final_list, shared_normal[i]) end
+    
+    if do_fallback and #shared_final_list >= 2 then 
+        shared_final_list[1], shared_final_list[2] = shared_final_list[2], shared_final_list[1] 
+    end
+    for i = 1, #shared_final_list do yield(shared_final_list[i]) end
 end
+
 function F.fini(env) end
 return { P = P, T = T, F = F }

@@ -147,6 +147,7 @@ user_predict:
   db_name: lua/predict         # 数据库名称（默认 predict，将生成 predict.userdb 文件夹）
   enable_post_predict: true        # 上屏后预测
   enable_context_reorder: true     # 输入时调频
+  enable_fallback_reorder: true    # 同码回删再输首次交换
   max_candidates: 10           # 屏幕最多显示的联想词数量
   max_predictions: 3           # 连续触发预测的最高次数限制
   expiry_days: 90              # 绝对寿命（天）：不命中则物理销毁
@@ -156,7 +157,7 @@ user_predict:
   enable_predict_space: false   # true: 按空格上屏空格; false:空格提交候选。一般手机开电脑关，空格当上屏则，Tab、Alt按键当作空格
   context_timeout: 5000         # 上文超时时间毫秒
   custom_classifiers:            # 数字后量词调频，如平时chuan传，输入数字后，首选为串，结果如：1串，想关闭清空列表即可
-    - 个只名位口头匹条群批伙         # 人物动物
+    - 个只名位口头匹条群批伙多         # 人物动物
     - 张把件台部块根颗粒滴片朵面扇顶栋座所辆艘架盏支枝杆 # 物品建筑
     - 双对副套打串束排阵堆叠摞扎     # 成组集合
     - 杯瓶盒包份碗锅盆桶袋罐盘       # 包装容器
