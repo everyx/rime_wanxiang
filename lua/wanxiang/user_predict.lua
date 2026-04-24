@@ -49,7 +49,7 @@ local is_after_number = false  --量词调频状态
 -- 量词动态查找表与构建函数
 local CLASSIFIER_LOOKUP = {}
 -- 量词兜底字符串
-local default_classifiers = "百千万亿个只名位口头匹条群批伙张把件台部块根颗粒滴片朵面扇顶栋座所辆艘架盏支枝杆双对副套打串束排阵堆叠摞扎杯瓶盒包份碗锅盆桶袋罐盘次场局回趟顿番遍声项宗桩款步招年月天周岁秒分刻代期届任夜季本册篇首句段卷幅节堂门帖字行米寸尺里斤两吨克升元角毛笔"
+local default_classifiers = "百千万亿个多只名位口头匹条群批伙张把件台部块根颗粒滴片朵面扇顶栋座所辆艘架盏支枝杆双对副套打串束排阵堆叠摞扎杯瓶盒包份碗锅盆桶袋罐盘次场局回趟顿番遍声项宗桩款步招年月天周岁秒分刻代期届任夜季本册篇首句段卷幅节堂门帖字行米寸尺里斤两吨克升元角毛笔"
 
 local function build_classifier_lookup(str)
     CLASSIFIER_LOOKUP = {}
@@ -815,19 +815,36 @@ local f_last_commit = ""
 local f_reorder_map = nil
 local shared_boosted = {}
 local shared_normal = {}
-local shared_final_list = {}
 local boosted_obj_pool = {}
 local boosted_pool_idx = 0
-
-local function clear_array(t)
-    for i = 1, #t do t[i] = nil end
-end
 
 function F.init(env) end
 
 local function stable_sort(a, b)
     if a.rank == b.rank then return a.index < b.index end
     return a.rank < b.rank
+end
+
+local function flush_yield(b_list, b_cnt, n_list, n_cnt, fallback)
+    if not fallback then
+        for i = 1, b_cnt do yield(b_list[i].cand) end
+        for i = 1, n_cnt do yield(n_list[i]) end
+    else
+        if b_cnt >= 2 then
+            yield(b_list[2].cand); yield(b_list[1].cand)
+            for i = 3, b_cnt do yield(b_list[i].cand) end
+            for i = 1, n_cnt do yield(n_list[i]) end
+        elseif b_cnt == 1 and n_cnt >= 1 then
+            yield(n_list[1]); yield(b_list[1].cand)
+            for i = 2, n_cnt do yield(n_list[i]) end
+        elseif b_cnt == 0 and n_cnt >= 2 then
+            yield(n_list[2]); yield(n_list[1])
+            for i = 3, n_cnt do yield(n_list[i]) end
+        else
+            if b_cnt == 1 then yield(b_list[1].cand) end
+            if n_cnt == 1 then yield(n_list[1]) end
+        end
+    end
 end
 
 function F.func(input, env)
@@ -875,7 +892,6 @@ function F.func(input, env)
     local do_reorder = f_reorder_map and next(f_reorder_map)
     local do_classifier = is_after_number and CLASSIFIER_LOOKUP and next(CLASSIFIER_LOOKUP)
     
-    -- 动态监听当前是否满足首选次选互换条件
     local current_input = ctx.input or ""
     local do_fallback = CONFIG.ENABLE_FALLBACK_REORDER and current_input == shared_reverted_code and shared_reverted_code ~= ""
     
@@ -884,7 +900,7 @@ function F.func(input, env)
         return
     end
 
-    -- 极速旁路通道
+    -- 极速旁路通道 (0 运算，0 分配)
     if not do_reorder and not do_classifier and do_fallback then
         local idx = 0
         local c1 = nil
@@ -902,15 +918,14 @@ function F.func(input, env)
         if idx == 1 and c1 then yield(c1) end
         return
     end
-    
-    clear_array(shared_boosted)
-    clear_array(shared_normal)
-    clear_array(shared_final_list)
+
     boosted_pool_idx = 0
+    local b_cnt = 0
+    local n_cnt = 0
     
     local count = 0
-    local max_scan = 50
-    local target_len = 0 
+    local max_scan = 20
+    local target_len = 0
 
     for cand in input:iter() do
         count = count + 1
@@ -926,18 +941,11 @@ function F.func(input, env)
             if count > 1 and current_len ~= target_len then length_mismatch_stop = true end
         end
 
-        -- 触发终止条件时的输出逻辑
-        if cand.type == "raw" or cand.type == "english" or s_match(text, "^[a-zA-Z]+$") or length_mismatch_stop or count > max_scan then
+        if cand.type == "raw" or cand.type == "english" or s_find(text, "^[a-zA-Z]+$") or length_mismatch_stop or count > max_scan then
+            for i = b_cnt + 1, #shared_boosted do shared_boosted[i] = nil end
+            for i = n_cnt + 1, #shared_normal do shared_normal[i] = nil end
             sort(shared_boosted, stable_sort)
-
-            for i = 1, #shared_boosted do insert(shared_final_list, shared_boosted[i].cand) end
-            for i = 1, #shared_normal do insert(shared_final_list, shared_normal[i]) end
-            
-            if do_fallback and #shared_final_list >= 2 then 
-                shared_final_list[1], shared_final_list[2] = shared_final_list[2], shared_final_list[1] 
-            end
-            for i = 1, #shared_final_list do yield(shared_final_list[i]) end
-            
+            flush_yield(shared_boosted, b_cnt, shared_normal, n_cnt, do_fallback)
             yield(cand)
             for rest_cand in input:iter() do yield(rest_cand) end
             return
@@ -950,7 +958,6 @@ function F.func(input, env)
         if (rank or is_classifier) and current_len == target_len then
             local final_rank = rank or 0
             if is_classifier then final_rank = -1 end 
-
             boosted_pool_idx = boosted_pool_idx + 1
             if not boosted_obj_pool[boosted_pool_idx] then
                 boosted_obj_pool[boosted_pool_idx] = {}
@@ -959,22 +966,19 @@ function F.func(input, env)
             b_obj.cand = cand
             b_obj.rank = final_rank
             b_obj.index = count
-            
-            insert(shared_boosted, b_obj)
+            b_cnt = b_cnt + 1
+            shared_boosted[b_cnt] = b_obj
         else
-            insert(shared_normal, cand)
+            n_cnt = n_cnt + 1
+            shared_normal[n_cnt] = cand
         end
     end
+
+    for i = b_cnt + 1, #shared_boosted do shared_boosted[i] = nil end
+    for i = n_cnt + 1, #shared_normal do shared_normal[i] = nil end
     
-    -- 循环自然结束时的输出逻辑
     sort(shared_boosted, stable_sort)
-    for i = 1, #shared_boosted do insert(shared_final_list, shared_boosted[i].cand) end
-    for i = 1, #shared_normal do insert(shared_final_list, shared_normal[i]) end
-    
-    if do_fallback and #shared_final_list >= 2 then 
-        shared_final_list[1], shared_final_list[2] = shared_final_list[2], shared_final_list[1] 
-    end
-    for i = 1, #shared_final_list do yield(shared_final_list[i]) end
+    flush_yield(shared_boosted, b_cnt, shared_normal, n_cnt, do_fallback)
 end
 
 function F.fini(env) end

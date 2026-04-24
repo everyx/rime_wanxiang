@@ -546,7 +546,7 @@ function M.func(input, env)
                     local query_text = is_chain and current_text or cand.text
                     local key = t.prefix .. query_text
                     local val = db:fetch(key)
-                    if not val and string.match(query_text, "[A-Z]") then
+                    if not val and string.find(query_text, "%u") then
                         local lower_key = t.prefix .. string.lower(query_text)
                         val = db:fetch(lower_key)
                     end
