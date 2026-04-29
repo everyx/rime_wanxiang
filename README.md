@@ -24,6 +24,12 @@
 * **持续打磨**：我们极度重视数据准确与时效，欢迎随时反馈。
 * 📝 **[万象词库问题收集反馈表](https://docs.qq.com/smartsheet/DWHZsdnZZaGh5bWJI?viewId=vUQPXH&tab=BB08J2)**
 
+
+---
+
+## ✨ 效果预览
+![](https://storage.deepin.org/thread/202502200358104987_%E6%95%88%E6%9E%9C.png)
+
 ---
 
 ## 🧭 探索万象
