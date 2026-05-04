@@ -18998,7 +18998,7 @@
 𡛞	;nc;nc;nc;nb;bl;vc;;
 𢣐	;xb;xb;xb;xb;ho;np;;
 𢶳	;fm;fm;fm;fm;ue;rf;;
-𣎳	;ue;mm;uv;ue;em;fq;;
+𣎳	;ue;ue;uv;ue;em;fq;;
 𥑓	;ul;ul;ul;ua;mp;db;;
 𥖶	;ub;ub;ub;ub;mo;dp;;
 𦇖	;sp;sy;yb;sp;iw;xh;;
