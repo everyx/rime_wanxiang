@@ -909,8 +909,13 @@ function F.func(input, env)
             if idx == 1 then
                 c1 = cand
             elseif idx == 2 then
-                yield(cand)
-                yield(c1)
+                if c1.type ~= "sentence" and c1._end == cand._end then
+                    yield(cand)
+                    yield(c1)
+                else
+                    yield(c1)
+                    yield(cand)
+                end
             else
                 yield(cand)
             end
@@ -926,15 +931,26 @@ function F.func(input, env)
     local count = 0
     local max_scan = 20
     local target_len = 0
+    local target_end = 0
 
     for cand in input:iter() do
         count = count + 1
         local text = cand.text or ""
         local current_len = utf8_len(text) or 0
         
-        if count == 1 then target_len = current_len end
+        if count == 1 then 
+            target_len = current_len 
+            target_end = cand._end
+            if cand.type == "sentence" then
+                do_fallback = false
+            end
+        end
         
         local length_mismatch_stop = false
+        if cand._end ~= target_end then
+            length_mismatch_stop = true
+        end
+
         if do_classifier then
             if count > 1 and current_len < target_len then length_mismatch_stop = true end
         else
