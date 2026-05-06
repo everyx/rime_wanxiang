@@ -425,6 +425,7 @@ key_binder:
 #当tab第一个字补码正确后，可以使用Ctrl+tab进行上屏并依次补码
     - { when: composing, accept: "Control+Tab", send_sequence: '{Home}{Shift+Right}{1}{Shift+Right}' }
     - { match: "^.*`$", accept: "`", send_sequence: '{BackSpace}{Home}{`}{`}{End}' }
+    - { when: composing, accept: Return, send: "Shift+Return" } #t9没有上屏数字的必要，但preedit有可能
 
 # 拼写设定
 speller:
