@@ -268,34 +268,32 @@ local function format_summary(title, subtitle, data, env)
     
     local raw_ver = rime_api.get_distribution_version() or ""
     local clean_name, clean_ver = process_platform_info(raw_software_name, raw_ver)
-    
     local user_achievement = get_user_title(env)
-
     local header = string.format("※ %s统计 · 效率仪表盘\n", title)
     if subtitle and subtitle ~= "" then
         header = header .. string.format("📅 %s\n", subtitle)
     end
-
+    local zwsp = "\226\128\139" --electron框架开发的软件格式化乱码，加上零宽空格能保证末尾截取掉后格式正常
     return header .. string.format(
-        "───────────────\n" ..
-        "📊 综合数据\n" ..
-        "  均速:%-5d 上屏:%d\n" ..
-        "  峰速:%-5d 字数:%d\n" ..
-        "🏆 段位：%s\n" ..
-        "───────────────\n" ..
-        "⚡ 核心效率\n" ..
-        "  平均编码：%.2f 键/字\n" ..
-        "  词组连打：%.1f %%\n" ..
-        "───────────────\n" ..
-        "📈 字词分布\n" ..
-        "  [1] %3d%% %s\n" ..
-        "  [2] %3d%% %s\n" ..
-        "  [3] %3d%% %s\n" ..
-        "  [4] %3d%% %s\n" ..
-        "  [∞] %2d%% %s\n" ..
-        "───────────────\n" ..
-        "◉ 方案：%s\n" ..
-        "◉ 平台：%s %s",
+        "───────────────" .. zwsp .. "\n" ..
+        "📊 综合数据" .. zwsp .. "\n" ..
+        "  均速:%-5d 上屏:%d" .. zwsp .. "\n" ..
+        "  峰速:%-5d 字数:%d" .. zwsp .. "\n" ..
+        "🏆 段位：%s" .. zwsp .. "\n" ..
+        "───────────────" .. zwsp .. "\n" ..
+        "⚡ 核心效率" .. zwsp .. "\n" ..
+        "  平均编码：%.2f 键/字" .. zwsp .. "\n" ..
+        "  词组连打：%.1f %%" .. zwsp .. "\n" ..
+        "───────────────" .. zwsp .. "\n" ..
+        "📈 字词分布" .. zwsp .. "\n" ..
+        "  [1] %3d%% %s" .. zwsp .. "\n" ..
+        "  [2] %3d%% %s" .. zwsp .. "\n" ..
+        "  [3] %3d%% %s" .. zwsp .. "\n" ..
+        "  [4] %3d%% %s" .. zwsp .. "\n" ..
+        "  [∞] %2d%% %s" .. zwsp .. "\n" ..
+        "───────────────" .. zwsp .. "\n" ..
+        "◉ 方案：%s" .. zwsp .. "\n" ..
+        "◉ 平台：%s %s" .. zwsp,
         math.floor(estimated_avg_spd), math.floor(data.cnt),
         math.floor(data.spd), math.floor(data.len),
         user_achievement,

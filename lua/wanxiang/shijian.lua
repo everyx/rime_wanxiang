@@ -3089,20 +3089,20 @@ local function translator(input, seg, env)
             week_info_str = string.format("◈ 本年第[ %d ]周，本月第[ %d ]周", week_of_year, week_of_month)
         end
 
-        -- 生成最终信息字符串
-        local summary = string.format("※嗨，我是万象小助手，%s\n", greeting) .. line .. "\n" ..
-            string.format("☉ 今天是：%s%s%s\n", zero_holiday_str or "", zero_jieqi or "", sanfu) ..
-            string.format("☉ %d年%d月%d日 %s\n", year, month, day, week_day_str) ..
-            string.format("☉ 农历：%s\n", lunar_info_str) .. line .. "\n" ..
-            string.format("◉ %d进度：\n", year) .. 
-            string.format("◈%s\n", progress_bar) ..
-            string.format("%s\n", week_info_str) ..
-            string.format("◈ 今岁第[ %d ]天 (余 %d 天)\n", day_of_year, days_in_year - day_of_year) .. 
-            line .. "\n" ..
-            string.format("◉ 倒数日：\n") ..
-            string.format("◈ %s %s < [ %d ]天\n", holiday_data[1][1], holiday_data[1][2], holiday_data[1][3]) ..
-            string.format("◈ %s %s < [ %d ]天\n", holiday_data[2][1], holiday_data[2][2], holiday_data[2][3]) ..
-            string.format("◈ %s < [ %d ]天\n", upcoming_jqs[1], jieqi_days[1]) ..
+        local zwsp = "\226\128\139"
+        local summary = string.format("※嗨，我是万象小助手，%s", greeting) .. zwsp .. "\n" .. line .. zwsp .. "\n" ..
+            string.format("☉ 今天是：%s%s%s", zero_holiday_str or "", zero_jieqi or "", sanfu) .. zwsp .. "\n" ..
+            string.format("☉ %d年%d月%d日 %s", year, month, day, week_day_str) .. zwsp .. "\n" ..
+            string.format("☉ 农历：%s", lunar_info_str) .. zwsp .. "\n" .. line .. zwsp .. "\n" ..
+            string.format("◉ %d进度：", year) .. zwsp .. "\n" .. 
+            string.format("◈%s", progress_bar) .. zwsp .. "\n" ..
+            string.format("%s", week_info_str) .. zwsp .. "\n" ..
+            string.format("◈ 今岁第[ %d ]天 (余 %d 天)", day_of_year, days_in_year - day_of_year) .. zwsp .. "\n" .. 
+            line .. zwsp .. "\n" ..
+            string.format("◉ 倒数日：") .. zwsp .. "\n" ..
+            string.format("◈ %s %s < [ %d ]天", holiday_data[1][1], holiday_data[1][2], holiday_data[1][3]) .. zwsp .. "\n" ..
+            string.format("◈ %s %s < [ %d ]天", holiday_data[2][1], holiday_data[2][2], holiday_data[2][3]) .. zwsp .. "\n" ..
+            string.format("◈ %s < [ %d ]天", upcoming_jqs[1], jieqi_days[1]) .. zwsp .. "\n" ..
             string.format("◈ %s < [ %d ]天", upcoming_jqs[2], jieqi_days[2])
 
         local candidates = { { summary, "" } }
