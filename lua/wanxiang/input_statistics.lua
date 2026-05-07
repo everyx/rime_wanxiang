@@ -23,6 +23,7 @@ local function process_platform_info(name, ver)
     name = name or ""
     ver = ver or ""
     ver = ver:gsub("^(.-%-[^%-]+)%-.*$", "%1")
+    ver = ver:gsub("^(%d+%.%d+%.%d+).*", "%1")
     if name == "Weasel" then name = "小狼毫" end
     if name == "trime" then name = "同文输入法" end
     if name == "hamster3" then name = "元书输入法" end
