@@ -463,8 +463,22 @@ function f.func(input, env)
         
         if is_first_cand then
             is_first_cand = false
-            
-            if ((cand.type == 'sentence' and cand_len > 1) or (cand.type == 'phrase' and cand_len > 2)) and #syllables >= cand_len then
+
+            local syl_offset = 0
+            local spans = ctx.composition:spans()
+            if spans then
+                local vertices = type(spans.vertices) == "function" and spans:vertices() or spans.vertices
+                if vertices then
+                    for i = 1, #vertices - 1 do
+                        if vertices[i] < cand.start then
+                            syl_offset = syl_offset + 1
+                        else
+                            break
+                        end
+                    end
+                end
+            end
+            if ((cand.type == 'sentence' and cand_len > 1) or (cand.type == 'phrase' and cand_len > 2)) and #syllables >= (cand_len + syl_offset) then
                 local current_text = cand.text
                 local corrected_count = 0
                 local match_count = 0
@@ -482,12 +496,12 @@ function f.func(input, env)
                             local valid_window = true
                             
                             for k = 1, fuma_len do
-                                local syl = syllables[w_start + k - 1]
+                                local syl = syllables[w_start + k - 1 + syl_offset] 
                                 if not syl then valid_window = false break end
                                 if #syl > 2 then syl = string.sub(syl, 1, 2) end
                                 table.insert(pure_pinyin_parts, syl)
                             end
-                            
+
                             if valid_window then
                                 local query_str = table.concat(pure_pinyin_parts, "")
                                 local best_phrase = nil
@@ -561,7 +575,7 @@ function f.func(input, env)
                             local valid_window = true
                             
                             for k = 0, 1 do
-                                local syl = syllables[w_start + k]
+                                local syl = syllables[w_start + k + syl_offset] 
                                 if not syl then valid_window = false break end
                                 if #syl > 2 then syl = string.sub(syl, 1, 2) end
                                 table.insert(pure_pinyin_parts, syl)
@@ -635,8 +649,7 @@ function f.func(input, env)
                             
                             for i = search_end_idx, 1, -1 do
                                 local orig_char = get_utf8_char_at(current_text, i)
-                                local pinyin_code = syllables[i]
-                                
+                                local pinyin_code = syllables[i + syl_offset] 
                                 if not pinyin_code then goto next_i end
                                 if #pinyin_code > 2 then pinyin_code = string.sub(pinyin_code, 1, 2) end
                                 local probe_code = pinyin_code .. chunk_fuma
