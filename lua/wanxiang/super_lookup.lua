@@ -457,13 +457,11 @@ function f.func(input, env)
     else
         syllables = get_script_text_parts(ctx, env.search_key_str)
     end
-
+    
     for cand in input:iter() do
         local cand_len = get_utf8_len(cand.text)
-        
         if is_first_cand then
             is_first_cand = false
-
             local syl_offset = 0
             local spans = ctx.composition:spans()
             if spans then
@@ -474,6 +472,46 @@ function f.func(input, env)
                             syl_offset = syl_offset + 1
                         else
                             break
+                        end
+                    end
+                end
+            end
+
+            local current_syl_count = #syllables - syl_offset
+
+            if apply_tone_filter and clean_fuma == "" and #tone_filter_seq > 0 then
+                local tone_len = #tone_filter_seq
+                if current_syl_count == tone_len and env.main_translator then
+                    local pure_pinyin_parts = {}
+                    for k = 1, tone_len do
+                        local syl = syllables[k + syl_offset] 
+                        if syl then
+                            if #syl > 2 then syl = string.sub(syl, 1, 2) end
+                            table.insert(pure_pinyin_parts, syl .. tone_filter_seq[k])
+                        end
+                    end
+                    
+                    if #pure_pinyin_parts == tone_len then
+                        local query_str = table.concat(pure_pinyin_parts, "")
+                        local seg_trans = Segment(0, #query_str)
+                        seg_trans.tags = Set({"abc"})
+                        
+                        local ok, translation = pcall(function() return env.main_translator:query(query_str, seg_trans) end)
+                        local yielded_any = false
+                        
+                        if ok and translation then
+                            for c in translation:iter() do
+                                local custom_cand = Candidate(cand.type, cand.start, cand._end, c.text, c.comment)
+                                custom_cand.quality = c.quality
+                                custom_cand.preedit = cand.preedit
+                                yield(custom_cand)
+                                yielded_any = true
+                                break
+                            end
+                        end
+                        
+                        if yielded_any then
+                            goto skip
                         end
                     end
                 end
@@ -799,15 +837,18 @@ function f.func(input, env)
             if codes_seq then
                 local tone_match_pass = true
                 if apply_tone_filter then
-                    for k, tone_input in ipairs(tone_filter_seq) do
-                        if k > #codes_seq then break end
-                        local has_tone = list_contains(codes_seq[k], tone_input)
-                        if not has_tone and source_type == 'db' then
-                            if borrowed_tones[k] and borrowed_tones[k][tone_input] then has_tone = true end
-                        end
-                        if not has_tone then
-                            tone_match_pass = false
-                            break
+                    if #tone_filter_seq > #codes_seq then
+                        tone_match_pass = false
+                    else
+                        for k, tone_input in ipairs(tone_filter_seq) do
+                            local has_tone = list_contains(codes_seq[k], tone_input)
+                            if not has_tone and source_type == 'db' then
+                                if borrowed_tones[k] and borrowed_tones[k][tone_input] then has_tone = true end
+                            end
+                            if not has_tone then
+                                tone_match_pass = false
+                                break
+                            end
                         end
                     end
                 end
