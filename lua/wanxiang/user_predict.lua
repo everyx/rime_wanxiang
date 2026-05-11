@@ -926,14 +926,19 @@ function F.func(input, env)
     
     local current_input = ctx.input or ""
     local do_fallback = CONFIG.ENABLE_FALLBACK_REORDER and current_input == shared_reverted_code and shared_reverted_code ~= ""
+
+    if do_fallback then
+        do_reorder = false
+        do_classifier = false
+    end
     
     if (not do_reorder and not do_classifier and not do_fallback) or current_input == "" then
         for cand in input:iter() do yield(cand) end
         return
     end
 
-    -- 极速旁路通道 (0 运算，0 分配)
-    if not do_reorder and not do_classifier and do_fallback then
+    -- 极速旁路通道 (0 运算，0 分配，专供回头码使用)
+    if do_fallback then
         local idx = 0
         local c1 = nil
         for cand in input:iter() do
@@ -941,7 +946,8 @@ function F.func(input, env)
             if idx == 1 then
                 c1 = cand
             elseif idx == 2 then
-                if c1.type ~= "sentence" and c1._end == cand._end then
+                local is_cand_valid = cand.type ~= "raw" and cand.type ~= "english" and not s_find(cand.text or "", "^[a-zA-Z]+$")
+                if c1.type ~= "sentence" and is_cand_valid and c1._end == cand._end then
                     yield(cand)
                     yield(c1)
                 else
