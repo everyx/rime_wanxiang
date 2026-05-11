@@ -119,7 +119,6 @@ user_predict:
   max_candidates: 10           # 屏幕最多显示的联想词数量
   max_predictions: 3           # 连续触发预测的最高次数限制
   expiry_days: 90              # 绝对寿命（天）：不命中则物理销毁
-  activation_days: 7           # 激活期限（天）：冷冻期内输入第2次转正
   max_memory_branches: 15      # 分支上限：单前缀最多保留15个后续预测
   decay_rate: 0.85             # 衰减率：单日时间权重打 85 折
   enable_predict_space: false   # true: 按空格上屏空格; false:空格提交候选。一般手机开电脑关，空格当上屏则，Tab、Alt按键当作空格
