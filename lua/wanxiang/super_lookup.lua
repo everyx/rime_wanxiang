@@ -252,6 +252,10 @@ local function split_lookup_input(input, key, bypass_prefix)
     if bypass_prefix and bypass_prefix ~= "" and input:sub(1, #bypass_prefix) == bypass_prefix then
         scan_from = #bypass_prefix + 1
     end
+    local input_body = input:sub(scan_from)
+    if input_body:sub(1, #key) == key and not key:match("^%w+$") then
+        return nil
+    end
     local s_start, s_end = nil, nil
     local from = scan_from
     while true do
