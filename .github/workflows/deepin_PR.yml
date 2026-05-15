@@ -1,0 +1,71 @@
+name: Sync Release to Deepin PR
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. 获取版本号
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+
+      - name: 2. 下载并解压基础 Release 产物
+        run: |
+          wget https://github.com/amzxyz/rime-wanxiang/releases/download/v${{ env.VERSION }}/rime-wanxiang-base.zip
+          mkdir source_files
+          unzip rime-wanxiang-base.zip -d source_files/
+
+      - name: 3. 执行基础文件清理
+        run: |
+          cd source_files
+          rm -f custom/万象键位映射.jpg
+          rm -f custom/赞赏.jpg
+          rm -f wanxiang_t9.schema.yaml
+          rm -f weasel.yaml
+          rm -f README.md
+          find . -name ".*" -exec rm -rf {} +
+          find . -type f -exec chmod 644 {} +
+
+      - name: 4. 检出 Deepin 官方最新 master 作为基座
+        uses: actions/checkout@v4
+        with:
+          repository: 'deepin-community/rime-wanxiang'
+          ref: 'master'
+          token: ${{ secrets.DEEPIN_PR_TOKEN }}
+          path: 'deepin_repo'
+
+      - name: 5. 处理 LTS Gram 大文件并分包
+        run: |
+          # 下载大文件
+          wget https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram
+          # 使用 7z 进行分包：
+          # -a: 添加到压缩包
+          # -mx0: 仅存储（不压缩，提高处理速度）
+          # -v90m: 每个分卷 90MB
+          7z a -mx0 -v90m wanxiang-lts-zh-hans.gram.7z wanxiang-lts-zh-hans.gram
+          # 确保目标 debian 目录存在并移动分卷文件（覆盖模式）
+          mkdir -p deepin_repo/debian
+          mv wanxiang-lts-zh-hans.gram.7z.* deepin_repo/debian/
+
+      - name: 6. 同步其余非隐藏文件
+        run: |
+          # 将清理后的基础文件同步到目标仓，排除 .git 目录
+          rsync -av --exclude='.git' source_files/ deepin_repo/
+
+      - name: 7. 强制覆盖 Fork 的 master 并发起草稿 PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          path: 'deepin_repo'
+          token: ${{ secrets.DEEPIN_PR_TOKEN }}
+          push-to-fork: amzxyz/rime-wanxiang-pr 
+          commit-message: "feat: update to v${{ env.VERSION }} and add split gram files"
+          title: "feat: update rime-wanxiang to ${{ env.VERSION }}-0deepin1"
+          body: |
+            此 PR 由 GitHub Actions 自动生成。
+            - 同步版本: v${{ env.VERSION }}
+          branch: "master"
+          base: "master"
+          draft: true
