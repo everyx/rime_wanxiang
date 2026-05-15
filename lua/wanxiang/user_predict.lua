@@ -1,5 +1,5 @@
 -- user_predict.lua
--- https://github.com/amzxyz/rime_wanxiang
+-- https://github.com/amzxyz/rime-wanxiang
 -- by amzxyz
 -- 架构层: Processor (物理按键截取与逻辑分发) + Translator (候选词生成与上屏) + Filter (输入调频)
 -- 算法层:

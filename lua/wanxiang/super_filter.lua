@@ -1,4 +1,4 @@
--- @amzxyz  https://github.com/amzxyz/rime_wanxiang
+-- @amzxyz  https://github.com/amzxyz/rime-wanxiang
 -- 提供以下核心修饰与兜底能力：
 -- 功能 A：转义序列解析（常驻）
 --         将候选词中的 \n, \t, \s(空格) 等文本转义符格式化为实际效果。

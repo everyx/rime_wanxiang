@@ -1,6 +1,6 @@
 --[[
 super_replacer.lua 一个rime OpenCC替代品，更灵活地配置能力
-https://github.com/amzxyz/rime_wanxiang
+https://github.com/amzxyz/rime-wanxiang
 by amzxyz
 路径检测：UserDir > SharedDir
 支持 option: true (常驻启用)

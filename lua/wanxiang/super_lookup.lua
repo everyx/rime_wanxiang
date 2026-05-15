@@ -1,4 +1,4 @@
---@amzxyz https://github.com/amzxyz/rime_wanxiang
+--@amzxyz https://github.com/amzxyz/rime-wanxiang
 --wanxiang_lookup: #设置归属于super_lookup.lua
   --tags: [ abc ]  # 检索当前tag的候选
   --key: "`"       # 输入中反查引导符

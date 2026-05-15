@@ -1,4 +1,4 @@
--- amzxyz@https://github.com/amzxyz/rime_wanxiang
+-- amzxyz@https://github.com/amzxyz/rime-wanxiang
 -- input_stats.lua
 -- Rime 统计增强版 (LevelDB / 滚动时间窗口 / 效率仪表盘 / 汉字提纯)
 -- 新增：配置项 YAML 外放、递进式时光机、自定义区间、UI横向自适应排版

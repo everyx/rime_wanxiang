@@ -1,6 +1,6 @@
 -- lua/super_processor.lua
 -- @amzxyz
--- https://github.com/amzxyz/rime_wanxiang
+-- https://github.com/amzxyz/rime-wanxiang
 -- 全能按键处理器：整合 KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
 -- 
 -- 用法: 在 schema.yaml 中 engine/processors 列表添加 - lua_processor@*super_processor

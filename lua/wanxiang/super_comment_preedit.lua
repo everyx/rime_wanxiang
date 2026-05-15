@@ -1,4 +1,4 @@
---@amzxyz https://github.com/amzxyz/rime_wanxiang
+--@amzxyz https://github.com/amzxyz/rime-wanxiang
 
 
 local wanxiang = require('wanxiang/wanxiang')

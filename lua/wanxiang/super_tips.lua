@@ -1,7 +1,7 @@
 -- 万象家族lua,超级提示,表情\化学式\方程式\简码等等直接上屏,不占用候选位置
 -- 采用leveldb数据库,支持大数据遍历,支持多种类型混合,多种拼音编码混合,维护简单
 -- 支持候选匹配和编码匹配两种，候选支持方向键高亮遍历
--- https://github.com/amzxyz/rime_wanxiang
+-- https://github.com/amzxyz/rime-wanxiang
 -- 配置示例：
 -- super_tips:
 --   db_name: "lua/tips"   # 可选，自定义数据库名称/路径，默认值为 "lua/tips"

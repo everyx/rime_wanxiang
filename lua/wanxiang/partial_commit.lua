@@ -1,4 +1,4 @@
--- @amzxyz  https://github.com/amzxyz/rime_wanxiang
+-- @amzxyz  https://github.com/amzxyz/rime-wanxiang
 -- Ctrl+1..9,0：上屏首选前 N 字；利用 spans 底层物理标尺精准切分 raw input
 local wanxiang = require("wanxiang/wanxiang")
 

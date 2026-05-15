@@ -1,5 +1,5 @@
 -- lua/super_english.lua
--- https://github.com/amzxyz/rime_wanxiang
+-- https://github.com/amzxyz/rime-wanxiang
 -- @description: 英文全能处理器 (Filter Only: 锚点切分 + 动态分隔符 + 超时销毁 + 性能极速优化)
 -- @author: amzxyz
 

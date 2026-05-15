@@ -1,6 +1,6 @@
 -- 欢迎使用万象拼音方案
 -- @amzxyz
--- https://github.com/amzxyz/rime_wanxiang
+-- https://github.com/amzxyz/rime-wanxiang
 ------------------------------------
 ------wirting by 98wubi Group-------
 -----万象新增节日候选,格式化问候语,重写农历倒计

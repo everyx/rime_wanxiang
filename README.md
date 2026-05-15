@@ -5,12 +5,12 @@
 **重塑 Rime 生态，带来极致的输入体验。**
 
 [![快速上手](https://img.shields.io/badge/🚀_快速上手-探索文档-4CAF50?style=for-the-badge)](https://amzxyz.github.io/)
-[![GitHub](https://img.shields.io/badge/⭐_GitHub_仓库-访问主页-2ea44f?style=for-the-badge)](https://github.com/amzxyz/rime_wanxiang)
+[![GitHub](https://img.shields.io/badge/⭐_GitHub_仓库-访问主页-2ea44f?style=for-the-badge)](https://github.com/amzxyz/rime-wanxiang)
 <br>
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![GitHub Release](https://img.shields.io/github/v/release/amzxyz/rime_wanxiang?filter=!nightly)](https://github.com/amzxyz/rime_wanxiang/releases/)
-[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/amzxyz/rime_wanxiang/release.yml)](https://github.com/amzxyz/rime_wanxiang/actions/workflows/release.yml)
-[![GitHub Repo stars](https://img.shields.io/github/stars/amzxyz/rime_wanxiang?style=flat&color=success)](https://github.com/amzxyz/rime_wanxiang/stargazers)
+[![GitHub Release](https://img.shields.io/github/v/release/amzxyz/rime-wanxiang?filter=!nightly)](https://github.com/amzxyz/rime-wanxiang/releases/)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/amzxyz/rime-wanxiang/release.yml)](https://github.com/amzxyz/rime-wanxiang/actions/workflows/release.yml)
+[![GitHub Repo stars](https://img.shields.io/github/stars/amzxyz/rime-wanxiang?style=flat&color=success)](https://github.com/amzxyz/rime-wanxiang/stargazers)
 
 </div>
 
