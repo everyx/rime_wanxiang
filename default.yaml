@@ -139,7 +139,6 @@ key_binder:
     - {accept: KP_Enter, send: Return, when: composing}
 
 # 按键速查
-# https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md
 # （没有 Command 键，不支持）
 # accept 和 send 可用字段除 A-Za-z0-9 外，还包含以下键盘上实际有的键：
 # （区分大小写）
