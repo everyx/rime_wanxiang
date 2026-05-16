@@ -8,11 +8,11 @@ version: "LTS"
 sort: by_weight
 ...
 安图	ān tú	180
-坝乡	bà xiāng	1240
+坝乡	bà xiāng	1698
 巴宜	bā yí	1086
-保德	bǎo dé	1136
-堡镇	bǎo zhèn	1128
-宾县	bīn xiàn	614
+保德	bǎo dé	4472
+堡镇	bǎo zhèn	1319
+宾县	bīn xiàn	730
 沧县	cāng xiàn	397
 仓镇	cāng zhèn	732
 曹县	cáo xiàn	444
@@ -24,17 +24,17 @@ sort: by_weight
 呈坎	chéng kǎn	124
 城南	chéng nán	1066
 城区	chéng qū	1002
-成县	chéng xiàn	964
-崇阳	chóng yáng	344
+成县	chéng xiàn	43092
+崇阳	chóng yáng	382
 莿桐	cì tóng	812
 磁县	cí xiàn	1028
 从化	cóng huà	1810
 从江	cóng jiāng	582
 错那	cuò nà	51
-大里	dà lǐ	1670
-大寮	dà liáo	566
+大里	dà lǐ	6263
+大寮	dà liáo	597
 大埤	dà pí	938
-大新	dà xīn	1177
+大新	dà xīn	3879
 代县	dài xiàn	862
 道县	dào xiàn	3647
 道镇	dào zhèn	130
@@ -51,107 +51,107 @@ sort: by_weight
 范县	fàn xiàn	763
 范镇	fàn zhèn	930
 房县	fáng xiàn	988
-坊镇	fāng zhèn	1393
-费县	fèi xiàn	739
+坊镇	fāng zhèn	5436
+费县	fèi xiàn	853
 芬园	fēn yuán	696
 丰滨	fēng bīn	389
-丰县	fēng xiàn	1035
-凤县	fèng xiàn	1005
-富里	fù lǐ	1205
-福绵	fú mián	1006
-富县	fù xiàn	1103
-高县	gāo xiàn	593
+丰县	fēng xiàn	121038
+凤县	fèng xiàn	121008
+富里	fù lǐ	26981
+福绵	fú mián	1118
+富县	fù xiàn	3513
+高县	gāo xiàn	1164
 高镇	gāo zhèn	89
-珙县	gǒng xiàn	951
-古县	gǔ xiàn	496
+珙县	gǒng xiàn	34408
+古县	gǔ xiàn	566
 古乡	gǔ xiāng	905
-冠县	guān xiàn	1262
+冠县	guān xiàn	1391
 郭镇	guō zhèn	888
 哈镇	hā zhèn	1
 海端	hǎi duān	375
-和静	hé jìng	411
-和县	hé xiàn	888
+和静	hé jìng	812
+和县	hé xiàn	24463
 后里	hòu lǐ	171
 后龙	hòu lóng	6203
 侯镇	hóu zhèn	127
 厚镇	hòu zhèn	97
 鄠邑	hù yì	499
-滑县	huá xiàn	939
+滑县	huá xiàn	2165
 环县	huán xiàn	868
 黄港	huáng gǎng	377
 黄甲	huáng jiǎ	4978
 黄坑	huáng kēng	334
 黄台	huáng tái	794
-黄坛	huáng tán	117
+黄坛	huáng tán	123
 黄塘	huáng táng	925
 黄洋	huáng yáng	111
-黄营	huáng yíng	655
-惠济	huì jì	1059
-徽县	huī xiàn	719
-吉县	jí xiàn	930
-吉镇	jí zhèn	1035
+黄营	huáng yíng	759
+惠济	huì jì	2943
+徽县	huī xiàn	3256
+吉县	jí xiàn	22499
+吉镇	jí zhèn	3960
 郏县	jiá xiàn	145
 佳县	jiā xiàn	115
 贾镇	jiǎ zhèn	89
 将乐	jiāng lè	24440
 绛县	jiàng xiàn	1244
-泾县	jīng xiàn	884
-景县	jǐng xiàn	854
+泾县	jīng xiàn	1165
+景县	jǐng xiàn	1135
 鸠江	jiū jiāng	1128
 九镇	jiǔ zhèn	718
 莒县	jǔ xiàn	762
 莒镇	jǔ zhèn	14652
 卡若	kǎ ruò	388
 卡乡	kǎ xiāng	350
-开福	kāi fú	1006
-坎乡	kǎn xiāng	1312
+开福	kāi fú	2053
+坎乡	kǎn xiāng	6781
 康马	kāng mǎ	313
 康县	kāng xiàn	377
 坑镇	kēng zhèn	1
 孔镇	kǒng zhèn	1
 口镇	kǒu zhèn	89
 矿区	kuàng qū	821
-来义	lái yì	776
+来义	lái yì	819
 兰西	lán xī	598
 岚县	lán xiàn	1150
 朗县	lǎng xiàn	374
 朗镇	lǎng zhèn	1
-里港	lǐ gǎng	303
-理县	lǐ xiàn	1092
-蠡县	lǐ xiàn	1062
-澧县	lǐ xiàn	1032
-礼县	lǐ xiàn	1002
-濂溪	lián xī	1199
+里港	lǐ gǎng	337
+理县	lǐ xiàn	4678
+蠡县	lǐ xiàn	4648
+澧县	lǐ xiàn	4618
+礼县	lǐ xiàn	4588
+濂溪	lián xī	133509
 联乡	lián xiāng	863
-临县	lín xiàn	125
+临县	lín xiàn	132
 临镇	lín zhèn	756
-苓雅	líng yǎ	691
-柳乡	liǔ xiāng	1250
+苓雅	líng yǎ	1311
+柳乡	liǔ xiāng	9533
 龙安	lóng ān	29
 陇县	lǒng xiàn	76
 龙圩	lóng xū	89
 龙镇	lóng zhèn	470
 鹿草	lù cǎo	1092
 渌口	lù kǒu	776
-泸县	lú xiàn	737
+泸县	lú xiàn	896
 伦镇	lún zhèn	1
-漯河	luò hé	164
+漯河	luò hé	174
 玛家	mǎ jiā	1240
-玛乡	mǎ xiāng	391
+玛乡	mǎ xiāng	957
 马镇	mǎ zhèn	403
 麦寮	mài liáo	1
 满州	mǎn zhōu	1697
-芒市	máng shì	174
+芒市	máng shì	183
 茂县	mào xiàn	16835
 眉县	méi xiàn	678
 米东	mǐ dōng	362
 糜镇	mí zhèn	73
-勉县	miǎn xiàn	162
+勉县	miǎn xiàn	171
 苗圃	miáo pǔ	493
 庙镇	miào zhèn	808
 岷县	mín xiàn	722
-名间	míng jiān	463
-姆乡	mǔ xiāng	439
+名间	míng jiān	756
+姆乡	mǔ xiāng	464
 南谯	nán qiáo	196
 南县	nán xiàn	588
 鸟松	niǎo sōng	416
@@ -163,24 +163,24 @@ sort: by_weight
 郫都	pí dū	876
 平桂	píng guì	342
 泊镇	pō zhèn	431
-蒲县	pú xiàn	631
+蒲县	pú xiàn	666
 铺镇	pù zhèn	898
-祁县	qí xiàn	1061
-杞县	qǐ xiàn	1031
-淇县	qí xiàn	1001
+祁县	qí xiàn	10002
+杞县	qǐ xiàn	9972
+淇县	qí xiàn	9942
 齐镇	qí zhèn	83
-乾安	qián ān	38
-前金	qián jīn	1103
-乾县	qián xiàn	981
+乾安	qián ān	40
+前金	qián jīn	12990
+乾县	qián xiàn	6325
 茄萣	qié dìng	693
 钦南	qīn nán	306
 沁县	qìn xiàn	637
 青县	qīng xiàn	750
-邱县	qiū xiàn	236
+邱县	qiū xiàn	249
 曲松	qū sōng	460
-渠县	qú xiàn	1166
+渠县	qú xiàn	24294
 任泽	rèn zé	538
-荣县	róng xiàn	18
+荣县	róng xiàn	19
 容县	róng xiàn	0
 绒乡	róng xiāng	448
 润镇	rùn zhèn	1
@@ -190,59 +190,59 @@ sort: by_weight
 色乡	sè xiāng	3097
 单县	shàn xiàn	1061
 商镇	shāng zhèn	817
-社旗	shè qí	817
-歙县	shè xiàn	893
-涉县	shè xiàn	863
-伸港	shēn gǎng	145
-莘县	shēn xiàn	1326
-寿县	shòu xiàn	1241
+社旗	shè qí	1357
+歙县	shè xiàn	3602
+涉县	shè xiàn	3572
+伸港	shēn gǎng	153
+莘县	shēn xiàn	10740
+寿县	shòu xiàn	288657
 水林	shuǐ lín	455
-泗县	sì xiàn	636
+泗县	sì xiàn	707
 嵩县	sōng xiàn	434
 睢县	suī xiàn	395
 随县	suí xiàn	372
 孙镇	sūn zhèn	1
-索县	suǒ xiàn	884
+索县	suǒ xiàn	1746
 汤旺	tāng wàng	124
-唐县	táng xiàn	176
-汤原	tāng yuán	1118
+唐县	táng xiàn	186
+汤原	tāng yuán	1678
 唐镇	táng zhèn	1046
 桃镇	táo zhèn	1
 藤县	téng xiàn	700
-桐湖	tóng hú	137
-通霄	tōng xiāo	1069
+桐湖	tóng hú	144
+通霄	tōng xiāo	6122
 通镇	tōng zhèn	830
 头屋	tóu wū	413
 瓦乡	wǎ xiāng	1
 万镇	wàn zhèn	1
-湾沚	wān zhǐ	509
+湾沚	wān zhǐ	566
 望安	wàng ān	463
 望都	wàng dū	252
-卫滨	wèi bīn	43
-威县	wēi xiàn	1094
-魏县	wèi xiàn	1064
+卫滨	wèi bīn	46
+威县	wēi xiàn	1488
+魏县	wèi xiàn	1458
 温县	wēn xiàn	655
 文县	wén xiàn	625
 乌翠	wū cuì	1
-五结	wǔ jié	1140
+五结	wǔ jié	14908
 乌镇	wū zhèn	817
 武镇	wǔ zhèn	787
-西和	xī hé	593
-西区	xī qū	1318
-息县	xī xiàn	956
-隰县	xí xiàn	926
-螅镇	xī zhèn	807
-夏县	xià xiàn	930
+西和	xī hé	1383
+西区	xī qū	1465
+息县	xī xiàn	1609
+隰县	xí xiàn	1579
+螅镇	xī zhèn	1096
+夏县	xià xiàn	9259
 夏镇	xià zhèn	64
-线西	xiàn xī	989
-献县	xiàn xiàn	1035
-襄都	xiāng dū	758
-萧县	xiāo xiàn	562
-新抚	xīn fǔ	1178
+线西	xiàn xī	1308
+献县	xiàn xiàn	3805
+襄都	xiāng dū	2576
+萧县	xiāo xiàn	1152
+新抚	xīn fǔ	1326
 新和	xīn hé	484
 新埤	xīn pí	709
 新邱	xīn qiū	974
-新吴	xīn wú	616
+新吴	xīn wú	685
 新县	xīn xiàn	1027
 新镇	xīn zhèn	14
 兴宾	xīng bīn	383
@@ -250,42 +250,42 @@ sort: by_weight
 兴县	xīng xiàn	235
 兴镇	xīng zhèn	1056
 芎林	xiōng lín	1
-雄县	xióng xiàn	956
+雄县	xióng xiàn	1406
 雪乡	xuě xiāng	504
 薛镇	xuē zhèn	1
-浚县	xùn xiàn	568
+浚县	xùn xiàn	750
 盐场	yán chǎng	800
-盐埕	yán chéng	885
+盐埕	yán chéng	984
 洋县	yáng xiàn	776
 尧都	yáo dū	1935
-叶县	yè xiàn	607
-黟县	yī xiàn	1384
-易县	yì xiàn	1354
-义县	yì xiàn	1324
-义竹	yì zhú	1178
-应县	yīng xiàn	585
+叶县	yè xiàn	851
+黟县	yī xiàn	20955
+易县	yì xiàn	20925
+义县	yì xiàn	20895
+义竹	yì zhú	3511
+应县	yīng xiàn	650
 永乐	yǒng lè	80668
 埇桥	yǒng qiáo	1
 永兴	yǒng xīng	205
-攸县	yōu xiàn	1523
-蔚县	yù xiàn	951
-盂县	yú xiàn	921
+攸县	yōu xiàn	27540
+蔚县	yù xiàn	4426
+盂县	yú xiàn	4396
 员山	yuán shān	837
 岳塘	yuè táng	4
-云县	yún xiàn	678
+云县	yún xiàn	857
 曾都	zēng dū	1
 漳县	zhāng xiàn	5672
 张镇	zhāng zhèn	1103
 赵县	zhào xiàn	70
 赵镇	zhào zhèn	1
 浈江	zhēn jiāng	1763
-镇沅	zhèn yuán	196
+镇沅	zhèn yuán	218
 中埔	zhōng bù	1910
 中寮	zhōng liáo	534
 忠县	zhōng xiàn	3207
 子长	zǐ cháng	117
-滋镇	zī zhèn	38
-左镇	zuǒ zhèn	966
+滋镇	zī zhèn	40
+左镇	zuǒ zhèn	2414
 阿坝县	ā bà xiàn	178
 阿坝镇	ā bà zhèn	1
 阿北乡	ā běi xiāng	1
@@ -2893,7 +2893,7 @@ sort: by_weight
 大楞乡	dà léng xiāng	55
 大冷镇	dà lěng zhèn	56
 大里区	dà lǐ qū	700
-大理市	dà lǐ shì	867
+大理市	dà lǐ shì	1154
 大荔县	dà lì xiàn	208
 大历县	dà lì xiàn	69
 大理县	dà lǐ xiàn	57
@@ -7237,7 +7237,7 @@ sort: by_weight
 黄湖镇	huáng hú zhèn	178
 黄花村	huáng huā cūn	210
 黄华村	huáng huá cūn	103
-黄骅市	huáng huá shì	542
+黄骅市	huáng huá shì	374
 黄骅县	huáng huá xiàn	104
 黄花乡	huáng huā xiāng	213
 黄花镇	huáng huā zhèn	326
@@ -8592,7 +8592,7 @@ sort: by_weight
 金仕堡	jīn shì bǎo	333
 金狮村	jīn shī cūn	219
 金石村	jīn shí cūn	103
-津市市	jīn shì shì	568
+津市市	jīn shì shì	240
 巾石乡	jīn shí xiāng	1
 锦石乡	jǐn shí xiāng	1
 金石镇	jīn shí zhèn	274
@@ -14662,7 +14662,7 @@ sort: by_weight
 荣昌区	róng chāng qū	176
 荣昌县	róng chāng xiàn	172
 榕城区	róng chéng qū	155
-荣成市	róng chéng shì	382
+荣成市	róng chéng shì	650
 容城县	róng chéng xiàn	167
 荣成县	róng chéng xiàn	113
 荣城县	róng chéng xiàn	94
@@ -19987,8 +19987,8 @@ sort: by_weight
 新叶村	xīn yè cūn	316
 新野县	xīn yě xiàn	200
 信义区	xìn yì qū	26
-新沂市	xīn yí shì	534
-信宜市	xìn yí shì	504
+新沂市	xīn yí shì	336
+信宜市	xìn yí shì	306
 信宜县	xìn yí xiàn	862
 新沂县	xīn yí xiàn	832
 辛义乡	xīn yì xiāng	1
@@ -21248,7 +21248,7 @@ sort: by_weight
 异龙镇	yì lóng zhèn	1
 宜路镇	yí lù zhèn	1
 义路镇	yì lù zhèn	1
-义马市	yì mǎ shì	467
+义马市	yì mǎ shì	519
 驿马乡	yì mǎ xiāng	1
 驿马镇	yì mǎ zhèn	1
 伊美区	yī měi qū	1
@@ -21649,7 +21649,7 @@ sort: by_weight
 油洋乡	yóu yáng xiāng	1
 游洋镇	yóu yáng zhèn	1
 友谊县	yǒu yì xiàn	125
-友谊乡	yǒu yì xiāng	926
+友谊乡	yǒu yì xiāng	702
 友谊镇	yǒu yì zhèn	582
 右玉县	yòu yù xiàn	177
 优云乡	yōu yún xiāng	1
