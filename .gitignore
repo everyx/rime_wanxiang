@@ -9,4 +9,3 @@ sync/
 installation.yaml
 user.yaml
 *.custom.yaml
-!others/**/*.custom.yaml
