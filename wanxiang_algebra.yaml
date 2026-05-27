@@ -3084,38 +3084,6 @@ english:
       - derive/#/jq/
       - erase/.*[0-9].*/
 
-模糊音: 
-  __append:
-    # n - l
-    - derive/^l/n
-    - derive/^n/l
-    # r - y     开头
-    - derive/^y/r
-    - derive/^r/y
-    # h - f     开头
-    - derive/^h/f
-    - derive/^f/h
-    # r - l     开头
-    - derive/^r/l
-    - derive/^l/r
-    # k - g     开头
-    - derive/^k/g
-    - derive/^g/k
-    # en - eng
-    - derive/(ē|é|ě|è|e)ng(.*)$/$1n$2
-    - derive/(ē|é|ě|è|e)n(.*)$/$1ng$2
-    # in - ing
-    - derive/(ī|í|ǐ|ì|i)ng(.*)$/$1n$2
-    - derive/(ī|í|ǐ|ì|i)n(.*)$/$1ng$2
-    # c - ch
-    - derive/^c([^h]*)/ch$1
-    - derive/^ch/c
-    # z - zh
-    - derive/^z([^h]*)/zh$1
-    - derive/^zh/z
-    # s - sh
-    - derive/^s([^h]*)/sh$1
-    - derive/^sh/s
 
 
 模糊音_nl:
@@ -3152,31 +3120,28 @@ english:
   __append:
     # en - eng
     - derive/(ē|é|ě|è|e)ng(.*)$/$1n$2
-    - derive/(ē|é|ě|è|e)n(.*)$/$1ng$2
+    - derive/(ē|é|ě|è|e)n([^g].*)?$/$1ng$2
 
 模糊音_in_ing:
   __append:
     # in - ing
     - derive/(ī|í|ǐ|ì|i)ng(.*)$/$1n$2
-    - derive/(ī|í|ǐ|ì|i)n(.*)$/$1ng$2
+    - derive/(ī|í|ǐ|ì|i)n([^g].*)?$/$1ng$2
 
 模糊音_c_ch:
   __append:
-    # c - ch
-    - derive/^c([^h]*)/ch$1
     - derive/^ch/c
+    - derive/^c([^h]*)/ch$1
 
 模糊音_z_zh:
   __append:
-    # z - zh
-    - derive/^z([^h]*)/zh$1
     - derive/^zh/z
+    - derive/^z([^h]*)/zh$1
 
 模糊音_s_sh:
   __append:
-    # s - sh
-    - derive/^s([^h]*)/sh$1
     - derive/^sh/s
+    - derive/^s([^h]*)/sh$1
 #特殊优化：部分音节字极少，几乎不参与构词，则提升对应四码字的优先级，仅对小鹤双拼有效，其他双拼方案需作对应修改）
 小鹤双拼提权:
   __append:
