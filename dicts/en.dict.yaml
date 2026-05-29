@@ -15941,7 +15941,7 @@ cstar	cstar
 csv	csv
 CTO	CTO
 Chief Technology Officer	CTO
-ctrl	ctrl
+Ctrl	Ctrl
 ctty	ctty
 cub	cub
 Cuba	Cuba
@@ -57539,6 +57539,13 @@ shielded	shielded
 shielding	shielding
 Shields	Shields
 shies	shies
+GoldenDB	GoldenDB
+GoldenDB Lite	GoldenDBLite
+TaurusDB	TaurusDB
+PolarDB	PolarDB
+GaussDB	GaussDB
+TeleDB	TeleDB
+DolphinDB	DolphinDB
 shift	shift
 shifted	shifted
 shifter	shifter
