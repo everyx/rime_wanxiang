@@ -7034,6 +7034,7 @@ billy	billy
 billycock	billycock
 biloxi	biloxi
 Biltmore	Biltmore
+BIM	BIM
 bimag	bimag
 bimanous	bimanous
 bimbo	bimbo
@@ -12611,6 +12612,7 @@ clyster	clyster
 Clytemnestra	Clytemnestra
 CMake	CMake
 cmd	cmd
+CMYK	CMYK
 cmdline	cmdline
 cmi	cmi
 CMOS	CMOS
@@ -28838,6 +28840,8 @@ gyrus	gyrus
 gyve	gyve
 gzip	gzip
 ha	ha
+HSB	HSB
+HSL	HSL
 Haag	Haag
 Haas	Haas
 habanera	habanera
@@ -34569,10 +34573,10 @@ jauntiness	jauntiness
 jaunts	jaunts
 jaunty	jaunty
 Java	Java
+JavaScript	JavaScript
 Java Development Kit	JavaDevelopmentKit
 Java EE	JavaEE
 Javanese	Javanese
-JavaScript	JavaScript
 Java Virtual Machine	JavaVirtualMachine
 javelin	javelin
 javelins	javelins
@@ -59483,6 +59487,10 @@ sorts	sorts
 sorus	sorus
 SOS	SOS
 sot	sot
+SOTA	SOTA
+non-SOTA	non-SOTA
+SOTA model	SOTAmodel
+non-SOTA model	non-SOTAmodel
 sottish	sottish
 souffle	souffle
 soufflé	soufflé
