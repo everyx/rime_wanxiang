@@ -269,7 +269,13 @@ super_replacer:
       files:
         - lua/data/abbrev.txt
         - lua/data/chengyu.txt
-
+    - option: true      # 英文简码用于应对abbrev状态下table跑到前面的问题
+      mode: abbrev
+      tags: [abc]
+      prefix: "_enabb_"
+      abbrev_rule: "1,3"
+      files:
+        - lua/data/en_abbrev.txt
 # 字符集过滤lua
 # a,通用规范汉字表
 # b,GB2312,
