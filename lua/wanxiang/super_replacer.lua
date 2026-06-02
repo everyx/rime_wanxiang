@@ -748,11 +748,45 @@ function M.func(input, env)
 
     table.sort(always_cands, function(a, b) return a.index < b.index end)
 
-    -- 标准吐词函数（含精准定位插队 + 引擎词霸道拦截）
+    -- 标准吐词函数（含精准定位插队 + 引擎词霸道拦截 + 用户词特权豁免）
     local function output_cand(cand)
         local processed_cands = process_rules(cand)
         for _, pc in ipairs(processed_cands) do
-            -- 1. 插队核心逻辑
+            
+            -- 1. 判断是否为用户词(带有 user 标签的词汇)
+            local is_user_word = false
+            if cand.type and string.find(cand.type, "user") then
+                is_user_word = true
+            end
+            
+            -- 2. 撞车检查：看看引擎当前的词，是否在我们的简码预定名单中
+            local match_always_idx = nil
+            local match_lazy_idx = nil
+            for idx, ac in ipairs(always_cands) do
+                if ac.cand.text == pc.text then match_always_idx = idx; break end
+            end
+            if not match_always_idx then
+                for idx, lc in ipairs(lazy_cands) do
+                    if lc.text == pc.text then match_lazy_idx = idx; break end
+                end
+            end
+            local is_reserved = (match_always_idx ~= nil) or (match_lazy_idx ~= nil)
+
+            -- 3. 用户词 VIP 通道：强行优先上屏，保持用户原顺序！
+            if is_user_word then
+                if not global_yielded[pc.text] then
+                    global_yielded[pc.text] = true
+                    yield(pc)
+                    yield_count = yield_count + 1
+                    if match_always_idx then
+                        table.remove(always_cands, match_always_idx)
+                    elseif match_lazy_idx then
+                        table.remove(lazy_cands, match_lazy_idx)
+                    end
+                end
+            end
+
+            -- 4. 简码插队逻辑：排队名额够了，释放对应的简码
             while #always_cands > 0 and (yield_count + 1) >= always_cands[1].index do
                 local ac = table.remove(always_cands, 1)
                 local ac_processed = process_rules(ac.cand)
@@ -764,23 +798,14 @@ function M.func(input, env)
                     end
                 end
             end
-            
-            -- 2. 拦截机制：检查引擎当前的词，是不是刚好等于我们的简码？
-            local is_reserved_abbrev = false
-            for _, ac in ipairs(always_cands) do
-                if ac.cand.text == pc.text then is_reserved_abbrev = true; break end
-            end
-            if not is_reserved_abbrev then
-                for _, lc in ipairs(lazy_cands) do
-                    if lc.text == pc.text then is_reserved_abbrev = true; break end
-                end
-            end
 
-            -- 3. 如果不是被预定的简码，正常吐出（若是预定的，直接没收不给它出！）
-            if not is_reserved_abbrev and not global_yielded[pc.text] then
-                global_yielded[pc.text] = true
-                yield(pc)
-                yield_count = yield_count + 1
+            -- 5. 常规系统词通道：拦截原生垃圾词(如bus)，放行其它系统词
+            if not is_user_word then
+                if not is_reserved and not global_yielded[pc.text] then
+                    global_yielded[pc.text] = true
+                    yield(pc)
+                    yield_count = yield_count + 1
+                end
             end
         end
     end
