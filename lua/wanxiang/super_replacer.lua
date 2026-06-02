@@ -574,7 +574,6 @@ function M.func(input, env)
         local current_main_comment = cand.comment
         local matched_cand_type = nil 
       
-        -- 使用 env 的共享表
         clear_table(env.shared_pending)
         clear_table(env.shared_comments)
       
@@ -687,17 +686,15 @@ function M.func(input, env)
         return results
     end
 
-    -- 流式拦截器 + 候车室 架构
     local yield_count = 0
     local quality_dropped = false
-    local has_exact_phrase = false
     local seen_texts = {}
     local global_yielded = {}
     local always_cands = {}
     local lazy_cands = {}
     local top_buffer = {}
 
-        -- 处理 abbrev 规则
+    -- 处理 abbrev 规则 (生成简码候车室)
     for _, t in ipairs(rules) do
         if t.mode == "abbrev" then
             local is_active = false
@@ -736,10 +733,10 @@ function M.func(input, env)
                             end
                             count = count + 1
                             if count <= t.always_qty then
-                                abbrev_cand.quality = 999
+                                abbrev_cand.quality = 0 -- 防止 Rime 自动把过高权重的词提前面
                                 insert(always_cands, { cand = abbrev_cand, index = t.always_idx + (count - 1) })
                             else
-                                abbrev_cand.quality = 98
+                                abbrev_cand.quality = 0
                                 insert(lazy_cands, abbrev_cand)
                             end
                         end
@@ -751,10 +748,11 @@ function M.func(input, env)
 
     table.sort(always_cands, function(a, b) return a.index < b.index end)
 
-    -- 标准吐词函数（含精准定位插队）
+    -- 标准吐词函数（含精准定位插队 + 引擎词霸道拦截）
     local function output_cand(cand)
         local processed_cands = process_rules(cand)
         for _, pc in ipairs(processed_cands) do
+            -- 1. 插队核心逻辑
             while #always_cands > 0 and (yield_count + 1) >= always_cands[1].index do
                 local ac = table.remove(always_cands, 1)
                 local ac_processed = process_rules(ac.cand)
@@ -766,7 +764,20 @@ function M.func(input, env)
                     end
                 end
             end
-            if not global_yielded[pc.text] then
+            
+            -- 2. 拦截机制：检查引擎当前的词，是不是刚好等于我们的简码？
+            local is_reserved_abbrev = false
+            for _, ac in ipairs(always_cands) do
+                if ac.cand.text == pc.text then is_reserved_abbrev = true; break end
+            end
+            if not is_reserved_abbrev then
+                for _, lc in ipairs(lazy_cands) do
+                    if lc.text == pc.text then is_reserved_abbrev = true; break end
+                end
+            end
+
+            -- 3. 如果不是被预定的简码，正常吐出（若是预定的，直接没收不给它出！）
+            if not is_reserved_abbrev and not global_yielded[pc.text] then
                 global_yielded[pc.text] = true
                 yield(pc)
                 yield_count = yield_count + 1
@@ -774,56 +785,14 @@ function M.func(input, env)
         end
     end
 
-    -- 清空候车室机制
     local function flush_buffer()
-        if has_exact_phrase then
-            for _, cand in ipairs(top_buffer) do
-                output_cand(cand)
-            end
-        else
-            for _, cand in ipairs(top_buffer) do
-                local processed_cands = process_rules(cand)
-                for _, pc in ipairs(processed_cands) do
-                    if not global_yielded[pc.text] then
-                        global_yielded[pc.text] = true
-                        yield(pc)
-                        yield_count = yield_count + 1
-                    end
-                end
-            end
-            
-            while #always_cands > 0 do
-                local ac = table.remove(always_cands, 1)
-                local ac_processed = process_rules(ac.cand)
-                for _, apc in ipairs(ac_processed) do
-                    if not global_yielded[apc.text] then
-                        global_yielded[apc.text] = true
-                        yield(apc)
-                        yield_count = yield_count + 1
-                    end
-                end
-            end
-            
-            for _, lc in ipairs(lazy_cands) do
-                local lc_processed = process_rules(lc)
-                for _, lpc in ipairs(lc_processed) do
-                    if not global_yielded[lpc.text] then
-                        global_yielded[lpc.text] = true
-                        yield(lpc)
-                        yield_count = yield_count + 1
-                    end
-                end
-            end
-            lazy_cands = {}
+        for _, cand in ipairs(top_buffer) do
+            output_cand(cand)
         end
         top_buffer = {}
     end
 
-    -- 第二步：遍历底层流
     for cand in input:iter() do
-        if cand.type == "phrase" or cand.type == "user_phrase" then
-            has_exact_phrase = true 
-        end
         local q = cand.quality or 0
 
         if not quality_dropped then
@@ -839,12 +808,11 @@ function M.func(input, env)
         end
     end
 
-    -- 第三步：如果流从头到尾都没跌破 99
     if not quality_dropped then
         flush_buffer()
     end
 
-    -- 清理残余
+    -- 终极兜底逻辑
     while #always_cands > 0 do
         local ac = table.remove(always_cands, 1)
         local ac_processed = process_rules(ac.cand)
@@ -853,6 +821,17 @@ function M.func(input, env)
                 global_yielded[apc.text] = true
                 yield(apc)
                 yield_count = yield_count + 1 
+            end
+        end
+    end
+    
+    for _, lc in ipairs(lazy_cands) do
+        local lc_processed = process_rules(lc)
+        for _, lpc in ipairs(lc_processed) do
+            if not global_yielded[lpc.text] then
+                global_yielded[lpc.text] = true
+                yield(lpc)
+                yield_count = yield_count + 1
             end
         end
     end
