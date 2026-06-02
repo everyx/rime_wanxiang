@@ -563,9 +563,7 @@ input_stats:
 #    - "500000:掌控法则·化神期"
 #    - "1000000:破碎虚空·渡劫期"
 
-# Lua 配置：计算器触发关键字
-calculator:
-  trigger: "V"
+
 
 # 主翻译器，拼音
 translator:
