@@ -9055,7 +9055,6 @@ kdvu	克敌制胜
 kdwh	宽大为怀
 kdww	空洞无物
 kdyk	慨当以慷
-kdys	卡的要死
 kdvh	昆弟之好
 kdvm	快刀斩麻
 kdvy	宽打窄用
@@ -19704,7 +19703,7 @@ xdxq	兄弟阋墙
 xdxx	小道消息
 xdyf	戏蝶游蜂
 xdyq	小赌怡情
-xdys	闲的要死|响答影随
+xdys	闲得要死|响答影随
 xdyv	形单影只|相得益彰|小大由之|相得益章
 xdzw	行动坐卧
 xebn	谑而不虐
