@@ -1,8 +1,12 @@
 name: Sync Release to Deepin PR
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: '手动运行：请输入要同步的版本号 (例如: 0.0.10，不要加 v)'
+        required: true
+        type: string
 
 jobs:
   build-and-pr:
@@ -10,7 +14,11 @@ jobs:
     steps:
       - name: 1. 获取版本号
         id: get_version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "VERSION=${{ inputs.version }}" >> $GITHUB_ENV
+            echo "当前为手动运行，使用输入的版本号: ${{ inputs.version }}"
+          fi
 
       - name: 2. 下载并解压基础 Release 产物
         run: |
@@ -26,7 +34,7 @@ jobs:
           rm -f wanxiang_t9.schema.yaml
           rm -f weasel.yaml
           rm -f README.md
-          find . -name ".*" -exec rm -rf {} +
+          find . -mindepth 1 -name ".*" -prune -exec rm -rf {} +
           find . -type f -exec chmod 644 {} +
 
       - name: 4. 检出 Deepin 官方最新 master 作为基座
@@ -53,7 +61,7 @@ jobs:
       - name: 6. 同步其余非隐藏文件
         run: |
           # 将清理后的基础文件同步到目标仓，排除 .git 目录
-          rsync -av --exclude='.git' source_files/ deepin_repo/
+          rsync -av --delete --exclude='.git' --exclude='debian' source_files/ deepin_repo/
 
       - name: 7. 强制覆盖 Fork 的 master 并发起草稿 PR
         uses: peter-evans/create-pull-request@v6
