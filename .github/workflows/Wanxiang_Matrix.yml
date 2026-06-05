@@ -109,12 +109,23 @@ jobs:
             export INJECT_CODE='
             try {
                 val am = appContext.assets
+                
+                // 1. 释放 fonts 目录
                 val fd = java.io.File(userDataDir, "fonts").apply { mkdirs() }
                 am.list("shared/fonts")?.forEach { try { ResourceUtils.copyFile("shared/fonts/$it", java.io.File(fd, it).absolutePath) } catch(e:Exception){} }
+                
+                // 2. 释放 backgrounds 目录
                 val bd = java.io.File(userDataDir, "backgrounds").apply { mkdirs() }
                 val nomedia = java.io.File(bd, ".nomedia")
                 if (!nomedia.exists()) { nomedia.createNewFile() }
                 am.list("shared/backgrounds")?.forEach { try { ResourceUtils.copyFile("shared/backgrounds/$it", java.io.File(bd, it).absolutePath) } catch(e:Exception){} }
+                
+                // 3. 创建 build 目录，并将 trime.yaml 释放进去
+                val buildDir = java.io.File(userDataDir, "build").apply { mkdirs() }
+                try { 
+                    ResourceUtils.copyFile("shared/trime.yaml", java.io.File(buildDir, "trime.yaml").absolutePath) 
+                } catch(e:Exception){}
+                
             } catch(e: Exception) { Timber.e(e, "Assets inject error") }
             Timber.d("Synced!")'
 
