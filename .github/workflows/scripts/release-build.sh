@@ -43,6 +43,7 @@ package_schema_base() {
     --exclude='/release-please-config.json' \
     --exclude='/pro-*-fuzhu-dicts' \
     --exclude='/CHANGELOG.md' \
+    --exclude='.yamlfmt' \
     --exclude='/custom' \
     --exclude='/LICENSE' \
     --exclude="/$OUT_BASE" \
@@ -100,6 +101,7 @@ package_schema_pro() {
     --exclude='/dicts' \
     --exclude='/docs/' \
     --exclude='/mkdocs.yml' \
+    --exclude='.yamlfmt' \
     --exclude='release-please-config.json' \
     --exclude='pro-*-fuzhu-dicts' \
     --exclude='wanxiang_t9.schema.yaml' \
