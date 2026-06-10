@@ -51,8 +51,8 @@ engine:
 
 # 主翻译器，拼音
 translator:
-  dictionary: wanxiang         # 挂载主词库
-#  packs: user                  #导入根目录下名称为user.dict.yaml的自定义固定词典
+  dictionary: wanxiang_pure    # 挂载主词库
+#  packs: user                 #导入根目录下名称为user.dict.yaml的自定义固定词典
   #prism: wanxiang             # 多方案共用一个词库时，为避免冲突，需要用 prism 指定一个名字。
   enable_completion: true      # 启用候选词补全
 #  user_dict: zrm.userdb       # 用户词典的文件名称
