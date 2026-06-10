@@ -43,7 +43,7 @@ CHANGES=$(
   # 2. Pure 区域
   echo "* **精简版 (Pure)**：[下载方案](${DOWNLOAD_URL}/rime-wanxiang-pure.zip)"
   echo "  * *适用人群*：追求最小词库、仅需基础功能的用户。"
-  echo "  * *适用场景*：Win7,fcitx4等低版本使用lua插件的系统。"
+  echo "  * *适用场景*：Win7,fcitx4等低版本，不能使用lua插件的系统。"
   echo ""
   # 3. Pro 区域
   echo "* **双拼辅助码增强版 (Pro)**：均为独立完整配置包，含词库，支持任意双拼挂载，下载包等于选辅助码类型。"
