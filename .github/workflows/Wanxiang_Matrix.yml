@@ -23,6 +23,7 @@ jobs:
           - wanxiang-shouyou-fuzhu
           - wanxiang-shyplus-fuzhu
           - wanxiang-base
+          - wanxiang-pure
 
     steps:
       - name: Checkout Wanxiang Repo
@@ -101,6 +102,8 @@ jobs:
             sed -i 's/File(Environment.getExternalStorageDirectory(), "rime")/File(Environment.getExternalStorageDirectory(), "wanxiang")/g' "$DM_PATH"
             if [[ "${{ matrix.branch }}" == "wanxiang-base" ]]; then
               export TARGET_SCHEMA="wanxiang"
+            elif [[ "${{ matrix.branch }}" == "wanxiang-pure" ]]; then
+              export TARGET_SCHEMA="wanxiang_pure"
             else
               export TARGET_SCHEMA="wanxiang_pro"
             fi

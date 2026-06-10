@@ -1,4 +1,5 @@
-name: Build release branch snapshot
+
+name: Build release branch snapshot8
 
 on:
   workflow_dispatch: # 手动触发
@@ -78,6 +79,7 @@ jobs:
           pack_dict "dist/rime-wanxiang-shouyou-fuzhu/dicts" "pro-shouyou-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-shyplus-fuzhu/dicts" "pro-shyplus-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-base/dicts"          "base-dicts.zip"
+          pack_dict "dist/rime-wanxiang-pure/dicts"          "pure-dicts.zip"
 
       # 3. 删除旧的 Nightly/Preview Release 和 Tag
       - name: Delete existing Nightly Release and Tag
@@ -143,10 +145,12 @@ jobs:
             
             #### 1️⃣ 完整方案包 (包含配置、Lua 脚本、词库等)
             - `rime-wanxiang-base.zip`: 标准版完整方案
+            - `rime-wanxiang-pure.zip`: 精简版完整方案
             - `rime-wanxiang-pro-*-fuzhu.zip`: 携带各款辅助码的 Pro 版完整方案
             
             #### 2️⃣ 独立词库包 (仅含 dicts 目录下的文件，供单独覆盖升级)
             - `base-dicts.zip`: 标准版独立词库
+            - `pure-dicts.zip`: 精简版独立词库
             - `pro-*-fuzhu-dicts.zip`: 携带各款辅助码的独立词库
             - **[wanxiang-lts-zh-hans.gram](https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram)**：与词库同步更新的语法模型
             
@@ -170,7 +174,7 @@ jobs:
         run: |
           set -euo pipefail
           ORIG_BRANCH="$(git rev-parse --abbrev-ref HEAD || echo 'wanxiang')"
-          schemes=("base" "wx-fuzhu" "shouyou-fuzhu" "zrm-fuzhu" "tiger-fuzhu" "moqi-fuzhu" "flypy-fuzhu" "wubi-fuzhu" "hanxin-fuzhu" "shyplus-fuzhu")
+          schemes=("base" "pure" "wx-fuzhu" "shouyou-fuzhu" "zrm-fuzhu" "tiger-fuzhu" "moqi-fuzhu" "flypy-fuzhu" "wubi-fuzhu" "hanxin-fuzhu" "shyplus-fuzhu")
 
           COMMON_FILES=(
             "dicts/*.*"

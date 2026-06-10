@@ -29,6 +29,9 @@ package_schema_base() {
     --exclude='wanxiang_pro.custom.yaml' \
     --exclude='wanxiang_pro.dict.yaml' \
     --exclude='wanxiang_pro.schema.yaml' \
+    --exclude='wanxiang_pure.dict.yaml' \
+    --exclude='wanxiang_pure.schema.yaml' \
+    --exclude='wanxiang_pure.custom.yaml' \
     --include='*.yaml' --include='*.md' --include='*.jpg' --include='*.png' \
     --exclude='*' \
     "$CUSTOM_DIR/" "$OUT_DIR/custom/"
@@ -89,6 +92,9 @@ package_schema_pro() {
     --exclude='wanxiang.custom*' \
     --exclude='wanxiang_pro.dict.yaml' \
     --exclude='wanxiang_pro.schema.yaml' \
+    --exclude='wanxiang_pure.dict.yaml' \
+    --exclude='wanxiang_pure.schema.yaml' \
+    --exclude='wanxiang_pure.custom.yaml' \
     --include='*.yaml' --include='*.md' --include='*.jpg' --include='*.png' \
     --exclude='*' \
     "$ROOT_DIR/custom/" "$OUT_DIR/custom/"
@@ -117,7 +123,82 @@ package_schema_pro() {
   sed -i -E 's/^([[:space:]]*)-\s*schema:\s*wanxiang\s*$/\1- schema: wanxiang_pro/' "$OUT_DIR/default.yaml"
 }
 
+package_schema_pure() {
+    OUT_DIR="$DIST_DIR/rime-wanxiang-pure"
+    rm -rf "$OUT_DIR"
+    mkdir -p "$OUT_DIR/dicts"
 
+    # 白名单词库：只复制指定的 .dict.yaml 文件
+    PURE_DICT_WHITELIST=(
+        "zi.dict.yaml"
+        "jichu.dict.yaml"
+        "lianxiang.dict.yaml"
+        "cuoyin.dict.yaml"
+        "duoyin.dict.yaml"
+        "shici.dict.yaml"
+        "diming.dict.yaml"
+    )
+    for dict_file in "${PURE_DICT_WHITELIST[@]}"; do
+        if [[ -f "$ROOT_DIR/dicts/$dict_file" ]]; then
+            cp "$ROOT_DIR/dicts/$dict_file" "$OUT_DIR/dicts/"
+        else
+            echo "警告: 白名单词库 $dict_file 不存在，跳过"
+        fi
+    done
+
+    # 如果 wanxiang_pure.schema.yaml 或其它文件引用了 en.dict.yaml，可以取消注释：
+    # if [[ -f "$ROOT_DIR/dicts/en.dict.yaml" ]]; then
+    #     cp "$ROOT_DIR/dicts/en.dict.yaml" "$OUT_DIR/dicts/"
+    # fi
+
+    mkdir -p "$OUT_DIR/custom"
+    rsync -av --prune-empty-dirs \
+        --include='*/' \
+        --exclude='wanxiang_pro.custom.yaml' \
+        --exclude='wanxiang_pro.dict.yaml' \
+        --exclude='wanxiang_pro.schema.yaml' \
+        --exclude='wanxiang.custom.yaml' \
+        --exclude='wanxiang.dict.yaml' \
+        --exclude='wanxiang.schema.yaml' \
+        --exclude='wanxiang_pure.schema.yaml' \
+        --exclude='wanxiang_pure.dict.yaml' \
+        --exclude='wanxiang_mixedcode.custom.yaml' \
+        --exclude='wanxiang_english.custom.yaml' \
+        --exclude='wanxiang_reverse.custom.yaml' \
+        --include='*.yaml' --include='*.md' --include='*.jpg' --include='*.png' \
+        --exclude='*' \
+        "$CUSTOM_DIR/" "$OUT_DIR/custom/"
+
+    cp "$CUSTOM_DIR/wanxiang_pure.schema.yaml" "$OUT_DIR/"
+    cp "$CUSTOM_DIR/wanxiang_pure.dict.yaml" "$OUT_DIR/"
+
+    rsync -av --ignore-existing \
+        --exclude='/.*' \
+        --exclude='/dist/' \
+        --exclude='/dicts' \
+        --exclude='/lua' \
+        --exclude='/docs/' \
+        --exclude='/mkdocs.yml' \
+        --exclude='/release-please-config.json' \
+        --exclude='/pro-*-fuzhu-dicts' \
+        --exclude='/wanxiang.dict.yaml' \
+        --exclude='/wanxiang.schema.yaml' \
+        --exclude='/wanxiang_english.dict.yaml' \
+        --exclude='/wanxiang_english.schema.yaml' \
+        --exclude='/wanxiang_mixedcode.dict.yaml' \
+        --exclude='/wanxiang_mixedcode.schema.yaml' \
+        --exclude='/wanxiang_reverse.dict.yaml' \
+        --exclude='/wanxiang_reverse.schema.yaml' \
+        --exclude='/wanxiang_t9.schema.yaml' \
+        --exclude='/CHANGELOG.md' \
+        --exclude='.yamlfmt' \
+        --exclude='/custom' \
+        --exclude='/LICENSE' \
+        "$ROOT_DIR/" "$OUT_DIR/"
+
+    # 6) 修改 default.yaml 默认 schema 为 wanxiang_pure
+    sed -i -E 's/^([[:space:]]*)-\s*schema:\s*wanxiang\s*$/\1- schema: wanxiang_pure/' "$OUT_DIR/default.yaml"
+}
 
 package_schema() {
     SCHEMA_NAME="$1"
@@ -126,27 +207,25 @@ package_schema() {
     if [[ "$SCHEMA_NAME" == "base" ]]; then
         OUT_DIR="$DIST_DIR/rime-wanxiang-base"
         package_schema_base "$OUT_DIR"
-
-        ZIP_NAME=rime-wanxiang-"$SCHEMA_NAME".zip
+    elif [[ "$SCHEMA_NAME" == "pure" ]]; then
+        OUT_DIR="$DIST_DIR/rime-wanxiang-pure"
+        package_schema_pure
     else
         OUT_DIR="$DIST_DIR/rime-wanxiang-$SCHEMA_NAME-fuzhu"
         package_schema_pro "$SCHEMA_NAME" "$OUT_DIR"
-
     fi
 
+    # 所有方案（包括 pure）统一在这里打包
     ZIP_NAME=$(basename "$OUT_DIR").zip
- 
-    # 构建 zip 的排除列表格式：-x "dicts/file1" "dicts/file2" ...
     ZIP_EXCLUDE_ARGS=()
     for file in "${EXCLUDE_DICT_FILES[@]}"; do
         ZIP_EXCLUDE_ARGS+=("dicts/$file")
     done
-    # 使用 -x 排除文件，文件物理上仍留在 $OUT_DIR 中
     (cd "$OUT_DIR" && zip -r -9 -q ../"$ZIP_NAME" . -x "${ZIP_EXCLUDE_ARGS[@]}" && cd ..)
     echo "✅ 完成打包: $ZIP_NAME"
 }
 
-SCHEMA_LIST=("wx" "base" "flypy" "hanxin" "moqi" "tiger" "wubi" "zrm" "shouyou" "shyplus")
+SCHEMA_LIST=("wx" "base" "pure" "flypy" "hanxin" "moqi" "tiger" "wubi" "zrm" "shouyou" "shyplus")
 
 # 如果没有传入参数，则循环 package 所有的
 if [[ -z "$SCHEMA_NAME" ]]; then
