@@ -7,6 +7,7 @@ name: huaxue
 version: "LTS"
 sort: by_weight
 ...
+5	5
 锕铀铅	ā yóu qiān	90
 锕铀系	ā yóu xì	45
 氨基铷	ān jī rú	84
@@ -109,7 +110,6 @@ sort: by_weight
 草酸铕	cǎo suān yǒu	117
 草酰氯	cǎo xiān lǜ	360
 成氯醇	chéng lǜ chún	90
-次氯酸	cì lǜ suān	855
 醋酸钡	cù suān bèi	4
 醋酸钕	cù suān nǚ	4
 醋酸铍	cù suān pī	76
@@ -361,7 +361,6 @@ sort: by_weight
 钙铀矿	gài yóu kuàng	180
 高纯氯	gāo chún lǜ	152
 高氯煤	gāo lǜ méi	45
-高氯酸	gāo lǜ suān	770
 锆钽矿	gào tǎn kuàng	90
 铬钼钢	gè mù gāng	6
 铬酸钡	gè suān bèi	130
@@ -416,7 +415,6 @@ sort: by_weight
 甲苯蓝	jiǎ běn lán	153
 甲醇钽	jiǎ chún tǎn	45
 甲氟喹	jiǎ fú kuí	3
-甲基苯	jiǎ jī běn	850
 甲基氯	jiǎ jī lǜ	558
 甲氯仿	jiǎ lǜ fǎng	45
 加氢苯	jiā qīng běn	117
@@ -456,7 +454,6 @@ sort: by_weight
 甲乙胺	jiǎ yǐ àn	99
 甲乙丙	jiǎ yǐ bǐng	210
 甲异靛	jiǎ yì diàn	4
-甲乙方	jiǎ yǐ fāng	720
 甲乙级	jiǎ yǐ jí	324
 甲乙经	jiǎ yǐ jīng	454
 甲乙类	jiǎ yǐ lèi	490
@@ -707,7 +704,6 @@ sort: by_weight
 氯含量	lǜ hán liàng	407
 氯核苷	lǜ hé gān	45
 氯化锕	lǜ huà ā	180
-氯化铵	lǜ huà ǎn	742
 氯化氨	lǜ huà ān	228
 氯化钯	lǜ huà bǎ	369
 氯化钡	lǜ huà bèi	576
@@ -726,7 +722,6 @@ sort: by_weight
 氯化钒	lǜ huà fán	76
 氯化钫	lǜ huà fāng	50
 氯化钆	lǜ huà gá	207
-氯化钙	lǜ huà gài	702
 氯化锆	lǜ huà gào	346
 氯化铬	lǜ huà gè	342
 氯化镉	lǜ huà gé	236
@@ -735,7 +730,6 @@ sort: by_weight
 氯化硅	lǜ huà guī	137
 氯化钬	lǜ huà huǒ	162
 氯化剂	lǜ huà jì	220
-氯化钾	lǜ huà jiǎ	792
 氯化镓	lǜ huà jiā	239
 氯化金	lǜ huà jīn	360
 氯化锔	lǜ huà jū	144
@@ -756,7 +750,6 @@ sort: by_weight
 氯化镅	lǜ huà méi	129
 氯化锰	lǜ huà měng	333
 氯化钼	lǜ huà mù	328
-氯化钠	lǜ huà nà	986
 氯化镍	lǜ huà niè	382
 氯化钕	lǜ huà nǚ	288
 氯化锫	lǜ huà péi	194
@@ -766,7 +759,6 @@ sort: by_weight
 氯化镨	lǜ huà pǔ	243
 氯化器	lǜ huà qì	4
 氯化铅	lǜ huà qiān	333
-氯化氢	lǜ huà qīng	742
 氯化氰	lǜ huà qíng	179
 氯化铷	lǜ huà rú	261
 氯化铯	lǜ huà sè	400
@@ -783,7 +775,6 @@ sort: by_weight
 氯化烃	lǜ huà tīng	256
 氯化铜	lǜ huà tóng	518
 氯化钍	lǜ huà tǔ	202
-氯化物	lǜ huà wù	783
 氯化钨	lǜ huà wū	213
 氯化锡	lǜ huà xī	414
 氯化硒	lǜ huà xī	220
@@ -811,7 +802,6 @@ sort: by_weight
 氯甲醚	lǜ jiǎ mí	234
 氯甲醛	lǜ jiǎ quán	99
 氯甲酸	lǜ jiǎ suān	392
-氯甲烷	lǜ jiǎ wán	774
 氯碱厂	lǜ jiǎn chǎng	202
 氯碱法	lǜ jiǎn fǎ	230
 氯金酸	lǜ jīn suān	396
@@ -826,7 +816,6 @@ sort: by_weight
 氯硫酚	lǜ liú fēn	45
 氯硫磷	lǜ liú lín	274
 氯镁石	lǜ měi shí	144
-氯霉素	lǜ méi sù	824
 氯锰矿	lǜ měng kuàng	4
 氯嘧啶	lǜ mì dìng	130
 氯米芬	lǜ mǐ fēn	360
@@ -865,7 +854,6 @@ sort: by_weight
 氯酸铝	lǜ suān lǚ	144
 氯酸镁	lǜ suān měi	292
 氯酸锰	lǜ suān měng	171
-氯酸钠	lǜ suān nà	765
 氯酸镍	lǜ suān niè	194
 氯酸镨	lǜ suān pǔ	153
 氯酸铅	lǜ suān qiān	207
@@ -909,7 +897,6 @@ sort: by_weight
 氯乙酸	lǜ yǐ suān	549
 氯铱酸	lǜ yī suān	122
 氯乙烷	lǜ yǐ wán	616
-氯乙烯	lǜ yǐ xī	802
 氯乙烯	lǜ yǐ xī	100
 氯吲哚	lǜ yǐn duǒ	171
 氯荧蒽	lǜ yíng ēn	76
@@ -993,7 +980,6 @@ sort: by_weight
 镨原子	pǔ yuán zǐ	65
 七氯萘	qī lǜ nài	45
 羟苯酯	qiǎng běn zhǐ	130
-羟基苯	qiǎng jī běn	720
 羟氯喹	qiǎng lǜ kuí	580
 氰苯基	qíng běn jī	50
 氢化钡	qīng huà bèi	189
@@ -1039,7 +1025,6 @@ sort: by_weight
 三联苯	sān lián běn	338
 三氯苯	sān lǜ běn	464
 三氯酚	sān lǜ fēn	117
-三氯化	sān lǜ huà	770
 三氯萘	sān lǜ nài	248
 三氯沙	sān lǜ shā	171
 三氯生	sān lǜ shēng	518
@@ -1626,7 +1611,6 @@ sort: by_weight
 氧化镏	yǎng huà liú	12
 氧化炉	yǎng huà lú	547
 氧化镥	yǎng huà lǔ	134
-氧化铝	yǎng huà lǚ	968
 氧化氯	yǎng huà lǜ	179
 氧化率	yǎng huà lǜ	64
 氧化镁	yǎng huà měi	135
@@ -1903,7 +1887,6 @@ sort: by_weight
 苯二酚类	běn èr fēn lèi	130
 苯二酚醚	běn èr fēn mí	50
 苯二甲基	běn èr jiǎ jī	180
-苯二甲酸	běn èr jiǎ suān	846
 苯二硫酚	běn èr liú fēn	194
 苯二硼酸	běn èr péng suān	76
 苯二乙酸	běn èr yǐ suān	153
@@ -2130,7 +2113,6 @@ sort: by_weight
 次氯酸钾	cì lǜ suān jiǎ	180
 次氯酸锂	cì lǜ suān lǐ	99
 次氯酸镁	cì lǜ suān měi	50
-次氯酸钠	cì lǜ suān nà	738
 次氯酸铍	cì lǜ suān pī	4
 次氯酸水	cì lǜ suān shuǐ	297
 次氯酸盐	cì lǜ suān yán	441
@@ -2399,12 +2381,10 @@ sort: by_weight
 二氧化钒	èr yǎng huà fán	3
 二氧化钙	èr yǎng huà gài	50
 二氧化锆	èr yǎng huà gào	144
-二氧化硅	èr yǎng huà guī	816
 二氧化铪	èr yǎng huà hā	243
 二氧化铼	èr yǎng huà lái	162
 二氧化铑	èr yǎng huà lǎo	117
 二氧化钌	èr yǎng huà liǎo	230
-二氧化硫	èr yǎng huà liú	1017
 二氧化硫	èr yǎng huà liú	100
 二氧化氯	èr yǎng huà lǜ	621
 二氧化镁	èr yǎng huà měi	76
@@ -2416,7 +2396,6 @@ sort: by_weight
 二氧化氢	èr yǎng huà qīng	50
 二氧化铈	èr yǎng huà shì	364
 二氧化钛	èr yǎng huà tài	358
-二氧化碳	èr yǎng huà tàn	9715
 二氧化碳	èr yǎng huà tàn	100
 二氧化钍	èr yǎng huà tǔ	374
 二氧化物	èr yǎng huà wù	9
@@ -2801,7 +2780,6 @@ sort: by_weight
 甲烷化炉	jiǎ wán huà lú	45
 甲烷化器	jiǎ wán huà qì	45
 甲烷磺酸	jiǎ wán huáng suān	117
-甲烷氧化	jiǎ wán yǎng huà	724
 甲酰胺基	jiǎ xiān àn jī	99
 甲酰胺酶	jiǎ xiān àn méi	4
 甲酰苯胺	jiǎ xiān běn àn	189
@@ -2890,7 +2868,6 @@ sort: by_weight
 聚氯化铝	jù lǜ huà lǚ	162
 聚氯联苯	jù lǜ lián běn	4
 聚氯硫醚	jù lǜ liú mí	45
-聚氯乙烯	jù lǜ yǐ xī	806
 均苯三胺	jūn běn sān àn	50
 均三甲苯	jūn sān jiǎ běn	360
 卡苯达唑	kǎ běn dá zuò	45
@@ -3770,7 +3747,6 @@ sort: by_weight
 四氯化铌	sì lǜ huà ní	117
 四氯化铅	sì lǜ huà qiān	202
 四氯化钛	sì lǜ huà tài	472
-四氯化碳	sì lǜ huà tàn	774
 四氯化物	sì lǜ huà wù	130
 四氯化锡	sì lǜ huà xī	297
 四氯化烯	sì lǜ huà xī	38
@@ -4219,7 +4195,6 @@ sort: by_weight
 乙烯甲苯	yǐ xī jiǎ běn	144
 乙烯裂解	yǐ xī liè jiě	243
 乙烯三机	yǐ xī sān jī	50
-乙酰氨基	yǐ xiān ān jī	927
 乙酰胺胂	yǐ xiān àn shèn	45
 乙酰苯胺	yǐ xiān běn àn	378
 乙酰苯肼	yǐ xiān běn jǐng	45
@@ -4284,7 +4259,6 @@ sort: by_weight
 一氧化铅	yī yǎng huà qiān	364
 一氧化铊	yī yǎng huà tā	45
 一氧化钛	yī yǎng huà tài	162
-一氧化碳	yī yǎng huà tàn	1027
 一氧化铁	yī yǎng huà tiě	117
 一氧化物	yī yǎng huà wù	162
 一氧化锡	yī yǎng huà xī	220
