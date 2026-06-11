@@ -8406,6 +8406,8 @@ sort: by_weight
 双氢麦角胺	shuāng qīng mài jiǎo àn	100
 双氢青蒿素	shuāng qīng qīng hāo sù	100
 双氢速甾醇	shuāng qīng sù zāi chún	100
+双脱氧胞苷	shuāng tuō yǎng bāo gān	100
+双脱氧肌苷	shuāng tuō yǎng jī gān	100
 双亚硝酸盐	shuāng yà xiāo suān yán	100
 双硬脂酸铝	shuāng yìng zhī suān lǚ	100
 双锥辊甲醇	shuāng zhuī gǔn jiǎ chún	100
@@ -12146,7 +12148,9 @@ sort: by_weight
 甲氧苯丙甲胺	jiǎ yǎng běn bǐng jiǎ àn	100
 甲氧苄氟菊酯	jiǎ yǎng biàn fú jú zhǐ	100
 甲氧丙烯基苯	jiǎ yǎng bǐng xī jī běn	100
+甲氧基巴西灵	jiǎ yǎng jī bā xī líng	100
 甲氧基白鲜碱	jiǎ yǎng jī bái xiān jiǎn	100
+甲氧基半棉酚	jiǎ yǎng jī bàn mián fēn	100
 甲氧基苯丙胺	jiǎ yǎng jī běn bǐng àn	100
 甲氧基苯甲醇	jiǎ yǎng jī běn jiǎ chún	100
 甲氧基苯甲腈	jiǎ yǎng jī běn jiǎ jīng	100
@@ -12161,20 +12165,34 @@ sort: by_weight
 甲氧基苄硫醇	jiǎ yǎng jī biàn liú chún	100
 甲氧基丙氨基	jiǎ yǎng jī bǐng ān jī	100
 甲氧基丙烯腈	jiǎ yǎng jī bǐng xī jīng	100
+甲氧基当归素	jiǎ yǎng jī dāng guī sù	100
 甲氧基丁二烯	jiǎ yǎng jī dīng èr xī	100
+甲氧基吩噻嗪	jiǎ yǎng jī fēn sāi qín	100
 甲氧基环乙烯	jiǎ yǎng jī huán yǐ xī	100
+甲氧基黄叱精	jiǎ yǎng jī huáng chì jīng	100
+甲氧基黄檀醌	jiǎ yǎng jī huáng tán kūn	100
 甲氧基黄樟醚	jiǎ yǎng jī huáng zhāng mí	100
+甲氧基蓟黄素	jiǎ yǎng jī jì huáng sù	100
 甲氧基甲基酚	jiǎ yǎng jī jiǎ jī fēn	100
 甲氧基咖啡碱	jiǎ yǎng jī kā fēi jiǎn	100
 甲氧基氯化苄	jiǎ yǎng jī lǜ huà biàn	100
+甲氧基萘甲醛	jiǎ yǎng jī nài jiǎ quán	100
 甲氧基萘甲酸	jiǎ yǎng jī nài jiǎ suān	100
 甲氧基萘乙酮	jiǎ yǎng jī nài yǐ tóng	100
 甲氧基色氨醇	jiǎ yǎng jī sè ān chún	100
+甲氧基水杨醛	jiǎ yǎng jī shuǐ yáng quán	100
 甲氧基水杨酸	jiǎ yǎng jī shuǐ yáng suān	100
 甲氧基酸模素	jiǎ yǎng jī suān mó sù	100
 甲氧基喜树碱	jiǎ yǎng jī xǐ shù jiǎn	100
+甲氧基香橙素	jiǎ yǎng jī xiāng chéng sù	100
+甲氧基香豆精	jiǎ yǎng jī xiāng dòu jīng	100
+甲氧基香豆素	jiǎ yǎng jī xiāng dòu sù	100
+甲氧基硝基酚	jiǎ yǎng jī xiāo jī fēn	100
+甲氧基溴吡啶	jiǎ yǎng jī xiù bǐ dìng	100
+甲氧基乙基酚	jiǎ yǎng jī yǐ jī fēn	100
 甲氧基乙酸酐	jiǎ yǎng jī yǐ suān gān	100
 甲氧基乙酰氯	jiǎ yǎng jī yǐ xiān lǜ	100
+甲氧基乙酰萘	jiǎ yǎng jī yǐ xiān nài	100
 甲氧甲酰苯酞	jiǎ yǎng jiǎ xiān běn tài	100
 甲氧间苯二胺	jiǎ yǎng jiān běn èr àn	100
 甲氧羟苯乙醇	jiǎ yǎng qiǎng běn yǐ chún	100
@@ -12309,6 +12327,7 @@ sort: by_weight
 聚苯乙烯树脂	jù běn yǐ xī shù zhī	100
 聚苯乙烯塑料	jù běn yǐ xī sù liào	100
 聚丙醇己二酯	jù bǐng chún jǐ èr zhǐ	100
+聚丙交酯糖苷	jù bǐng jiāo zhǐ táng gān	100
 聚丙烯合成纸	jù bǐng xī hé chéng zhǐ	100
 聚丙烯睛纤维	jù bǐng xī jīng xiān wéi	120
 聚丙烯腈纤维	jù bǐng xī jīng xiān wéi	100
