@@ -1925,6 +1925,7 @@ sort: by_weight
 卡佩二氏病	kǎ pèi èr shì bìng	100
 卡它性龈炎	kǎ tā xìng kěn yán	100
 凯尔尼格征	kǎi ěr ní gé zhēng	100
+开放性血胸	kāi fàng xìng xuè xiōng	100
 开放折骨术	kāi fàng zhé gǔ shù	100
 凯弗二氏征	kǎi fú èr shì zhēng	100
 开腹取环术	kāi fù qǔ huán shù	100
@@ -1991,6 +1992,7 @@ sort: by_weight
 口腔黏膜病	kǒu qiāng nián mó bìng	100
 口咽通气管	kǒu yān tōng qì guǎn	100
 库迈二氏病	kù mài èr shì bìng	100
+苦参疱疹酊	kǔ shēn pào zhěn dīng	100
 库韦二氏病	kù wéi èr shì bìng	100
 库欣综合征	kù xīn zōng hé zhēng	100
 库兴综合征	kù xīng zōng hé zhēng	100
@@ -2214,6 +2216,7 @@ sort: by_weight
 毛结节菌病	máo jié jié jūn bìng	100
 猫哭综合征	māo kū zōng hé zhēng	100
 毛囊周围炎	máo náng zhōu wéi yán	100
+猫疱疹病毒	māo pào zhěn bìng dú	100
 毛鞘棘皮瘤	máo qiào jí pí liú	100
 毛细胆管炎	máo xì dǎn guǎn yán	100
 毛细淋巴管	máo xì lín bā guǎn	100
@@ -2429,8 +2432,12 @@ sort: by_weight
 泡膜细胞癌	pào mó xì bāo ái	100
 泡膜细胞瘤	pào mó xì bāo liú	100
 疱液抽取术	pào yè chōu qǔ shù	100
+疱疹病毒目	pào zhěn bìng dú mù	100
+疱疹病毒型	pào zhěn bìng dú xíng	100
+疱疹性瘭疽	pào zhěn xìng biāo jū	100
 疱疹性口炎	pào zhěn xìng kǒu yán	100
 疱疹性湿疹	pào zhěn xìng shī zhěn	100
+疱疹性水疱	pào zhěn xìng shuǐ pào	100
 疱疹性须疮	pào zhěn xìng xū chuāng	100
 疱疹性咽炎	pào zhěn xìng yān yán	100
 疱疹性眼炎	pào zhěn xìng yǎn yán	100
@@ -2539,6 +2546,7 @@ sort: by_weight
 平滑肌瘤病	píng huá jī liú bìng	100
 破骨细胞瘤	pò gǔ xì bāo liú	100
 破裂序列征	pò liè xù liè zhēng	100
+破伤风监测	pò shāng fēng jiān cè	100
 剖腹生产术	pōu fù shēng chǎn shù	100
 剖宫取胎术	pōu gōng qǔ tāi shù	100
 剖腰探查术	pōu yāo tàn chá shù	100
@@ -2693,9 +2701,24 @@ sort: by_weight
 前孔成形术	qián kǒng chéng xíng shù	100
 前列泌尿栓	qián liè mì niào shuān	100
 前列腺发炎	qián liè xiàn fā yán	100
+前列腺梗阻	qián liè xiàn gěng zǔ	100
+前列腺疾患	qián liè xiàn jí huàn	100
+前列腺结核	qián liè xiàn jié hé	100
+前列腺结石	qián liè xiàn jié shí	100
+前列腺梅毒	qián liè xiàn méi dú	100
 前列腺脓肿	qián liè xiàn nóng zhǒng	100
+前列腺缺如	qián liè xiàn quē rú	100
+前列腺素类	qián liè xiàn sù lèi	100
+前列腺体积	qián liè xiàn tǐ jī	100
+前列腺提肌	qián liè xiàn tí jī	100
+前列腺萎缩	qián liè xiàn wěi suō	100
 前列腺腺癌	qián liè xiàn xiàn ái	100
+前列腺酰胺	qián liè xiàn xiān àn	100
 前列腺腺瘤	qián liè xiàn xiàn liú	100
+前列腺小管	qián liè xiàn xiǎo guǎn	100
+前列腺炎症	qián liè xiàn yán zhèng	100
+前列腺液溢	qián liè xiàn yè yì	100
+前列腺肿大	qián liè xiàn zhǒng dà	100
 前膜切除术	qián mó qiē chú shù	100
 前葡萄膜炎	qián pú táo mó yán	100
 嵌疝松懈术	qiàn shàn sōng xiè shù	100
@@ -4247,7 +4270,13 @@ sort: by_weight
 移行细胞癌	yí xíng xì bāo ái	100
 异型吸虫病	yì xíng xī chóng bìng	100
 移行性舌炎	yí xíng xìng shé yán	100
+医源性传播	yī yuán xìng chuán bō	100
+胰源性腹水	yí yuán xìng fù shuǐ	100
+胰源性腹泻	yí yuán xìng fù xiè	100
+医源性感染	yī yuán xìng gǎn rǎn	100
 医源性疾病	yī yuán xìng jí bìng	100
+医源性气胸	yī yuán xìng qì xiōng	100
+医源性阳萎	yī yuán xìng yáng wēi	100
 移植取骨术	yí zhí qǔ gǔ shù	100
 抑制乳腺癌	yì zhì rǔ xiàn ái	100
 溢脂性皮炎	yì zhī xìng pí yán	100
@@ -4476,6 +4505,7 @@ sort: by_weight
 远离乳腺癌	yuǎn lí rǔ xiàn ái	100
 远离糖尿病	yuǎn lí táng niào bìng	100
 原淋巴细胞	yuán lín bā xì bāo	100
+猿疱疹病毒	yuán pào zhěn bìng dú	100
 元气败脱证	yuán qì bài tuō zhèng	100
 元气不足证	yuán qì bù zú zhèng	100
 元气亏虚证	yuán qì kuī xū zhèng	100
@@ -4981,6 +5011,7 @@ sort: by_weight
 病毒性胃肠炎	bìng dú xìng wèi cháng yán	100
 病毒性心包炎	bìng dú xìng xīn bāo yán	100
 病毒性心肌炎	bìng dú xìng xīn jī yán	100
+病疱疹病毒型	bìng pào zhěn bìng dú xíng	100
 病细胞综合征	bìng xì bāo zōng hé zhēng	100
 伯格格二氏病	bó gé gé èr shì bìng	100
 博霍纳综合征	bó huò nà zōng hé zhēng	100
@@ -5194,6 +5225,7 @@ sort: by_weight
 春季性结膜炎	chūn jì xìng jié mó yán	100
 唇颊沟成形术	chún jiá gōu chéng xíng shù	100
 唇颊沟加深术	chún jiá gōu jiā shēn shù	100
+唇开放性伤口	chún kāi fàng xìng shāng kǒu	100
 唇裂术后畸形	chún liè shù hòu jī xíng	100
 唇缺损修复术	chún quē sǔn xiū fù shù	100
 唇手术活检术	chún shǒu shù huó jiǎn shù	100
@@ -5247,6 +5279,9 @@ sort: by_weight
 戴维森分流术	dài wéi sēn fēn liú shù	100
 代谢性脊髓病	dài xiè xìng jǐ suǐ bìng	100
 代谢性心肌病	dài xiè xìng xīn jī bìng	100
+带状疱疹病毒	dài zhuàng pào zhěn bìng dú	100
+带状疱疹搽剂	dài zhuàng pào zhěn chá jì	100
+带状疱疹疫苗	dài zhuàng pào zhěn yì miáo	100
 单胺神经递质	dān àn shén jīng dì zhì	100
 蛋白质过敏病	dàn bái zhì guò mǐn bìng	100
 单侧肥大畸形	dān cè féi dà jī xíng	100
@@ -5256,6 +5291,7 @@ sort: by_weight
 单侧膝关节病	dān cè xī guān jié bìng	100
 胆肠内引流术	dǎn cháng nèi yǐn liú shù	100
 单纯甲状腺肿	dān chún jiǎ zhuàng xiàn zhǒng	100
+单纯疱疹病毒	dān chún pào zhěn bìng dú	100
 单纯性肾变病	dān chún xìng shèn biàn bìng	100
 单纯性肾囊肿	dān chún xìng shèn náng zhǒng	100
 单纯性牙周炎	dān chún xìng yá zhōu yán	100
@@ -6024,6 +6060,7 @@ sort: by_weight
 喉和气管烧伤	hóu hé qì guǎn shāo shāng	100
 喉及气管手术	hóu jí qì guǎn shǒu shù	100
 后交通动脉瘤	hòu jiāo tōng dòng mài liú	100
+喉开放性伤口	hóu kāi fàng xìng shāng kǒu	100
 喉裂伤缝合术	hóu liè shāng féng hé shù	100
 喉瘘管闭合术	hóu lòu guǎn bì hé shù	100
 喉囊肿切除术	hóu náng zhǒng qiē chú shù	100
@@ -6031,6 +6068,7 @@ sort: by_weight
 后尿道电切术	hòu niào dào diàn qiè shù	100
 后尿道电烧术	hòu niào dào diàn shāo shù	100
 后尿道切除术	hòu niào dào qiē chú shù	100
+猴疱疹病毒型	hóu pào zhěn bìng dú xíng	100
 厚皮性骨膜病	hòu pí xìng gǔ mó bìng	100
 喉频谱仪检查	hóu pín pǔ yí jiǎn chá	100
 喉气管挤压伤	hóu qì guǎn jǐ yā shāng	100
@@ -6096,6 +6134,7 @@ sort: by_weight
 坏疽性膀胱炎	huài jū xìng páng guāng yán	100
 坏疽性肉芽肿	huài jū xìng ròu yá zhǒng	100
 坏疽性胰腺炎	huài jū xìng yí xiàn yán	100
+踝开放性伤口	huái kāi fàng xìng shāng kǒu	100
 坏死性杆菌病	huài sǐ xìng gǎn jūn bìng	100
 坏死性巩膜炎	huài sǐ xìng gǒng mó yán	100
 坏死性筋膜炎	huài sǐ xìng jīn mó yán	100
@@ -6131,6 +6170,7 @@ sort: by_weight
 会厌恶性肿瘤	huì yàn è xìng zhǒng liú	100
 会厌良性肿瘤	huì yàn liáng xìng zhǒng liú	100
 会阴疝修补术	huì yīn shàn xiū bǔ shù	100
+𫚔鱼疱疹病毒	huí yú pào zhěn bìng dú	100
 混合细胞腺癌	hùn hé xì bāo xiàn ái	100
 混合细胞腺瘤	hùn hé xì bāo xiàn liú	100
 混合型精神病	hùn hé xíng jīng shén bìng	100
@@ -6145,6 +6185,7 @@ sort: by_weight
 或肺恶性肿瘤	huò fèi è xìng zhǒng liú	100
 霍夫曼综合征	huò fū màn zōng hé zhēng	100
 活化淋巴细胞	huó huà lín bā xì bāo	100
+火鸡疱疹病毒	huǒ jī pào zhěn bìng dú	100
 霍卡黑三氏征	huò kǎ hēi sān shì zhēng	100
 霍洛二氏手术	huò luò èr shì shǒu shù	100
 霍麦二氏手术	huò mài èr shì shǒu shù	100
@@ -6323,6 +6364,7 @@ sort: by_weight
 肩胛下淋巴结	jiān jiǎ xià lín bā jié	100
 间接喉镜检查	jiàn jiē hóu jìng jiǎn chá	100
 睑睫毛电解术	jiǎn jié máo diàn jiě shù	100
+肩开放性骨折	jiān kāi fàng xìng gǔ zhé	100
 睑裂伤缝合术	jiǎn liè shāng féng hé shù	100
 睑内翻矫形术	jiǎn nèi fān jiǎo xíng shù	100
 睑内翻矫正术	jiǎn nèi fān jiǎo zhèng shù	100
@@ -6424,15 +6466,25 @@ sort: by_weight
 结膜纤毛菌病	jié mó xiān máo jūn bìng	100
 节前神经纤维	jié qián shén jīng xiān wéi	100
 结石性胆囊炎	jié shí xìng dǎn náng yán	100
+结扎丝绷紧器	jié zā sī bēng jǐn qì	100
+结扎丝切断钳	jié zā sī qiē duàn qián	100
+睫状后长动脉	jié zhuàng hòu cháng dòng mài	100
+睫状后短动脉	jié zhuàng hòu duǎn dòng mài	100
+睫状肌麻痹剂	jié zhuàng jī má bì jì	100
+睫状上皮细胞	jié zhuàng shàng pí xì bāo	100
 睫状体剥离术	jié zhuàng tǐ bō lí shù	100
 睫状体放水术	jié zhuàng tǐ fàng shuǐ shù	100
 睫状体放液术	jié zhuàng tǐ fàng yè shù	100
 睫状体缝合术	jié zhuàng tǐ féng hé shù	100
 睫状体冷冻术	jié zhuàng tǐ lěng dòng shù	100
 睫状体平部炎	jié zhuàng tǐ píng bù yán	100
+睫状体平坦部	jié zhuàng tǐ píng tǎn bù	100
 睫状体切开术	jié zhuàng tǐ qiē kāi shù	100
 睫状体透热术	jié zhuàng tǐ tòu rè shù	100
+睫状体棕黑板	jié zhuàng tǐ zōng hēi bǎn	100
+睫状血管系统	jié zhuàng xuè guǎn xì tǒng	100
 金红止痛消肿	jīn hóng zhǐ tòng xiāo zhǒng	100
+锦鲤疱疹病毒	jǐn lǐ pào zhěn bìng dú	100
 筋膜条悬吊术	jīn mó tiáo xuán diào shù	100
 浸润性导管癌	jìn rùn xìng dǎo guǎn ái	100
 颈部黑色素瘤	jǐng bù hēi sè sù liú	100
@@ -6490,6 +6542,7 @@ sort: by_weight
 静脉压测定管	jìng mài yā cè dìng guǎn	100
 静脉游离皮辩	jìng mài yóu lí pí biàn	100
 精囊放线菌病	jīng náng fàng xiàn jūn bìng	100
+颈内动脉结扎	jǐng nèi dòng mài jié zā	100
 颈内动脉神经	jǐng nèi dòng mài shén jīng	100
 颈内动脉造影	jǐng nèi dòng mài zào yǐng	100
 颈内静脉扩张	jǐng nèi jìng mài kuò zhāng	100
@@ -6571,7 +6624,17 @@ sort: by_weight
 卡他性中耳炎	kǎ tā xìng zhōng ěr yán	100
 卡泽内夫氏病	kǎ zé nèi fū shì bìng	100
 开放式腹腔镜	kāi fàng shì fù qiāng jìng	100
+开放性鼻伤口	kāi fàng xìng bí shāng kǒu	100
+开放性肺破裂	kāi fàng xìng fèi pò liè	100
+开放性肝破裂	kāi fàng xìng gān pò liè	100
+开放性膈破裂	kāi fàng xìng gé pò liè	100
 开放性活检术	kāi fàng xìng huó jiǎn shù	100
+开放性脑挫伤	kāi fàng xìng nǎo cuò shāng	100
+开放性脾破裂	kāi fàng xìng pí pò liè	100
+开放性脐尿管	kāi fàng xìng qí niào guǎn	100
+开放性肾破裂	kāi fàng xìng shèn pò liè	100
+开放性胃破裂	kāi fàng xìng wèi pò liè	100
+开放性血气胸	kāi fàng xìng xuè qì xiōng	100
 开腹肝活检术	kāi fù gān huó jiǎn shù	100
 开腹排粪石术	kāi fù pái fèn shí shù	100
 开腹胃底折术	kāi fù wèi dǐ zhé shù	100
@@ -6647,6 +6710,7 @@ sort: by_weight
 髋骨黏液囊炎	kuān gǔ nián yè náng yán	100
 髋关节离断术	kuān guān jié lí duàn shù	100
 髋关节置换术	kuān guān jié zhì huàn shù	100
+髋开放性伤口	kuān kāi fàng xìng shāng kǒu	100
 髋皮肤原位癌	kuān pí fū yuán wèi ái	100
 眶部黏液囊肿	kuàng bù nián yè náng zhǒng	100
 眶骨良性肿瘤	kuàng gǔ liáng xìng zhǒng liú	100
@@ -7201,7 +7265,9 @@ sort: by_weight
 膀胱药物灌注	páng guāng yào wù guàn zhù	100
 膀胱异物取出	páng guāng yì wù qǔ chū	100
 膀胱子宫陷凹	páng guāng zǐ gōng xiàn āo	100
+疱疹病毒水痘	pào zhěn bìng dú shuǐ dòu	100
 疱疹后神经痛	pào zhěn hòu shén jīng tòng	100
+疱疹性败血症	pào zhěn xìng bài xuè zhèng	100
 疱疹性结膜炎	pào zhěn xìng jié mó yán	100
 疱疹性龈口炎	pào zhěn xìng kěn kǒu yán	100
 疱疹性脑膜炎	pào zhěn xìng nǎo mó yán	100
@@ -7268,6 +7334,8 @@ sort: by_weight
 胼胝体切开术	pián zhī tǐ qiē kāi shù	100
 偏执性精神病	piān zhí xìng jīng shén bìng	100
 贫血性心脏病	pín xuè xìng xīn zàng bìng	100
+破伤风抗毒素	pò shāng fēng kàng dú sù	100
+破伤风类毒素	pò shāng fēng lèi dú sù	100
 普森氏综合征	pǔ sēn shì zōng hé zhēng	100
 葡糖脑昔脂病	pú táng nǎo xī zhī bìng	100
 葡糖神经酰胺	pú táng shén jīng xiān àn	100
@@ -7279,6 +7347,7 @@ sort: by_weight
 脐病害切除术	qí bìng hài qiē chú shù	100
 起博器综合征	qǐ bó qì zōng hé zhēng	100
 脐部感染脐炎	qí bù gǎn rǎn qí yán	100
+脐带结扎滑脱	qí dài jié zā huá tuō	100
 脐动脉切开术	qí dòng mài qiē kāi shù	100
 气管插管拔除	qì guǎn chā guǎn bá chú	100
 气管导管咬口	qì guǎn dǎo guǎn yǎo kǒu	100
@@ -7381,6 +7450,7 @@ sort: by_weight
 腔静脉切开术	qiāng jìng mài qiē kāi shù	100
 强迫性神经症	qiǎng pò xìng shén jīng zhèng	100
 强直性脊柱炎	qiáng zhí xìng jǐ zhù yán	100
+强直性破伤风	qiáng zhí xìng pò shāng fēng	100
 桥本甲状腺炎	qiáo běn jiǎ zhuàng xiàn yán	100
 桥本甲状腺肿	qiáo běn jiǎ zhuàng xiàn zhǒng	100
 鞘膜恶性肿瘤	qiào mó è xìng zhǒng liú	100
@@ -7614,6 +7684,7 @@ sort: by_weight
 舌系带切开术	shé jì dài qiē kāi shù	100
 舌系带修正术	shé jì dài xiū zhèng shù	100
 舌系带延长术	shé jì dài yán cháng shù	100
+舌开放性伤口	shé kāi fàng xìng shāng kǒu	100
 舌裂伤缝合术	shé liè shāng féng hé shù	100
 射频消融手术	shè pín xiāo róng shǒu shù	100
 舌切开引流术	shé qiē kāi yǐn liú shù	100
@@ -7719,6 +7790,7 @@ sort: by_weight
 神经阻滞麻醉	shén jīng zǔ zhì má zuì	100
 神经阻滞治疗	shén jīng zǔ zhì zhì liáo	100
 肾开窗减压术	shèn kāi chuāng jiǎn yā shù	100
+肾开放性损伤	shèn kāi fàng xìng sǔn shāng	100
 肾裂伤修补术	shèn liè shāng xiū bǔ shù	100
 肾门恶性肿瘤	shèn mén è xìng zhǒng liú	100
 伸拇肌上移术	shēn mǔ jī shàng yí shù	100
@@ -7768,6 +7840,7 @@ sort: by_weight
 肾盂乳头状瘤	shèn yú rǔ tóu zhuàng liú	100
 肾盂源性囊肿	shèn yú yuán xìng náng zhǒng	100
 肾盂周围囊肿	shèn yú zhōu wéi náng zhǒng	100
+肾源性尿崩症	shèn yuán xìng niào bēng zhèng	100
 肾源性心脏病	shèn yuán xìng xīn zàng bìng	100
 肾脏移植手术	shèn zàng yí zhí shǒu shù	100
 肾造口闭合术	shèn zào kǒu bì hé shù	100
@@ -7849,6 +7922,7 @@ sort: by_weight
 手肌肉松解术	shǒu jī ròu sōng jiě shù	100
 手腱鞘缝合术	shǒu jiàn qiào féng hé shù	100
 手筋膜切开术	shǒu jīn mó qiē kāi shù	100
+手开放性伤口	shǒu kāi fàng xìng shāng kǒu	100
 手取绒毛膜术	shǒu qǔ róng máo mó shù	100
 手术骨活检术	shǒu shù gǔ huó jiǎn shù	100
 手术后腹膜炎	shǒu shù hòu fù mó yán	100
@@ -8355,6 +8429,7 @@ sort: by_weight
 新生儿脓疱病	xīn shēng ér nóng pào bìng	100
 新生儿脓疱疮	xīn shēng ér nóng pào chuāng	100
 新生儿脓皮病	xīn shēng ér nóng pí bìng	100
+新生儿破伤风	xīn shēng ér pò shāng fēng	100
 新生儿气管炎	xīn shēng ér qì guǎn yán	100
 新生儿脐脓肿	xīn shēng ér qí nóng zhǒng	100
 新生儿乳腺炎	xīn shēng ér rǔ xiàn yán	100
@@ -8466,6 +8541,7 @@ sort: by_weight
 血色素沉着病	xuè sè sù chén zhuó bìng	100
 血栓性静脉炎	xuè shuān xìng jìng mài yán	100
 血栓性脉管炎	xuè shuān xìng mài guǎn yán	100
+穴位结扎疗法	xué wèi jié zā liáo fǎ	100
 血吸虫性肺炎	xuè xī chóng xìng fèi yán	100
 血吸虫性肝病	xuè xī chóng xìng gān bìng	100
 血吸虫性肝炎	xuè xī chóng xìng gān yán	100
@@ -8539,6 +8615,8 @@ sort: by_weight
 眼睑缘缝合术	yǎn jiǎn yuán féng hé shù	100
 眼睑绉折畸形	yǎn jiǎn zhòu zhé jī xíng	100
 眼结膜冷冻术	yǎn jié mó lěng dòng shù	100
+咽开放性伤口	yàn kāi fàng xìng shāng kǒu	100
+眼开放性外伤	yǎn kāi fàng xìng wài shāng	100
 眼眶寄生虫病	yǎn kuàng jì shēng chóng bìng	100
 咽囊肿综合征	yàn náng zhǒng zōng hé zhēng	100
 眼脑肾综合征	yǎn nǎo shèn zōng hé zhēng	100
@@ -8593,8 +8671,12 @@ sort: by_weight
 胰胆管造影术	yí dǎn guǎn zào yǐng shù	100
 胰岛恶性肿瘤	yí dǎo è xìng zhǒng liú	100
 胰岛良性肿瘤	yí dǎo liáng xìng zhǒng liú	100
+胰岛细胞抗体	yí dǎo xì bāo kàng tǐ	100
 胰岛细胞腺癌	yí dǎo xì bāo xiàn ái	100
 胰岛细胞腺瘤	yí dǎo xì bāo xiàn liú	100
+胰岛细胞移植	yí dǎo xì bāo yí zhí	100
+胰岛细胞增生	yí dǎo xì bāo zēng shēng	100
+胰岛组织硬化	yí dǎo zǔ zhī yìng huà	100
 翼腭窝综合征	yì è wō zōng hé zhēng	100
 遗迹性中耳炎	yí jì xìng zhōng ěr yán	100
 胰空肠吻合术	yí kōng cháng wěn hé shù	100
@@ -8616,10 +8698,15 @@ sort: by_weight
 异位骨切除术	yì wèi gǔ qiē chú shù	100
 已无生命体征	yǐ wú shēng mìng tǐ zhēng	100
 异物性肉芽肿	yì wù xìng ròu yá zhǒng	100
+乙酰醋胺中毒	yǐ xiān cù àn zhòng dú	100
 胰腺恶性肿瘤	yí xiàn è xìng zhǒng liú	100
 胰腺假性囊肿	yí xiàn jiǎ xìng náng zhǒng	100
 胰腺良性肿瘤	yí xiàn liáng xìng zhǒng liú	100
+胰腺同种移植	yí xiàn tóng zhǒng yí zhí	100
 胰腺性腹膜炎	yí xiàn xìng fù mó yán	100
+胰腺星形细胞	yí xiàn xīng xíng xì bāo	100
+胰腺异种移植	yí xiàn yì zhǒng yí zhí	100
+胰腺银夹定位	yí xiàn yín jiā dìng wèi	100
 胰腺周围脓肿	yí xiàn zhōu wéi nóng zhǒng	100
 异型淋巴细胞	yì xíng lín bā xì bāo	100
 移行性幼虫病	yí xíng xìng yòu chóng bìng	100
@@ -8632,6 +8719,7 @@ sort: by_weight
 衣原体腹膜炎	yī yuán tǐ fù mó yán	100
 衣原体结膜炎	yī yuán tǐ jié mó yán	100
 衣原体性肺炎	yī yuán tǐ xìng fèi yán	100
+医源性多毛症	yī yuán xìng duō máo zhèng	100
 医源性糖尿病	yī yuán xìng táng niào bìng	100
 癔症性精神病	yì zhèng xìng jīng shén bìng	100
 癔症性舞蹈病	yì zhèng xìng wǔ dǎo bìng	100
@@ -8867,6 +8955,7 @@ sort: by_weight
 跖筋膜切断术	zhí jīn mó qiē duàn shù	100
 趾筋膜松解术	zhǐ jīn mó sōng jiě shù	100
 跖筋膜松解术	zhí jīn mó sōng jiě shù	100
+趾开放性伤口	zhǐ kāi fàng xìng shāng kǒu	100
 治疗扁桃体炎	zhì liáo biǎn táo tǐ yán	100
 治疗黑色素瘤	zhì liáo hēi sè sù liú	100
 治疗前列腺炎	zhì liáo qián liè xiàn yán	100
@@ -8967,6 +9056,7 @@ sort: by_weight
 肘关节离断术	zhǒu guān jié lí duàn shù	100
 肘关节融合术	zhǒu guān jié róng hé shù	100
 肘关节松解术	zhǒu guān jié sōng jiě shù	100
+肘开放性伤口	zhǒu kāi fàng xìng shāng kǒu	100
 周脉膜切除术	zhōu mài mó qiē chú shù	100
 周期性精神病	zhōu qī xìng jīng shén bìng	100
 皱折性厚皮病	zhòu zhé xìng hòu pí bìng	100
@@ -9056,6 +9146,7 @@ sort: by_weight
 足关节融合术	zú guān jié róng hé shù	100
 足踝部截肢术	zú huái bù jié zhī shù	100
 足筋膜切断术	zú jīn mó qiē duàn shù	100
+足开放性外伤	zú kāi fàng xìng wài shāng	100
 足皮瓣移植术	zú pí bàn yí zhí shù	100
 足韧带松解术	zú rèn dài sōng jiě shù	100
 阻塞性肺气肿	zǔ sè xìng fèi qì zhǒng	100
@@ -9225,6 +9316,7 @@ sort: by_weight
 鲍雅二氏上皮瘤	bào yǎ èr shì shàng pí liú	100
 贝伯克绍三氏病	bèi bó kè shào sān shì bìng	100
 贝伯绍曼三氏病	bèi bó shào màn sān shì bìng	100
+背部开放性伤口	bèi bù kāi fàng xìng shāng kǒu	100
 背部伤口清创术	bèi bù shāng kǒu qīng chuàng shù	100
 背部弹性纤维瘤	bèi bù tán xìng xiān wéi liú	100
 贝耳塞马克手术	bèi ěr sāi mǎ kè shǒu shù	100
@@ -9252,6 +9344,7 @@ sort: by_weight
 鼻部神经封闭术	bí bù shén jīng fēng bì shù	100
 鼻部纤维性丘疹	bí bù xiān wéi xìng qiū zhěn	100
 鼻部肿物切除术	bí bù zhǒng wù qiē chú shù	100
+鼻出血动脉结扎	bí chū xiě dòng mài jié zā	100
 鼻唇病损切除术	bí chún bìng sǔn qiē chú shù	100
 鼻唇沟恶性肿瘤	bí chún gōu è xìng zhǒng liú	100
 鼻唇沟良性肿瘤	bí chún gōu liáng xìng zhǒng liú	100
@@ -9264,6 +9357,7 @@ sort: by_weight
 鼻窦穿刺冲洗术	bí dòu chuān cì chōng xǐ shù	100
 鼻窦对比剂造影	bí dòu duì bǐ jì zào yǐng	100
 鼻窦恶性淋巴瘤	bí dòu è xìng lín bā liú	100
+鼻窦开放性骨折	bí dòu kāi fàng xìng gǔ zhé	100
 鼻窦囊肿切除术	bí dòu náng zhǒng qiē chú shù	100
 鼻窦切开活检术	bí dòu qiē kāi huó jiǎn shù	100
 鼻窦异物取出术	bí dòu yì wù qǔ chū shù	100
@@ -9273,6 +9367,7 @@ sort: by_weight
 鼻骨闭合复位术	bí gǔ bì hé fù wèi shù	100
 鼻骨部分切除术	bí gǔ bù fèn qiē chú shù	100
 鼻骨骨折整复术	bí gǔ gǔ zhé zhěng fù shù	100
+鼻骨开放性骨折	bí gǔ kāi fàng xìng gǔ zhé	100
 鼻骨切开复位术	bí gǔ qiē kāi fù wèi shù	100
 鼻后滴流综合征	bí hòu dī liú zōng hé zhēng	100
 鼻后孔良性肿瘤	bí hòu kǒng liáng xìng zhǒng liú	100
@@ -9504,6 +9599,8 @@ sort: by_weight
 成釉细胞牙肉瘤	chéng yòu xì bāo yá ròu liú	100
 迟发性尺神经炎	chí fā xìng chǐ shén jīng yán	100
 尺骨部分切除术	chǐ gǔ bù fèn qiē chú shù	100
+尺骨开放性骨折	chǐ gǔ kāi fàng xìng gǔ zhé	100
+耻骨开放性骨折	chǐ gǔ kāi fàng xìng gǔ zhé	100
 尺骨取骨植骨术	chǐ gǔ qǔ gǔ zhí gǔ shù	100
 尺骨小头切除术	chǐ gǔ xiǎo tóu qiē chú shù	100
 尺骨远端切除术	chǐ gǔ yuǎn duān qiē chú shù	100
@@ -9577,6 +9674,7 @@ sort: by_weight
 唇恶性黑色素瘤	chún è xìng hēi sè sù liú	100
 唇系带恶性肿瘤	chún jì dài è xìng zhǒng liú	100
 唇系带良性肿瘤	chún jì dài liáng xìng zhǒng liú	100
+鹑鸡疱疹病毒型	chún jī pào zhěn bìng dú xíng	100
 唇颊系带延长术	chún jiá jì dài yán cháng shù	100
 唇交界恶性肿瘤	chún jiāo jiè è xìng zhǒng liú	100
 唇联合恶性肿瘤	chún lián hé è xìng zhǒng liú	100
@@ -9623,6 +9721,7 @@ sort: by_weight
 大疱性类天疱疮	dà pào xìng lèi tiān pào chuāng	100
 大腿挫伤和血肿	dà tuǐ cuò shāng hé xuè zhǒng	100
 大腿断肢再植术	dà tuǐ duàn zhī zài zhí shù	100
+大腿开放性伤口	dà tuǐ kāi fàng xìng shāng kǒu	100
 大腿游离植皮术	dà tuǐ yóu lí zhí pí shù	100
 大网膜恶性肿瘤	dà wǎng mó è xìng zhǒng liú	100
 大网膜良性肿瘤	dà wǎng mó liáng xìng zhǒng liú	100
@@ -9644,6 +9743,7 @@ sort: by_weight
 代麦二氏综合征	dài mài èr shì zōng hé zhēng	100
 代索二氏综合征	dài suǒ èr shì zōng hé zhēng	100
 代托二氏综合征	dài tuō èr shì zōng hé zhēng	100
+带状疱疹的治疗	dài zhuàng pào zhěn de zhì liáo	100
 带状疱疹角膜炎	dài zhuàng pào zhěn jiǎo mó yán	100
 带状疱疹性睑炎	dài zhuàng pào zhěn xìng jiǎn yán	100
 带状疱疹性眼炎	dài zhuàng pào zhěn xìng yǎn yán	100
@@ -9661,12 +9761,14 @@ sort: by_weight
 单侧乳腺根治术	dān cè rǔ xiàn gēn zhì shù	100
 单侧外阴切除术	dān cè wài yīn qiē chú shù	100
 单侧隐睾切除术	dān cè yǐn gāo qiē chú shù	100
+单纯疱疹病毒型	dān chún pào zhěn bìng dú xíng	100
 单纯疱疹性脑炎	dān chún pào zhěn xìng nǎo yán	100
 单纯疱疹性湿疹	dān chún pào zhěn xìng shī zhěn	100
 单纯乳房切除术	dān chún rǔ fáng qiē chú shù	100
 单纯乳突凿开术	dān chún rǔ tū záo kāi shù	100
 单纯性甲状腺肿	dān chún xìng jiǎ zhuàng xiàn zhǒng	100
 单纯性慢性贫血	dān chún xìng màn xìng pín xuè	100
+单纯性疱疹感染	dān chún xìng pào zhěn gǎn rǎn	100
 单纯型腺性唇炎	dān chún xíng xiàn xìng chún yán	100
 胆道球囊扩张术	dǎn dào qiú náng kuò zhāng shù	100
 胆道支架置入术	dǎn dào zhī jià zhì rù shù	100
@@ -9739,6 +9841,7 @@ sort: by_weight
 骶副交感神经核	dǐ fù jiāo gǎn shén jīng hé	100
 低钙腹膜透析液	dī gài fù mó tòu xī yè	100
 骶骨部分切除术	dǐ gǔ bù fèn qiē chú shù	100
+骶骨开放性骨折	dǐ gǔ kāi fàng xìng gǔ zhé	100
 骶骨肿瘤栓塞术	dǐ gǔ zhǒng liú shuān sè shù	100
 低频电疗美容术	dī pín diàn liáo měi róng shù	100
 骶髂关节固定术	dǐ qià guān jié gù dìng shù	100
@@ -9776,6 +9879,7 @@ sort: by_weight
 蝶窦异物取出术	dié dòu yì wù qǔ chū shù	100
 蝶窦肿物切除术	dié dòu zhǒng wù qiē chú shù	100
 顶部胸廓成形术	dǐng bù xiōng kuò chéng xíng shù	100
+顶骨开放性骨折	dǐng gǔ kāi fàng xìng gǔ zhé	100
 顶浆分泌腺粟疹	dǐng jiāng fēn mì xiàn sù zhěn	100
 顶泌汗腺汗囊瘤	dǐng mì hàn xiàn hàn náng liú	100
 顶泌汗腺囊腺瘤	dǐng mì hàn xiàn náng xiàn liú	100
@@ -9824,6 +9928,7 @@ sort: by_weight
 对比泪囊造影术	duì bǐ lèi náng zào yǐng shù	100
 对比敏感度检查	duì bǐ mǐn gǎn dù jiǎn chá	100
 多巴胺能神经元	duō bā àn néng shén jīng yuán	100
+多处开放性外伤	duō chù kāi fàng xìng wài shāng	100
 多动秽语综合征	duō dòng huì yǔ zōng hé zhēng	100
 多尔心室成形术	duō ěr xīn shì chéng xíng shù	100
 多房性囊性肾瘤	duō fáng xìng náng xìng shèn liú	100
@@ -9846,6 +9951,7 @@ sort: by_weight
 额窦肿瘤切除术	é dòu zhǒng liú qiē chú shù	100
 额窦肿物切除术	é dòu zhǒng wù qiē chú shù	100
 额骨部分磨削术	é gǔ bù fen mó xuē shù	100
+额骨开放性骨折	é gǔ kāi fàng xìng gǔ zhé	100
 腭裂后推修复术	è liè hòu tuī xiū fù shù	100
 腭裂四瓣修复术	è liè sì bàn xiū fù shù	100
 厄谢尔赛尼尔病	è xiè ěr sài ní ěr bìng	100
@@ -9889,6 +9995,7 @@ sort: by_weight
 耳孔闭锁矫治术	ěr kǒng bì suǒ jiǎo zhì shù	100
 耳廓病损切除术	ěr kuò bìng sǔn qiē chú shù	100
 耳廓畸形矫正术	ěr kuò jī xíng jiǎo zhèng shù	100
+耳廓开放性伤口	ěr kuò kāi fàng xìng shāng kǒu	100
 耳廓清创缝合术	ěr kuò qīng chuàng féng hé shù	100
 耳廓软骨取骨术	ěr kuò ruǎn gǔ qǔ gǔ shù	100
 耳廓缩小成形术	ěr kuò suō xiǎo chéng xíng shù	100
@@ -9969,12 +10076,14 @@ sort: by_weight
 肺动脉瓣切开术	fèi dòng mài bàn qiē kāi shù	100
 肺动脉瓣置换术	fèi dòng mài bàn zhì huàn shù	100
 费杜二氏疹热病	fèi dù èr shì zhěn rè bìng	100
+狒狒疱疹病毒型	fèi fèi pào zhěn bìng dú xíng	100
 非肺炎的军团病	fēi fèi yán de jūn tuán bìng	100
 肺副球孢子菌病	fèi fù qiú bāo zǐ jūn bìng	100
 腓骨病损切除术	féi gǔ bìng sǔn qiē chú shù	100
 腓骨部分切除术	féi gǔ bù fèn qiē chú shù	100
 非骨化性纤维瘤	fēi gǔ huà xìng xiān wéi liú	100
 腓骨肌代跟腱术	féi gǔ jī dài gēn jiàn shù	100
+腓骨开放性骨折	féi gǔ kāi fàng xìng gǔ zhé	100
 肺孤立性纤维瘤	fèi gū lì xìng xiān wéi liú	100
 腓骨取骨植骨术	féi gǔ qǔ gǔ zhí gǔ shù	100
 非何杰金淋巴瘤	fēi hé jié jīn lín bā liú	100
@@ -10355,6 +10464,7 @@ sort: by_weight
 各种死胎分解术	gè zhǒng sǐ tāi fēn jiě shù	100
 根端囊肿摘除术	gēn duān náng zhǒng zhāi chú shù	100
 跟骨病损切除术	gēn gǔ bìng sǔn qiē chú shù	100
+跟骨开放性骨折	gēn gǔ kāi fàng xìng gǔ zhé	100
 跟腱断裂修补术	gēn jiàn duàn liè xiū bǔ shù	100
 根尖囊肿切除术	gēn jiān náng zhǒng qiē chú shù	100
 根尖区黏膜红肿	gēn jiān qū nián mó hóng zhǒng	100
@@ -10370,6 +10480,7 @@ sort: by_weight
 肱动脉结扎术术	gōng dòng mài jié zā shù shù	100
 肱二头肌缝合术	gōng èr tóu jī féng hé shù	100
 肱骨病损切除术	gōng gǔ bìng sǔn qiē chú shù	100
+肱骨开放性骨折	gōng gǔ kāi fàng xìng gǔ zhé	100
 肱骨髁间成形术	gōng gǔ kē jiān chéng xíng shù	100
 肱骨髁上截骨术	gōng gǔ kē shàng jié gǔ shù	100
 共济失调综合征	gòng jì shī tiáo zōng hé zhēng	100
@@ -10416,6 +10527,7 @@ sort: by_weight
 股骨病损切除术	gǔ gǔ bìng sǔn qiē chú shù	100
 股骨病灶刮除术	gǔ gǔ bìng zào guā chú shù	100
 股骨粗隆截骨术	gǔ gǔ cū lóng jié gǔ shù	100
+股骨开放性骨折	gǔ gǔ kāi fàng xìng gǔ zhé	100
 股骨髁上截骨术	gǔ gǔ kē shàng jié gǔ shù	100
 股骨髁上切骨术	gǔ gǔ kē shàng qiè gǔ shù	100
 股骨麦氏截骨术	gǔ gǔ mài shì jié gǔ shù	100
@@ -10447,6 +10559,7 @@ sort: by_weight
 骨盆骨良性肿瘤	gǔ pén gǔ liáng xìng zhǒng liú	100
 骨盆截骨延长术	gǔ pén jié gǔ yán cháng shù	100
 骨盆结核刮除术	gǔ pén jié hé guā chú shù	100
+骨盆开放性骨折	gǔ pén kāi fàng xìng gǔ zhé	100
 骨盆囊肿刮除术	gǔ pén náng zhǒng guā chú shù	100
 骨盆内移截骨术	gǔ pén nèi yí jié gǔ shù	100
 骨盆直肠窝脓肿	gǔ pén zhí cháng wō nóng zhǒng	100
@@ -10521,6 +10634,7 @@ sort: by_weight
 韩式双眼皮手术	hán shì shuāng yǎn pí shǒu shù	100
 豪埃二氏综合征	háo āi èr shì zōng hé zhēng	100
 郝吉二氏综合征	hǎo jí èr shì zōng hé zhēng	100
+颌部开放性伤口	hé bù kāi fàng xìng shāng kǒu	100
 颌动瞬目综合征	hé dòng shùn mù zōng hé zhēng	100
 颌骨病损切除术	hé gǔ bìng sǔn qiē chú shù	100
 颌骨病灶刮除术	hé gǔ bìng zào guā chú shù	100
@@ -10690,6 +10804,7 @@ sort: by_weight
 会厌病害切除术	huì yàn bìng hài qiē chú shù	100
 会厌谷恶性肿瘤	huì yàn gǔ è xìng zhǒng liú	100
 会咽谷良性肿瘤	huì yàn gǔ liáng xìng zhǒng liú	100
+会厌开放性伤口	huì yàn kāi fàng xìng shāng kǒu	100
 会厌囊肿切除术	huì yàn náng zhǒng qiē chú shù	100
 会厌脓肿切除术	huì yàn nóng zhǒng qiē chú shù	100
 会厌脓肿切开术	huì yàn nóng zhǒng qiē kāi shù	100
@@ -10717,6 +10832,7 @@ sort: by_weight
 霍伯二氏综合征	huò bó èr shì zōng hé zhēng	100
 获得性淋巴管瘤	huò dé xìng lín bā guǎn liú	100
 霍格二氏综合征	huò gé èr shì zōng hé zhēng	100
+火鸡疱疹病毒型	huǒ jī pào zhěn bìng dú xíng	100
 霍帕二氏综合征	huò pà èr shì zōng hé zhēng	100
 火热邪毒壅盛证	huǒ rè xié dú yōng shèng zhèng	100
 霍维二氏综合征	huò wéi èr shì zōng hé zhēng	100
@@ -10851,6 +10967,7 @@ sort: by_weight
 脊柱后凸成形术	jǐ zhù hòu tū chéng xíng shù	100
 脊柱结核刮除术	jǐ zhù jié hé guā chú shù	100
 脊柱结核性脓肿	jǐ zhù jié hé xìng nóng zhǒng	100
+脊柱开放性骨折	jǐ zhù kāi fàng xìng gǔ zhé	100
 脊柱囊肿刮除术	jǐ zhù náng zhǒng guā chú shù	100
 脊柱前路松解术	jǐ zhù qián lù sōng jiě shù	100
 脊柱韧带切断术	jǐ zhù rèn dài qiē duàn shù	100
@@ -10874,6 +10991,7 @@ sort: by_weight
 颊黏膜瓣修补术	jiá nián mó bàn xiū bǔ shù	100
 颊黏膜恶性肿瘤	jiá nián mó è xìng zhǒng liú	100
 颊黏膜良性肿瘤	jiá nián mó liáng xìng zhǒng liú	100
+颊区开放性伤口	jiá qū kāi fàng xìng shāng kǒu	100
 假肉瘤性肌膜炎	jiǎ ròu liú xìng jī mó yán	100
 假声带恶性肿瘤	jiǎ shēng dài è xìng zhǒng liú	100
 甲型病毒性肝炎	jiǎ xíng bìng dú xìng gān yán	100
@@ -10894,6 +11012,7 @@ sort: by_weight
 家族性冷荨麻疹	jiā zú xìng lěng xún má zhěn	100
 家族性脑白质病	jiā zú xìng nǎo bái zhì bìng	100
 睑板腺良性肿瘤	jiǎn bǎn xiàn liáng xìng zhǒng liú	100
+肩部开放性伤口	jiān bù kāi fàng xìng shāng kǒu	100
 睑部泪腺摘除术	jiǎn bù lèi xiàn zhāi chú shù	100
 肩恶性黑色素瘤	jiān è xìng hēi sè sù liú	100
 睑缝合后切开术	jiǎn féng hé hòu qiē kāi shù	100
@@ -11022,6 +11141,7 @@ sort: by_weight
 颈部病损切除术	jǐng bù bìng sǔn qiē chú shù	100
 颈部窦道切除术	jǐng bù dòu dào qiē chú shù	100
 颈部蜂窝组织炎	jǐng bù fēng wō zǔ zhī yán	100
+颈部开放性伤口	jǐng bù kāi fàng xìng shāng kǒu	100
 颈部淋巴结结核	jǐng bù lín bā jié jié hé	100
 颈部瘘管及囊肿	jǐng bù lòu guǎn jí náng zhǒng	100
 颈部脓肿引流术	jǐng bù nóng zhǒng yǐn liú shù	100
@@ -11049,6 +11169,7 @@ sort: by_weight
 胫骨骨母细胞瘤	jìng gǔ gǔ mǔ xì bāo liú	100
 胫骨结节垫高术	jìng gǔ jié jié diàn gāo shù	100
 胫骨结节牵引术	jìng gǔ jié jié qiān yǐn shù	100
+胫骨开放性骨折	jìng gǔ kāi fàng xìng gǔ zhé	100
 胫骨平台抬高术	jìng gǔ píng tái tái gāo shù	100
 胫骨切开引流术	jìng gǔ qiē kāi yǐn liú shù	100
 胫骨上端截骨术	jìng gǔ shàng duān jié gǔ shù	100
@@ -11133,6 +11254,7 @@ sort: by_weight
 颈外侧浅淋巴结	jǐng wài cè qiǎn lín bā jié	100
 颈外动脉结扎术	jǐng wài dòng mài jié zā shù	100
 颈外静脉静脉瘤	jǐng wài jìng mài jìng mài liú	100
+颈项开放性伤口	jǐng xiàng kāi fàng xìng shāng kǒu	100
 经行情志异常病	jīng xíng qíng zhì yì cháng bìng	100
 经行乳房胀痛病	jīng xíng rǔ fáng zhàng tòng bìng	100
 经胸膈疝修补术	jīng xiōng gé shàn xiū bǔ shù	100
@@ -11141,6 +11263,7 @@ sort: by_weight
 经支气管肺活检	jīng zhī qì guǎn fèi huó jiǎn	100
 颈椎病灶清除术	jǐng zhuī bìng zào qīng chú shù	100
 颈椎间盘切除术	jǐng zhuī jiān pán qiē chú shù	100
+颈椎开放性骨折	jǐng zhuī kāi fàng xìng gǔ zhé	100
 颈椎前方减压术	jǐng zhuī qián fāng jiǎn yā shù	100
 颈椎融合综合征	jǐng zhuī róng hé zōng hé zhēng	100
 颈总动脉结扎术	jǐng zǒng dòng mài jié zā shù	100
@@ -11155,6 +11278,7 @@ sort: by_weight
 局部龈下刮治术	jú bù kěn xià guā zhì shù	100
 局部神经元回路	jú bù shén jīng yuán huí lù	100
 巨大肥厚性胃炎	jù dà féi hòu xìng wèi yán	100
+距骨开放性骨折	jù gǔ kāi fàng xìng gǔ zhé	100
 巨气管支气管症	jù qì guǎn zhī qì guǎn zhèng	100
 巨乳缩小整形术	jù rǔ suō xiǎo zhěng xíng shù	100
 巨乳头状结膜炎	jù rǔ tóu zhuàng jié mó yán	100
@@ -11285,6 +11409,7 @@ sort: by_weight
 口腔关节病检查	kǒu qiāng guān jié bìng jiǎn chá	100
 口腔颌面部囊肿	kǒu qiāng hé miàn bù náng zhǒng	100
 口腔颌面部肿瘤	kǒu qiāng hé miàn bù zhǒng liú	100
+口腔开放性伤口	kǒu qiāng kāi fàng xìng shāng kǒu	100
 口腔囊肿摘除术	kǒu qiāng náng zhǒng zhāi chú shù	100
 口腔内淋巴管瘤	kǒu qiāng nèi lín bā guǎn liú	100
 口腔黏膜白斑病	kǒu qiāng nián mó bái bān bìng	100
@@ -11301,6 +11426,7 @@ sort: by_weight
 库特二氏综合征	kù tè èr shì zōng hé zhēng	100
 快乐木偶综合征	kuài lè mù ǒu zōng hé zhēng	100
 髋恶性黑色素瘤	kuān è xìng hēi sè sù liú	100
+髋骨开放性骨折	kuān gǔ kāi fàng xìng gǔ zhé	100
 髋结核性滑膜炎	kuān jié hé xìng huá mó yán	100
 髋臼旋转截骨术	kuān jiù xuán zhuǎn jié gǔ shù	100
 髋臼造盖成形术	kuān jiù zào gài chéng xíng shù	100
@@ -11382,6 +11508,7 @@ sort: by_weight
 肋骨骨膜剥脱术	lèi gǔ gǔ mó bāo tuō shù	100
 肋骨横突切除术	lèi gǔ héng tū qiē chú shù	100
 肋骨局部切除术	lèi gǔ jú bù qiē chú shù	100
+肋骨开放性骨折	lèi gǔ kāi fàng xìng gǔ zhé	100
 肋骨劈裂移植术	lèi gǔ pī liè yí zhí shù	100
 肋骨取骨植骨术	lèi gǔ qǔ gǔ zhí gǔ shù	100
 肋骨移植隆鼻术	lèi gǔ yí zhí lóng bí shù	100
@@ -11505,6 +11632,7 @@ sort: by_weight
 隆起糜烂性胃炎	lóng qǐ mí làn xìng wèi yán	100
 路巴二氏综合征	lù bā èr shì zōng hé zhēng	100
 路德二氏综合征	lù dé èr shì zōng hé zhēng	100
+颅底开放性骨折	lú dǐ kāi fàng xìng gǔ zhé	100
 颅底肿瘤切除术	lú dǐ zhǒng liú qiē chú shù	100
 颅骨病损切除术	lú gǔ bìng sǔn qiē chú shù	100
 颅骨部分切除术	lú gǔ bù fèn qiē chú shù	100
@@ -11515,6 +11643,7 @@ sort: by_weight
 颅骨骨折清创术	lú gǔ gǔ zhé qīng chuàng shù	100
 颅骨硅钢修补术	lú gǔ guī gāng xiū bǔ shù	100
 颅骨畸形性骨炎	lú gǔ jī xíng xìng gǔ yán	100
+颅骨开放性骨折	lú gǔ kāi fàng xìng gǔ zhé	100
 颅骨切除减压术	lú gǔ qiē chú jiǎn yā shù	100
 颅骨死骨切除术	lú gǔ sǐ gǔ qiē chú shù	100
 颅骨死骨摘除术	lú gǔ sǐ gǔ zhāi chú shù	100
@@ -11743,6 +11872,7 @@ sort: by_weight
 面部病害切除术	miàn bù bìng hài qiē chú shù	100
 面部病损切除术	miàn bù bìng sǔn qiē chú shù	100
 面部恶性淋巴瘤	miàn bù è xìng lín bā liú	100
+面部开放性伤口	miàn bù kāi fàng xìng shāng kǒu	100
 面部脓肿引流术	miàn bù nóng zhǒng yǐn liú shù	100
 面部伤口清创术	miàn bù shāng kǒu qīng chuàng shù	100
 面部粟粒性狼疮	miàn bù sù lì xìng láng chuāng	100
@@ -11847,6 +11977,7 @@ sort: by_weight
 内分泌系统手术	nèi fēn mì xì tǒng shǒu shù	100
 内宫颈口修补术	nèi gōng jǐng kǒu xiū bǔ shù	100
 内固定器取出术	nèi gù dìng qì qǔ chū shù	100
+内踝开放性骨折	nèi huái kāi fàng xìng gǔ zhé	100
 内踝韧带重建术	nèi huái rèn dài chóng jiàn shù	100
 内镜下肺减容术	nèi jìng xià fèi jiǎn róng shù	100
 内括约肌重建术	nèi kuò yuē jī chóng jiàn shù	100
@@ -11876,18 +12007,25 @@ sort: by_weight
 念珠菌性甲沟炎	niàn zhū jūn xìng jiǎ gōu yán	100
 念珠菌性脑膜炎	niàn zhū jūn xìng nǎo mó yán	100
 念珠菌性阴道炎	niàn zhū jūn xìng yīn dào yán	100
+尿布疹臀部红斑	niào bù zhěn tún bù hóng bān	100
+尿蛋白电泳分析	niào dàn bái diàn yǒng fēn xī	100
 尿道瓣膜电切术	niào dào bàn mó diàn qiè shù	100
 尿道瓣膜切除术	niào dào bàn mó qiē chú shù	100
+尿道闭合压力图	niào dào bì hé yā lì tú	100
 尿道病害切除术	niào dào bìng hài qiē chú shù	100
 尿道病损切除术	niào dào bìng sǔn qiē chú shù	100
 尿道部分切除术	niào dào bù fèn qiē chú shù	100
+尿道海绵体白膜	niào dào hǎi mián tǐ bái mó	100
+尿道海绵体小梁	niào dào hǎi mián tǐ xiǎo liáng	100
 尿道会阴造口术	niào dào huì yīn zào kǒu shù	100
 尿道会阴造瘘术	niào dào huì yīn zào lòu shù	100
 尿道口处女膜病	niào dào kǒu chǔ nǚ mó bìng	100
 尿道口黏液囊肿	niào dào kǒu nián yè náng zhǒng	100
+尿道括约肌测压	niào dào kuò yuē jī cè yā	100
 尿道裂伤缝合术	niào dào liè shāng féng hé shù	100
 尿道瘘管闭和术	niào dào lòu guǎn bì hé shù	100
 尿道瘘管切除术	niào dào lòu guǎn qiē chú shù	100
+尿道膜部括约肌	niào dào mó bù kuò yuē jī	100
 尿道囊肿切除术	niào dào náng zhǒng qiē chú shù	100
 尿道膀胱悬吊术	niào dào páng guāng xuán diào shù	100
 尿道憩室切除术	niào dào qì shì qiē chú shù	100
@@ -11896,6 +12034,7 @@ sort: by_weight
 尿道上裂成形术	niào dào shàng liè chéng xíng shù	100
 尿道上裂修补术	niào dào shàng liè xiū bǔ shù	100
 尿道上裂修复术	niào dào shàng liè xiū fù shù	100
+尿道损伤伴狭窄	niào dào sǔn shāng bàn xiá zhǎi	100
 尿道外口切开术	niào dào wài kǒu qiē kāi shù	100
 尿道外口整形术	niào dào wài kǒu zhěng xíng shù	100
 尿道息肉电切术	niào dào xī ròu diàn qiè shù	100
@@ -11911,37 +12050,56 @@ sort: by_weight
 尿道悬吊延长术	niào dào xuán diào yán cháng shù	100
 尿道炎性肉芽肿	niào dào yán xìng ròu yá zhǒng	100
 尿道异物取出术	niào dào yì wù qǔ chū shù	100
+尿道阴道括约肌	niào dào yīn dào kuò yuē jī	100
 尿道造口闭和术	niào dào zào kǒu bì hé shù	100
+尿道造口术状态	niào dào zào kǒu shù zhuàng tài	100
 尿道周围活检术	niào dào zhōu wéi huó jiǎn shù	100
 尿毒症性神经病	niào dú zhèng xìng shén jīng bìng	100
 尿毒症性心包炎	niào dú zhèng xìng xīn bāo yán	100
 尿毒症性心肌病	niào dú zhèng xìng xīn jī bìng	100
 尿毒症性心肌炎	niào dú zhèng xìng xīn jī yán	100
 尿毒症性心脏病	niào dú zhèng xìng xīn zàng bìng	100
+尿儿茶酚胺测定	niào ér chá fēn àn cè dìng	100
+尿酚红排泄试验	niào fēn hóng pái xiè shì yàn	100
+尿结石成份分析	niào jié shí chéng fèn fēn xī	100
+尿流动力学检测	niào liú dòng lì xué jiǎn cè	100
 尿流动力学检查	niào liú dòng lì xué jiǎn chá	100
 尿流改道复原术	niào liú gǎi dào fù yuán shù	100
+尿浓缩稀释试验	niào nóng suō xī shì shì yàn	100
+尿培养阳性所见	niào péi yǎng yáng xìng suǒ jiàn	100
 尿乳糜定性检查	niào rǔ mí dìng xìng jiǎn chá	100
 尿生殖膈上筋膜	niào shēng zhí gé shàng jīn mó	100
 尿生殖膈下筋膜	niào shēng zhí gé xià jīn mó	100
 尿生殖系统腹膜	niào shēng zhí xì tǒng fù mó	100
+尿素渗透性动物	niào sù shèn tòu xìng dòng wù	100
+尿液爱迪氏计数	niào yè ài dí shì jì shù	100
+尿游离脱氧嘧啶	niào yóu lí tuō yǎng mì dìng	100
 尿中包涵体检查	niào zhōng bāo hán tǐ jiǎn chá	100
+尿转铁蛋白测定	niào zhuǎn tiě dàn bái cè dìng	100
 颞部病损切除术	niè bù bìng sǔn qiē chú shù	100
 颞部肿物切除术	niè bù zhǒng wù qiē chú shù	100
 颞骨部分切除术	niè gǔ bù fèn qiē chú shù	100
 颞骨次全切除术	niè gǔ cì quán qiē chú shù	100
+颞骨开放性骨折	niè gǔ kāi fàng xìng gǔ zhé	100
 颞颌关节成形术	niè hé guān jié chéng xíng shù	100
 颞颌关节复位术	niè hé guān jié fù wèi shù	100
 颞颌关节根治术	niè hé guān jié gēn zhì shù	100
 颞颌关节灌洗术	niè hé guān jié guàn xǐ shù	100
 颞颌关节减压术	niè hé guān jié jiǎn yā shù	100
 颞颌关节镜检查	niè hé guān jié jìng jiǎn chá	100
+颞颌关节内强直	niè hé guān jié nèi qiáng zhí	100
+颞颌关节前脱位	niè hé guān jié qián tuō wèi	100
 颞颌关节紊乱病	niè hé guān jié wěn luàn bìng	100
 颞颌关节综合征	niè hé guān jié zōng hé zhēng	100
 颞颌髁突切除术	niè hé kē tū qiē chú shù	100
 颞浅动脉贴附术	niè qiǎn dòng mài tiē fù shù	100
 颞上枝静脉阻塞	niè shàng zhī jìng mài zǔ sè	100
+颞下颌关节复位	niè xià hé guān jié fù wèi	100
 颞下颌关节疾病	niè xià hé guān jié jí bìng	100
 颞下颌关节静脉	niè xià hé guān jié jìng mài	100
+颞下颌关节强直	niè xià hé guān jié qiáng zhí	100
+颞下颌关节疼痛	niè xià hé guān jié téng tòng	100
+颞下颌关节脱位	niè xià hé guān jié tuō wèi	100
 颞下颌关节造影	niè xià hé guān jié zào yǐng	100
 牛皮癣性关节炎	niú pí xuǎn xìng guān jié yán	100
 牛丘疹性口腔炎	niú qiū zhěn xìng kǒu qiāng yán	100
@@ -12040,10 +12198,14 @@ sort: by_weight
 膀胱肿瘤切除术	páng guāng zhǒng liú qiē chú shù	100
 膀胱周围活检术	páng guāng zhōu wéi huó jiǎn shù	100
 膀胱周围探查术	páng guāng zhōu wéi tàn chá shù	100
+疱疹病毒性瘭疽	pào zhěn bìng dú xìng biāo jū	100
 疱疹病毒性肝炎	pào zhěn bìng dú xìng gān yán	100
 疱疹病毒性咽炎	pào zhěn bìng dú xìng yān yán	100
 疱疹后多神经病	pào zhěn hòu duō shén jīng bìng	100
 疱疹性脑膜脑炎	pào zhěn xìng nǎo mó nǎo yán	100
+胚胎肝细胞移植	pēi tāi gān xì bāo yí zhí	100
+胚胎核性白内障	pēi tāi hé xìng bái nèi zhàng	100
+胚胎脑组织移植	pēi tāi nǎo zǔ zhī yí zhí	100
 盆骨病损切除术	pén gǔ bìng sǔn qiē chú shù	100
 盆腔病损切除术	pén qiāng bìng sǔn qiē chú shù	100
 盆腔充血综合征	pén qiāng chōng xuè zōng hé zhēng	100
@@ -12065,12 +12227,18 @@ sort: by_weight
 皮肤疤痕磨削术	pí fū bā hén mó xuē shù	100
 皮肤瘢痕切除术	pí fū bān hén qiē chú shù	100
 皮肤病损切除术	pí fū bìng sǔn qiē chú shù	100
+皮肤淀粉样变性	pí fū diàn fěn yàng biàn xìng	100
+皮肤肥大性疾患	pí fū féi dà xìng jí huàn	100
 皮肤附属器腺瘤	pí fū fù shǔ qì xiàn liú	100
+皮肤钙质沉着症	pí fū gài zhì chén zhuó zhèng	100
+皮肤感染性窦道	pí fū gǎn rǎn xìng dòu dào	100
 皮肤干燥性皮炎	pí fū gān zào xìng pí yán	100
+皮肤寄生虫感染	pí fū jì shēng chóng gǎn rǎn	100
 皮肤僵硬综合征	pí fū jiāng yìng zōng hé zhēng	100
 皮肤卡波西肉瘤	pí fū kǎ bō xī ròu liú	100
 皮肤溃疡切除术	pí fū kuì yáng qiē chú shù	100
 皮肤溃疡清创术	pí fū kuì yáng qīng chuàng shù	100
+皮肤老年性萎缩	pí fū lǎo nián xìng wěi suō	100
 皮肤类圆线虫病	pí fū lèi yuán xiàn chóng bìng	100
 皮肤利斯特菌病	pí fū lì sī tè jūn bìng	100
 皮肤淋巴细胞瘤	pí fū lín bā xì bāo liú	100
@@ -12079,20 +12247,27 @@ sort: by_weight
 皮肤挛缩松解术	pí fū luán suō sōng jiě shù	100
 皮肤毛细血管瘤	pí fū máo xì xuè guǎn liú	100
 皮肤囊肿切除术	pí fū náng zhǒng qiē chú shù	100
+皮肤黏膜无苍白	pí fū nián mó wú cāng bái	100
 皮肤尿流改道术	pí fū niào liú gǎi dào shù	100
 皮肤球孢子菌病	pí fū qiú bāo zǐ jūn bìng	100
+皮肤软组织感染	pí fū ruǎn zǔ zhī gǎn rǎn	100
 皮肤神经官能病	pí fū shén jīng guān néng bìng	100
 皮肤神经官能症	pí fū shén jīng guān néng zhèng	100
 皮附属物结扎术	pí fù shǔ wù jié zā shù	100
 皮肤损伤清创术	pí fū sǔn shāng qīng chuàng shù	100
+皮肤无针喷注器	pí fū wú zhēn pēn zhù qì	100
+皮肤细腻有光泽	pí fū xì nì yǒu guāng zé	100
 皮肤纤毛性囊肿	pí fū xiān máo xìng náng zhǒng	100
 皮肤血虚风燥证	pí fū xuè xū fēng zào zhèng	100
 皮肤炎性肉芽肿	pí fū yán xìng ròu yá zhǒng	100
+皮肤幼虫移行症	pí fū yòu chóng yí xíng zhèng	100
+皮肤源性白内障	pí fū yuán xìng bái nèi zhàng	100
 皮肤再生移植术	pí fū zài shēng yí zhí shù	100
 皮肤脂肪切除术	pí fū zhī fáng qiē chú shù	100
 皮肤肿瘤切除术	pí fū zhǒng liú qiē chú shù	100
 皮肤猪囊尾蚴病	pí fū zhū náng wěi yòu bìng	100
 皮肤着色真菌病	pí fū zhuó sè zhēn jūn bìng	100
+皮盖特氏解球菌	pí gài tè shì jiě qiú jūn	100
 脾继发恶性肿瘤	pí jì fā è xìng zhǒng liú	100
 匹克威克综合征	pǐ kè wēi kè zōng hé zhēng	100
 皮罗二氏综合征	pí luó èr shì zōng hé zhēng	100
@@ -12118,16 +12293,27 @@ sort: by_weight
 胼胝体背侧静脉	pián zhī tǐ bèi cè jìng mài	100
 胼胝体恶性肿瘤	pián zhī tǐ è xìng zhǒng liú	100
 平坦糜烂性胃炎	píng tǎn mí làn xìng wèi yán	100
+破伤风抗毒素针	pò shāng fēng kàng dú sù zhēn	100
+破伤风针抗毒素	pò shāng fēng zhēn kàng dú sù	100
 剖腹腹腔引流术	pōu fù fù qiāng yǐn liú shù	100
 普德拉克综合征	pǔ dé lā kè zōng hé zhēng	100
 普杰二氏综合征	pǔ jié èr shì zōng hé zhēng	100
 葡萄膜恶性肿瘤	pú táo mó è xìng zhǒng liú	100
 葡萄膜良性肿瘤	pú táo mó liáng xìng zhǒng liú	100
+葡萄球菌肠毒素	pú táo qiú jūn cháng dú sù	100
 葡萄球菌菌血病	pú táo qiú jūn jūn xuè bìng	100
+葡萄球菌类毒素	pú táo qiú jūn lèi dú sù	100
+葡萄球菌携带者	pú táo qiú jūn xié dài zhě	100
 葡萄球菌性肺炎	pú táo qiú jūn xìng fèi yán	100
+葡萄糖耐量试验	pú táo táng nài liàng shì yàn	100
 葡萄糖脑苷脂病	pú táo táng nǎo gān zhī bìng	100
+葡萄糖抑制试验	pú táo táng yì zhì shì yàn	100
+葡萄糖鱼肝油乳	pú táo táng yú gān yóu rǔ	100
 起搏器涂覆电极	qǐ bó qì tú fù diàn jí	100
 起搏器植入感染	qǐ bó qì zhí rù gǎn rǎn	100
+起博器装置校正	qǐ bó qì zhuāng zhì jiào zhèng	100
+起博器装置去除	qǐ bó qì zhuāng zhì qù chú	100
+起博器装置修复	qǐ bó qì zhuāng zhì xiū fù	100
 脐部脓肿切排术	qí bù nóng zhǒng qiè pái shù	100
 脐肠瘘管切除术	qí cháng lòu guǎn qiē chú shù	100
 气管疤痕切除术	qì guǎn bā hén qiē chú shù	100
@@ -12163,10 +12349,20 @@ sort: by_weight
 脐膀胱瘘切除术	qí páng guāng lòu qiē chú shù	100
 脐疝补片修补术	qí shàn bǔ piàn xiū bǔ shù	100
 齐思奥本海姆病	qí sī ào běn hǎi mǔ bìng	100
+脐血干细胞移植	qí xuè gàn xì bāo yí zhí	100
+气血和者则脉缓	qì xuè hé zhě zé mài huǎn	100
+气血亏虚服之康	qì xuè kuī xū fú zhī kāng	100
+气血乱者则脉乱	qì xuè luàn zhě zé mài luàn	100
+气血平者则脉平	qì xuè píng zhě zé mài píng	100
 脐血染色体检查	qí xuè rǎn sè tǐ jiǎn chá	100
+气血脱者则脉绝	qì xuè tuō zhě zé mài jué	100
 气压创伤性鼻炎	qì yā chuāng shāng xìng bí yán	100
 奇异性平滑肌瘤	qí yì xìng píng huá jī liú	100
+器质性大脑障碍	qì zhì xìng dà nǎo zhàng ài	100
+器质性焦虑障碍	qì zhì xìng jiāo lǜ zhàng ài	100
+器质性精神障碍	qì zhì xìng jīng shén zhàng ài	100
 器质性脑综合征	qì zhì xìng nǎo zōng hé zhēng	100
+髂动脉后输尿管	qià dòng mài hòu shū niào guǎn	100
 髂骨部分切除术	qià gǔ bù fèn qiē chú shù	100
 髂骨动脉成型术	qià gǔ dòng mài chéng xíng shù	100
 髂骨取骨植骨术	qià gǔ qǔ gǔ zhí gǔ shù	100
@@ -12186,14 +12382,20 @@ sort: by_weight
 髂总内侧淋巴结	qià zǒng nèi cè lín bā jié	100
 髂总外侧淋巴结	qià zǒng wài cè lín bā jié	100
 髂总中间淋巴结	qià zǒng zhōng jiān lín bā jié	100
+前白蛋白试剂盒	qián bái dàn bái shì jì hé	100
 前臂残端修整术	qián bì cán duān xiū zhěng shù	100
 前臂动静脉瘘术	qián bì dòng jìng mài lòu shù	100
+前臂多发性骨折	qián bì duō fā xìng gǔ zhé	100
 前臂肌腱缝合术	qián bì jī jiàn féng hé shù	100
 前臂肌腱切断术	qián bì jī jiàn qiē duàn shù	100
+前臂开放性伤口	qián bì kāi fàng xìng shāng kǒu	100
+前臂裂伤伴感染	qián bì liè shāng bàn gǎn rǎn	100
 前臂内侧皮神经	qián bì nèi cè pí shén jīng	100
 前臂屈肌上移术	qián bì qū jī shàng yí shù	100
 前臂外侧皮神经	qián bì wài cè pí shén jīng	100
 钱币状湿疹皮炎	qián bì zhuàng shī zhěn pí yán	100
+浅表肌腱膜系统	qiǎn biǎo jī jiàn mó xì tǒng	100
+浅表性脑内出血	qiǎn biǎo xìng nǎo nèi chū xiě	100
 浅表肿物切除术	qiǎn biǎo zhǒng wù qiē chú shù	100
 浅层点状角膜炎	qiǎn céng diǎn zhuàng jiǎo mó yán	100
 嵌顿包茎松解术	qiàn dùn bāo jīng sōng jiě shù	100
@@ -12241,6 +12443,10 @@ sort: by_weight
 青春期甲状腺肿	qīng chūn qī jiǎ zhuàng xiàn zhǒng	100
 青春前期牙周炎	qīng chūn qián qī yá zhōu yán	100
 青少年型牙周炎	qīng shào nián xíng yá zhōu yán	100
+清胃散中当归连	qīng wèi sàn zhōng dāng guī lián	100
+清瘟败毒地连芩	qīng wēn bài dú dì lián qín	100
+清洗氨母液二泵	qīng xǐ ān mǔ yè èr bèng	120
+清邪泻毒亦滋阴	qīng xié xiè dú yì zī yīn	100
 球壁异物取出术	qiú bì yì wù qǔ chū shù	100
 球结膜瓣复盖术	qiú jié mó bàn fù gài shù	100
 球菌性口炎口炎	qiú jūn xìng kǒu yán kǒu yán	100
@@ -12271,11 +12477,19 @@ sort: by_weight
 颧弓截骨缩小术	quán gōng jié gǔ suō xiǎo shù	100
 犬钩端螺旋体病	quǎn gōu duān luó xuán tǐ bìng	100
 颧骨部分切除术	quán gǔ bù fèn qiē chú shù	100
+颧骨开放性骨折	quán gǔ kāi fàng xìng gǔ zhé	100
 颧骨颧弓成型术	quán gǔ quán gōng chéng xíng shù	100
 颧骨肿块切除术	quán gǔ zhǒng kuài qiē chú shù	100
+全口二次取模法	quán kǒu èr cì qǔ mó fǎ	100
+全口合成树脂牙	quán kǒu hé chéng shù zhī yá	100
 全口龈上洁治术	quán kǒu kěn shàng jié zhì shù	100
 全口龈下刮治术	quán kǒu kěn xià guā zhì shù	100
+全口义齿修复学	quán kǒu yì chǐ xiū fù xué	100
 全髋关节置换术	quán kuān guān jié zhì huàn shù	100
+全髋臼杯钴铬钼	quán kuān jiù bēi gǔ gè mù	100
+全髋臼杯钛合金	quán kuān jiù bēi tài hé jīn	100
+全髋系统股骨柄	quán kuān xì tǒng gǔ gǔ bǐng	100
+全髋系统股骨头	quán kuān xì tǒng gǔ gǔ tóu	100
 全身惊厥性疾病	quán shēn jīng jué xìng jí bìng	100
 全身性毛霉菌病	quán shēn xìng máo méi jūn bìng	100
 全身性土拉菌病	quán shēn xìng tǔ lā jūn bìng	100
@@ -12288,12 +12502,19 @@ sort: by_weight
 缺血性脑血管病	quē xuè xìng nǎo xuè guǎn bìng	100
 缺氧缺血性脑病	quē yǎng quē xuè xìng nǎo bìng	100
 染料接触性皮炎	rǎn liào jiē chù xìng pí yán	100
+桡侧腕短伸肌囊	ráo cè wàn duǎn shēn jī náng	100
+桡侧腕屈肌腱鞘	ráo cè wàn qū jī jiàn qiào	100
+桡侧腕伸肌腱鞘	ráo cè wàn shēn jī jiàn qiào	100
 桡尺骨恶性肿瘤	ráo chǐ gǔ è xìng zhǒng liú	100
 桡尺骨良性肿瘤	ráo chǐ gǔ liáng xìng zhǒng liú	100
 桡骨病损切除术	ráo gǔ bìng sǔn qiē chú shù	100
+桡骨环状关节面	ráo gǔ huán zhuàng guān jié miàn	100
+桡骨颈桡骨粗隆	ráo gǔ jǐng ráo gǔ cū lóng	100
 桡骨茎突腱鞘炎	ráo gǔ jīng tū jiàn qiào yán	100
 桡骨茎突切除术	ráo gǔ jīng tū qiē chú shù	100
+桡骨开放性骨折	ráo gǔ kāi fàng xìng gǔ zhé	100
 桡骨取骨植骨术	ráo gǔ qǔ gǔ zhí gǔ shù	100
+桡骨小头半脱位	ráo gǔ xiǎo tóu bàn tuō wèi	100
 桡骨小头切除术	ráo gǔ xiǎo tóu qiē chú shù	100
 桡或尺骨植骨术	ráo huò chǐ gǔ zhí gǔ shù	100
 热毒壅聚头面证	rè dú yōng jù tóu miàn zhèng	100
@@ -12308,12 +12529,18 @@ sort: by_weight
 人工耳蜗植入术	rén gōng ěr wō zhí rù shù	100
 人工关节取出术	rén gōng guān jié qǔ chū shù	100
 人工关节置换术	rén gōng guān jié zhì huàn shù	100
+人工获得性免疫	rén gōng huò dé xìng miǎn yì	100
 人工晶体复位术	rén gōng jīng tǐ fù wèi shù	100
 人工晶体取出术	rén gōng jīng tǐ qǔ chū shù	100
 人工晶体置换术	rén gōng jīng tǐ zhì huàn shù	100
 人工晶体植入术	rén gōng jīng tǐ zhí rù shù	100
+人工髋关节螺钉	rén gōng kuān guān jié luó dīng	100
 人工泪管植入术	rén gōng lèi guǎn zhí rù shù	100
 人工流产刮宫术	rén gōng liú chǎn guā gōng shù	100
+人工流产后腹痛	rén gōng liú chǎn hòu fù tòng	100
+人工流产后绝育	rén gōng liú chǎn hòu jué yù	100
+人工流产后休克	rén gōng liú chǎn hòu xiū kè	100
+人工膜肺氧合器	rén gōng mó fèi yǎng hé qì	100
 人工气管置换术	rén gōng qì guǎn zhì huàn shù	100
 人工食管重建术	rén gōng shí guǎn chóng jiàn shù	100
 人工下巴植入术	rén gōng xià bā zhí rù shù	100
@@ -12322,11 +12549,23 @@ sort: by_weight
 人工阴道成形术	rén gōng yīn dào chéng xíng shù	100
 人工终止妊娠术	rén gōng zhōng zhǐ rèn shēn shù	100
 人工椎体置换术	rén gōng zhuī tǐ zhì huàn shù	100
+人乳头瘤病毒型	rén rǔ tóu liú bìng dú xíng	100
+人乳头状瘤病毒	rén rǔ tóu zhuàng liú bìng dú	100
+妊娠伴澳抗阳性	rèn shēn bàn ào kàng yáng xìng	100
+妊娠伴多囊卵巢	rèn shēn bàn duō náng luǎn cháo	100
+妊娠胆汁淤积症	rèn shēn dǎn zhī yū jī zhèng	100
+妊娠合并高血压	rèn shēn hé bìng gāo xuè yā	100
 妊娠合并阑尾炎	rèn shēn hé bìng lán wěi yán	100
 妊娠合并糖尿病	rèn shēn hé bìng táng niào bìng	100
 妊娠合并心脏病	rèn shēn hé bìng xīn zàng bìng	100
+妊娠急性脂肪肝	rèn shēn jí xìng zhī fáng gān	100
+妊娠期宫腔感染	rèn shēn qī gōng qiāng gǎn rǎn	100
 妊娠期静脉曲张	rèn shēn qī jìng mài qǔ zhāng	100
+妊娠期尿道感染	rèn shēn qī niào dào gǎn rǎn	100
 妊娠丘疹性皮炎	rèn shēn qiū zhěn xìng pí yán	100
+妊娠试验假阳性	rèn shēn shì yàn jiǎ yáng xìng	100
+妊娠糖尿病患者	rèn shēn táng niào bìng huàn zhě	100
+妊娠中毒性红斑	rèn shēn zhòng dú xìng hóng bān	100
 人兽共患传染病	rén shòu gòng huàn chuán rǎn bìng	100
 人为甲状腺毒症	rén wéi jiǎ zhuàng xiàn dú zhèng	100
 任意皮瓣形成术	rèn yì pí bàn xíng chéng shù	100
@@ -12343,7 +12582,9 @@ sort: by_weight
 乳房次全切除术	rǔ fáng cì quán qiē chú shù	100
 乳房导管原位癌	rǔ fáng dǎo guǎn yuán wèi ái	100
 乳房改良根治术	rǔ fáng gǎi liáng gēn zhì shù	100
+乳房后天性缺失	rǔ fáng hòu tiān xìng quē shī	100
 乳房肌瓣移植术	rǔ fáng jī bàn yí zhí shù	100
+乳房开放性伤口	rǔ fáng kāi fàng xìng shāng kǒu	100
 乳房扩大根治术	rǔ fáng kuò dà gēn zhì shù	100
 乳房裂伤缝合术	rǔ fáng liè shāng féng hé shù	100
 乳房瘘道切除术	rǔ fáng lòu dào qiē chú shù	100
@@ -12356,6 +12597,7 @@ sort: by_weight
 乳房外佩吉特病	rǔ fáng wài pèi jí tè bìng	100
 乳房外湿疹样癌	rǔ fáng wài shī zhěn yàng ái	100
 乳房先天性畸形	rǔ fáng xiān tiān xìng jī xíng	100
+乳房纤维硬化症	rǔ fáng xiān wéi yìng huà zhèng	100
 乳房线照相检查	rǔ fáng xiàn zhào xiàng jiǎn chá	100
 乳房象限切除术	rǔ fáng xiàng xiàn qiē chú shù	100
 乳房小叶切除术	rǔ fáng xiǎo yè qiē chú shù	100
@@ -12363,6 +12605,10 @@ sort: by_weight
 乳房肿块切除术	rǔ fáng zhǒng kuài qiē chú shù	100
 乳房肿物切除术	rǔ fáng zhǒng wù qiē chú shù	100
 乳糜心包引流术	rǔ mí xīn bāo yǐn liú shù	100
+乳宁胶囊石刁柏	rǔ níng jiāo náng shí diāo bǎi	100
+褥式浆肌层缝合	rù shì jiāng jī céng féng hé	100
+乳头肌功能不全	rǔ tóu jī gōng néng bù quán	100
+乳头乳晕复合体	rǔ tóu rǔ yùn fù hé tǐ	100
 乳头乳晕再造术	rǔ tóu rǔ yùn zài zào shù	100
 乳头乳晕整形术	rǔ tóu rǔ yùn zhěng xíng shù	100
 乳头象限切除术	rǔ tóu xiàng xiàn qiē chú shù	100
@@ -12375,27 +12621,34 @@ sort: by_weight
 乳突病害切除术	rǔ tū bìng hài qiē chú shù	100
 乳突病损切除术	rǔ tū bìng sǔn qiē chú shù	100
 乳突病损清除术	rǔ tū bìng sǔn qīng chú shù	100
+乳突操作后疾患	rǔ tū cāo zuò hòu jí huàn	100
 乳突改良根治术	rǔ tū gǎi liáng gēn zhì shù	100
 乳突骨良性肿瘤	rǔ tū gǔ liáng xìng zhǒng liú	100
 乳突扩大根治术	rǔ tū kuò dà gēn zhì shù	100
 乳突瘘管关闭术	rǔ tū lòu guǎn guān bì shù	100
 乳突脓肿引流术	rǔ tū nóng zhǒng yǐn liú shù	100
+乳突前庭窝感染	rǔ tū qián tíng wō gǎn rǎn	100
 乳突腔内植皮术	rǔ tū qiāng nèi zhí pí shù	100
+乳突切开术修整	rǔ tū qiē kāi shù xiū zhěng	100
 乳突肿瘤切除术	rǔ tū zhǒng liú qiē chú shù	100
 乳腺表皮样囊肿	rǔ xiàn biǎo pí yàng náng zhǒng	100
 乳腺病损切除术	rǔ xiàn bìng sǔn qiē chú shù	100
 乳腺部分切除术	rǔ xiàn bù fèn qiē chú shù	100
 乳腺单纯切除术	rǔ xiàn dān chún qiē chú shù	100
 乳腺导管造影术	rǔ xiàn dǎo guǎn zào yǐng shù	100
+乳腺恶性肿瘤史	rǔ xiàn è xìng zhǒng liú shǐ	100
 乳腺房恶性肿瘤	rǔ xiàn fáng è xìng zhǒng liú	100
 乳腺假体取出术	rǔ xiàn jiǎ tǐ qǔ chū shù	100
+乳腺囊性增生症	rǔ xiàn náng xìng zēng shēng zhèng	100
 乳腺佩吉特氏病	rǔ xiàn pèi jí tè shì bìng	100
 乳腺区段切除术	rǔ xiàn qū duàn qiē chú shù	100
 乳腺象限切除术	rǔ xiàn xiàng xiàn qiē chú shù	100
 乳腺小叶切除术	rǔ xiàn xiǎo yè qiē chú shù	100
+乳腺小叶增生症	rǔ xiàn xiǎo yè zēng shēng zhèng	100
 乳腺肿瘤切除术	rǔ xiàn zhǒng liú qiē chú shù	100
 乳腺肿物穿刺术	rǔ xiàn zhǒng wù chuān cì shù	100
 乳腺肿物切除术	rǔ xiàn zhǒng wù qiē chú shù	100
+乳牙预成冠修复	rǔ yá yù chéng guān xiū fù	100
 软腭病损切除术	ruǎn è bìng sǔn qiē chú shù	100
 软腭肿瘤切除术	ruǎn è zhǒng liú qiē chú shù	100
 软组织巨细胞瘤	ruǎn zǔ zhī jù xì bāo liú	100
@@ -12428,17 +12681,35 @@ sort: by_weight
 三叉神经中脑束	sān chā shén jīng zhōng nǎo shù	100
 三重感染性肝炎	sān chóng gǎn rǎn xìng gān yán	100
 三碘甲状腺激素	sān diǎn jiǎ zhuàng xiàn jī sù	100
+三踝开放性骨折	sān huái kāi fàng xìng gǔ zhé	100
+三尖瓣闭锁不全	sān jiān bàn bì suǒ bù quán	100
+三脚蛋白复合体	sān jiǎo dàn bái fù hé tǐ	100
 三角韧带松解术	sān jiǎo rèn dài sōng jiě shù	100
 三角胸肌淋巴结	sān jiǎo xiōng jī lín bā jié	100
+三腔气囊导尿管	sān qiāng qì náng dǎo niào guǎn	100
+三腔无菌导尿管	sān qiāng wú jūn dǎo niào guǎn	100
+三染色体型遗传	sān rǎn sè tǐ xíng yí chuán	100
+三束支传导阻滞	sān shù zhī chuán dǎo zǔ zhì	100
 扫描隧道显微术	sǎo miáo suì dào xiǎn wēi shù	100
+色素性扁平苔藓	sè sù xìng biǎn píng tái xiǎn	100
+色素性口周红斑	sè sù xìng kǒu zhōu hóng bān	100
+色素性毛表皮痣	sè sù xìng máo biǎo pí zhì	100
 色素性毛囊囊肿	sè sù xìng máo náng náng zhǒng	100
 色素性视网膜炎	sè sù xìng shì wǎng mó yán	100
+沙保罗琼脂干粉	shā bǎo luó qióng zhī gān fěn	100
+沙戈荒风光基地	shā gē huāng fēng guāng jī dì	100
 沙漏状膀胱挛缩	shā lòu zhuàng páng guāng luán suō	100
+沙门菌属属血清	shā mén jūn shǔ shǔ xuè qīng	100
+沙门氏菌败血症	shā mén shì jūn bài xuè zhèng	100
+沙门氏菌属感染	shā mén shì jūn shǔ gǎn rǎn	100
 沙门氏菌胃肠炎	shā mén shì jūn wèi cháng yán	100
 沙门氏菌性肠炎	shā mén shì jūn xìng cháng yán	100
 沙门氏菌性肺炎	shā mén shì jūn xìng fèi yán	100
+杀灭幽门螺杆菌	shā miè yōu mén luó gǎn jūn	100
 沙眼摩擦挤压术	shā yǎn mó cā jǐ yā shù	100
 沙眼磨擦压挤术	shā yǎn mó cā yā jǐ shù	100
+沙眼性角膜溃疡	shā yǎn xìng jiǎo mó kuì yáng	100
+沙眼性眼干燥症	shā yǎn xìng yǎn gān zào zhèng	100
 筛窦病损切除术	shāi dòu bìng sǔn qiē chú shù	100
 筛窦部分切除术	shāi dòu bù fèn qiē chú shù	100
 筛窦囊肿切除术	shāi dòu náng zhǒng qiē chú shù	100
@@ -12446,8 +12717,14 @@ sort: by_weight
 筛前神经切断术	shāi qián shén jīng qiē duàn shù	100
 筛前神经烧灼术	shāi qián shén jīng shāo zhuó shù	100
 疝囊高位结扎术	shàn náng gāo wèi jié zā shù	100
+伤风止咳药中毒	shāng fēng zhǐ ké yào zhòng dú	100
+上海甲肝大爆发	shàng hǎi jiǎ gān dà bào fā	100
+上海甲肝大流行	shàng hǎi jiǎ gān dà liú xíng	100
+伤寒副伤寒甲乙	shāng hán fù shāng hán jiǎ yǐ	100
+伤寒杆菌脂多糖	shāng hán gǎn jūn zhī duō táng	100
 伤口裂开缝合术	shāng kǒu liè kāi féng hé shù	100
 伤口去除腐肉术	shāng kǒu qù chú fǔ ròu shù	100
+上实下虚痰嗽喘	shàng shí xià xū tán sòu chuǎn	100
 上下颌前突畸形	shàng xià hé qián tū jī xíng	100
 上牙龈恶性肿瘤	shàng yá yín è xìng zhǒng liú	100
 上肢动脉动脉瘤	shàng zhī dòng mài dòng mài liú	100
@@ -12457,12 +12734,24 @@ sort: by_weight
 上肢肌腱转移术	shàng zhī jī jiàn zhuǎn yí shù	100
 上肢假性动脉瘤	shàng zhī jiǎ xìng dòng mài liú	100
 上肢静脉剥脱术	shàng zhī jìng mài bāo tuō shù	100
+上肢开放性伤口	shàng zhī kāi fàng xìng shāng kǒu	100
 上肢淋巴管造影	shàng zhī lín bā guǎn zào yǐng	100
 上肢皮肤原位癌	shàng zhī pí fū yuán wèi ái	100
 上肢韧带修补术	shàng zhī rèn dài xiū bǔ shù	100
 上肢伤口缝合术	shàng zhī shāng kǒu féng hé shù	100
+上肢微循环障碍	shàng zhī wēi xún huán zhàng ài	100
+上肢血管瘤切除	shàng zhī xuè guǎn liú qiē chú	100
 上肢血管探查术	shàng zhī xuè guǎn tàn chá shù	100
 上肢指间神经瘤	shàng zhī zhǐ jiān shén jīng liú	100
+上子宫段剖腹产	shàng zǐ gōng duàn pōu fù chǎn	100
+烧伤瘢痕恶性变	shāo shāng bān hén è xìng biàn	100
+烧伤创面脓毒症	shāo shāng chuāng miàn nóng dú zhèng	100
+烧伤复合伤抢救	shāo shāng fù hé shāng qiǎng jiù	100
+烧伤后病毒感染	shāo shāng hòu bìng dú gǎn rǎn	100
+烧伤后耳廓缺损	shāo shāng hòu ěr kuò quē sǔn	100
+烧伤后功能训练	shāo shāng hòu gōng néng xùn liàn	100
+烧伤后精神紊乱	shāo shāng hòu jīng shén wěn luàn	100
+烧伤后眉毛缺损	shāo shāng hòu méi máo quē sǔn	100
 烧伤后小耳畸形	shāo shāng hòu xiǎo ěr jī xíng	100
 烧伤后小口畸形	shāo shāng hòu xiǎo kǒu jī xíng	100
 少突神经胶质瘤	shǎo tū shén jīng jiāo zhì liú	100
@@ -12617,7 +12906,11 @@ sort: by_weight
 声门上恶性肿瘤	shēng mén shàng è xìng zhǒng liú	100
 声门下恶性肿瘤	shēng mén xià è xìng zhǒng liú	100
 声门下良性肿瘤	shēng mén xià liáng xìng zhǒng liú	100
+生物素标记探针	shēng wù sù biāo jì tàn zhēn	100
+生物型髋臼外杯	shēng wù xíng kuān jiù wài bēi	100
+生物遥测扫描器	shēng wù yáo cè sǎo miáo qì	100
 生殖器念珠菌病	shēng zhí qì niàn zhū jūn bìng	100
+生殖腺发育不全	shēng zhí xiàn fā yù bù quán	100
 食道异物取出术	shí dào yì wù qǔ chū shù	100
 十二指肠大乳头	shí èr zhǐ cháng dà rǔ tóu	100
 十二指肠后动脉	shí èr zhǐ cháng hòu dòng mài	100
@@ -12712,6 +13005,7 @@ sort: by_weight
 手指肌腱缝合术	shǒu zhǐ jī jiàn féng hé shù	100
 手指肌腱松解术	shǒu zhǐ jī jiàn sōng jiě shù	100
 手指肌腱延长术	shǒu zhǐ jī jiàn yán cháng shù	100
+手指开放性伤口	shǒu zhǐ kāi fàng xìng shāng kǒu	100
 手指外伤清创术	shǒu zhǐ wài shāng qīng chuàng shù	100
 鼠神经生长因子	shǔ shén jīng shēng zhǎng yīn zǐ	100
 暑湿困伤心脾证	shǔ shī kùn shāng xīn pí zhèng	100
@@ -12727,6 +13021,7 @@ sort: by_weight
 双侧乳腺根治术	shuāng cè rǔ xiàn gēn zhì shù	100
 双侧外阴切除术	shuāng cè wài yīn qiē chú shù	100
 双管结肠造口术	shuāng guǎn jié cháng zào kǒu shù	100
+双踝开放性骨折	shuāng huái kāi fàng xìng gǔ zhé	100
 双腔支气管导管	shuāng qiāng zhī qì guǎn dǎo guǎn	100
 双球菌性脑膜炎	shuāng qiú jūn xìng nǎo mó yán	100
 双胎输血综合征	shuāng tāi shū xuè zōng hé zhēng	100
@@ -12748,6 +13043,7 @@ sort: by_weight
 髓外硬膜外囊肿	suǐ wài yìng mó wài náng zhǒng	100
 虽未能尽愈诸病	suī wèi néng jìn yù zhū bìng	100
 损伤痿软麻木病	sǔn shāng wěi ruǎn má mù bìng	100
+锁骨开放性骨折	suǒ gǔ kāi fàng xìng gǔ zhé	100
 锁骨上淋巴结核	suǒ gǔ shàng lín bā jié hé	100
 锁骨上内侧神经	suǒ gǔ shàng nèi cè shén jīng	100
 锁骨上外侧神经	suǒ gǔ shàng wài cè shén jīng	100
@@ -12793,6 +13089,9 @@ sort: by_weight
 太阳中风表虚证	tài yáng zhòng fēng biǎo xū zhèng	100
 太阳中虚里急证	tài yáng zhōng xū lǐ jí zhèng	100
 太阴寒湿郁结证	tài yīn hán shī yù jié zhèng	100
+炭疽菌沉淀血清	tàn jū jūn chén diàn xuè qīng	100
+炭疽菌诊断抗原	tàn jū jūn zhěn duàn kàng yuán	100
+炭疽菌诊断血清	tàn jū jūn zhěn duàn xuè qīng	100
 痰热蒙闭心窍证	tán rè méng bì xīn qiào zhèng	100
 痰热内闭清窍证	tán rè nèi bì qīng qiào zhèng	100
 痰热内闭心窍证	tán rè nèi bì xīn qiào zhèng	100
@@ -12819,6 +13118,7 @@ sort: by_weight
 痛性指肿综合征	tòng xìng zhǐ zhǒng zōng hé zhēng	100
 头部窦道切除术	tóu bù dòu dào qiē chú shù	100
 头部断层造影术	tóu bù duàn céng zào yǐng shù	100
+头部开放性伤口	tóu bù kāi fàng xìng shāng kǒu	100
 头部毛囊周围炎	tóu bù máo náng zhōu wéi yán	100
 头部乳头状皮炎	tóu bù rǔ tóu zhuàng pí yán	100
 头部伤口清创术	tóu bù shāng kǒu qīng chuàng shù	100
@@ -12846,6 +13146,7 @@ sort: by_weight
 腿血栓性静脉炎	tuǐ xuè shuān xìng jìng mài yán	100
 臀部窦道切除术	tún bù dòu dào qiē chú shù	100
 臀部肌肉松解术	tún bù jī ròu sōng jiě shù	100
+臀部开放性伤口	tún bù kāi fàng xìng shāng kǒu	100
 臀部踵武切除术	tún bù zhǒng wǔ qiē chú shù	100
 臀肌粘连松解术	tún jī zhān lián sōng jiě shù	100
 脱位石膏固定术	tuō wèi shí gāo gù dìng shù	100
@@ -12862,6 +13163,7 @@ sort: by_weight
 外耳道良性肿瘤	wài ěr dào liáng xìng zhǒng liú	100
 外耳道乳头状瘤	wài ěr dào rǔ tóu zhuàng liú	100
 外耳活组织检查	wài ěr huó zǔ zhī jiǎn chá	100
+外耳开放性伤口	wài ěr kāi fàng xìng shāng kǒu	100
 外耳撕裂缝合术	wài ěr sī liè féng hé shù	100
 外耳肿瘤切除术	wài ěr zhǒng liú qiē chú shù	100
 外感热病霍乱病	wài gǎn rè bìng huò luàn bìng	100
@@ -12871,6 +13173,7 @@ sort: by_weight
 外固定架取除术	wài gù dìng jià qǔ chú shù	100
 外固定架调整术	wài gù dìng jià tiáo zhěng shù	100
 外国口音综合征	wài guó kǒu yīn zōng hé zhēng	100
+外踝开放性骨折	wài huái kāi fàng xìng gǔ zhé	100
 外踝韧带修复术	wài huái rèn dài xiū fù shù	100
 外括约肌成形术	wài kuò yuē jī chéng xíng shù	100
 外瘘外瘘闭合术	wài lòu wài lòu bì hé shù	100
@@ -12896,6 +13199,8 @@ sort: by_weight
 外阴肿物切除术	wài yīn zhǒng wù qiē chú shù	100
 外痔血栓剥离术	wài zhì xuè shuān bō lí shù	100
 外周细胞淋巴瘤	wài zhōu xì bāo lín bā liú	100
+腕部开放性伤口	wàn bù kāi fàng xìng shāng kǒu	100
+腕骨开放性骨折	wàn gǔ kāi fàng xìng gǔ zhé	100
 腕骨肿瘤刮除术	wàn gǔ zhǒng liú guā chú shù	100
 腕关节恶性肿瘤	wàn guān jié è xìng zhǒng liú	100
 腕管切开减压术	wàn guǎn qiē kāi jiǎn yā shù	100
@@ -12924,6 +13229,7 @@ sort: by_weight
 胃底静脉断流术	wèi dǐ jìng mài duàn liú shù	100
 胃底静脉结扎术	wèi dǐ jìng mài jié zā shù	100
 未分化型白血病	wèi fēn huà xíng bái xuè bìng	100
+尾骨开放性骨折	wěi gǔ kāi fàng xìng gǔ zhé	100
 胃火阴虚相因病	wèi huǒ yīn xū xiāng yīn bìng	100
 胃间质瘤切除术	wèi jiān zhì liú qiē chú shù	100
 胃交界恶性肿瘤	wèi jiāo jiè è xìng zhǒng liú	100
@@ -12947,6 +13253,7 @@ sort: by_weight
 膝半月板切除术	xī bàn yuè bǎn qiē chú shù	100
 膝半月板修复术	xī bàn yuè bǎn xiū fù shù	100
 细胞性平滑肌瘤	xì bāo xìng píng huá jī liú	100
+膝部开放性伤口	xī bù kāi fàng xìng shāng kǒu	100
 膝侧韧带修补术	xī cè rèn dài xiū bǔ shù	100
 膝关节恶性肿瘤	xī guān jié è xìng zhǒng liú	100
 膝关节镜检查术	xī guān jié jìng jiǎn chá shù	100
@@ -13111,6 +13418,7 @@ sort: by_weight
 小胖威利综合征	xiǎo pàng wēi lì zōng hé zhēng	100
 小腿残端修整术	xiǎo tuǐ cán duān xiū zhěng shù	100
 小腿静脉性溃疡	xiǎo tuǐ jìng mài xìng kuì yáng	100
+小腿开放性伤口	xiǎo tuǐ kāi fàng xìng shāng kǒu	100
 小腿慢性毛囊炎	xiǎo tuǐ màn xìng máo náng yán	100
 小涎腺恶性肿瘤	xiǎo xián xiàn è xìng zhǒng liú	100
 小涎腺良性肿瘤	xiǎo xián xiàn liáng xìng zhǒng liú	100
@@ -13185,6 +13493,7 @@ sort: by_weight
 胸壁血管结扎术	xiōng bì xuè guǎn jié zā shù	100
 胸壁肿瘤切除术	xiōng bì zhǒng liú qiē chú shù	100
 胸部磁共振成像	xiōng bù cí gòng zhèn chéng xiàng	100
+胸部开放性伤口	xiōng bù kāi fàng xìng shāng kǒu	100
 胸部线常规检查	xiōng bù xiàn cháng guī jiǎn chá	100
 胸导管瘘闭合术	xiōng dǎo guǎn lòu bì hé shù	100
 胸动脉瘤修补术	xiōng dòng mài liú xiū bǔ shù	100
@@ -13192,6 +13501,7 @@ sort: by_weight
 胸腹水常规检查	xiōng fù shuǐ cháng guī jiǎn chá	100
 胸腹水特殊检查	xiōng fù shuǐ tè shū jiǎn chá	100
 胸骨后甲状腺肿	xiōng gǔ hòu jiǎ zhuàng xiàn zhǒng	100
+胸骨开放性骨折	xiōng gǔ kāi fàng xìng gǔ zhé	100
 胸骨旁疝修补术	xiōng gǔ páng shàn xiū bǔ shù	100
 胸肩胛间截断术	xiōng jiān jiǎ jiān jié duàn shù	100
 胸交感干神经节	xiōng jiāo gǎn gàn shén jīng jié	100
@@ -13238,6 +13548,7 @@ sort: by_weight
 胸椎椎管探查术	xiōng zhuī chuí guǎn tàn chá shù	100
 胸椎间盘切除术	xiōng zhuī jiān pán qiē chú shù	100
 胸椎结核伴脓肿	xiōng zhuī jié hé bàn nóng zhǒng	100
+胸椎开放性骨折	xiōng zhuī kāi fàng xìng gǔ zhé	100
 胸椎肿瘤切除术	xiōng zhuī zhǒng liú qiē chú shù	100
 嗅觉参照综合征	xiù jué cān zhào zōng hé zhēng	100
 嗅神经恶性肿瘤	xiù shén jīng è xìng zhǒng liú	100
@@ -13293,6 +13604,7 @@ sort: by_weight
 荨麻疹样螨皮炎	xún má zhěn yàng mǎn pí yán	100
 牙槽部分切除术	yá cáo bù fèn qiē chú shù	100
 牙槽活组织检查	yá cáo huó zǔ zhī jiǎn chá	100
+牙槽开放性骨折	yá cáo kāi fàng xìng gǔ zhé	100
 牙齿成釉细胞瘤	yá chǐ chéng yòu xì bāo liú	100
 牙齿充填整复术	yá chǐ chōng tián zhěng fù shù	100
 牙齿脱落综合征	yá chǐ tuō luò zōng hé zhēng	100
@@ -13405,23 +13717,55 @@ sort: by_weight
 阳明湿热里实证	yáng míng shī rè lǐ shí zhèng	100
 阳明水热互结证	yáng míng shuǐ rè hù jié zhèng	100
 阳虚寒湿阻络证	yáng xū hán shī zǔ luò zhèng	100
+氧族元素互化物	yǎng zú yuán sù hù huà wù	100
+腰部结核性窦道	yāo bù jié hé xìng dòu dào	100
 腰部结核性脓肿	yāo bù jié hé xìng nóng zhǒng	100
+腰部开放性伤口	yāo bù kāi fàng xìng shāng kǒu	100
 腰骶神经丛断裂	yāo dǐ shén jīng cóng duàn liè	100
 腰骶神经根疾患	yāo dǐ shén jīng gēn jí huàn	100
 腰骶神经根囊肿	yāo dǐ shén jīng gēn náng zhǒng	100
+腰骶椎间盘变性	yāo dǐ zhuī jiān pán biàn xìng	100
+腰骶椎间盘脱出	yāo dǐ zhuī jiān pán tuō chū	100
+腰骶椎间盘脱位	yāo dǐ zhuī jiān pán tuō wèi	100
+腰横突间内侧肌	yāo héng tū jiān nèi cè jī	100
+腰横突间外侧肌	yāo héng tū jiān wài cè jī	100
 摇晃婴儿综合征	yáo huàng yīng ér zōng hé zhēng	100
+药品效应动力学	yào pǐn xiào yìng dòng lì xué	100
+药时半对数曲线	yào shí bàn duì shù qū xiàn	100
+药虽相畏效相成	yào suī xiāng wèi xiào xiāng chéng	100
+药物代谢动力学	yào wù dài xiè dòng lì xué	100
+药物动力学模型	yào wù dòng lì xué mó xíng	100
+药物光变应反应	yào wù guāng biàn yīng fǎn yìng	100
+药物光毒性反应	yào wù guāng dú xìng fǎn yìng	100
 药物过敏性口炎	yào wù guò mǐn xìng kǒu yán	100
+药物或药剂中毒	yào wù huò yào jì zhòng dú	100
 药物接触性皮炎	yào wù jiē chù xìng pí yán	100
+药物特异性抗体	yào wù tè yì xìng kàng tǐ	100
 药物相关性肠炎	yào wù xiāng guān xìng cháng yán	100
+药物效应动力学	yào wù xiào yìng dòng lì xué	100
+药物性癫痫发作	yào wù xìng diān xián fā zuò	100
 药物性多神经病	yào wù xìng duō shén jīng bìng	100
+药物性骨髓抑制	yào wù xìng gǔ suǐ yì zhì	100
 药物性甲状腺炎	yào wù xìng jiǎ zhuàng xiàn yán	100
+药物性牙龈增生	yào wù xìng yá yín zēng shēng	100
+药物引起骨坏死	yào wù yǐn qǐ gǔ huài sǐ	100
+药物注射后疤痕	yào wù zhù shè hòu bā hén	100
 腰椎病灶清除术	yāo zhuī bìng zào qīng chú shù	100
+腰椎穿刺后头痛	yāo zhuī chuān cì hòu tou tòng	100
+腰椎椎管狭窄症	yāo zhuī chuí guǎn xiá zhǎi zhèng	100
+腰椎哆开性脱位	yāo zhuī duō kāi xìng tuō wèi	100
 腰椎横突综合征	yāo zhuī héng tū zōng hé zhēng	100
 腰椎间盘切除术	yāo zhuī jiān pán qiē chú shù	100
+腰椎间盘突出症	yāo zhuī jiān pán tū chū zhèng	100
+腰椎间退化性变	yāo zhuī jiān tuì huà xìng biàn	100
 腰椎结核伴脓肿	yāo zhuī jié hé bàn nóng zhǒng	100
+腰椎开放性骨折	yāo zhuī kāi fàng xìng gǔ zhé	100
+腰椎蛛网膜下腔	yāo zhuī zhū wǎng mó xià qiāng	100
 腋贲淋巴结肿大	yè bēn lín bā jié zhǒng dà	100
 耶尔森氏菌肠炎	yé ěr sēn shì jūn cháng yán	100
 腋淋巴结清扫术	yè lín bā jié qīng sǎo shù	100
+叶外型肺隔离症	yè wài xíng fèi gé lí zhèng	100
+腋窝开放性伤口	yè wō kāi fàng xìng shāng kǒu	100
 腋下淋巴结肿大	yè xià lín bā jié zhǒng dà	100
 腋下肿块切除术	yè xià zhǒng kuài qiē chú shù	100
 一般适应综合征	yì bān shì yìng zōng hé zhēng	100
@@ -13479,8 +13823,23 @@ sort: by_weight
 衣原体性尿道炎	yī yuán tǐ xìng niào dào yán	100
 衣原体性膀胱炎	yī yuán tǐ xìng páng guāng yán	100
 衣原体性阴道炎	yī yuán tǐ xìng yīn dào yán	100
+医原性垂体障碍	yī yuán xìng chuí tǐ zhàng ài	100
+医源性卵巢衰竭	yī yuán xìng luǎn cháo shuāi jié	100
+医源性毛增多症	yī yuán xìng máo zēng duō zhèng	100
+异源性突触易化	yì yuán xìng tū chù yì huà	100
+癔症性睡梦状态	yì zhèng xìng shuì mèng zhuàng tài	100
+癔症性肢体麻木	yì zhèng xìng zhī tǐ má mù	100
+移植肾功能不全	yí zhí shèn gōng néng bù quán	100
+移植肾功能衰竭	yí zhí shèn gōng néng shuāi jié	100
+移植肾功能延迟	yí zhí shèn gōng néng yán chí	100
+移植肾破裂修补	yí zhí shèn pò liè xiū bǔ	100
+移植肾原病复发	yí zhí shèn yuán bìng fù fā	100
 移植物抗宿主病	yí zhí wù kàng sù zhǔ bìng	100
+抑制细胞生长的	yì zhì xì bāo shēng zhǎng de	100
+亦治阳虚外感因	yì zhì yáng xū wài gǎn yīn	100
 移植胰假性囊肿	yí zhí yí jiǎ xìng náng zhǒng	100
+抑制幽门螺杆菌	yì zhì yōu mén luó gǎn jūn	100
+移植造血干细胞	yí zhí zào xuè gàn xì bāo	100
 异种气管置换术	yì zhǒng qì guǎn zhì huàn shù	100
 乙状结肠间隐窝	yǐ zhuàng jié cháng jiān yǐn wō	100
 乙状结肠镜检查	yǐ zhuàng jié cháng jìng jiǎn chá	100
@@ -13494,6 +13853,7 @@ sort: by_weight
 翼状胬肉转位术	yì zhuàng nǔ ròu zhuàn wèi shù	100
 翼状赘蹼综合征	yì zhuàng zhuì pǔ zōng hé zhēng	100
 伊族棘口吸虫病	yī zú jí kǒu xī chóng bìng	100
+阴唇创伤性切断	yīn chún chuāng shāng xìng qiē duàn	100
 阴道疤痕切除术	yīn dào bā hén qiē chú shù	100
 阴道瘢痕切除术	yīn dào bān hén qiē chú shù	100
 阴道闭锁切开术	yīn dào bì suǒ qiē kāi shù	100
@@ -13501,6 +13861,7 @@ sort: by_weight
 阴道病损切除术	yīn dào bìng sǔn qiē chú shù	100
 阴道部分切除术	yīn dào bù fèn qiē chú shù	100
 阴道侧壁切开术	yīn dào cè bì qiē kāi shù	100
+阴道非炎性疾患	yīn dào fēi yán xìng jí huàn	100
 阴道分泌物检查	yīn dào fēn mì wù jiǎn chá	100
 阴道隔膜切除术	yīn dào gé mó qiē chú shù	100
 阴道隔膜切开术	yīn dào gé mó qiē kāi shù	100
@@ -13512,11 +13873,14 @@ sort: by_weight
 阴道裂伤缝合术	yīn dào liè shāng féng hé shù	100
 阴道模型置入术	yīn dào mó xíng zhì rù shù	100
 阴道囊肿切除术	yīn dào náng zhǒng qiē chú shù	100
+阴道尿道瘘显像	yīn dào niào dào lòu xiǎn xiàng	100
 阴道胚胎性囊肿	yīn dào pēi tāi xìng náng zhǒng	100
 阴道前壁修补术	yīn dào qián bì xiū bǔ shù	100
+阴道前后壁脱垂	yīn dào qián hòu bì tuō chuí	100
 阴道穹隆封闭术	yīn dào qióng lóng fēng bì shù	100
 阴道穹窿修补术	yīn dào qióng lóng xiū bǔ shù	100
 阴道上皮内肿瘤	yīn dào shàng pí nèi zhǒng liú	100
+阴道细菌增生症	yīn dào xì jūn zēng shēng zhèng	100
 阴道息肉切除术	yīn dào xī ròu qiē chú shù	100
 阴道斜隔切除术	yīn dào xié gé qiē chú shù	100
 阴道血肿清除术	yīn dào xuè zhǒng qīng chú shù	100
@@ -13524,6 +13888,7 @@ sort: by_weight
 阴道粘连分离术	yīn dào zhān lián fēn lí shù	100
 阴道粘连松解术	yīn dào zhān lián sōng jiě shù	100
 阴道中隔成形术	yīn dào zhōng gé chéng xíng shù	100
+阴道子宫托溃疡	yīn dào zǐ gōng tuō kuì yáng	100
 阴蒂病害切除术	yīn dì bìng hài qiē chú shù	100
 阴蒂病损切除术	yīn dì bìng sǔn qiē chú shù	100
 阴蒂短缩成型术	yīn dì duǎn suō chéng xíng shù	100
@@ -13533,13 +13898,17 @@ sort: by_weight
 阴蒂肿物切除术	yīn dì zhǒng wù qiē chú shù	100
 隐睾病损切除术	yǐn gāo bìng sǔn qiē chú shù	100
 阴沟杆菌性肺炎	yīn gōu gǎn jūn xìng fèi yán	100
+阴茎癌前期病变	yīn jīng ái qián qī bìng biàn	100
 阴茎病害切除术	yīn jīng bìng hài qiē chú shù	100
 阴茎病损切除术	yīn jīng bìng sǔn qiē chú shù	100
 阴茎部分切除术	yīn jīng bù fèn qiē chú shù	100
 阴茎重建成形术	yīn jīng chóng jiàn chéng xíng shù	100
+阴茎创伤性切断	yīn jīng chuāng shāng xìng qiē duàn	100
 阴茎动脉测压术	yīn jīng dòng mài cè yā shù	100
+阴茎海绵体白膜	yīn jīng hǎi mián tǐ bái mó	100
 阴茎海绵体脓肿	yīn jīng hǎi mián tǐ nóng zhǒng	100
 阴茎海绵体神经	yīn jīng hǎi mián tǐ shén jīng	100
+阴茎海绵体小梁	yīn jīng hǎi mián tǐ xiǎo liáng	100
 阴茎海绵体造影	yīn jīng hǎi mián tǐ zào yǐng	100
 阴茎基底细胞癌	yīn jīng jī dǐ xì bāo ái	100
 阴茎畸型整形术	yīn jīng jī xíng zhěng xíng shù	100
@@ -13548,13 +13917,17 @@ sort: by_weight
 阴茎静脉结扎术	yīn jīng jìng mài jié zā shù	100
 阴茎静脉纤维化	yīn jīng jìng mài xiān wéi huà	100
 阴茎局部切除术	yīn jīng jú bù qiē chú shù	100
+阴茎开放性伤口	yīn jīng kāi fàng xìng shāng kǒu	100
 阴茎裂伤缝合术	yīn jīng liè shāng féng hé shù	100
 阴茎鳞状细胞癌	yīn jīng lín zhuàng xì bāo ái	100
 阴茎囊肿切除术	yīn jīng náng zhǒng qiē chú shù	100
 阴茎黏液样囊肿	yīn jīng nián yè yàng náng zhǒng	100
+阴茎皮肤撕脱伤	yīn jīng pí fū sī tuō shāng	100
 阴茎皮脂腺囊肿	yīn jīng pí zhī xiàn náng zhǒng	100
 阴茎头恶性肿瘤	yīn jīng tóu è xìng zhǒng liú	100
 阴茎外伤清创术	yīn jīng wài shāng qīng chuàng shù	100
+阴茎型尿道上裂	yīn jīng xíng niào dào shàng liè	100
+阴茎型尿道下裂	yīn jīng xíng niào dào xià liè	100
 阴茎血管重建术	yīn jīng xuè guǎn chóng jiàn shù	100
 阴茎阴囊全切术	yīn jīng yīn náng quán qiē shù	100
 阴茎阴囊象皮肿	yīn jīng yīn náng xiàng pí zhǒng	100
@@ -13563,9 +13936,12 @@ sort: by_weight
 阴囊病害切除术	yīn náng bìng hài qiē chú shù	100
 阴囊病损切除术	yīn náng bìng sǔn qiē chú shù	100
 阴囊部分切除术	yīn náng bù fèn qiē chú shù	100
+阴囊创伤性切断	yīn náng chuāng shāng xìng qiē duàn	100
 阴囊横纹肌肉瘤	yīn náng héng wén jī ròu liú	100
 阴囊坏死扩创术	yīn náng huài sǐ kuò chuàng shù	100
+阴囊开放性伤口	yīn náng kāi fàng xìng shāng kǒu	100
 阴囊瘘管修补术	yīn náng lòu guǎn xiū bǔ shù	100
+阴囊内肿瘤种植	yīn náng nèi zhǒng liú zhòng zhí	100
 阴囊脓肿引流术	yīn náng nóng zhǒng yǐn liú shù	100
 阴囊佩吉特氏病	yīn náng pèi jí tè shì bìng	100
 阴囊皮脂腺囊肿	yīn náng pí zhī xiàn náng zhǒng	100
@@ -13577,15 +13953,26 @@ sort: by_weight
 阴式子宫切除术	yīn shì zi gōng qiē chú shù	100
 银屑病性关节炎	yín xiè bìng xìng guān jié yán	100
 隐性预激综合征	yǐn xìng yù jī zōng hé zhēng	100
+阴虚肝郁是妙方	yīn xū gān yù shì miào fāng	100
+阴虚火旺盗汗良	yīn xū huǒ wàng dào hàn liáng	100
+阴虚火旺自可煎	yīn xū huǒ wàng zì kě jiān	100
+阴阳别论篇第七	yīn yáng bié lùn piān dì qī	100
+阴阳清浊第四十	yīn yáng qīng zhuó dì sì shí	100
+阴阳十一脉灸经	yīn yáng shí yī mài jiǔ jīng	100
+阴阻气血则脉迟	yīn zǔ qì xuè zé mài chí	100
 硬腭活组织检查	yìng è huó zǔ zhī jiǎn chá	100
+硬腭裂伴有唇裂	yìng è liè bàn yǒu chún liè	100
 婴儿猝死综合征	yīng ér cù sǐ zōng hé zhēng	100
 婴儿瘁死综合征	yīng ér cuì sǐ zōng hé zhēng	100
+婴儿骨外层肥厚	yīng ér gǔ wài céng féi hòu	100
 婴儿坏疽性皮炎	yīng ér huài jū xìng pí yán	100
 婴儿肌纤维瘤病	yīng ér jī xiān wéi liú bìng	100
 婴儿假性白血病	yīng ér jiǎ xìng bái xuè bìng	100
+婴儿痉挛性癫痫	yīng ér jìng luán xìng diān xián	100
 婴儿闷热综合征	yīng ér mēn rè zōng hé zhēng	100
 婴儿黏液性水肿	yīng ér nián yè xìng shuǐ zhǒng	100
 婴儿丘疹性皮炎	yīng ér qiū zhěn xìng pí yán	100
+婴儿手足搐搦症	yīng ér shǒu zú chù nuò zhèng	100
 婴儿松软综合征	yīng ér sōng ruǎn zōng hé zhēng	100
 婴儿臀部肉芽肿	yīng ér tún bù ròu yá zhǒng	100
 婴儿型肾多囊病	yīng ér xíng shèn duō náng bìng	100
@@ -13597,14 +13984,17 @@ sort: by_weight
 硬化萎缩综合征	yìng huà wěi suō zōng hé zhēng	100
 硬脊膜动静脉瘘	yìng jǐ mó dòng jìng mài lòu	100
 硬脊膜下脑膜瘤	yìng jǐ mó xià nǎo mó liú	100
+硬结性皮肤结核	yìng jié xìng pí fū jié hé	100
 硬膜外恶性肿瘤	yìng mó wài è xìng zhǒng liú	100
 硬膜外脊髓脓肿	yìng mó wài jǐ suǐ nóng zhǒng	100
+硬膜外连续镇痛	yìng mó wài lián xù zhèn tòng	100
 硬膜下恶性肿瘤	yìng mó xià è xìng zhǒng liú	100
 硬膜下脊髓囊肿	yìng mó xià jǐ suǐ náng zhǒng	100
 硬膜下脊髓脓肿	yìng mó xià jǐ suǐ nóng zhǒng	100
 硬囊卵巢综合征	yìng náng luǎn cháo zōng hé zhēng	100
 硬脑膜动静脉瘘	yìng nǎo mó dòng jìng mài lòu	100
 硬脑膜下穿刺术	yìng nǎo mó xià chuān cì shù	100
+硬脑膜修补材料	yìng nǎo mó xiū bǔ cái liào	100
 硬纤维瘤切除术	yìng xiān wéi liú qiē chú shù	100
 影像增强显微术	yǐng xiàng zēng qiáng xiǎn wēi shù	100
 硬性鼻咽镜检查	yìng xìng bí yān jìng jiǎn chá	100
@@ -13679,14 +14069,20 @@ sort: by_weight
 增殖性心内膜炎	zēng zhí xìng xīn nèi mó yán	100
 粘连性关节囊炎	zhān lián xìng guān jié náng yán	100
 掌骨部分切除术	zhǎng gǔ bù fèn qiē chú shù	100
+掌骨多发性骨折	zhǎng gǔ duō fā xìng gǔ zhé	100
 掌骨截骨矫形术	zhǎng gǔ jié gǔ jiǎo xíng shù	100
+掌骨开放性骨折	zhǎng gǔ kāi fàng xìng gǔ zhé	100
 掌骨肿瘤刮除术	zhǎng gǔ zhǒng liú guā chú shù	100
 掌筋膜纤维瘤病	zhǎng jīn mó xiān wéi liú bìng	100
 掌挛缩病切除术	zhǎng luán suō bìng qiē chú shù	100
 掌深动静脉损伤	zhǎng shēn dòng jìng mài sǔn shāng	100
+掌声指关节扭伤	zhǎng shēng zhǐ guān jié niǔ shāng	100
+掌跖骨钢板纯钛	zhǎng zhí gǔ gāng bǎn chún tài	100
+掌指关节半脱位	zhǎng zhǐ guān jié bàn tuō wèi	100
 掌指关节成形术	zhǎng zhǐ guān jié chéng xíng shù	100
 掌指关节离断术	zhǎng zhǐ guān jié lí duàn shù	100
 掌指关节融合术	zhǎng zhǐ guān jié róng hé shù	100
+掌跖角化病异常	zhǎng zhí jiǎo huà bìng yì cháng	100
 枕骨大孔脑膜瘤	zhěn gǔ dà kǒng nǎo mó liú	100
 枕骨裂脑露畸形	zhěn gǔ liè nǎo lù jī xíng	100
 枕颈植骨融合术	zhěn jǐng zhí gǔ róng hé shù	100
@@ -13711,14 +14107,17 @@ sort: by_weight
 直肠部分切除术	zhí cháng bù fèn qiē chú shù	100
 直肠出血缝扎术	zhí cháng chū xiě fèng zhā shù	100
 直肠恶性淋巴瘤	zhí cháng è xìng lín bā liú	100
+直肠恶性肿瘤史	zhí cháng è xìng zhǒng liú shǐ	100
 直肠姑息切除术	zhí cháng gū xī qiē chú shù	100
 直肠后部切除术	zhí cháng hòu bù qiē chú shù	100
 直肠环钳吻合术	zhí cháng huán qián wěn hé shù	100
 直肠节段性肠炎	zhí cháng jié duàn xìng cháng yán	100
 直肠溃疡切除术	zhí cháng kuì yáng qiē chú shù	100
+直肠淋菌球感染	zhí cháng lín jùn qiú gǎn rǎn	100
 直肠瘘管切开术	zhí cháng lòu guǎn qiē kāi shù	100
 直肠黏膜环切术	zhí cháng nián mó huán qiē shù	100
 直肠黏膜切除术	zhí cháng nián mó qiē chú shù	100
+直肠尿道瘘修补	zhí cháng niào dào lòu xiū bǔ	100
 直肠膀胱阴道瘘	zhí cháng páng guāng yīn dào lòu	100
 直肠旁良性肿瘤	zhí cháng páng liáng xìng zhǒng liú	100
 直肠破裂缝合术	zhí cháng pò liè féng hé shù	100
@@ -13730,21 +14129,34 @@ sort: by_weight
 直肠脱垂修补术	zhí cháng tuō chuí xiū bǔ shù	100
 直肠脱垂悬吊术	zhí cháng tuō chuí xuán diào shù	100
 直肠脱垂注射术	zhí cháng tuō chuí zhù shè shù	100
+直肠吻合口瘢痕	zhí cháng wěn hé kǒu bān hén	100
 直肠息肉切除术	zhí cháng xī ròu qiē chú shù	100
 直肠狭窄扩张术	zhí cháng xiá zhǎi kuò zhāng shù	100
 直肠狭窄切开术	zhí cháng xiá zhǎi qiē kāi shù	100
 直肠异物取出术	zhí cháng yì wù qǔ chū shù	100
+直肠衣原体感染	zhí cháng yī yuán tǐ gǎn rǎn	100
 直肠造口闭合术	zhí cháng zào kǒu bì hé shù	100
 直肠直肠吻合术	zhí cháng zhí cháng wěn hé shù	100
 直肠肿瘤切除术	zhí cháng zhǒng liú qiē chú shù	100
 直肠肿物切除术	zhí cháng zhǒng wù qiē chú shù	100
 痔疮冷冻破坏术	zhì chuāng lěng dòng pò huài shù	100
 指创伤性神经瘤	zhǐ chuāng shāng xìng shén jīng liú	100
+肢端骨质溶解症	zhī duān gǔ zhì róng jiě zhèng	100
+肢端念珠菌感染	zhī duān niàn zhū jūn gǎn rǎn	100
+肢端雀斑样痣黑	zhī duān què bān yàng zhì hēi	100
+脂肪皮肤硬化症	zhī fáng pí fū yìng huà zhèng	100
+脂肪栓塞创伤性	zhī fáng shuān sè chuāng shāng xìng	100
 脂肪栓塞综合征	zhī fáng shuān sè zōng hé zhēng	100
+脂肪性高脂血症	zhī fáng xìng gāo zhī xuè zhèng	100
+脂肪性胰腺坏死	zhī fáng xìng yí xiàn huài sǐ	100
 脂肪组织减少术	zhī fáng zǔ zhī jiǎn shǎo shù	100
 指骨病损切除术	zhǐ gǔ bìng sǔn qiē chú shù	100
 趾骨病损切除术	zhǐ gǔ bìng sǔn qiē chú shù	100
 跖骨关节松解术	zhí gǔ guān jié sōng jiě shù	100
+指骨开放性骨折	zhǐ gǔ kāi fàng xìng gǔ zhé	100
+趾骨开放性骨折	zhǐ gǔ kāi fàng xìng gǔ zhé	100
+跖骨开放性骨折	zhí gǔ kāi fàng xìng gǔ zhé	100
+肢骨纹状肥厚症	zhī gǔ wén zhuàng féi hòu zhèng	100
 指关节屈曲畸形	zhǐ guān jié qū qū jī xíng	100
 指甲髌骨综合征	zhǐ jia bìn gǔ zōng hé zhēng	100
 趾甲部分移植术	zhǐ jiǎ bù fen yí zhí shù	100
@@ -13791,6 +14203,8 @@ sort: by_weight
 支原体性尿道炎	zhī yuán tǐ xìng niào dào yán	100
 指掌侧固有神经	zhǐ zhǎng cè gù yǒu shén jīng	100
 脂质沉积性肌病	zhī zhì chén jī xìng jī bìng	100
+脂质蛋白沉积症	zhī zhì dàn bái chén jī zhèng	100
+指趾骨钢板纯钛	zhǐ zhǐ gǔ gāng bǎn chún tài	100
 指转位代拇指术	zhǐ zhuàn wèi dài mǔ zhǐ shù	100
 趾足底固有神经	zhǐ zú dǐ gù yǒu shén jīng	100
 中东呼吸综合征	zhōng dōng hū xī zōng hé zhēng	100
@@ -13818,6 +14232,9 @@ sort: by_weight
 柱型支气管扩张	zhù xíng zhī qì guǎn kuò zhāng	100
 主支气管吻合术	zhǔ zhī qì guǎn wěn hé shù	100
 转甲状腺素蛋白	zhuǎn jiǎ zhuàng xiàn sù dàn bái	100
+转移性低钾血症	zhuǎn yí xìng dī jiǎ xuè zhèng	100
+转移性低钠血症	zhuǎn yí xìng dī nà xuè zhèng	100
+转移性高钾血症	zhuǎn yí xìng gāo jiǎ xuè zhèng	100
 转移性黏液腺癌	zhuǎn yí xìng nián yè xiàn ái	100
 转移性乳头状癌	zhuǎn yí xìng rǔ tóu zhuàng ái	100
 转移性脂肪肉瘤	zhuǎn yí xìng zhī fáng ròu liú	100
@@ -13825,9 +14242,13 @@ sort: by_weight
 椎骨修补整形术	zhuī gǔ xiū bǔ zhěng xíng shù	100
 椎体病害切除术	zhuī tǐ bìng hài qiē chú shù	100
 椎体部分切除术	zhuī tǐ bù fèn qiē chú shù	100
+椎体成形术系统	zhuī tǐ chéng xíng shù xì tǒng	100
 椎体后缘减压术	zhuī tǐ hòu yuán jiǎn yā shù	100
 锥体外束综合征	zhuī tǐ wài shù zōng hé zhēng	100
 椎体肿瘤切除术	zhuī tǐ zhǒng liú qiē chú shù	100
+锥形股骨头金属	zhuī xíng gǔ gǔ tóu jīn shǔ	100
+锥形股骨头陶瓷	zhuī xíng gǔ gǔ tóu táo cí	100
+锥形颈动脉支架	zhuī xíng jǐng dòng mài zhī jià	100
 着色性口周皮炎	zhuó sè xìng kǒu zhōu pí yán	100
 眦部肿瘤切除术	zì bù zhǒng liú qiē chú shù	100
 自动酿酒综合征	zì dòng niàng jiǔ zōng hé zhēng	100
@@ -13836,6 +14257,7 @@ sort: by_weight
 子宫病害切除术	zǐ gōng bìng hài qiē chú shù	100
 子宫病损切除术	zǐ gōng bìng sǔn qiē chú shù	100
 子宫部分切除术	zǐ gōng bù fèn qiē chú shù	100
+子宫不规则出血	zǐ gōng bù guī zé chū xiě	100
 子宫抽吸刮宫术	zǐ gōng chōu xī guā gōng shù	100
 子宫次全切除术	zǐ gōng cì quán qiē chú shù	100
 子宫底恶性肿瘤	zǐ gōng dǐ è xìng zhǒng liú	100
@@ -13845,14 +14267,22 @@ sort: by_weight
 子宫动脉造影术	zǐ gōng dòng mài zào yǐng shù	100
 子宫宫颈切开术	zǐ gōng gōng jǐng qiē kāi shù	100
 子宫宫颈修补术	zǐ gōng gōng jǐng xiū bǔ shù	100
+子宫功能性出血	zǐ gōng gōng néng xìng chū xiě	100
 子宫后倾整复术	zǐ gōng hòu qīng zhěng fù shù	100
+子宫肌瘤的症状	zǐ gōng jī liú de zhèng zhuàng	100
 子宫肌瘤切除术	zǐ gōng jī liú qiē chú shù	100
 子宫肌瘤剔除术	zǐ gōng jī liú tī chú shù	100
 子宫浆膜下肌瘤	zǐ gōng jiāng mó xià jī liú	100
+子宫颈残端出血	zǐ gōng jǐng cán duān chū xiě	100
 子宫颈恶性肿瘤	zǐ gōng jǐng è xìng zhǒng liú	100
+子宫颈发育不良	zǐ gōng jǐng fā yù bù liáng	100
 子宫颈管环扎术	zǐ gōng jǐng guǎn huán zhā shù	100
+子宫颈机能不全	zǐ gōng jǐng jī néng bù quán	100
 子宫颈良性肿瘤	zǐ gōng jǐng liáng xìng zhǒng liú	100
 子宫颈抹片检查	zǐ gōng jǐng mǒ piàn jiǎn chá	100
+子宫颈切开助产	zǐ gōng jǐng qiē kāi zhù chǎn	100
+子宫颈炎伴溃疡	zǐ gōng jǐng yán bàn kuì yáng	100
+子宫颈阴道上部	zǐ gōng jǐng yīn dào shàng bù	100
 子宫颈潴留囊肿	zǐ gōng jǐng zhū liú náng zhǒng	100
 子宫瘘管闭合术	zǐ gōng lòu guǎn bì hé shù	100
 子宫内翻复位术	zǐ gōng nèi fān fù wèi shù	100
@@ -13860,6 +14290,7 @@ sort: by_weight
 子宫内膜切除术	zǐ gōng nèi mó qiē chú shù	100
 子宫内膜样腺癌	zǐ gōng nèi mó yàng xiàn ái	100
 子宫内膜样腺瘤	zǐ gōng nèi mó yàng xiàn liú	100
+子宫内膜异位症	zǐ gōng nèi mó yì wèi zhèng	100
 子宫内膜原位癌	zǐ gōng nèi mó yuán wèi ái	100
 子宫黏膜下肌瘤	zǐ gōng nián mó xià jī liú	100
 子宫旁动静脉瘘	zǐ gōng páng dòng jìng mài lòu	100
@@ -13867,10 +14298,13 @@ sort: by_weight
 子宫切开取胎术	zǐ gōng qiē kāi qǔ tāi shù	100
 子宫切开探查术	zǐ gōng qiē kāi tàn chá shù	100
 子宫韧带修补术	zǐ gōng rèn dài xiū bǔ shù	100
+子宫输卵管移植	zǐ gōng shū luǎn guǎn yí zhí	100
 子宫输卵管造影	zǐ gōng shū luǎn guǎn zào yǐng	100
 子宫体恶性肿瘤	zǐ gōng tǐ è xìng zhǒng liú	100
 子宫体良性肿瘤	zǐ gōng tǐ liáng xìng zhǒng liú	100
+子宫下段剖腹产	zǐ gōng xià duàn pōu fù chǎn	100
 子宫峡恶性肿瘤	zǐ gōng xiá è xìng zhǒng liú	100
+子宫圆韧带动脉	zǐ gōng yuán rèn dài dòng mài	100
 子宫粘连分离术	zǐ gōng zhān lián fēn lí shù	100
 子宫粘连松解术	zǐ gōng zhān lián sōng jiě shù	100
 子宫肿瘤切除术	zǐ gōng zhǒng liú qiē chú shù	100
@@ -13914,15 +14348,32 @@ sort: by_weight
 足底缺损修复术	zú dǐ quē sǔn xiū fù shù	100
 足底异物取出术	zú dǐ yì wù qǔ chū shù	100
 足恶性黑色素瘤	zú è xìng hēi sè sù liú	100
+足和趾关节置换	zú hé zhǐ guān jié zhì huàn	100
+阻抗潮气呼吸图	zǔ kàng cháo qì hū xī tú	100
 足拇外翻矫形术	zú mǔ wài fān jiǎo xíng shù	100
+足软组织撕脱伤	zú ruǎn zǔ zhī sī tuō shāng	100
 足三关节固定术	zú sān guān jié gù dìng shù	100
 足三关节融合术	zú sān guān jié róng hé shù	100
+祖师麻关节止痛	zǔ shī má guān jié zhǐ tòng	100
 足四关节融合术	zú sì guān jié róng hé shù	100
 足外翻骨切断术	zú wài fān gǔ qiē duàn shù	100
+足外伤伴并发症	zú wài shāng bàn bìng fā zhèng	100
+足外伤累及肌腱	zú wài shāng lěi jí jī jiàn	100
+组织胺激发试验	zǔ zhī àn jī fā shì yàn	100
 组织胺样综合征	zǔ zhī àn yàng zōng hé zhēng	100
+组织多普勒成像	zǔ zhī duō pǔ lè chéng xiàng	100
+组织多普勒显像	zǔ zhī duō pǔ lè xiǎn xiàng	100
 足趾关节成形术	zú zhǐ guān jié chéng xíng shù	100
 足趾肌腱缝合术	zú zhǐ jī jiàn féng hé shù	100
 足趾肌腱移位术	zú zhǐ jī jiàn yí wèi shù	100
+组织间插置放疗	zǔ zhī jiān chā zhì fàng liáo	100
+足趾扭伤和劳损	zú zhǐ niǔ shāng hé láo sǔn	100
+组织细胞增多症	zǔ zhī xì bāo zēng duō zhèng	100
+组织细胞增生症	zǔ zhī xì bāo zēng shēng zhèng	100
+组织相容性基因	zǔ zhī xiāng róng xìng jī yīn	100
+组织相容性抗原	zǔ zhī xiāng róng xìng kàng yuán	100
+组织相容性试验	zǔ zhī xiāng róng xìng shì yàn	100
+组织相容性系统	zǔ zhī xiāng róng xìng xì tǒng	100
 左半结肠根治术	zuǒ bàn jié cháng gēn zhì shù	100
 左半结肠切除术	zuǒ bàn jié cháng qiē chú shù	100
 左房刺伤修补术	zuǒ fáng cì shāng xiū bǔ shù	100
