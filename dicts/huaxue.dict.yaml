@@ -1001,7 +1001,6 @@ sort: by_weight
 氢铀弹	qīng yóu dàn	230
 全氯萘	quán lǜ nài	45
 炔丙氯	quē bǐng lǜ	45
-燃料铀	rán liào yóu	124
 壬酰氯	rén xiān lǜ	45
 铷单质	rú dān zhì	4
 铷矿床	rú kuàng chuáng	45
@@ -3476,7 +3475,6 @@ sort: by_weight
 曲司氯铵	qǔ sī lǜ ǎn	4
 全氯乙烯	quán lǜ yǐ xī	153
 炔丙基氯	quē bǐng jī lǜ	99
-燃料棒铀	rán liào bàng yóu	144
 壬苯醇醚	rén běn chún mí	292
 壬基苯酚	rén jī běn fēn	207
 铷磁强计	rú cí qiáng jì	45
@@ -4622,7 +4620,6 @@ sort: by_weight
 苯酚滴耳液	běn fēn dī ěr yè	100
 苯酚磺酸钠	běn fēn huáng suān nà	100
 苯酚甲醛尸	běn fēn jiǎ quán shī	100
-苯酚消毒液	běn fēn xiāo dú yè	100
 苯环己哌啶	běn huán jǐ pài dìng	100
 苯磺酸甲酯	běn huáng suān jiǎ zhǐ	100
 苯磺酰羟胺	běn huáng xiān qiǎng àn	100
@@ -5822,6 +5819,7 @@ sort: by_weight
 非羧基蛋白	fēi suō jī dàn bái	100
 粪产碱杆菌	fèn chǎn jiǎn gǎn jūn	100
 酚醚压塑粉	fēn mí yā sù fěn	120
+酚醛树脂液	fēn quán shù zhī yè	100
 分子间氢键	fēn zǐ jiān qīng jiàn	100
 分子内氢键	fēn zǐ nèi qīng jiàn	100
 风成碳酸岩	fēng chéng tàn suān yán	100
@@ -8769,8 +8767,10 @@ sort: by_weight
 烷基醇酰胺	wán jī chún xiān àn	100
 烷基芳香酮	wán jī fāng xiāng tóng	100
 烷基化合物	wán jī huà hé wù	100
+烷基化试剂	wán jī huà shì jì	100
 烷基环烷烃	wán jī huán wán tīng	100
 烷基磺酸钠	wán jī huáng suān nà	120
+烷基锂试剂	wán jī lǐ shì jì	120
 烷基卤化物	wán jī lǔ huà wù	100
 烷基镁化卤	wán jī měi huà lǔ	100
 烷基纤维素	wán jī xiān wéi sù	100
@@ -8978,6 +8978,7 @@ sort: by_weight
 涎酸贮积症	xián suān zhù jī zhèng	100
 香醇的咖啡	xiāng chún de kā fēi	100
 香醇的美酒	xiāng chún de měi jiǔ	100
+橡胶黏合剂	xiàng jiāo nián hé jì	100
 降龙涎香醚	xiáng lóng xián xiāng mí	100
 想起就心酸	xiǎng qǐ jiù xīn suān	100
 香叶基丙酮	xiāng yè jī bǐng tóng	100
@@ -11729,6 +11730,7 @@ sort: by_weight
 合氨基苯甲酸	hé ān jī běn jiǎ suān	100
 合成寡核甘酸	hé chéng guǎ hé gān suān	100
 合成气中氢气	hé chéng qì zhōng qīng qì	100
+合成树脂乳液	hé chéng shù zhī rǔ yè	100
 核磁共振氢谱	hé cí gòng zhèn qīng pǔ	100
 核苷和核苷酸	hé gān hé hé gān suān	100
 核苷磷酸化酶	hé gān lín suān huà méi	100
@@ -12125,7 +12127,6 @@ sort: by_weight
 甲酸双氢睾酮	jiǎ suān shuāng qīng gāo tóng	100
 甲酸硝基苯酯	jiǎ suān xiāo jī běn zhǐ	100
 甲烷化分离器	jiǎ wán huà fēn lí qì	120
-甲烷化换热器	jiǎ wán huà huàn rè qì	120
 甲烷磺酸丁酯	jiǎ wán huáng suān dīng zhǐ	100
 甲烷磺酸甲酯	jiǎ wán huáng suān jiǎ zhǐ	100
 甲烷硫醇筛析	jiǎ wán liú chún shāi xī	100
@@ -12252,7 +12253,6 @@ sort: by_weight
 间硝基苯乙醚	jiān xiāo jī běn yǐ mí	100
 碱性酚酞溶液	jiǎn xìng fēn tài róng yè	100
 碱性耐火材料	jiǎn xìng nài huǒ cái liào	100
-碱性燃料电池	jiǎn xìng rán liào diàn chí	100
 碱性锌锰电池	jiǎn xìng xīn měng diàn chí	100
 碱性玄武岩浆	jiǎn xìng xuán wǔ yán jiāng	100
 碱性岩浆系列	jiǎn xìng yán jiāng xì liè	100
@@ -13092,6 +13092,7 @@ sort: by_weight
 尼古劳丁溶液	ní gǔ láo dīng róng yè	100
 尼龙酸二甲酯	ní lóng suān èr jiǎ zhǐ	100
 逆频哪醇重排	nì pín nǎ chún chóng pái	1000
+黏合剂分散剂	nián hé jì fēn sǎn jì	100
 鸟氨酸醋酸盐	niǎo ān suān cù suān yán	100
 鸟氨酸硫酸盐	niǎo ān suān liú suān yán	100
 鸟氨酸血症型	niǎo ān suān xuè zhèng xíng	100
@@ -13287,7 +13288,6 @@ sort: by_weight
 氢氧化钠烧伤	qīng yǎng huà nà shāo shāng	100
 氢氧化铁胶体	qīng yǎng huà tiě jiāo tǐ	100
 氢氧化物矿物	qīng yǎng huà wù kuàng wù	100
-氢氧燃料电池	qīng yǎng rán liào diàn chí	100
 氰乙酸异丙酯	qíng yǐ suān yì bǐng zhǐ	100
 氰乙酸异辛酯	qíng yǐ suān yì xīn zhǐ	100
 氰乙酸正丁酯	qíng yǐ suān zhèng dīng zhǐ	100
@@ -13336,6 +13336,7 @@ sort: by_weight
 醛甾酮过少症	quán zāi tóng guò shǎo zhèng	100
 炔丙基环己烷	quē bǐng jī huán jǐ wán	100
 炔烷基化合物	quē wán jī huà hé wù	100
+热固性黏合剂	rè gù xìng nián hé jì	100
 热脱硫杆菌纲	rè tuō liú gǎn jūn gāng	100
 热脱硫杆菌门	rè tuō liú gǎn jūn mén	100
 热脱硫杆菌目	rè tuō liú gǎn jūn mù	100
@@ -14202,6 +14203,7 @@ sort: by_weight
 亚胺酯盐酸盐	yà àn zhǐ yán suān yán	100
 亚卞基乙酰苯	yà biàn jī yǐ xiān běn	100
 亚苄基乙酰苯	yà biàn jī yǐ xiān běn	100
+压合式黏合剂	yā hé shì nián hé jì	100
 吖黄素盐酸盐	yā huáng sù yán suān yán	100
 亚磺酰基苯胺	yà huáng xiān jī běn àn	100
 亚甲二氧苯基	yà jiǎ èr yǎng běn jī	100
@@ -14210,6 +14212,7 @@ sort: by_weight
 亚甲基丁内酯	yà jiǎ jī dīng nèi zhǐ	100
 亚甲基二氧苯	yà jiǎ jī èr yǎng běn	100
 亚甲基双氯酚	yà jiǎ jī shuāng lǜ fēn	100
+牙科用黏合剂	yá kē yòng nián hé jì	100
 亚磷酸二苄酯	yà lín suān èr biàn zhǐ	100
 亚磷酸二丁酯	yà lín suān èr dīng zhǐ	100
 亚磷酸二甲酯	yà lín suān èr jiǎ zhǐ	120
@@ -14920,7 +14923,6 @@ sort: by_weight
 乙氧基乙基氯	yǐ yǎng jī yǐ jī lǜ	100
 一乙胺盐酸盐	yī yǐ àn yán suān yán	100
 一乙酸甘油酯	yī yǐ suān gān yóu zhǐ	100
-医用的水杨酸	yī yòng de shuǐ yáng suān	100
 抑制酪氨酸酶	yì zhì lào ān suān méi	100
 抑制胃酸分泌	yì zhì wèi suān fēn mì	100
 引导核糖核酸	yǐn dǎo hé táng hé suān	100
@@ -15867,6 +15869,7 @@ sort: by_weight
 寡腺苷酸聚合酶	guǎ xiàn gān suān jù hé méi	100
 胱氨酸牛心琼脂	guāng ān suān niú xīn qióng zhī	100
 癸二酸二异辛酯	guǐ èr suān èr yì xīn zhǐ	100
+鬼臼根树脂溶液	guǐ jiù gēn shù zhī róng yè	100
 硅酸铝耐火材料	guī suān lǚ nài huǒ cái liào	100
 贵州箩箩酸汤鱼	guì zhōu luó luó suān tāng yú	100
 果糖二磷酸三钠	guǒ táng èr lín suān sān nà	100
@@ -15963,7 +15966,6 @@ sort: by_weight
 黄质核苷磷酸盐	huáng zhì hé gān lín suān yán	100
 茴三硫片薄膜衣	huí sān liú piàn báo mó yī	100
 混合功能氧化酶	hùn hé gōng néng yǎng huà méi	100
-混合氧化物燃料	hùn hé yǎng huà wù rán liào	100
 混旋甲基炔诺酮	hùn xuán jiǎ jī quē nuò tóng	100
 火成碳酸盐岩浆	huǒ chéng tàn suān yán yán jiāng	100
 活化去氢胆固醇	huó huà qù qīng dǎn gù chún	100
@@ -16841,6 +16843,7 @@ sort: by_weight
 稀土碳酸岩矿床	xī tǔ tàn suān yán kuàng chuáng	100
 腺苷高半胱氨酸	xiàn gān gāo bàn guāng ān suān	100
 腺苷酸基琥珀酸	xiàn gān suān jī hǔ pò suān	100
+纤维蛋白黏合剂	xiān wéi dàn bái nián hé jì	100
 硝氨基甲酸乙酯	xiāo ān jī jiǎ suān yǐ zhǐ	100
 硝苯地平片糖衣	xiāo běn dì píng piàn táng yī	100
 小檗碱甲氧苄啶	xiǎo bò jiǎn jiǎ yǎng biàn dìng	100
