@@ -24,7 +24,7 @@ import_tables:
   - dicts/yixue.pro         #医学
   - dicts/huaxue.pro        #化学
   - dicts/yaopin.pro        #药品
-  - dicts/mingxing.pro      #明星
+  - dicts/yiren.pro         #艺人
 #  - dicts/wuzhong.pro       #物种多样性,在线供应：https://github.com/amzxyz/rime-wanxiang/tree/wanxiang/dicts
 #  - dicts/renming.pro       #人名,在线供应：https://github.com/amzxyz/rime-wanxiang/tree/wanxiang/dicts
 ...
