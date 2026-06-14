@@ -1,12 +1,30 @@
 # rime dictionary
 # encoding: utf-8
 # https://github.com/amzxyz/RIME-LMDG
-# 名人(历史人物、学者、作家、政治家、公众人物等)
+# 名人(历史人物、学者、作家、政治家、企业家、公众人物等)
 ---
 name: mingren
 version: "LTS"
 sort: by_weight
 ...
+蔡畅	cài chàng	512
+蔡锷	cài è	223
+蔡孚	cài fú	35
+蔡京	cài jīng	832
+蔡戡	cài kān	1496
+蔡澜	cài lán	128
+蔡伦	cài lún	144
+蔡瑁	cài mào	220
+蔡薿	cài nǐ	35
+蔡奇	cài qí	444
+蔡牵	cài qiān	407
+蔡确	cài què	500
+蔡伸	cài shēn	239
+蔡襄	cài xiāng	345
+蔡琰	cài yǎn	15
+蔡阳	cài yáng	508
+蔡邕	cài yōng	664
+蔡泽	cài zé	558
 陈策	chén cè	580
 陈诚	chén chéng	160
 陈到	chén dào	142
@@ -17,6 +35,8 @@ sort: by_weight
 陈珪	chén guī	58
 陈矫	chén jiǎo	48
 陈亮	chén liàng	837
+陈漫	chén màn	489
+陈美	chén měi	994
 陈群	chén qún	761
 陈胜	chén shèng	1207
 陈寿	chén shòu	2097
@@ -27,6 +47,14 @@ sort: by_weight
 陈云	chén yún	1052
 陈轸	chén zhěn	40
 陈祗	chén zhī	31
+郭川	guō chuān	1146
+郭淮	guō huái	1032
+郭槐	guō huái	466
+郭解	guō jiě	174
+郭巨	guō jù	413
+郭开	guō kāi	143
+郭隗	guō kuí	83
+郭汜	guō sì	478
 刘安	liú ān	811
 刘巴	liú bā	292
 刘邦	liú bāng	30744
@@ -75,6 +103,20 @@ sort: by_weight
 罗琳	luó lín	1372
 罗曼	luó màn	1623
 罗素	luó sù	2962
+孙策	sūn cè	3423
+孙恩	sūn ēn	107
+孙鲂	sūn fáng	153
+孙皓	sūn hào	7878
+孙峻	sūn jùn	101
+孙科	sūn kē	881
+孙亮	sūn liàng	201
+孙乾	sūn qián	422
+孙权	sūn quán	15687
+孙文	sūn wén	427
+孙武	sūn wǔ	1630
+孙吴	sūn wú	1548
+孙休	sūn xiū	684
+孙瑜	sūn yú	60
 王弼	wáng bì	308
 王勃	wáng bó	1376
 王粲	wáng càn	
@@ -91,6 +133,154 @@ sort: by_weight
 王献	wáng xiàn	832
 王衍	wáng yǎn	169
 王允	wáng yǔn	1022
+赵高	zhào gāo	2525
+赵构	zhào gòu	1316
+赵恒	zhào héng	788
+赵姬	zhào jī	673
+赵佶	zhào jí	500
+赵普	zhào pǔ	697
+赵奢	zhào shē	620
+赵佗	zhào tuó	742
+赵王	zhào wáng	2528
+赵俨	zhào yǎn	35
+赵翼	zhào yì	806
+赵云	zhào yún	7900
+蔡哀侯	cài āi hóu	82
+蔡百铨	cài bǎi quán	328
+蔡邦华	cài bāng huá	270
+蔡秉德	cài bǐng dé	292
+蔡炳坤	cài bǐng kūn	315
+蔡伯喈	cài bó jiē	320
+蔡伯励	cài bó lì	284
+蔡辰洲	cài chén zhōu	351
+蔡承甲	cài chéng jiǎ	50
+蔡成勋	cài chéng xūn	387
+蔡崇达	cài chóng dá	94
+蔡崇信	cài chóng xìn	720
+蔡楚生	cài chǔ shēng	395
+蔡达标	cài dá biāo	630
+蔡达峰	cài dá fēng	3
+蔡道恭	cài dào gōng	220
+蔡德芳	cài dé fāng	346
+蔡丁贵	cài dīng guì	504
+蔡鼎甲	cài dǐng jiǎ	45
+蔡丁赞	cài dīng zàn	130
+蔡东藩	cài dōng fān	94
+蔡东青	cài dōng qīng	53
+蔡尔德	cài ěr dé	333
+蔡尔康	cài ěr kāng	270
+蔡根培	cài gēn péi	279
+蔡公时	cài gōng shí	16
+蔡冠伦	cài guān lún	369
+蔡冠深	cài guān shēn	432
+蔡官治	cài guān zhì	243
+蔡国公	cài guó gōng	342
+蔡国强	cài guó qiáng	345
+蔡国声	cài guó shēng	378
+蔡汉卿	cài hàn qīng	306
+蔡和森	cài hé sēn	44
+蔡洪平	cài hóng píng	338
+蔡鸿生	cài hóng shēng	230
+蔡桓公	cài huán gōng	57
+蔡桓侯	cài huán hóu	288
+蔡煌瑯	cài huáng láng	378
+蔡惠如	cài huì rú	369
+蔡济民	cài jì mín	396
+蔡继明	cài jì míng	6
+蔡加敏	cài jiā mǐn	288
+蔡加怡	cài jiā yí	243
+蔡加赞	cài jiā zàn	3
+蔡建华	cài jiàn huá	288
+蔡金涂	cài jīn tú	328
+蔡景侯	cài jǐng hóu	261
+蔡景璋	cài jǐng zhāng	297
+蔡礼旭	cài lǐ xù	405
+蔡良蝉	cài liáng chán	504
+蔡林森	cài lín sēn	369
+蔡灵侯	cài líng hóu	297
+蔡龙云	cài lóng yún	28
+蔡美彪	cài měi biāo	396
+蔡孟坚	cài mèng jiān	31
+蔡铭超	cài míng chāo	35
+蔡明介	cài míng jiè	274
+蔡明亮	cài míng liàng	680
+蔡名照	cài míng zhào	423
+蔡明忠	cài míng zhōng	364
+蔡南海	cài nán hǎi	144
+蔡攀龙	cài pān lóng	284
+蔡培慧	cài péi huì	346
+蔡培火	cài péi huǒ	540
+蔡平侯	cài píng hóu	194
+蔡其昌	cài qí chāng	477
+蔡启芳	cài qǐ fāng	369
+蔡启僔	cài qǐ zǔn	171
+蔡清祥	cài qīng xiáng	297
+蔡荣祖	cài róng zǔ	252
+蔡儒楷	cài rú kǎi	279
+蔡瑞月	cài ruì yuè	464
+蔡若虹	cài ruò hóng	266
+蔡若莲	cài ruò lián	464
+蔡善继	cài shàn jì	220
+蔡尚君	cài shàng jūn	364
+蔡绍基	cài shào jī	306
+蔡申熙	cài shēn xī	16
+蔡诗萍	cài shī píng	310
+蔡士英	cài shì yīng	207
+蔡世远	cài shì yuǎn	38
+蔡守训	cài shǒu xùn	310
+蔡叔度	cài shū dù	31
+蔡树藩	cài shù fān	378
+蔡枢衡	cài shū héng	189
+蔡松年	cài sōng nián	324
+蔡松坡	cài sōng pō	6
+蔡嵩松	cài sōng sōng	185
+蔡天铎	cài tiān duó	243
+蔡天新	cài tiān xīn	526
+蔡廷锴	cài tíng kǎi	13
+蔡廷兰	cài tíng lán	310
+蔡同荣	cài tóng róng	648
+蔡万霖	cài wàn lín	464
+蔡文恭	cài wén gōng	4
+蔡文侯	cài wén hóu	207
+蔡文姬	cài wén jī	948
+蔡文胜	cài wén shèng	531
+蔡希寂	cài xī jì	4
+蔡细历	cài xì lì	405
+蔡希陶	cài xī táo	225
+蔡锡勇	cài xī yǒng	248
+蔡献臣	cài xiàn chén	207
+蔡孝干	cài xiào gàn	621
+蔡笑晚	cài xiào wǎn	324
+蔡兴麟	cài xīng lín	328
+蔡兴宗	cài xīng zōng	382
+蔡押衙	cài yā yá	45
+蔡言厚	cài yán hòu	378
+蔡衍明	cài yǎn míng	13
+蔡义江	cài yì jiāng	334
+蔡易余	cài yì yú	450
+蔡隐丘	cài yǐn qiū	50
+蔡英挺	cài yīng tǐng	356
+蔡英文	cài yīng wén	273
+蔡永祥	cài yǒng xiáng	364
+蔡毓荣	cài yù róng	310
+蔡元定	cài yuán dìng	360
+蔡元放	cài yuán fàng	266
+蔡元培	cài yuán péi	625
+蔡元云	cài yuán yún	288
+蔡允恭	cài yǔn gōng	179
+蔡章献	cài zhāng xiàn	320
+蔡昭侯	cài zhāo hóu	35
+蔡哲夫	cài zhé fū	202
+蔡振华	cài zhèn huá	414
+蔡正国	cài zhèng guó	266
+蔡正元	cài zhèng yuán	688
+蔡智堪	cài zhì kān	252
+蔡志忠	cài zhì zhōng	44
+蔡中郎	cài zhōng láng	346
+蔡仲南	cài zhòng nán	382
+蔡庄侯	cài zhuāng hóu	266
+蔡子民	cài zǐ mín	356
+蔡子明	cài zǐ míng	47
 陈阿娇	chén ā jiāo
 陈霸先	chén bà xiān	198
 陈璧君	chén bì jūn	113
@@ -125,6 +315,59 @@ sort: by_weight
 陈友谅	chén yǒu liàng	929
 陈圆圆	chén yuán yuán	160
 陈云林	chén yún lín	616
+郭伯雄	guō bó xióng	824
+郭凡生	guō fán shēng	41
+郭奉孝	guō fèng xiào	72
+郭刚堂	guō gāng táng	756
+郭广昌	guō guǎng chāng	742
+郭贵妃	guō guì fēi	57
+郭皇后	guō huáng hòu	170
+郭惠妃	guō huì fēi	234
+郭稽中	guō jī zhōng	45
+郭金龙	guō jīn lóng	666
+郭敬仲	guō jìng zhòng	45
+郭居易	guō jū yì	45
+郭履道	guō lǚ dào	38
+郭沬若	guō mèi ruò	162
+郭明𫓹	guō míng jī	45
+郭沫若	guō mò ruò	9508
+郭日生	guō rì shēng	50
+郭汝端	guō rǔ duān	45
+郭声琨	guō shēng kūn	720
+郭圣通	guō shèng tōng	647
+郭守敬	guō shǒu jìng	380
+郭树清	guō shù qīng	151
+郭嵩焘	guō sōng dào	85
+郭松龄	guō sōng líng	706
+郭太后	guō tài hòu	135
+郭台铭	guō tái míng	132
+郭田勇	guō tián yǒng	6
+郭药师	guō yào shī	97
+郭永怀	guō yǒng huái	374
+郭右陶	guō yòu táo	45
+郭正亮	guō zhèng liàng	22
+郭子仪	guō zǐ yí	650
+郭子章	guō zǐ zhāng	3
+黄志祥	huáng zhì xiáng	6
+黄志雄	huáng zhì xióng	450
+黄智勇	huáng zhì yǒng	3
+黄执中	huáng zhí zhōng	164
+黄忠义	huáng zhōng yì	356
+黄仲则	huáng zhòng zé	22
+黄仲昭	huáng zhòng zhāo	292
+黄宗汉	huáng zōng hàn	346
+黄宗羲	huáng zōng xī	336
+黄宗仰	huáng zōng yǎng	238
+黄宗智	huáng zōng zhì	201
+黄宗治	huáng zōng zhì	181
+黄祖权	huáng zǔ quán	464	艺人
+黄尊秋	huáng zūn qiū	252
+黄尊素	huáng zūn sù	346
+黄遵宪	huáng zūn xiàn	44
+黄佐临	huáng zuǒ lín	405
+黄作梅	huáng zuò méi	306
+李时珍	lǐ shí zhēn	644
+李书福	lǐ shū fú	314
 刘病已	liú bìng yǐ	318
 刘伯承	liú bó chéng	226
 刘伯温	liú bó wēn	320
@@ -180,9 +423,98 @@ sort: by_weight
 罗仲谦	luó zhòng qiān	9
 罗卓瑶	luó zhuó yáo	356
 罗卓英	luó zhuó yīng	9
+钱伯常	qián bó cháng	45
+钱伯海	qián bó hǎi	99
+钱伯钧	qián bó jūn	45
+钱伯斯	qián bó sī	182
+钱昌照	qián chāng zhào	454
+钱澄海	qián chéng hǎi	284
+钱春湖	qián chūn hú	45
+钱大成	qián dà chéng	117
+钱达尔	qián dá ěr	396
+钱大钧	qián dà jūn	9
+钱大昕	qián dà xīn	69
+钱大用	qián dà yòng	4
+钱德洪	qián dé hóng	6
+钱德拉	qián dé lā	141
+钱德勒	qián dé lè	1394
+钱东奇	qián dōng qí	292
+钱逢胜	qián féng shèng	176
+钱国宾	qián guó bīn	4
+钱国伟	qián guó wěi	446
+钱经纶	qián jīng lún	45
+钱均夫	qián jūn fū	346
+钱君陶	qián jūn táo	220
+钱立富	qián lì fù	266
+钱理群	qián lǐ qún	323
+钱良玉	qián liáng yù	45
+钱能训	qián néng xùn	414
+钱其琛	qián qí chēn	41
+钱七虎	qián qī hǔ	129
+钱汝砺	qián rǔ lì	45
+钱三强	qián sān qiáng	337
+钱石庵	qián shí ān	45
+钱石臣	qián shí chén	45
+钱石义	qián shí yì	42
+钱石中	qián shí zhōng	45
+钱思亮	qián sī liàng	414
+钱松汉	qián sōng hàn	45
+钱松岩	qián sōng yán	279
+钱萚石	qián tuò shí	4
+钱伟长	qián wěi cháng	286
+钱维城	qián wéi chéng	3
+钱闻礼	qián wén lǐ	320
+钱文忠	qián wén zhōng	574
+钱秀昌	qián xiù chāng	4
+钱玄同	qián xuán tóng	455
+钱学森	qián xué sēn	6114
+钱彦深	qián yàn shēn	45
+钱亦石	qián yì shí	67
+钱颖一	qián yǐng yī	842
+钱愈庵	qián yù ān	45
+钱原濬	qián yuán jùn	45
+钱运录	qián yùn lù	369
+钱云岩	qián yún yán	45
+钱正英	qián zhèng yīng	3
+钱仲联	qián zhòng lián	396
+钱锺书	qián zhōng shū	868
+钱中文	qián zhōng wén	225
+钱仲阳	qián zhòng yáng	50
+钱众仲	qián zhòng zhòng	45
+钱壮飞	qián zhuàng fēi	85
+钱宗道	qián zōng dào	45
+秦出公	qín chū gōng	15
+秦出子	qín chū zǐ	116
+秦非子	qín fēi zǐ	135
+秦公伯	qín gōng bó	12
+秦惠公	qín huì gōng	312
+秦始皇	qín shǐ huáng	13810
+秦宣公	qín xuān gōng	30
+秦夷公	qín yí gōng	12
+全红婵	quán hóng chán	1517
+孙培青	sūn péi qīng	392
+孙其峰	sūn qí fēng	3
+孙瑞雪	sūn ruì xuě	585
+孙思邈	sūn sī miǎo	399
+孙太后	sūn tài hòu	13
+孙武子	sūn wǔ zǐ	97
+孙兴民	sūn xīng mín	810
+孙兴慜	sūn xīng mǐn	509
+孙亚芳	sūn yà fāng	16
+孙逸仙	sūn yì xiān	25
+孙宇晨	sūn yǔ chén	1793
+孙元良	sūn yuán liáng	176
+孙越崎	sūn yuè qí	585
+孙云晓	sūn yún xiǎo	22
+孙运璇	sūn yùn xuán	598
+孙政才	sūn zhèng cái	3
+孙正义	sūn zhèng yì	534
+孙中山	sūn zhōng shān	3008
+孙仲旭	sūn zhòng xù	495
 王安石	wáng ān shí	9232
 王保保	wáng bǎo bǎo	948
 王昌龄	wáng chāng líng	722
+王朝阳	wáng cháo yáng	1337
 王宠惠	wáng chǒng huì	97
 王重阳	wáng chóng yáng	1030
 王定国	wáng dìng guó	119
@@ -207,3 +539,45 @@ sort: by_weight
 王献之	wáng xiàn zhī	490
 王孝杰	wáng xiào jié	235
 王阳明	wáng yáng míng	2594
+赵秉文	zhào bǐng wén	28
+赵辰昕	zhào chén xīn	670
+赵充国	zhào chōng guó	144
+赵登禹	zhào dēng yǔ	53
+赵斗顺	zhào dòu shùn	1171
+赵尔丰	zhào ěr fēng	41
+赵尔巽	zhào ěr xùn	35
+赵飞燕	zhào fēi yàn	223
+赵公明	zhào gōng míng	41
+赵光义	zhào guāng yì	823
+赵皇后	zhào huáng hòu	360
+赵简子	zhào jiǎn zǐ	88
+赵克志	zhào kè zhì	9
+赵匡义	zhào kuāng yì	88
+赵匡胤	zhào kuāng yìn	1670
+赵乐际	zhào lè jì	410
+赵立坚	zhào lì jiān	160
+赵黎平	zhào lí píng	950
+赵烈文	zhào liè wén	75
+赵孟𫖯	zhào mèng fǔ	315
+赵明诚	zhào míng chéng	462
+赵南起	zhào nán qǐ	6
+赵朴初	zhào pǔ chū	28
+赵启正	zhào qǐ zhèng	544
+赵尚志	zhào shàng zhì	38
+赵少康	zhào shào kāng	13
+赵师秀	zhào shī xiù	22
+赵树理	zhào shù lǐ	126
+赵太后	zhào tài hòu	486
+赵汀阳	zhào tīng yáng	50
+赵王伦	zhào wáng lún	436
+赵王迁	zhào wáng qiān	75
+赵无极	zhào wú jí	104
+赵襄子	zhào xiāng zǐ	446
+赵亚夫	zhào yà fū	594
+赵一曼	zhào yī màn	60
+赵元任	zhào yuán rèn	584
+赵芸蕾	zhào yún lěi	69
+赵之谦	zhào zhī qiān	151
+赵主父	zhào zhǔ fù	382
+赵庄子	zhào zhuāng zǐ	207
+赵子龙	zhào zǐ lóng	449
