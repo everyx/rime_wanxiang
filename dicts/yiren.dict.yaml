@@ -1,10 +1,10 @@
 # encoding utf-8
 # rime dictionary
 #https://github.com/amzxyz/RIME-LMDG
-# ------明星词库-------
+# ------艺人词库-------
 # --目前加入的与主词库不构成干扰--
 ---
-name: mingxing
+name: yiren
 version: "LTS"
 sort: by_weight
 ...
@@ -3244,6 +3244,15 @@ sort: by_weight
 黄灏楠	huáng hào nán	12
 黄浩雯	huáng hào wén	12
 黄昊月	huáng hào yuè	12
+黄慧丹	huáng huì dān	220
+黄慧娟	huáng huì juān	302
+黄慧君	huáng huì jūn	356
+黄慧玲	huáng huì líng	75
+黄慧敏	huáng huì mǐn	315
+黄慧如	huáng huì rú	117
+黄慧文	huáng huì wén	306
+黄慧音	huáng huì yīn	3
+黄慧渊	huáng huì yuān	153
 黄家婧	huáng jiā jìng	22
 黄嘉琪	huáng jiā qí	441
 黄健翔	huáng jiàn xiáng	279
@@ -3291,12 +3300,24 @@ sort: by_weight
 黄文武	huáng wén wǔ	112
 黄锡晶	huáng xī jīng	22
 黄汐源	huáng xī yuán	422
+黄湘怡	huáng xiāng yí	306
+黄小琥	huáng xiǎo hǔ	78
+黄小虎	huáng xiǎo hǔ	70
+黄晓娟	huáng xiǎo juān	9
 黄小蕾	huáng xiǎo lěi	13
 黄小雷	huáng xiǎo léi	1
 黄晓明	huáng xiǎo míng	1953
+黄小燕	huáng xiǎo yàn	396
+黄晓盈	huáng xiǎo yíng	151
+黄霄雲	huáng xiāo yún	243
 黄霄雲	huáng xiāo yún	106
 黄新淳	huáng xīn chún	16
+黄新德	huáng xīn dé	256
+黄心娣	huáng xīn dì	130
+黄馨慧	huáng xīn huì	279
+黄信凯	huáng xìn kǎi	180
 黄馨仪	huáng xīn yí	163
+黄心颖	huáng xīn yǐng	522
 黄星羱	huáng xīng yuán	22
 黄宣绮	huáng xuān qǐ	12
 黄雅莉	huáng yǎ lì	22
