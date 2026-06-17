@@ -178,10 +178,50 @@ sort: by_weight
 叠氮苯	dié dàn běn	220
 丁苯胶	dīng běn jiāo	207
 丁苯酞	dīng běn tài	225
+丁二胺	dīng èr àn	252
+丁二醇	dīng èr chún	57
+丁二腈	dīng èr jīng	212
+丁二醛	dīng èr quán	207
+丁二炔	dīng èr quē	279
+丁二酸	dīng èr suān	22
+丁二酮	dīng èr tóng	13
+丁二肟	dīng èr wò	99
+丁二烯	dīng èr xī	100
 丁基苯	dīng jī běn	450
+丁基锂	dīng jī lǐ	612
 丁基氯	dīng jī lǜ	338
+丁基醚	dīng jī mí	405
+丁基脲	dīng jī niào	50
+丁基溴	dīng jī xiù	284
+丁醛酸	dīng quán suān	4
+丁醛糖	dīng quán táng	50
+丁醛肟	dīng quán wò	4
+丁炔醇	dīng quē chún	266
+丁炔锂	dīng quē lǐ	50
+丁炔酸	dīng quē suān	212
+丁酸铵	dīng suān ǎn	45
 丁酸钡	dīng suān bèi	45
+丁酸钙	dīng suān gài	117
+丁酸酐	dīng suān gān	117
+丁酸钠	dīng suān nà	270
+丁酸盐	dīng suān yán	315
+丁酸酯	dīng suān zhǐ	374
+丁酮酸	dīng tóng suān	212
+丁酮糖	dīng tóng táng	76
+丁酮威	dīng tóng wēi	50
+丁酮肟	dīng tóng wò	144
+丁烷气	dīng wán qì	360
+丁烯胺	dīng xī àn	130
+丁烯醇	dīng xī chún	180
 丁硒醇	dīng xī chún	122
+丁烯基	dīng xī jī	207
+丁烯腈	dīng xī jīng	4
+丁烯羟	dīng xī qiǎng	50
+丁烯醛	dīng xī quán	220
+丁烯炔	dīng xī quē	117
+丁烯酸	dīng xī suān	328
+丁烯酮	dīng xī tóng	266
+丁酰胺	dīng xiān àn	288
 丁酰苯	dīng xiān běn	212
 丁酰氯	dīng xiān lǜ	152
 动力苯	dòng lì běn	4
@@ -2154,13 +2194,52 @@ sort: by_weight
 丁苯橡胶	dīng běn xiàng jiāo	13
 丁苯氧酸	dīng běn yǎng suān	4
 丁苯装置	dīng běn zhuāng zhì	45
+丁二醇酯	dīng èr chún zhǐ	310
+丁二硫醇	dīng èr liú chún	117
+丁二酸铵	dīng èr suān ǎn	45
+丁二酸钙	dīng èr suān gài	45
+丁二酸酐	dīng èr suān gān	315
+丁二酸钾	dīng èr suān jiǎ	45
+丁二酸钠	dīng èr suān nà	189
+丁二酸酯	dīng èr suān zhǐ	99
+丁二酮肟	dīng èr tóng wò	243
+丁二烯砜	dīng èr xī fēng	45
+丁二烯类	dīng èr xī lèi	45
 丁二酰氯	dīng èr xiān lǜ	76
+丁环硫磷	dīng huán liú lín	50
 丁基苯基	dīng jī běn jī	279
+丁基醋酸	dīng jī cù suān	45
+丁基磺酸	dīng jī huáng suān	4
 丁基溴苯	dīng jī xiù běn	50
 丁羟甲苯	dīng qiǎng jiǎ běn	153
 丁炔二氯	dīng quē èr lǜ	45
+丁四硝酯	dīng sì xiāo zhǐ	45
 丁酸苯酯	dīng suān běn zhǐ	4
+丁酸苄酯	dīng suān biàn zhǐ	202
+丁酸丙酯	dīng suān bǐng zhǐ	99
+丁酸丁酯	dīng suān dīng zhǐ	3
+丁酸癸酯	dīng suān guǐ zhǐ	4
+丁酸甲酯	dīng suān jiǎ zhǐ	248
+丁酸内酯	dīng suān nèi zhǐ	4
+丁酸酸盐	dīng suān suān yán	90
+丁酸梭菌	dīng suān suō jūn	171
+丁酸戊酯	dīng suān wù zhǐ	117
+丁酸乙酯	dīng suān yǐ zhǐ	3
+丁酸乙脂	dīng suān yǐ zhī	3
+丁酮二酸	dīng tóng èr suān	4
+丁烷丁烯	dīng wán dīng xī	144
+丁烷二酮	dīng wán èr tóng	256
+丁烷脱氢	dīng wán tuō qīng	189
+丁戊奇荒	dīng wù qí huāng	53
+丁戊橡胶	dīng wù xiàng jiāo	45
+丁烯草胺	dīng xī cǎo àn	45
+丁烯二醇	dīng xī èr chún	4
+丁烯二酮	dīng xī èr tóng	45
+丁烯酸类	dīng xī suān lèi	45
+丁烯氧化	dīng xī yǎng huà	130
 丁酰苯类	dīng xiān běn lèi	144
+丁酰辅酶	dīng xiān fǔ méi	207
+丁酰基酚	dīng xiān jī fēn	45
 东方钽业	dōng fāng tǎn yè	400
 对苯二胺	duì běn èr àn	66
 对苯二酚	duì běn èr fēn	104
@@ -3000,25 +3079,97 @@ sort: by_weight
 硫砷铁矿	liú shēn tiě kuàng	4
 硫砷铜矿	liú shēn tóng kuàng	306
 硫砷银矿	liú shēn yín kuàng	4
+硫酸胞苷	liú suān bāo gān	90
 硫酸钡钯	liú suān bèi bǎ	90
 硫酸钡板	liú suān bèi bǎn	4
 硫酸钡粉	liú suān bèi fěn	171
 硫酸钡砂	liú suān bèi shā	45
 硫酸钡型	liú suān bèi xíng	50
 硫酸苯酯	liú suān běn zhǐ	45
+硫酸吡啶	liú suān bǐ dìng	45
+柳酸苄酯	liǔ suān biàn zhǐ	4
+硫酸高钴	liú suān gāo gǔ	4
+硫酸锆钾	liú suān gào jiǎ	45
 硫酸高铈	liú suān gāo shì	76
+硫酸铬钾	liú suān gè jiǎ	153
+硫酸钴胺	liú suān gǔ àn	99
+硫酸钴铵	liú suān gǔ ǎn	38
+硫酸胍生	liú suān guā shēng	45
+硫酸化酶	liú suān huà méi	4
+硫酸肌酐	liú suān jī gān	45
+硫酸镓铵	liú suān jiā ǎn	45
+硫酸镓钾	liú suān jiā jiǎ	45
+硫酸钾镁	liú suān jiǎ měi	225
+硫酸钾石	liú suān jiǎ shí	45
+硫酸甲酯	liú suān jiǎ zhǐ	162
+硫酸角质	liú suān jiǎo zhì	99
+硫酸联胺	liú suān lián àn	45
+硫酸联氨	liú suān lián ān	4
+硫酸铝铵	liú suān lǚ ǎn	396
+硫酸铝钾	liú suān lǚ jiǎ	450
 硫酸氯喹	liú suān lǜ kuí	45
+硫酸镁铵	liú suān měi ǎn	45
+硫酸镁粉	liú suān měi fěn	153
+硫酸镁石	liú suān měi shí	4
+硫酸镁针	liú suān měi zhēn	4
+硫酸锰铵	liú suān měng ǎn	76
+硫酸木素	liú suān mù sù	45
+硫酸钠钾	liú suān nà jiǎ	4
+硫酸萘胺	liú suān nài àn	45
+硫酸镍铵	liú suān niè ǎn	117
+硫酸镍钾	liú suān niè jiǎ	45
 硫酸铍钾	liú suān pī jiǎ	45
 硫酸镨铵	liú suān pǔ ǎn	45
+硫酸羟胺	liú suān qiǎng àn	220
+硫酸羟胍	liú suān qiǎng guā	45
+硫酸氢铵	liú suān qīng ǎn	279
+硫酸氢钙	liú suān qīng gài	153
+硫酸氢根	liú suān qīng gēn	364
+硫酸氢钾	liú suān qīng jiǎ	392
+硫酸氢镁	liú suān qīng měi	45
+硫酸氢钠	liú suān qīng nà	28
 硫酸氢铷	liú suān qīng rú	162
 硫酸氢铯	liú suān qīng sè	50
+硫酸氢铜	liú suān qīng tóng	45
+硫酸氢盐	liú suān qīng yán	44
 硫酸铈铵	liú suān shì ǎn	171
 硫酸铈法	liú suān shì fǎ	45
+硫酸酸化	liú suān suān huà	243
+硫酸糖脂	liú suān táng zhī	4
+硫酸铁铵	liú suān tiě ǎn	238
+硫酸铜铵	liú suān tóng ǎn	50
+硫酸铜钙	liú suān tóng gài	45
+硫酸同化	liú suān tóng huà	45
+硫酸铜钾	liú suān tóng jiǎ	45
+硫酸腺苷	liú suān xiàn gān	4
+硫酸锌厂	liú suān xīn chǎng	45
+硫酸锌片	liú suān xīn piàn	392
+硫酸锌盐	liú suān xīn yán	45
+硫酸亚汞	liú suān yà gǒng	144
+硫酸亚锰	liú suān yà měng	45
 硫酸亚铈	liú suān yà shì	4
 硫酸亚铊	liú suān yà tā	212
+硫酸亚钛	liú suān yà tài	45
+硫酸亚铁	liú suān yà tiě	163
+硫酸亚铜	liú suān yà tóng	189
+硫酸亚锡	liú suān yà xī	117
+硫酸盐法	liú suān yán fǎ	171
+硫酸盐湖	liú suān yán hú	45
+硫酸盐化	liú suān yán huà	360
+硫酸烟碱	liú suān yān jiǎn	50
+硫酸盐浆	liú suān yán jiāng	117
+硫酸盐类	liú suān yán lèi	346
+硫酸盐硫	liú suān yán liú	207
+硫酸盐泉	liú suān yán quán	279
+硫酸氧碲	liú suān yǎng dì	45
+硫酸氧钒	liú suān yǎng fán	220
+硫酸氧锆	liú suān yǎng gào	4
+硫酸氧钛	liú suān yǎng tài	130
 硫酸镱十	liú suān yì shí	90
+硫酸乙酯	liú suān yǐ zhǐ	130
 硫酸铟铵	liú suān yīn ǎn	45
 硫酸铀酰	liú suān yóu xiān	212
+硫酸酯酶	liú suān zhǐ méi	3
 六羰基钼	liù tāng jī mù	320
 六羰基钨	liù tāng jī wū	225
 硫锑铅矿	liú tī qiān kuàng	220
@@ -3359,6 +3510,10 @@ sort: by_weight
 氯唑沙宗	lǜ zuò shā zōng	256
 氯唑西林	lǜ zuò xī lín	256
 吗苯丁酯	ma běn dīng zhǐ	4
+马来酸酐	mǎ lái suān gān	302
+马来酸钾	mǎ lái suān jiǎ	45
+马来酸盐	mǎ lái suān yán	76
+马来酸酯	mǎ lái suān zhǐ	50
 马来酰氯	mǎ lái xiān lǜ	76
 吗氯贝胺	ma lǜ bèi àn	320
 玫瑰苯胺	méi gui běn àn	212
