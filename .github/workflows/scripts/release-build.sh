@@ -6,6 +6,7 @@ ROOT_DIR="$(cd "$(dirname "$0")/../../../" && pwd)"
 DIST_DIR="$ROOT_DIR/dist"
 CUSTOM_DIR="$ROOT_DIR/custom"
 EXCLUDE_DICT_FILES=(
+  "xxx.dict.yaml"
   # "wuzhong.dict.yaml"
   # "renming.dict.yaml"
   # "wuzhong.pro.dict.yaml"
