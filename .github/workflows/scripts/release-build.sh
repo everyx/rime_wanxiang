@@ -6,10 +6,10 @@ ROOT_DIR="$(cd "$(dirname "$0")/../../../" && pwd)"
 DIST_DIR="$ROOT_DIR/dist"
 CUSTOM_DIR="$ROOT_DIR/custom"
 EXCLUDE_DICT_FILES=(
-  "wuzhong.dict.yaml"
-  "renming.dict.yaml"
-  "wuzhong.pro.dict.yaml"
-  "renming.pro.dict.yaml"
+  # "wuzhong.dict.yaml"
+  # "renming.dict.yaml"
+  # "wuzhong.pro.dict.yaml"
+  # "renming.pro.dict.yaml"
 )
 # 成成 PRO 分包文件
 echo "▶️ PRO 分包开始"

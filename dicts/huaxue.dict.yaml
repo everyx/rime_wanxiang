@@ -29,6 +29,7 @@ sort: by_weight
 钡元素	bèi yuán sù	13
 钡原子	bèi yuán zǐ	180
 苯丙胺	běn bǐng àn	100
+苯硼酸	běn péng suān	423
 苯芴醇	běn wù chún	122
 苯五酚	běn wǔ fēn	76
 苯戊酮	běn wù tóng	144
@@ -119,14 +120,30 @@ sort: by_weight
 醋酸铕	cù suān yǒu	45
 大苯环	dà běn huán	4
 氮化钡	dàn huà bèi	180
+氮化镭	dàn huà léi	130
+氮化锂	dàn huà lǐ	262
+氮化磷	dàn huà lín	153
+氮化硫	dàn huà liú	288
 氮化镥	dàn huà lǔ	378
+氮化铝	dàn huà lǚ	42
+氮化镁	dàn huà měi	266
+氮化锰	dàn huà měng	99
+氮化钠	dàn huà nà	486
 氮化铌	dàn huà ní	180
 氮化钕	dàn huà nǚ	144
+氮化硼	dàn huà péng	25
 氮化铍	dàn huà pī	230
+氮化氢	dàn huà qīng	202
 氮化锶	dàn huà sī	171
+氮化钛	dàn huà tài	19
+氮化碳	dàn huà tàn	288
 氮化锑	dàn huà tī	110
+氮化矽	dàn huà xī	162
+氮化氙	dàn huà xiān	4
+氮化锌	dàn huà xīn	194
 氮化钇	dàn huà yǐ	130
 氮化铟	dàn huà yīn	310
+氮化银	dàn huà yín	236
 氮化铀	dàn huà yóu	238
 氮化锗	dàn huà zhě	76
 氮杂苯	dàn zá běn	234
@@ -2636,6 +2653,10 @@ sort: by_weight
 钙铁锌硒	gài tiě xīn xī	428
 钙钇铒矿	gài yǐ ěr kuàng	45
 钙铀云母	gài yóu yún mǔ	302
+甘露糖胺	gān lù táng àn	117
+甘露糖醇	gān lù táng chún	13
+甘露糖酶	gān lù táng méi	4
+甘露糖酸	gān lù táng suān	50
 高碘酸钡	gāo diǎn suān bèi	45
 高碘酸铷	gāo diǎn suān rú	99
 高钾性酸	gāo jiǎ xìng suān	100
@@ -2677,6 +2698,15 @@ sort: by_weight
 铬酸亚铊	gè suān yà tā	4
 庚二酰氯	gēng èr xiān lǜ	50
 汞苯甲酸	gǒng běn jiǎ suān	162
+钴胺辅酶	gǔ àn fǔ méi	4
+谷氨酸钙	gǔ ān suān gài	4
+谷氨酸钾	gǔ ān suān jiǎ	207
+谷氨酸铝	gǔ ān suān lǚ	45
+谷氨酸片	gǔ ān suān piàn	45
+谷氨酸盐	gǔ ān suān yán	423
+谷氨酰胺	gǔ ān xiān àn	283
+谷氨酰基	gǔ ān xiān jī	256
+谷氨酰肽	gǔ ān xiān tài	45
 钴铬钼头	gǔ gè mù tóu	90
 钴砷铁矿	gǔ shēn tiě kuàng	45
 硅钡铍矿	guī bèi pī kuàng	45
@@ -3906,6 +3936,9 @@ sort: by_weight
 四氯金酸	sì lǜ jīn suān	50
 四氯乙烷	sì lǜ yǐ wán	279
 四氯乙烯	sì lǜ yǐ xī	630
+四硼酸钾	sì péng suān jiǎ	45
+四硼酸锂	sì péng suān lǐ	50
+四硼酸钠	sì péng suān nà	364
 锶片沸石	sī piàn fèi shí	45
 四羟基苯	sì qiǎng jī běn	162
 锶铁氧体	sī tiě yǎng tǐ	117
@@ -3923,6 +3956,7 @@ sort: by_weight
 钽锆钇矿	tǎn gào yǐ kuàng	45
 碳化钨钻	tàn huà wū zuān	76
 钽金红石	tǎn jīn hóng shí	45
+碳硼烷酸	tàn péng wán suān	279
 碳酸钡矿	tàn suān bèi kuàng	4
 碳酸氢钡	tàn suān qīng bèi	144
 碳酸氢铍	tàn suān qīng pī	45
@@ -4017,6 +4051,7 @@ sort: by_weight
 钨钼合金	wū mù hé jīn	50
 钨钼铅矿	wū mù qiān kuàng	45
 钨镍合金	wū niè hé jīn	50
+五硼酸铵	wǔ péng suān ǎn	45
 钨丝灯泡	wū sī dēng pào	342
 钨酸钙矿	wū suān gài kuàng	45
 钨酸亚铊	wū suān yà tā	45
@@ -4204,6 +4239,7 @@ sort: by_weight
 盐酸苯胺	yán suān běn àn	45
 盐酸氯胍	yán suān lǜ guā	45
 氧代双苯	yǎng dài shuāng běn	45
+氧氟化硼	yǎng fú huà péng	45
 氧化钆钐	yǎng huà gá shān	90
 氧化钼蓝	yǎng huà mù lán	45
 氧化铍瓷	yǎng huà pī cí	4
@@ -17355,12 +17391,9 @@ sort: by_weight
 阿仑尼乌斯酸碱理论	ā lún ní wū sī suān jiǎn lǐ lùn	100
 丙烯乙烯嵌段共聚物	bǐng xī yǐ xī qiàn duàn gòng jù wù	120
 吃不到葡萄说葡萄酸	chī bú dào pú táo shuō pú táo suān	100
-次氯酸盐漂白漂白粉	cì lǜ suān yán piǎo bái piǎo bái fěn	100
 反式丁烯二酸二辛酯	fǎn shì dīng xī èr suān èr xīn zhǐ	100
 过氧化物和超氧化物	guò yǎng huà wù hé chāo yǎng huà wù	100
 水印辊骨架二氧化锰	shuǐ yìn gǔn gǔ jià èr yǎng huà měng	100
 新制氢氧化铜悬浊液	xīn zhì qīng yǎng huà tóng xuán zhuó yè	100
-滞后现象亚硫酸氢盐	zhì hòu xiàn xiàng yà liú suān qīng yán	100
 布朗斯特劳瑞酸碱理论	bù lǎng sī tè láo ruì suān jiǎn lǐ lùn	100
 小儿硫酸庆大霉素颗粒	xiǎo ér liú suān qìng dà méi sù kē lì	100
-纸板施胶度乳酸测定法	zhǐ bǎn shī jiāo dù rǔ suān cè dìng fǎ	120
