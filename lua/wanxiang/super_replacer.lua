@@ -543,8 +543,8 @@ function M.func(input, env)
     local is_chain = env.chain
 
     if not ctx:is_composing() or ctx.input == "" then
-        for k, _ in pairs(env.fmm_cache) do env.fmm_cache[k] = nil end
-        collectgarbage("step", 200)
+        env.fmm_cache = {}
+        collectgarbage("step", 500)
         for cand in input:iter() do yield(cand) end
         return
     end
