@@ -10410,9 +10410,11 @@ sort: by_weight
 吡啶甲酸甲酯	bǐ dìng jiǎ suān jiǎ zhǐ	100
 吡啶甲酸乙酯	bǐ dìng jiǎ suān yǐ zhǐ	100
 吡啶氯铬酸盐	bǐ dìng lǜ gè suān yán	100
+吡啶偶氮萘酚	bǐ dìng ǒu dàn nài fēn	100
 吡啶氢溴酸盐	bǐ dìng qīng xiù suān yán	100
 吡啶三甲酰氯	bǐ dìng sān jiǎ xiān lǜ	100
 吡啶三氧化硫	bǐ dìng sān yǎng huà liú	100
+吡啶𬭩阳离子	bǐ dìng wēng yáng lí zǐ	100
 吡哆醇内酯酶	bǐ duō chún nèi zhǐ méi	100
 吡哆醇脱氢酶	bǐ duō chún tuō qīng méi	100
 吡哆醇盐酸盐	bǐ duō chún yán suān yán	100
@@ -10420,6 +10422,7 @@ sort: by_weight
 吡哆基色氨酸	bǐ duō jī sè ān suān	100
 吡哆醛盐酸盐	bǐ duō quán yán suān yán	100
 吡哆酸氧化酶	bǐ duō suān yǎng huà méi	100
+吡咯并喹啉醌	bǐ gē bìng kuí lín kūn	100
 吡咯烷酮羧酸	bǐ gē wán tóng suō suān	100
 吡硫翁钠乳膏	bǐ liú wēng nà rǔ gāo	100
 蓖麻油脂肪酸	bì má yóu zhī fáng suān	100
@@ -10483,7 +10486,12 @@ sort: by_weight
 丙基六氢吡啶	bǐng jī liù qīng bǐ dìng	100
 丙基硫氧嘧啶	bǐng jī liú yǎng mì dìng	100
 丙基氯化吡啶	bǐng jī lǜ huà bǐ dìng	100
+丙基巯脲嘧啶	bǐng jī qiú niào mì dìng	100
+丙基去氧尼苷	bǐng jī qù yǎng ní gān	100
+丙基去氧尿苷	bǐng jī qù yǎng niào gān	100
 丙基三氯硅烷	bǐng jī sān lǜ guī wán	100
+丙基脱氧尿苷	bǐng jī tuō yǎng niào gān	100
+丙基溴化吡啶	bǐng jī xiù huà bǐ dìng	100
 丙基乙酰苯胺	bǐng jī yǐ xiān běn àn	100
 丙硫苯并咪唑	bǐng liú běn bìng mī zuò	100
 丙三醇缩甲醛	bǐng sān chún suō jiǎ quán	100
