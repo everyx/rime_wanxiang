@@ -57,7 +57,7 @@ sort: by_weight
 曹缘	cáo yuán	536
 曹彰	cáo zhāng	932
 曹真	cáo zhēn	824
-曾江	céng jiāng	447
+曹植	cáo zhí	5378
 陈安	chén ān	1120
 陈策	chén cè	580
 陈诚	chén chéng	160
@@ -225,11 +225,11 @@ sort: by_weight
 何晏	hé yàn	346
 何勇	hé yǒng	613
 何焯	hé zhuó	1094
-华妃	huá fēi	25786
-华歆	huá xīn	345
-华雄	huá xióng	622
-华胥	huá xū	1930
-华筝	huá zhēng	624
+华妃	huà fēi	25786
+华歆	huà xīn	345
+华雄	huà xióng	622
+华胥	huà xū	1930
+华筝	huà zhēng	624
 霍查	huò chá	765
 霍达	huò dá	647
 霍都	huò dōu	657
@@ -573,6 +573,8 @@ sort: by_weight
 宋万	sòng wàn	524
 宋琬	sòng wǎn	257
 宋雍	sòng yōng	332
+孙膑	sūn bìn	1834
+孙斌	sūn bīn	415
 孙策	sūn cè	3423
 孙恩	sūn ēn	107
 孙鲂	sūn fáng	153
@@ -873,7 +875,9 @@ sort: by_weight
 臧洪	zāng hóng	437
 曾诚	zēng chéng	832
 曾巩	zēng gǒng	389
+曾江	zēng jiāng	447
 曾揆	zēng kuí	45
+曾参	zēng shēn	60918
 曾子	zēng zǐ	873
 张敖	zhāng áo	122
 张宝	zhāng bǎo	961
@@ -1164,14 +1168,6 @@ sort: by_weight
 曹忠荣	cáo zhōng róng	333
 曹庄公	cáo zhuāng gōng	212
 曹子建	cáo zǐ jiàn	229
-曾来德	céng lái dé	248
-曾剃头	céng tì tóu	78
-曾宪义	céng xiàn yì	324
-曾宪梓	céng xiàn zǐ	526
-曾虚白	céng xū bái	432
-曾荫权	céng yīn quán	896
-曾寅孙	céng yín sūn	45
-曾约农	céng yuē nóng	346
 陈阿娇	chén ā jiāo
 陈安之	chén ān zhī	223
 陈安众	chén ān zhòng	698
@@ -1924,17 +1920,17 @@ sort: by_weight
 何振梁	hé zhèn liáng	495
 何志平	hé zhì píng	464
 何柱国	hé zhù guó	16
-华天龙	huá tiān lóng	279
-华文漪	huá wén yī	284
-华锡钧	huá xī jūn	310
-华胥国	huá xū guó	315
-华胥氏	huá xū shì	85
-华学明	huá xué míng	40
-华以刚	huá yǐ gāng	16
-华益慰	huá yì wèi	297
+华天龙	huà tiān lóng	279
+华文漪	huà wén yī	284
+华锡钧	huà xī jūn	310
+华胥国	huà xū guó	315
+华胥氏	huà xū shì	85
+华学明	huà xué míng	40
+华以刚	huà yǐ gāng	16
+华益慰	huà yì wèi	297
 华英雄	huà yīng xióng	35
-华云龙	huá yún lóng	6
-华子良	huá zǐ liáng	306
+华云龙	huà yún lóng	6
+华子良	huà zǐ liáng	306
 黄志祥	huáng zhì xiáng	6
 黄志雄	huáng zhì xióng	450
 黄智勇	huáng zhì yǒng	3
@@ -2711,6 +2707,7 @@ sort: by_weight
 陆宗舆	lù zōng yú	418
 罗保铭	luó bǎo míng	576
 罗炳辉	luó bǐng huī	13
+罗超毅	luó chāo yì	324
 罗尔纲	luó ěr gāng	22
 罗芳伯	luó fāng bó	428
 罗福助	luó fú zhù	418
@@ -3070,34 +3067,34 @@ sort: by_weight
 裴元绍	péi yuán shào	13
 裴伷先	péi zhòu xiān	256
 裴子野	péi zǐ yě	338
+朴恩善	piáo ēn shàn	454
+朴恒绪	piáo héng xù	342
+朴惠莲	piáo huì lián	212
 朴槿惠	piáo jǐn huì	289
+朴南基	piáo nán jī	288
+朴仁妃	piáo rén fēi	356
+朴胜羲	piáo shèng xī	194
+朴世莉	piáo shì lì	387
+朴泰桓	piáo tài huán	850
+朴泰夏	piáo tài xià	554
+朴廷桓	piáo tíng huán	765
+朴文垚	piáo wén yáo	400
+朴殷植	piáo yīn zhí	360
+朴泳孝	piáo yǒng xiào	418
+朴永训	piáo yǒng xùn	454
+朴裕河	piáo yù hé	171
+朴元淳	piáo yuán chún	454
+朴渊次	piáo yuān cì	248
+朴元宗	piáo yuán zōng	297
+朴赞浩	piáo zàn hào	374
+朴赞郁	piáo zàn yù	711
 朴正熙	piáo zhèng xī	540
-朴恩善	pǔ ēn shàn	454
-朴恒绪	pǔ héng xù	342
-朴惠莲	pǔ huì lián	212
-朴南基	pǔ nán jī	288
-朴仁妃	pǔ rén fēi	356
-朴胜羲	pǔ shèng xī	194
-朴世莉	pǔ shì lì	387
-朴泰桓	pǔ tài huán	850
-朴泰夏	pǔ tài xià	554
-朴廷桓	pǔ tíng huán	765
-朴文垚	pǔ wén yáo	400
-朴殷植	pǔ yīn zhí	360
-朴泳孝	pǔ yǒng xiào	418
-朴永训	pǔ yǒng xùn	454
-朴裕河	pǔ yù hé	171
-朴元淳	pǔ yuán chún	454
-朴渊次	pǔ yuān cì	248
-朴元宗	pǔ yuán zōng	297
-朴赞浩	pǔ zàn hào	374
-朴赞郁	pǔ zàn yù	711
-朴智星	pǔ zhì xīng	598
-朴趾源	pǔ zhǐ yuán	262
-朴周永	pǔ zhōu yǒng	320
-朴柱奉	pǔ zhù fèng	346
-朴柱昊	pǔ zhù hào	405
-朴主永	pǔ zhǔ yǒng	378
+朴智星	piáo zhì xīng	598
+朴趾源	piáo zhǐ yuán	262
+朴周永	piáo zhōu yǒng	320
+朴柱奉	piáo zhù fèng	346
+朴柱昊	piáo zhù hào	405
+朴主永	piáo zhǔ yǒng	378
 齐哀王	qí āi wáng	0
 戚百草	qī bǎi cǎo	400
 齐白石	qí bái shí	1093
@@ -4728,17 +4725,25 @@ sort: by_weight
 曾纪泽	zēng jì zé	141
 曾剑秋	zēng jiàn qiū	284
 曾锦春	zēng jǐn chūn	315
+曾来德	zēng lái dé	248
 曾培炎	zēng péi yán	19
 曾庆红	zēng qìng hóng	576
 曾仕强	zēng shì qiáng	110
+曾剃头	zēng tì tóu	78
 曾伟权	zēng wěi quán	3
 曾文正	zēng wén zhèng	639
 曾希圣	zēng xī shèng	472
+曾宪义	zēng xiàn yì	324
+曾宪梓	zēng xiàn zǐ	526
 曾小贤	zēng xiǎo xián	537
 曾馨莹	zēng xīn yíng	436
+曾虚白	zēng xū bái	432
 曾雪麟	zēng xuě lín	428
 曾学忠	zēng xué zhōng	544
 曾雅妮	zēng yǎ nī	432
+曾荫权	zēng yīn quán	896
+曾寅孙	zēng yín sūn	45
+曾约农	zēng yuē nóng	346
 曾志朗	zēng zhì lǎng	387
 曾子固	zēng zǐ gù	266
 曾子航	zēng zǐ háng	356
