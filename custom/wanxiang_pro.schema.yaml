@@ -223,6 +223,9 @@ super_sequence:  # Lua 配置：手动排序的快捷键 super_sequence.lua，�
 # t9_optimization:  (true/false) T9九宫格优化，自动将词库里的字母键转换为数字键，携带预编辑码
 # abbrev_rule:      (仅 abbrev 模式生效) 格式为 "数量,位置"。(如 "1,6" 表示将词库前 1 个词插队到第 6 候选位，其余全部放在最后面兜底)
 # files:            要读取的 txt 词库文件列表 (支持多文件合并，UserDir 优先于 SharedDir)
+# exclude_types: [pinyin]  # 让当前节点排除特定类型的输入类型例如：全拼，这样他就能在非全拼的输入类型下自动生效
+# only_types: [pinyin]  # 仅对特定类型的候选词生效，其他类型候选词不受影响
+
 super_replacer:
   db_name: lua/replacer
   comment_format: "〔%s〕"
