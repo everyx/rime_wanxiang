@@ -259,6 +259,7 @@ super_replacer:
       files:
         - lua/data/TWVariants.txt
     - option: abbrev  # 常规简码
+      exclude_types: [pinyin]   # 该节点排除全拼使用
       mode: abbrev
       tags: [abc]
       prefix: "_abbr_"
