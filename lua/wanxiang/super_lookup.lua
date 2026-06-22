@@ -1205,13 +1205,24 @@ end
 
 -- B. 动态直辅模式 (direct Mode) 控制器
 local function handle_direct_mode(input, env, ctx_input)
-    local pure_code, fuma, target_syl_count = parse_direct_context(ctx_input, env.history_parts_cache)
-
-    if fuma == "" then
-        for cand in input:iter() do
-            yield(cand)
+    local spans = env.engine.context.composition:spans()
+    if spans then
+        local v = type(spans.vertices) == "function" and spans:vertices() or spans.vertices
+        if v and v[#v] == #ctx_input then
+            for cand in input:iter() do 
+                yield(cand) 
+            end
+            return
         end
-        return
+    end
+
+    local pure_code, fuma, target_syl_count = parse_direct_context(ctx_input, env.history_parts_cache)
+    
+    if fuma == "" then 
+        for cand in input:iter() do 
+            yield(cand) 
+        end 
+        return 
     end
 
     local clean_fuma = fuma:gsub("[7890]", "")
@@ -1222,7 +1233,7 @@ local function handle_direct_mode(input, env, ctx_input)
 
     for cand in input:iter() do
         local cand_len = get_utf8_len(cand.text)
-
+        
         if cand.type == 'sentence' or string.byte(cand.text, 1) < 128 or cand_len ~= target_syl_count or cand._end ~= #pure_code then
             table.insert(normal_cands, cand)
             goto skip
@@ -1232,63 +1243,63 @@ local function handle_direct_mode(input, env, ctx_input)
         if check_direct_match(raw_data, cand_len, clean_fuma, env.data_sources) then
             has_direct_match = true
             local ext_cand = create_direct_candidate(cand, ctx_input, pure_code, fuma)
-
-            if not buckets[cand_len] then
-                buckets[cand_len] = {}
+            
+            if not buckets[cand_len] then 
+                buckets[cand_len] = {} 
             end
             table.insert(buckets[cand_len], ext_cand)
-            if cand_len > max_len then
-                max_len = cand_len
+            if cand_len > max_len then 
+                max_len = cand_len 
             end
         else
             table.insert(normal_cands, cand)
         end
-
+        
         ::skip::
     end
 
     if has_direct_match then
         local f_len = #clean_fuma
-
+        
         if f_len == 1 then
-            if buckets[2] then
-                for _, c in ipairs(buckets[2]) do yield(c) end
-                buckets[2] = nil
+            if buckets[2] then 
+                for _, c in ipairs(buckets[2]) do yield(c) end 
+                buckets[2] = nil 
             end
-            if buckets[3] then
-                for _, c in ipairs(buckets[3]) do yield(c) end
-                buckets[3] = nil
+            if buckets[3] then 
+                for _, c in ipairs(buckets[3]) do yield(c) end 
+                buckets[3] = nil 
             end
         elseif f_len == 2 then
             while #normal_cands > 0 do
-                if get_utf8_len(normal_cands[1].text) >= 3 then
-                    yield(table.remove(normal_cands, 1))
-                else
-                    break
+                if get_utf8_len(normal_cands[1].text) >= 3 then 
+                    yield(table.remove(normal_cands, 1)) 
+                else 
+                    break 
                 end
             end
-
-            if buckets[2] then
-                for _, c in ipairs(buckets[2]) do yield(c) end
-                buckets[2] = nil
+            
+            if buckets[2] then 
+                for _, c in ipairs(buckets[2]) do yield(c) end 
+                buckets[2] = nil 
             end
-            if buckets[3] then
-                for _, c in ipairs(buckets[3]) do yield(c) end
-                buckets[3] = nil
+            if buckets[3] then 
+                for _, c in ipairs(buckets[3]) do yield(c) end 
+                buckets[3] = nil 
             end
         end
-
-        for l = max_len, 1, -1 do
-            if buckets[l] then
-                for _, c in ipairs(buckets[l]) do
-                    yield(c)
-                end
-            end
+        
+        for l = max_len, 1, -1 do 
+            if buckets[l] then 
+                for _, c in ipairs(buckets[l]) do 
+                    yield(c) 
+                end 
+            end 
         end
     end
-
-    for _, c in ipairs(normal_cands) do
-        yield(c)
+    
+    for _, c in ipairs(normal_cands) do 
+        yield(c) 
     end
 end
 
