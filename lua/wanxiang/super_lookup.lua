@@ -154,31 +154,6 @@ local function parse_fuma_rules(fuma)
     return clean_fuma, tone_filter_seq, fuma_chunks
 end
 
--- 从上下文缓存快速判断历史输入 (供动态模式使用)
-local function parse_direct_context(ctx_input, history_parts_cache)
-    if not history_parts_cache then
-        return "", "", 0
-    end
-
-    if #ctx_input > 1 then
-        local base1 = ctx_input:sub(1, -2)
-        local v1 = history_parts_cache[base1]
-        if v1 and #v1 >= 3 and v1[#v1] == #base1 then
-            return base1, ctx_input:sub(-1), #v1 - 1
-        end
-    end
-
-    if #ctx_input > 2 then
-        local base2 = ctx_input:sub(1, -3)
-        local v2 = history_parts_cache[base2]
-        if v2 and #v2 >= 3 and v2[#v2] == #base2 then
-            return base2, ctx_input:sub(-2), #v2 - 1
-        end
-    end
-
-    return "", "", 0
-end
-
 local function parse_comment_codes(comment, pattern, target_len, enable_tone)
     if not comment or comment == "" then
         return nil
@@ -1205,104 +1180,75 @@ end
 
 -- B. 动态直辅模式 (direct Mode) 控制器
 local function handle_direct_mode(input, env, ctx_input)
-    local spans = env.engine.context.composition:spans()
-    if spans then
-        local v = type(spans.vertices) == "function" and spans:vertices() or spans.vertices
-        if v and v[#v] == #ctx_input then
-            for cand in input:iter() do 
-                yield(cand) 
-            end
-            return
+    local all_cands = {}
+    local is_perfect_two_syl = false
+
+    for cand in input:iter() do
+        table.insert(all_cands, cand)
+        
+        if get_utf8_len(cand.text) == 2 and cand._end == #ctx_input then
+            is_perfect_two_syl = true
+            break
         end
     end
 
-    local pure_code, fuma, target_syl_count = parse_direct_context(ctx_input, env.history_parts_cache)
-    
-    if fuma == "" then 
-        for cand in input:iter() do 
-            yield(cand) 
-        end 
-        return 
+    if is_perfect_two_syl then
+        for _, cand in ipairs(all_cands) do yield(cand) end
+        for cand in input:iter() do yield(cand) end
+        return
     end
 
-    local clean_fuma = fuma:gsub("[7890]", "")
     local buckets = {}
     local normal_cands = {}
-    local max_len = 0
     local has_direct_match = false
+    local matched_f_len = 0
 
-    for cand in input:iter() do
+    for _, cand in ipairs(all_cands) do
         local cand_len = get_utf8_len(cand.text)
-        
-        if cand.type == 'sentence' or string.byte(cand.text, 1) < 128 or cand_len ~= target_syl_count or cand._end ~= #pure_code then
+        if cand.type == 'sentence' or string.byte(cand.text, 1) < 128 or cand_len ~= 2 then
             table.insert(normal_cands, cand)
             goto skip
         end
 
-        local raw_data = build_candidate_raw_data(cand, cand_len, env)
-        if check_direct_match(raw_data, cand_len, clean_fuma, env.data_sources) then
-            has_direct_match = true
-            local ext_cand = create_direct_candidate(cand, ctx_input, pure_code, fuma)
+        local tail_len = #ctx_input - cand._end
+
+        if tail_len > 0 and tail_len <= 2 then
+            local fuma = ctx_input:sub(cand._end + 1):gsub("['%s]", "")
+            local pure_code = ctx_input:sub(1, cand._end)
+            local clean_fuma = fuma:gsub("[7890]", "")
+
+            local raw_data = build_candidate_raw_data(cand, cand_len, env)
+            local matched = check_direct_match(raw_data, cand_len, clean_fuma, env.data_sources)
             
-            if not buckets[cand_len] then 
-                buckets[cand_len] = {} 
-            end
-            table.insert(buckets[cand_len], ext_cand)
-            if cand_len > max_len then 
-                max_len = cand_len 
+            if matched then
+                has_direct_match = true
+                matched_f_len = #clean_fuma
+                local ext_cand = create_direct_candidate(cand, ctx_input, pure_code, fuma)
+                if not buckets[2] then buckets[2] = {} end
+                table.insert(buckets[2], ext_cand)
+            else
+                table.insert(normal_cands, cand)
             end
         else
             table.insert(normal_cands, cand)
         end
-        
+
         ::skip::
     end
 
     if has_direct_match then
-        local f_len = #clean_fuma
-        
-        if f_len == 1 then
-            if buckets[2] then 
-                for _, c in ipairs(buckets[2]) do yield(c) end 
-                buckets[2] = nil 
-            end
-            if buckets[3] then 
-                for _, c in ipairs(buckets[3]) do yield(c) end 
-                buckets[3] = nil 
-            end
-        elseif f_len == 2 then
+        if matched_f_len == 1 then
+            if buckets[2] then for _, c in ipairs(buckets[2]) do yield(c) end; buckets[2] = nil end
+        elseif matched_f_len == 2 then
             while #normal_cands > 0 do
-                if get_utf8_len(normal_cands[1].text) >= 3 then 
-                    yield(table.remove(normal_cands, 1)) 
-                else 
-                    break 
-                end
+                if get_utf8_len(normal_cands[1].text) >= 3 then yield(table.remove(normal_cands, 1)) else break end
             end
-            
-            if buckets[2] then 
-                for _, c in ipairs(buckets[2]) do yield(c) end 
-                buckets[2] = nil 
-            end
-            if buckets[3] then 
-                for _, c in ipairs(buckets[3]) do yield(c) end 
-                buckets[3] = nil 
-            end
-        end
-        
-        for l = max_len, 1, -1 do 
-            if buckets[l] then 
-                for _, c in ipairs(buckets[l]) do 
-                    yield(c) 
-                end 
-            end 
+            if buckets[2] then for _, c in ipairs(buckets[2]) do yield(c) end; buckets[2] = nil end
         end
     end
-    
-    for _, c in ipairs(normal_cands) do 
-        yield(c) 
-    end
-end
 
+    for _, c in ipairs(normal_cands) do yield(c) end
+end
 
 -- 9. Rime 暴露接口 (Init / Func / Fini)
 local f = {}
@@ -1435,39 +1381,7 @@ function f.init(env)
     env.history_input = ""
     env.history_parts_cache = {}
 
-    env.update_conn = env.engine.context.update_notifier:connect(function(ctx)
-        if not ctx:is_composing() then
-            env.history_parts = {}
-            env.history_input = ""
-            env.history_parts_cache = {}
-            return
-        end
 
-        local raw_in = ctx.input or ""
-        if raw_in == "" then return end
-
-        local spans = ctx.composition:spans()
-        if not spans then return end
-
-        local v = type(spans.vertices) == "function" and spans:vertices() or spans.vertices
-
-        if not v or #v < 2 then return end
-
-        local key = env.search_key_str or "`"
-        if key ~= "" and not raw_in:find(key, 1, true) then
-            local parts = get_script_text_parts(ctx, key)
-            if #parts > 0 then
-                env.history_parts = parts
-                env.history_input = raw_in
-            end
-        end
-
-        if #v >= 3 and v[#v] == #raw_in then
-            local v_copy = {}
-            for i = 1, #v do table.insert(v_copy, v[i]) end
-            env.history_parts_cache[raw_in] = v_copy
-        end
-    end)
 end
 
 function f.tags_match(seg, env)
