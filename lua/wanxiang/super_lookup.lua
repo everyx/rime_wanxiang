@@ -1381,7 +1381,26 @@ function f.init(env)
     env.history_input = ""
     env.history_parts_cache = {}
 
+     -- 专为引导模式(Explicit)的监听器，用于在敲击反查引导符前，保留完美的拼音切分案底
+    env.update_conn = env.engine.context.update_notifier:connect(function(ctx)
+        if not ctx:is_composing() then
+            env.history_parts = {}
+            env.history_input = ""
+            return
+        end
+        local raw_in = ctx.input or ""
+        if raw_in == "" then return end
 
+        if env.search_key_str and raw_in:find(env.search_key_str, 1, true) then
+            return
+        end
+
+        local parts = get_script_text_parts(ctx, env.search_key_str)
+        if parts and #parts > 0 then
+            env.history_parts = parts
+            env.history_input = raw_in
+        end
+    end)
 end
 
 function f.tags_match(seg, env)
