@@ -260,6 +260,7 @@ jobs:
               - **包名**: `amzxyz.wanxiang.trime`
               - **主题**: 默认集成色彩简纯
               - **用户目录**: `wanxiang`
+              - **语法模型**: 需单独下载放入`wanxiang`目录
               - 更新内容参照同文及万象的commit
               ## 📢 版权与归属声明
             
