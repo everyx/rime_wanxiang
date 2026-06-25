@@ -66,8 +66,6 @@ base:
       - derive/([rtypsdghklzcbnm])ao$/$1oa/
       # ou
       - derive/([ypfm])ou$/$1uo/
-      # an
-      - derive/([wrtypsdfghklzcbnm])an$/$1na/
       # ang
       - derive/([wrtypsdfghklzcbnm])ang$/$1nag/
       - derive/([wrtypsdfghklzcbnm])ang$/$1agn/
