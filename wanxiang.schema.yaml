@@ -716,6 +716,8 @@ key_binder:
     #- { match: "^.*`$", accept: "`", send_sequence: '{BackSpace}{Home}{`}{`}{End}' }基础版暂时取消这个功能，
     #斜杠被占用引导符号，因此输入本身设置为双击
     - {match: "^/$", accept: "/", send_sequence: '{space}',}
+    #在预测符号状态下，按下斜杠提交清空与斜杠
+    - {match: "^›+$", accept: "backslash", send_sequence: '{Clear}{backslash}',}
 
 editor:
   bindings:

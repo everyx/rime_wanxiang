@@ -753,7 +753,6 @@ function P.func(key, env)
     
     if is_predicting then
         local is_alt_key = (repr == "Tab" or repr == "Alt" or repr == "Alt_L" or repr == "Alt_R")
-
         -- 根据选词范围分流数字键
         if s_match(repr, "^[0-9]$") or s_match(repr, "^KP_[0-9]$") then
             -- 九宫格(T9): 数字键是音节编码, 续写时放行给 speller 起新音节。
@@ -829,6 +828,9 @@ function P.func(key, env)
             reset_memory_chain(env, "回车键打断预测并输入回车") 
             return 2
         end
+        ctx:clear()
+        reset_memory_chain(env, "预测放行其他键")
+        return 2
     end
 
     if not ctx:is_composing() then
