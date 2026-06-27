@@ -733,6 +733,7 @@ key_binder:
     - {match: "^›+$", accept: "backslash", send_sequence: '{Clear}{backslash}',}
     - { match: "^›+$", accept: "comma",    send_sequence: '{Clear}{comma}'}
     - { match: "^›+$", accept: "period",   send_sequence: '{Clear}{period}'}
+    - {match: "^›+$", accept: "Return", send_sequence: '{Clear}{Return}'}
 
 editor:
   bindings:

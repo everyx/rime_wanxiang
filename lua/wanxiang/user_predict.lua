@@ -825,9 +825,8 @@ function P.func(key, env)
         
         if repr == "Return" then
             ctx:clear()
-            env.engine:commit_text("\n")
             reset_memory_chain(env, "回车键打断预测并输入回车") 
-            return 1
+            return 2
         end
     end
 
@@ -854,7 +853,7 @@ function P.func(key, env)
             remove_predict_candidate(env, cand.text)
             ctx:clear()
             reset_memory_chain(env, "物理按键销毁词条")
-            return 1 
+            return 1
         end
     end
     return 2 
