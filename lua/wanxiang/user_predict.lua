@@ -231,9 +231,13 @@ local function get_predictions(env, prev_commit)
                 local count = tonumber(c_str) or 0
                 local ts = tonumber(ts_str) or 0
                 
-                local is_p_gram = (s_sub(k, 1, 2) == "P\t")
-                local limit = is_p_gram and CONFIG.P_EXPIRY_SECONDS or CONFIG.EXPIRY_SECONDS
-                
+                if s_sub(k, 1, 2) == "S\t" then
+                    limit = math.huge
+                else
+                    local is_p_gram = (s_sub(k, 1, 2) == "P\t")
+                    limit = is_p_gram and CONFIG.P_EXPIRY_SECONDS or CONFIG.EXPIRY_SECONDS
+                end
+
                 if ts == 0 then ts = now - limit - 1 end
                 
                 if (now - ts) > limit then
@@ -355,8 +359,12 @@ function P.init(env)
             if s_sub(k, 1, 1) ~= "\1" and s_sub(k, 1, 1) ~= "\0" then
                 local _, ts_str = s_match(v, "^([^|]+)|?(.*)$")
                 local ts = tonumber(ts_str) or 0
-                local is_p_gram = (s_sub(k, 1, 2) == "P\t")
-                local limit = is_p_gram and CONFIG.P_EXPIRY_SECONDS or CONFIG.EXPIRY_SECONDS
+                if s_sub(k, 1, 2) == "S\t" then
+                    limit = math.huge
+                else
+                    local is_p_gram = (s_sub(k, 1, 2) == "P\t")
+                    limit = is_p_gram and CONFIG.P_EXPIRY_SECONDS or CONFIG.EXPIRY_SECONDS
+                end
                 if ts == 0 then ts = now - limit - 1 end
                 if (now - ts) > limit then
                     if db.erase then db:erase(k) else db:update(k, "") end
@@ -572,8 +580,12 @@ function P.init(env)
                 if s_sub(k, 1, 1) ~= "\1" and s_sub(k, 1, 1) ~= "\0" then
                     local _, ts_str = s_match(v, "^([^|]+)|?(.*)$")
                     local ts = tonumber(ts_str) or 0
-                    local is_p_gram = (s_sub(k, 1, 2) == "P\t")
-                    local limit = is_p_gram and CONFIG.P_EXPIRY_SECONDS or CONFIG.EXPIRY_SECONDS
+                    if s_sub(k, 1, 2) == "S\t" then
+                        limit = math.huge
+                    else
+                        local is_p_gram = (s_sub(k, 1, 2) == "P\t")
+                        limit = is_p_gram and CONFIG.P_EXPIRY_SECONDS or CONFIG.EXPIRY_SECONDS
+                    end
                     
                     if ts == 0 then ts = now - limit - 1 end
                     

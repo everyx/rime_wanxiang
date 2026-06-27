@@ -1,5 +1,5 @@
 
-name: Build release branch snapshot8
+name: Build release branch snapshot
 
 on:
   workflow_dispatch: # 手动触发
