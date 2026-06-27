@@ -718,6 +718,8 @@ key_binder:
     - {match: "^/$", accept: "/", send_sequence: '{space}',}
     #在预测符号状态下，按下斜杠提交清空与斜杠
     - {match: "^›+$", accept: "backslash", send_sequence: '{Clear}{backslash}',}
+    - { match: "^›+$", accept: "comma",    send_sequence: '{Clear}{comma}'}
+    - { match: "^›+$", accept: "period",   send_sequence: '{Clear}{period}'}
 
 editor:
   bindings:

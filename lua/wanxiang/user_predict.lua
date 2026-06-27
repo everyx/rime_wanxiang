@@ -828,9 +828,6 @@ function P.func(key, env)
             reset_memory_chain(env, "回车键打断预测并输入回车") 
             return 2
         end
-        ctx:clear()
-        reset_memory_chain(env, "预测放行其他键")
-        return 2
     end
 
     if not ctx:is_composing() then
