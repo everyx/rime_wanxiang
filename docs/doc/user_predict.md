@@ -50,8 +50,7 @@
 # 方案参数
 user_predict:
   db_name: lua/predict         # 数据库名称（默认 predict，将生成 predict.userdb 文件夹）
-  enable_post_predict: true        # 上屏后预测，PC端建议关闭
-  enable_context_reorder: true     # 输入时调频
+  predict_style: post          # "post"（默认，上屏后弹出预测候选）| "reorder"（输入时调频）| "off"（关闭）
   max_candidates: 10           # 屏幕最多显示的联想词数量
   max_predictions: 3           # 连续触发预测的最高次数限制
   expiry_days: 90              # 绝对寿命（天）：不命中则物理销毁
@@ -84,10 +83,7 @@ user_predict:
 # 自定义参数
 patch:
   # 引擎 A：是否开启上屏后的联想预测 (产生 › 占位符)
-  "user_predict/enable_post_predict": true
-  
-  # 引擎 B：是否开启输入过程中的实时上下文调频 (暗中提权)
-  "user_predict/enable_context_reorder": true
+  predict_style: post   # "post"（默认，上屏后弹出预测候选）| "reorder"（输入时调频）| "off"（关闭）
   
   # 联想深度与外观
   "user_predict/max_candidates": 5      # 候选栏中最多显示的联想词数量
