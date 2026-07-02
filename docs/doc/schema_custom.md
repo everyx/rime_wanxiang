@@ -311,7 +311,7 @@ charset:
   - option: charset_filter
     base: a  #可以填入多个类别如aj
     addlist:
-      - "诶濛硷氽尛躝〇冇吔磺咗囧屌鲶芶咲畑垅𰻝𰻞龍朙頔"
+      - "诶濛硷氽尛躝〇冇吔磺咗囧屌鲶芶咲畑垅𰻝𰻞龍朙頔雲"
     blacklist: []
   - option: s2t
     base: fa
