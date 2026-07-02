@@ -301,8 +301,12 @@ function M.func(input, env)
         elseif text_is_valid(env, text, active_rules, cache) then
             output(cand, text, text_len)
             has_valid = true
+        elseif text_len >= 2 and (cand.type == "phrase" or cand.type == "user_phrase") then
+            -- 词库中真实存在的多字词组，直接放行不过滤
+            output(cand, text, text_len)
+            has_valid = true
         elseif text_len >= 2 and not has_valid and not pending then
-            -- 兜底
+            -- 兜底,过早兜底会造成后续流程为空的判断，因此这里先放行单字
             local fb = nil
 
             for hl = code_len, 1, -1 do
