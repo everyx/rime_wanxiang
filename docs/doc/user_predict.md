@@ -50,7 +50,9 @@
 # 方案参数
 user_predict:
   db_name: lua/predict         # 数据库名称（默认 predict，将生成 predict.userdb 文件夹）
-  predict_style: post          # "post"（默认，上屏后弹出预测候选）| "reorder"（输入时调频）| "off"（关闭）
+  mobile_predict_style: post   # 移动端联想模式："post"（上屏后弹出预测候选）| "reorder"（输入时调频）| "off"（关闭）
+  # ⚠️ option的开关是总开关，开启后pc端自动为上下文调频模式，不能用弹出模式，因为天生不适合，要深刻理解。
+  enable_fallback_reorder: true  # 同码回删再输首次交换
   max_candidates: 10           # 屏幕最多显示的联想词数量
   max_predictions: 3           # 连续触发预测的最高次数限制
   expiry_days: 90              # 绝对寿命（天）：不命中则物理销毁
