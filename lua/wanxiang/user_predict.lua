@@ -42,7 +42,7 @@ local CONFIG = {
     SCAN_LIMIT          = 80,            
     ENABLE_PREDICT_SPACE = false,  
     CONTEXT_TIMEOUT_MS  = 5000,
-    PREDICT_STYLE       = "post",
+    PREDICT_STYLE       = "off",
     ENABLE_FALLBACK_REORDER = true,
 }
 local is_after_number = false  --量词调频状态
@@ -93,8 +93,13 @@ local function load_config(env)
         if ps_val ~= nil then CONFIG.ENABLE_PREDICT_SPACE = ps_val end
         local timeout_val = config:get_int("user_predict/context_timeout")
         if timeout_val ~= nil then CONFIG.CONTEXT_TIMEOUT_MS = timeout_val end
-        local style_val = config:get_string("user_predict/predict_style")
-        if style_val ~= nil then CONFIG.PREDICT_STYLE = style_val end
+        -- 移动端用 mobile_predict_style，PC端默认 reorder 调频
+        if wanxiang.is_mobile_device() then
+            local mobile_style = config:get_string("user_predict/mobile_predict_style")
+            if mobile_style ~= nil then CONFIG.PREDICT_STYLE = mobile_style end
+        else
+            CONFIG.PREDICT_STYLE = "reorder"
+        end
         local fallback_val = config:get_bool("user_predict/enable_fallback_reorder")
         if fallback_val ~= nil then CONFIG.ENABLE_FALLBACK_REORDER = fallback_val end
         local custom_node = config:get_item("user_predict/custom_classifiers")
