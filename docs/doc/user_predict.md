@@ -14,7 +14,7 @@
 
 * **行为**：当你把一个词上屏，输入框清空后，编码区会凭空出现系统推荐的下一个词（伴随 `›` 占位符）。
 
-* **魔法体验**：实现“一路狂按空格，直接蹦出一长串句子”的极速连打。比如你之前打过“今天天气真好”，下次你输入“今天”，只需连按空格，“天气”、“真好”就会接连蹦上屏幕。
+* **魔法体验**：该功能只在移动端提供，需要点击上屏，空格输入的还是空格，任意按键打断预测
 
 ### 2. 🔀 输入中上下文调频 (Context Reorder)
 
@@ -59,7 +59,6 @@ user_predict:
   activation_days: 7           # 激活期限（天）：冷冻期内输入第2次转正
   max_memory_branches: 15      # 分支上限：单前缀最多保留15个后续预测
   decay_rate: 0.85             # 衰减率：单日时间权重打 85 折
-  enable_predict_space: false   # true: 按空格上屏空格; false:空格提交候选。一般手机开电脑关，空格当上屏则，Tab、Alt按键当作空格
   context_timeout: 5000         # 上文超时时间毫秒
   custom_classifiers:            # 数字后量词调频，如平时chuan传，输入数字后，首选为串，结果如：1串，想关闭清空列表即可
     - 个只名位口头匹条群批伙         # 人物动物
@@ -85,7 +84,7 @@ user_predict:
 # 自定义参数
 patch:
   # 引擎 A：是否开启上屏后的联想预测 (产生 › 占位符)
-  predict_style: post   # "post"（默认，上屏后弹出预测候选）| "reorder"（输入时调频）| "off"（关闭）
+  mobile_predict_style: post   # 移动端联想模式："post"（上屏后弹出预测候选）| "reorder"（输入时调频）| "off"（关闭）
   
   # 联想深度与外观
   "user_predict/max_candidates": 5      # 候选栏中最多显示的联想词数量
@@ -96,15 +95,6 @@ patch:
   "user_predict/activation_days": 7     # 激活锁：新词若 7 天内不再使用，将被视为噪音冷冻
   "user_predict/decay_rate": 0.85       # 遗忘衰减率：数值越小，旧词权重掉得越快
 ```
-
-
-
-### 2. 空格键的“双模式”交互反转
-为了平衡“畅快选词”与“精准输入空格”的冲突，万象独创了双模式按键：
-
-* **模式 B (默认，`enable_predict_space: false`)**：沉浸预测流。按下 `Space` 空格键顺滑上屏联想词；若想打断联想并输入物理空格，请按 `Tab`、`Alt` 或 `→` 方向键。
-
-* **模式 A (`enable_predict_space: true`)**：精准空格流。按下 `Space` 强制打断联想并输出物理空格。
 
 ---
 
